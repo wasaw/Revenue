@@ -19,13 +19,15 @@ private enum Constants {
     static let balanceTitlePaddingTop: CGFloat = 20
     static let balanceLabelPaddingTop: CGFloat = 8
     static let calendarRadius: CGFloat = 23
+    static let headerViewHeight: CGFloat = 45
+    static let headerLabelPaddingTop: CGFloat = 5
 }
 
 final class HomeViewController: UIViewController {
     
 // MARK: - Properties
     
-    private let output: HomeOutputProtocol
+    private let output: HomeOutput
     
     private lazy var calendarView: UIView = {
         let view = UIView()
@@ -72,7 +74,7 @@ final class HomeViewController: UIViewController {
     
     private lazy var balanceView: UIView = {
         let view = UIView()
-        view.backgroundColor = .balanceBanckground
+        view.backgroundColor = .balanceBackground
         return view
     }()
     private lazy var balanceTitleLabel: UILabel = {
@@ -89,10 +91,17 @@ final class HomeViewController: UIViewController {
         label.textColor = .incomeCash
         return label
     }()
-
+    
+    private lazy var tableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .white
+        return table
+    }()
+    private lazy var dataSource = HomeDataSource(tableView)
+    
 // MARK: - Lifecycle
     
-    init(output: HomeOutputProtocol) {
+    init(output: HomeOutput) {
         self.output = output
         
         super.init(nibName: nil, bundle: nil)
@@ -105,12 +114,22 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        output.viewIsReady()
         configureUI()
     }
     
 // MARK: - Helpers
     
     private func configureUI() {
+        configureCalendar()
+        configureSegmentController()
+        configureBalanceView()
+        configureTableView()
+        
+        view.backgroundColor = .background
+    }
+    
+    private func configureCalendar() {
         navigationController?.navigationBar.addSubview(calendarView)
         calendarView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
@@ -130,7 +149,8 @@ final class HomeViewController: UIViewController {
             make.leading.equalTo(calendarIV.snp.trailing).offset(Constants.horizontalPadding)
             make.centerY.equalToSuperview()
         }
-        
+    }
+    private func configureSegmentController() {
         view.addSubview(segmentContainerView)
         segmentContainerView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -154,10 +174,11 @@ final class HomeViewController: UIViewController {
             make.height.equalTo(Constants.bottomUnderlineViewHeight)
             make.width.equalToSuperview().multipliedBy(1 / CGFloat(segmentedController.numberOfSegments))
         }
-        
+    }
+    private func configureBalanceView() {
         view.addSubview(balanceView)
         balanceView.snp.makeConstraints { make in
-            make.top.equalTo(segmentContainerView.snp.bottom)
+            make.top.equalTo(bottomUnderlineView.snp.bottom)
             make.width.equalToSuperview()
             make.height.equalTo(Constants.balanceViewHeight)
         }
@@ -173,8 +194,28 @@ final class HomeViewController: UIViewController {
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
             make.top.equalTo(balanceTitleLabel.snp.bottom).offset(Constants.balanceLabelPaddingTop)
         }
-        
-        view.backgroundColor = .background
+    }
+    private func configureTableView() {
+        tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reusesIdentifire)
+        view.addSubview(tableView)
+        tableView.sectionHeaderTopPadding = 0
+        tableView.delegate = self
+        tableView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalTo(balanceView.snp.bottom)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    private func setupDataSource(_ transactions: [HomeTransactions]) {
+        var snapshot = dataSource.snapshot()
+        snapshot.deleteAllItems()
+        snapshot.appendSections(HomeSections.allCases)
+        transactions.forEach { transaction in
+            snapshot.appendItems(transaction.item, toSection: transaction.sections)
+        }
+        dataSource.apply(snapshot)
     }
     
 // MARK: - Selecter
@@ -195,5 +236,34 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeInputProtocol
 
 extension HomeViewController: HomeInputProtocol {
+    func setTransactions(_ items: [HomeTransactions]) {
+        setupDataSource(items)
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: tableView.frame.width,
+                                              height: Constants.headerViewHeight))
+        let label = UILabel()
+        label.frame = CGRect(x: Constants.horizontalPadding,
+                             y: Constants.headerLabelPaddingTop,
+                             width: tableView.frame.width - Constants.horizontalPadding,
+                             height: Constants.headerViewHeight - Constants.headerLabelPaddingTop)
+        label.text = HomeSections.allCases[section].rawValue
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .titleColorGray
+        headerView.addSubview(label)
+        return headerView
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        Constants.headerViewHeight
+    }
 }
