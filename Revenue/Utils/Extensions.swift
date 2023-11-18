@@ -17,4 +17,5 @@ extension UIColor {
     static let balanceBackground = UIColor(displayP3Red: 244/255, green: 243/255, blue: 246/255, alpha: 1)
     static let calendarBackground = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.1)
     static let backgroundLightGray = UIColor(displayP3Red: 247/255, green: 246/255, blue: 249/255, alpha: 1)
+    static let applyButton = UIColor(displayP3Red: 61/255, green: 198/255, blue: 0, alpha: 1)
 }

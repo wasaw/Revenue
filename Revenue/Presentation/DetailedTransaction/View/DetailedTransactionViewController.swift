@@ -14,6 +14,8 @@ private enum Constants {
     static let horizontalPadding: CGFloat = 16
     static let verticalPadding: CGFloat = 16
     static let dividerHeight: CGFloat = 0.8
+    static let saveButtonHeight: CGFloat = 54
+    static let saveButtonRadius: CGFloat = 12
 }
 
 final class DetailedTransactionViewController: UIViewController {
@@ -87,9 +89,19 @@ final class DetailedTransactionViewController: UIViewController {
     }()
     private lazy var amoutTextField: UITextField = {
         let tf = UITextField()
+        tf.becomeFirstResponder()
+        tf.keyboardType = .numberPad
         tf.text = "30000c"
         tf.font = UIFont.systemFont(ofSize: 16)
         return tf
+    }()
+    
+    private lazy var saveButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.layer.cornerRadius = Constants.saveButtonRadius
+        btn.setTitle("Cохранить", for: .normal)
+        btn.backgroundColor = .applyButton
+        return btn
     }()
     
 // MARK: - Lifecycle
@@ -129,6 +141,12 @@ final class DetailedTransactionViewController: UIViewController {
         configureDetailView()
         configureComment()
         configureAmountView()
+        
+        view.addSubview(saveButton)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWilLShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
     }
     
     private func configureNavigationItem() {
@@ -228,6 +246,19 @@ final class DetailedTransactionViewController: UIViewController {
     }
     
     @objc private func handleTypeView() {
+    }
+    
+    @objc private func keyboardWilLShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardHeight = keyboardFrame.cgRectValue.height
+            view.addSubview(saveButton)
+            saveButton.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+                make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
+                make.bottom.equalToSuperview().offset(-keyboardHeight - Constants.horizontalPadding)
+                make.height.equalTo(Constants.saveButtonHeight)
+            }
+        }
     }
 }
 
