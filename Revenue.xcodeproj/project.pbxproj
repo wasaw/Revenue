@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
+		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
+		BB77A37F2B07687700D097E0 /* DetailedTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37E2B07687700D097E0 /* DetailedTransactionOutput.swift */; };
+		BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3802B0768B900D097E0 /* DetailedTransactionInput.swift */; };
+		BB77A3832B0768F000D097E0 /* DetailedTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3822B0768F000D097E0 /* DetailedTransactionViewController.swift */; };
+		BB77A3862B076BD500D097E0 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3852B076BD500D097E0 /* HomeCoordinator.swift */; };
+		BB77A3882B076CD300D097E0 /* HomePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3872B076CD300D097E0 /* HomePresenterOutput.swift */; };
+		BB77A38B2B078AD200D097E0 /* DetailedTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A38A2B078AD200D097E0 /* DetailedTransactionAssembly.swift */; };
 		BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031402B04BDEB000D8307 /* AppDelegate.swift */; };
 		BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031422B04BDEB000D8307 /* SceneDelegate.swift */; };
 		BB80314A2B04BDEF000D8307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8031492B04BDEF000D8307 /* Assets.xcassets */; };
@@ -24,6 +31,13 @@
 /* Begin PBXFileReference section */
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
+		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
+		BB77A37E2B07687700D097E0 /* DetailedTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionOutput.swift; sourceTree = "<group>"; };
+		BB77A3802B0768B900D097E0 /* DetailedTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionInput.swift; sourceTree = "<group>"; };
+		BB77A3822B0768F000D097E0 /* DetailedTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionViewController.swift; sourceTree = "<group>"; };
+		BB77A3852B076BD500D097E0 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		BB77A3872B076CD300D097E0 /* HomePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterOutput.swift; sourceTree = "<group>"; };
+		BB77A38A2B078AD200D097E0 /* DetailedTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionAssembly.swift; sourceTree = "<group>"; };
 		BB80313D2B04BDEB000D8307 /* Revenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Revenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8031402B04BDEB000D8307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8031422B04BDEB000D8307 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +71,59 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		BB77A3782B0767FF00D097E0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BB80315B2B04CC96000D8307 /* Presenter */,
+				BB80315A2B04CC8E000D8307 /* View */,
+				BB77A3752B0647CF00D097E0 /* DataSource */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BB77A3792B07680900D097E0 /* DetailedTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				BB77A37B2B07684600D097E0 /* Presenter */,
+				BB77A37A2B07684200D097E0 /* View */,
+			);
+			path = DetailedTransaction;
+			sourceTree = "<group>";
+		};
+		BB77A37A2B07684200D097E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB77A3822B0768F000D097E0 /* DetailedTransactionViewController.swift */,
+				BB77A3802B0768B900D097E0 /* DetailedTransactionInput.swift */,
+				BB77A37E2B07687700D097E0 /* DetailedTransactionOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB77A37B2B07684600D097E0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB77A3842B076BBE00D097E0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				BB77A3852B076BD500D097E0 /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		BB77A3892B078AB900D097E0 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				BB77A38A2B078AD200D097E0 /* DetailedTransactionAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		BB8031342B04BDEA000D8307 = {
 			isa = PBXGroup;
 			children = (
@@ -77,7 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				BB80315C2B04CC9C000D8307 /* App */,
+				BB77A3892B078AB900D097E0 /* Assembly */,
 				BB8031582B04CC78000D8307 /* Model */,
+				BB77A3842B076BBE00D097E0 /* Coordinator */,
 				BB8031592B04CC81000D8307 /* Presentation */,
 				BB80315D2B04CCC1000D8307 /* Utils */,
 				BB80314E2B04BDEF000D8307 /* Info.plist */,
@@ -95,9 +164,8 @@
 		BB8031592B04CC81000D8307 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				BB80315B2B04CC96000D8307 /* Presenter */,
-				BB80315A2B04CC8E000D8307 /* View */,
-				BB77A3752B0647CF00D097E0 /* DataSource */,
+				BB77A3782B0767FF00D097E0 /* Home */,
+				BB77A3792B07680900D097E0 /* DetailedTransaction */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -117,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				BB8031602B04F3DD000D8307 /* HomePresenter.swift */,
+				BB77A3872B076CD300D097E0 /* HomePresenterOutput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -217,13 +286,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB8031652B04F40B000D8307 /* HomeOutput.swift in Sources */,
+				BB77A3882B076CD300D097E0 /* HomePresenterOutput.swift in Sources */,
 				BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */,
 				BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */,
+				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
 				BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */,
+				BB77A3862B076BD500D097E0 /* HomeCoordinator.swift in Sources */,
 				BB8031552B04C8B5000D8307 /* HomeViewController.swift in Sources */,
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,
+				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
+				BB77A38B2B078AD200D097E0 /* DetailedTransactionAssembly.swift in Sources */,
+				BB77A37F2B07687700D097E0 /* DetailedTransactionOutput.swift in Sources */,
 				BB80315F2B04CCCE000D8307 /* Extensions.swift in Sources */,
 				BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */,
+				BB77A3832B0768F000D097E0 /* DetailedTransactionViewController.swift in Sources */,
 				BB8031632B04F3F1000D8307 /* HomeInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +442,6 @@
 				DEVELOPMENT_TEAM = 4G4D5WHAZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Revenue/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -397,7 +472,6 @@
 				DEVELOPMENT_TEAM = 4G4D5WHAZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Revenue/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

@@ -30,6 +30,13 @@ final class HomePresenter {
 // MARK: - Properties
     
     weak var input: HomeInputProtocol?
+    private let output: HomePresenterOutput
+
+// MARK: - Lifecycle
+    
+    init(output: HomePresenterOutput) {
+        self.output = output
+    }
 }
 
 // MARK: HomeOutputProtocol
@@ -44,5 +51,9 @@ extension HomePresenter: HomeOutput {
         let transaction2 = HomeTransactions(sections: .section2, item: homeItems2)
         let transactions = [transaction1, transaction2]
         input?.setTransactions(transactions)
+    }
+    
+    func showDetails(for index: Int, in section: Int) {
+        output.showDetailed()
     }
 }

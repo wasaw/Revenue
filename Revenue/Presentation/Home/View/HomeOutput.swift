@@ -9,4 +9,5 @@ import Foundation
 
 protocol HomeOutput: AnyObject {
     func viewIsReady()
+    func showDetails(for index: Int, in section: Int)
 }

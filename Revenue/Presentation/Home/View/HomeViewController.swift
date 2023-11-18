@@ -111,11 +111,30 @@ final class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.barStyle = .black
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .background
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        configureCalendar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         output.viewIsReady()
         configureUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.backButtonTitle = ""
+       
+        calendarView.removeFromSuperview()
     }
     
 // MARK: - Helpers
@@ -125,7 +144,10 @@ final class HomeViewController: UIViewController {
         configureSegmentController()
         configureBalanceView()
         configureTableView()
-        
+
+        let backImage = UIImage(named: "chevron-left")
+        navigationController?.navigationBar.backIndicatorImage = backImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
         view.backgroundColor = .background
     }
     
@@ -261,6 +283,7 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        output.showDetails(for: indexPath.row, in: indexPath.section)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
