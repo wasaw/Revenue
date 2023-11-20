@@ -52,8 +52,8 @@ final class DetailedTransactionViewController: UIViewController {
         iv.image = UIImage(named: "salary")
         return iv
     }()
-    private lazy var typeTitleLabel: UITextField = {
-        let label = UITextField()
+    private lazy var typeTitleLabel: UILabel = {
+        let label = UILabel()
         label.text = "Заработная плата"
         label.font = UIFont.systemFont(ofSize: 16)
         return label
@@ -246,6 +246,7 @@ final class DetailedTransactionViewController: UIViewController {
     }
     
     @objc private func handleTypeView() {
+        output.showChoiceCategory()
     }
     
     @objc private func keyboardWilLShow(_ notification: Notification) {

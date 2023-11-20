@@ -12,13 +12,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // MARK: - Properties
     
     var window: UIWindow?
-    
-    private let detailedAssembly = DetailedTransactionAssembly()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        let detailedAssembly = DetailedTransactionAssembly()
+        let choiceCategoryAssembly = ChoiceCategoryAssembly()
+        let detailedCoordinator = DetailedCordinator(detailedAssembly: detailedAssembly, choiceCategoryAssembly: choiceCategoryAssembly)
+        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let homeCoordinator = HomeCoordinator(detailedAssembly: detailedAssembly)
+        let homeCoordinator = HomeCoordinator(detailedCoordinator: detailedCoordinator)
         window?.rootViewController = homeCoordinator.start()
         window?.makeKeyAndVisible()
     }

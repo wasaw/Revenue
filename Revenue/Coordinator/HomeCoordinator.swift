@@ -12,12 +12,12 @@ final class HomeCoordinator {
 // MARK: - Properties
     
     private var navigation: UINavigationController?
-    private let detailedAssembly: DetailedTransactionAssembly
+    private let detailedCoordinator: DetailedCordinator
     
 // MARK: - Lifecycle
     
-    init(detailedAssembly: DetailedTransactionAssembly) {
-        self.detailedAssembly = detailedAssembly
+    init(detailedCoordinator: DetailedCordinator) {
+        self.detailedCoordinator = detailedCoordinator
     }
     
 // MARK: - Helpers
@@ -36,7 +36,7 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showDetailed() {
-        let vc = detailedAssembly.makeDetailedModule()
+        let vc = detailedCoordinator.start()
         navigation?.pushViewController(vc, animated: true)
     }
 }
