@@ -23,6 +23,8 @@
 		BB77A3982B09445F00D097E0 /* ChoiceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3972B09445F00D097E0 /* ChoiceOutput.swift */; };
 		BB77A39A2B0944EA00D097E0 /* ChoiceCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3992B0944EA00D097E0 /* ChoiceCategoryPresenter.swift */; };
 		BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */; };
+		BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */; };
+		BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */; };
 		BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031402B04BDEB000D8307 /* AppDelegate.swift */; };
 		BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031422B04BDEB000D8307 /* SceneDelegate.swift */; };
 		BB80314A2B04BDEF000D8307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8031492B04BDEF000D8307 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 		BB77A3972B09445F00D097E0 /* ChoiceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceOutput.swift; sourceTree = "<group>"; };
 		BB77A3992B0944EA00D097E0 /* ChoiceCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryPresenter.swift; sourceTree = "<group>"; };
 		BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryAssembly.swift; sourceTree = "<group>"; };
+		BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryDataSource.swift; sourceTree = "<group>"; };
+		BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryCell.swift; sourceTree = "<group>"; };
 		BB80313D2B04BDEB000D8307 /* Revenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Revenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8031402B04BDEB000D8307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8031422B04BDEB000D8307 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 			children = (
 				BB77A3922B0943C200D097E0 /* Presenter */,
 				BB77A3912B0943BD00D097E0 /* View */,
+				BB77A39D2B0B59C500D097E0 /* DataSorce */,
 			);
 			path = ChoiceCategory;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				BB77A3932B0943DB00D097E0 /* ChoiceCategoryViewController.swift */,
 				BB77A3952B09444A00D097E0 /* ChoiceInput.swift */,
 				BB77A3972B09445F00D097E0 /* ChoiceOutput.swift */,
+				BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,6 +172,14 @@
 				BB77A3992B0944EA00D097E0 /* ChoiceCategoryPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB77A39D2B0B59C500D097E0 /* DataSorce */ = {
+			isa = PBXGroup;
+			children = (
+				BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */,
+			);
+			path = DataSorce;
 			sourceTree = "<group>";
 		};
 		BB8031342B04BDEA000D8307 = {
@@ -343,9 +357,11 @@
 				BB77A3862B076BD500D097E0 /* HomeCoordinator.swift in Sources */,
 				BB8031552B04C8B5000D8307 /* HomeViewController.swift in Sources */,
 				BB77A3982B09445F00D097E0 /* ChoiceOutput.swift in Sources */,
+				BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */,
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
+				BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */,
 				BB77A38B2B078AD200D097E0 /* DetailedTransactionAssembly.swift in Sources */,
 				BB77A38F2B09406000D097E0 /* DetailedCoordinator.swift in Sources */,
 				BB77A37F2B07687700D097E0 /* DetailedTransactionOutput.swift in Sources */,

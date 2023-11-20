@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ChoiceInput: AnyObject {
-    
+    func setCategories(_ items: [TableCategoryItem])
 }

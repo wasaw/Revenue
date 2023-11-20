@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ChoiceOutput: AnyObject {
-    
+    func viewIsReady()
 }

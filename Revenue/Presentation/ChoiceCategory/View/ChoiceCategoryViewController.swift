@@ -11,6 +11,13 @@ import SnapKit
 private enum Constants {
     static let cornerRadius: CGFloat = 16
     static let defaultHeight: CGFloat = 600
+    static let horizontalPadding: CGFloat = 16
+    static let segmentPaddingTop: CGFloat = 36
+    static let segmentHeight: CGFloat = 38
+    static let tablePaddingTop: CGFloat = 16
+    static let edgeLineViewPaddingTop: CGFloat = 8
+    static let edgeLineViewWidth: CGFloat = 50
+    static let edgeLineViewHeight: CGFloat = 4
 }
 
 final class ChoiceCategoryViewController: UIViewController {
@@ -30,6 +37,29 @@ final class ChoiceCategoryViewController: UIViewController {
     }()
     private var containerViewHeightConstraint: NSLayoutConstraint?
     private var containerViewBottomConstraint: NSLayoutConstraint?
+    
+    private lazy var segmentItems = ["Доходы", "Расходы"]
+    private lazy var segmentController: UISegmentedControl = {
+        let sc = UISegmentedControl(items: segmentItems)
+        sc.selectedSegmentIndex = 0
+        sc.setTitleTextAttributes([.foregroundColor: UIColor.lightGray,
+                                   .font: UIFont.systemFont(ofSize: 16)], for: .normal)
+        sc.setTitleTextAttributes([.foregroundColor: UIColor.white,
+                                   .font: UIFont.systemFont(ofSize: 16)], for: .selected)
+        sc.selectedSegmentTintColor = .black
+        return sc
+    }()
+    private lazy var edgeLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .backgroundLightGray
+        return view
+    }()
+    private lazy var tableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .white
+        return table
+    }()
+    private lazy var dataSource = ChoiceCategoryDataSource(tableView)
     
 // MARK: - Lifecycle
     
@@ -55,6 +85,7 @@ final class ChoiceCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        output.viewIsReady()
         configureUI()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCloseAction))
         dimmedView.addGestureRecognizer(tapGesture)
@@ -85,7 +116,41 @@ final class ChoiceCategoryViewController: UIViewController {
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
         
+        containerView.addSubview(segmentController)
+        segmentController.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalToSuperview().offset(Constants.segmentPaddingTop)
+            make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
+            make.height.equalTo(Constants.segmentHeight)
+        }
+        
+        tableView.register(ChoiceCategoryCell.self, forCellReuseIdentifier: ChoiceCategoryCell.reuseIdentifire)
+        tableView.delegate = self
+        containerView.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalTo(segmentController.snp.bottom).offset(Constants.tablePaddingTop)
+            make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
+            make.bottom.equalToSuperview()
+        }
+        
+        containerView.addSubview(edgeLineView)
+        edgeLineView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.edgeLineViewPaddingTop)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(Constants.edgeLineViewPaddingTop)
+            make.height.equalTo(Constants.edgeLineViewHeight)
+        }
+        
         view.backgroundColor = .clear
+    }
+    
+    private func setupDataSource(_ items: [TableCategoryItem]) {
+        var snapshot = dataSource.snapshot()
+        snapshot.deleteAllItems()
+        snapshot.appendSections(TableCategorySections.allCases)
+        snapshot.appendItems(items)
+        dataSource.apply(snapshot)
     }
     
     private func animateDismissView() {
@@ -111,5 +176,15 @@ final class ChoiceCategoryViewController: UIViewController {
 // MARK: - ChoiceInput
 
 extension ChoiceCategoryViewController: ChoiceInput {
-    
+    func setCategories(_ items: [TableCategoryItem]) {
+        setupDataSource(items)
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension ChoiceCategoryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
