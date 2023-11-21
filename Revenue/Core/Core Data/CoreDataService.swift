@@ -28,6 +28,12 @@ final class CoreDataService {
 // MARK: - CoreDataServiceProtocol
 
 extension CoreDataService: CoreDataServiceProtocol {
+    func fetchTransactions() throws -> [TransactionManagedObject] {
+        let fetchRequest = TransactionManagedObject.fetchRequest()
+        return try viewContext.fetch(fetchRequest)
+    }
+    
+    
     func save(completion: @escaping (NSManagedObjectContext) throws -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {

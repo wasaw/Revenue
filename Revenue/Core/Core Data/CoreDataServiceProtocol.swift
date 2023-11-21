@@ -8,5 +8,6 @@
 import CoreData
 
 protocol CoreDataServiceProtocol: AnyObject {
+    func fetchTransactions() throws -> [TransactionManagedObject]
     func save(completion: @escaping (NSManagedObjectContext) throws -> Void)
 }
