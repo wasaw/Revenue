@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let choiceCategoryAssembly = ChoiceCategoryAssembly()
         let detailedCoordinator = DetailedCoordinator(detailedAssembly: detailedAssembly, choiceCategoryAssembly: choiceCategoryAssembly)
         
-        let transactionService = TransactionsService()
+        let coreData = CoreDataService()
+        let transactionService = TransactionsService(coreData: coreData)
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)

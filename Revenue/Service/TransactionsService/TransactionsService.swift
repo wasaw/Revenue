@@ -9,6 +9,16 @@ import Foundation
 
 final class TransactionsService {
     
+// MARK: - Properties
+    
+    private let coreData: CoreDataServiceProtocol
+    
+// MARK: - Lifecycle
+    
+    init(coreData: CoreDataServiceProtocol) {
+        self.coreData = coreData
+    }
+    
 }
 
 // MARK: - TransactionServiceProtocol
