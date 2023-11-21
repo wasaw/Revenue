@@ -49,12 +49,10 @@ final class DetailedTransactionViewController: UIViewController {
     }()
     private lazy var typeImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "salary")
         return iv
     }()
     private lazy var typeTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Заработная плата"
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
@@ -91,7 +89,6 @@ final class DetailedTransactionViewController: UIViewController {
         let tf = UITextField()
         tf.becomeFirstResponder()
         tf.keyboardType = .numberPad
-        tf.text = "30000c"
         tf.font = UIFont.systemFont(ofSize: 16)
         return tf
     }()
@@ -130,6 +127,7 @@ final class DetailedTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        output.viewIsReady()
         configureUI()
         view.backgroundColor = .backgroundLightGray
     }
@@ -239,6 +237,12 @@ final class DetailedTransactionViewController: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleDeleteButton() {
+        let alert = UIAlertController(title: "", message: "Вы действительно хотите удалить данную транзакцию", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Удалить", style: .default)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
     }
     
     @objc private func handleBackButton() {
@@ -266,5 +270,10 @@ final class DetailedTransactionViewController: UIViewController {
 // MARK: - DetaieldTransactionInput
 
 extension DetailedTransactionViewController: DetailedTransactionInput {
-    
+    func showTransaction(_ transaction: Transaction) {
+        let transactionType = transaction.type.getInformation()
+        typeImageView.image = UIImage(named: transactionType.image)
+        typeTitleLabel.text = transactionType.title
+        amoutTextField.text = String(transaction.amount) + "c"
+    }
 }

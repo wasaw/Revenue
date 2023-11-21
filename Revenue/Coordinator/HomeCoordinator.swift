@@ -12,18 +12,20 @@ final class HomeCoordinator {
 // MARK: - Properties
     
     private var navigation: UINavigationController?
-    private let detailedCoordinator: DetailedCordinator
+    private let detailedCoordinator: DetailedCoordinator
+    private let transactionService: TransactionsServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(detailedCoordinator: DetailedCordinator) {
+    init(detailedCoordinator: DetailedCoordinator, transactionService: TransactionsServiceProtocol) {
         self.detailedCoordinator = detailedCoordinator
+        self.transactionService = transactionService
     }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let presenter = HomePresenter(output: self)
+        let presenter = HomePresenter(output: self, transactionService: transactionService)
         let viewController = HomeViewController(output: presenter)
         presenter.input = viewController
         let nav = UINavigationController(rootViewController: viewController)
@@ -35,8 +37,8 @@ final class HomeCoordinator {
 // MARK: - HomePresenterOutput
 
 extension HomeCoordinator: HomePresenterOutput {
-    func showDetailed() {
-        let vc = detailedCoordinator.start()
+    func showDetailed(for transaction: Transaction) {
+        let vc = detailedCoordinator.start(transaction: transaction)
         navigation?.pushViewController(vc, animated: true)
     }
 }

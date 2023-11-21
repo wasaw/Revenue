@@ -8,5 +8,5 @@
 import Foundation
 
 protocol HomePresenterOutput: AnyObject {
-    func showDetailed()
+    func showDetailed(for transaction: Transaction)
 }

@@ -14,7 +14,7 @@ struct HomeTransactions {
 
 enum HomeSections: String, Hashable, CaseIterable {
     case section1 = "First"
-    case section2 = "Second"
+//    case section2 = "Second"
 }
 
 struct HomeItem: Hashable {
@@ -31,11 +31,15 @@ final class HomePresenter {
     
     weak var input: HomeInputProtocol?
     private let output: HomePresenterOutput
+    private let transactionService: TransactionsServiceProtocol
+    
+    private var selectedTransactions: [Transaction] = []
 
 // MARK: - Lifecycle
     
-    init(output: HomePresenterOutput) {
+    init(output: HomePresenterOutput, transactionService: TransactionsServiceProtocol) {
         self.output = output
+        self.transactionService = transactionService
     }
 }
 
@@ -43,17 +47,27 @@ final class HomePresenter {
 
 extension HomePresenter: HomeOutput {
     func viewIsReady() {
-        let homeItems1 = [HomeItem(image: "salary", title: "Заработная плата", amount: 90000, time: "12:34"),
-                          HomeItem(image: "salary", title: "Медицина", amount: 270000, time: "12:34")]
-        let transaction1 = HomeTransactions(sections: .section1, item: homeItems1)
-        let homeItems2 = [HomeItem(image: "salary", title: "Заработная плата", amount: 90000, time: "12:34"),
-                          HomeItem(image: "salary", title: "Медицина", amount: 270000, time: "12:34")]
-        let transaction2 = HomeTransactions(sections: .section2, item: homeItems2)
-        let transactions = [transaction1, transaction2]
-        input?.setTransactions(transactions)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        transactionService.fetchTransactions { [weak self] result in
+            switch result {
+            case .success(let transactions):
+                self?.selectedTransactions = transactions
+                let items = transactions.compactMap { transaction in
+                    let type = transaction.type.getInformation()
+                    let date = dateFormatter.string(from: transaction.date)
+                    return HomeItem(image: type.image, title: type.title, amount: transaction.amount, time: date)
+                }
+                let homeTransactions = HomeTransactions(sections: .section1, item: items)
+                self?.input?.setTransactions([homeTransactions])
+            case .failure:
+                break
+            }
+        }
     }
     
     func showDetails(for index: Int, in section: Int) {
-        output.showDetailed()
+        let transaction = selectedTransactions[index]
+        output.showDetailed(for: transaction)
     }
 }

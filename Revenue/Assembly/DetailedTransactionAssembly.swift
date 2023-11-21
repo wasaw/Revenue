@@ -8,8 +8,8 @@
 import UIKit
 
 final class DetailedTransactionAssembly {
-    func makeDetailedModule(output: DetailedPresenterOutput) -> UIViewController {
-        let presenter = DetailedTransactionPresenter(output: output)
+    func makeDetailedModule(output: DetailedPresenterOutput, transaction: Transaction) -> UIViewController {
+        let presenter = DetailedTransactionPresenter(output: output, transaction: transaction)
         let viewController = DetailedTransactionViewController(output: presenter)
         presenter.input = viewController
         return viewController

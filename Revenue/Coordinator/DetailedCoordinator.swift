@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DetailedCordinator {
+final class DetailedCoordinator {
     
 // MARK: - Properties
     
@@ -24,8 +24,8 @@ final class DetailedCordinator {
     
 // MARK: - Helpers
     
-    func start() -> UIViewController {
-        let vc = detailedAssembly.makeDetailedModule(output: self)
+    func start(transaction: Transaction) -> UIViewController {
+        let vc = detailedAssembly.makeDetailedModule(output: self, transaction: transaction)
         presenterViewController = vc
         return vc
     }
@@ -33,7 +33,7 @@ final class DetailedCordinator {
 
 // MARK: - DetailedPresenserOutput
 
-extension DetailedCordinator: DetailedPresenterOutput {
+extension DetailedCoordinator: DetailedPresenterOutput {
     func showChoiceCategory() {
         let vc = choiceCategoryAsembly.makeDetailedModule()
         vc.modalPresentationStyle = .overCurrentContext

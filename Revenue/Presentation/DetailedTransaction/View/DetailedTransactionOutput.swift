@@ -8,5 +8,6 @@
 import Foundation
 
 protocol DetailedTransactionOutput: AnyObject {
+    func viewIsReady()
     func showChoiceCategory()
 }

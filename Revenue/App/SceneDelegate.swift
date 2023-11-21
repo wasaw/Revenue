@@ -17,11 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let detailedAssembly = DetailedTransactionAssembly()
         let choiceCategoryAssembly = ChoiceCategoryAssembly()
-        let detailedCoordinator = DetailedCordinator(detailedAssembly: detailedAssembly, choiceCategoryAssembly: choiceCategoryAssembly)
+        let detailedCoordinator = DetailedCoordinator(detailedAssembly: detailedAssembly, choiceCategoryAssembly: choiceCategoryAssembly)
+        
+        let transactionService = TransactionsService()
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let homeCoordinator = HomeCoordinator(detailedCoordinator: detailedCoordinator)
+        let homeCoordinator = HomeCoordinator(detailedCoordinator: detailedCoordinator, transactionService: transactionService)
         window?.rootViewController = homeCoordinator.start()
         window?.makeKeyAndVisible()
     }
