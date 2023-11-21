@@ -8,13 +8,14 @@
 import Foundation
 
 struct Transaction {
-    let type: TransactionType
+    let category: TransactionCategory
     let amount: Double
+    let comment: String
     let date: Date
 }
 
 extension Transaction {
-    enum TransactionType {
+    enum TransactionCategory: Int {
         case salary
         case medicine
         case transport
@@ -23,27 +24,27 @@ extension Transaction {
         case cafe
         case entertaiment
         
-        func getInformation() -> TransactionStructure {
+        func getInformation() -> TransactionCategoryStructure {
             switch self {
             case .salary:
-                return TransactionStructure(image: "salary", title: "Заработная плата", isRevenue: true)
+                return TransactionCategoryStructure(image: "salary", title: "Заработная плата", isRevenue: true)
             case .medicine:
-                return TransactionStructure(image: "medicine", title: "Медицина", isRevenue: false)
+                return TransactionCategoryStructure(image: "medicine", title: "Медицина", isRevenue: false)
             case .transport:
-                return TransactionStructure(image: "transport", title: "Транспорт", isRevenue: false)
+                return TransactionCategoryStructure(image: "transport", title: "Транспорт", isRevenue: false)
             case .utilities:
-                return TransactionStructure(image: "utilities", title: "Коммунальные услуги", isRevenue: false)
+                return TransactionCategoryStructure(image: "utilities", title: "Коммунальные услуги", isRevenue: false)
             case .loan:
-                return TransactionStructure(image: "loan", title: "Деньги взаймы", isRevenue: false)
+                return TransactionCategoryStructure(image: "loan", title: "Деньги взаймы", isRevenue: false)
             case .cafe:
-                return TransactionStructure(image: "cafe", title: "Кафе и рестораны", isRevenue: false)
+                return TransactionCategoryStructure(image: "cafe", title: "Кафе и рестораны", isRevenue: false)
             case .entertaiment:
-                return TransactionStructure(image: "entertainment", title: "Резвлечения", isRevenue: false)
+                return TransactionCategoryStructure(image: "entertainment", title: "Резвлечения", isRevenue: false)
             }
         }
     }
 
-    struct TransactionStructure {
+    struct TransactionCategoryStructure {
         let image: String
         let title: String
         let isRevenue: Bool

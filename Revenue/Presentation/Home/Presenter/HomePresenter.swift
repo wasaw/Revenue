@@ -54,7 +54,7 @@ extension HomePresenter: HomeOutput {
             case .success(let transactions):
                 self?.selectedTransactions = transactions
                 let items = transactions.compactMap { transaction in
-                    let type = transaction.type.getInformation()
+                    let type = transaction.category.getInformation()
                     let date = dateFormatter.string(from: transaction.date)
                     return HomeItem(image: type.image, title: type.title, amount: transaction.amount, time: date)
                 }

@@ -25,13 +25,13 @@ final class TransactionsService {
 
 extension TransactionsService: TransactionsServiceProtocol {
     func fetchTransactions(completion: @escaping (Result<[Transaction], Error>) -> Void) {
-        let transaction = [Transaction(type: .salary, amount: 90000, date: Date()),
-                           Transaction(type: .medicine, amount: 27000, date: Date()),
-                           Transaction(type: .transport, amount: 2500, date: Date()),
-                           Transaction(type: .utilities, amount: 20000, date: Date()),
-                           Transaction(type: .loan, amount: 15000, date: Date()),
-                           Transaction(type: .cafe, amount: 30000, date: Date()),
-                           Transaction(type: .entertaiment, amount: 23000, date: Date())]
-        completion(.success(transaction))
+//        let transaction = [Transaction(category: .salary, amount: 90000, date: Date()),
+//                           Transaction(category: .medicine, amount: 27000, date: Date()),
+//                           Transaction(category: .transport, amount: 2500, date: Date()),
+//                           Transaction(category: .utilities, amount: 20000, date: Date()),
+//                           Transaction(category: .loan, amount: 15000, date: Date()),
+//                           Transaction(category: .cafe, amount: 30000, date: Date()),
+//                           Transaction(category: .entertaiment, amount: 23000, date: Date())]
+//        completion(.success(transaction))
     }
 }

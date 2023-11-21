@@ -41,6 +41,8 @@
 		BBDCF0D12B0C91B300AFCDED /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0D02B0C91B300AFCDED /* CoreDataService.swift */; };
 		BBDCF0D32B0C91C400AFCDED /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0D22B0C91C400AFCDED /* CoreDataServiceProtocol.swift */; };
 		BBDCF0D62B0C94E800AFCDED /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0D42B0C94E800AFCDED /* Model.xcdatamodeld */; };
+		BBDCF0DE2B0C9BF000AFCDED /* DefaultValueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0DD2B0C9BF000AFCDED /* DefaultValueService.swift */; };
+		BBDCF0E02B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0DF2B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,8 @@
 		BBDCF0D02B0C91B300AFCDED /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		BBDCF0D22B0C91C400AFCDED /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
 		BBDCF0D52B0C94E800AFCDED /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BBDCF0DD2B0C9BF000AFCDED /* DefaultValueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueService.swift; sourceTree = "<group>"; };
+		BBDCF0DF2B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,7 @@
 		BB77A3A22B0B989A00D097E0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				BBDCF0DC2B0C9BDF00AFCDED /* DefaultValueService */,
 				BB77A3A32B0B98B300D097E0 /* TransactionsService */,
 			);
 			path = Service;
@@ -318,6 +323,15 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
+		BBDCF0DC2B0C9BDF00AFCDED /* DefaultValueService */ = {
+			isa = PBXGroup;
+			children = (
+				BBDCF0DD2B0C9BF000AFCDED /* DefaultValueService.swift */,
+				BBDCF0DF2B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift */,
+			);
+			path = DefaultValueService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -401,6 +415,7 @@
 				BB77A3942B0943DB00D097E0 /* ChoiceCategoryViewController.swift in Sources */,
 				BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */,
 				BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */,
+				BBDCF0DE2B0C9BF000AFCDED /* DefaultValueService.swift in Sources */,
 				BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */,
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
 				BB77A3962B09444A00D097E0 /* ChoiceInput.swift in Sources */,
@@ -419,6 +434,7 @@
 				BBDCF0D12B0C91B300AFCDED /* CoreDataService.swift in Sources */,
 				BB77A38F2B09406000D097E0 /* DetailedCoordinator.swift in Sources */,
 				BB77A37F2B07687700D097E0 /* DetailedTransactionOutput.swift in Sources */,
+				BBDCF0E02B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift in Sources */,
 				BB80315F2B04CCCE000D8307 /* Extensions.swift in Sources */,
 				BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */,
 				BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */,

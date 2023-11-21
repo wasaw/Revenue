@@ -22,6 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreData = CoreDataService()
         let transactionService = TransactionsService(coreData: coreData)
         
+        if UserDefaults.standard.value(forKey: "isFirstLaunce") == nil {
+            let defaultService = DefaultValueService(coreData: coreData)
+            defaultService.saveTransactions()
+            UserDefaults.standard.set(false, forKey: "isFirstLaunce")
+        }
+        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         let homeCoordinator = HomeCoordinator(detailedCoordinator: detailedCoordinator, transactionService: transactionService)

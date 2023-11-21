@@ -271,7 +271,7 @@ final class DetailedTransactionViewController: UIViewController {
 
 extension DetailedTransactionViewController: DetailedTransactionInput {
     func showTransaction(_ transaction: Transaction) {
-        let transactionType = transaction.type.getInformation()
+        let transactionType = transaction.category.getInformation()
         typeImageView.image = UIImage(named: transactionType.image)
         typeTitleLabel.text = transactionType.title
         amoutTextField.text = String(transaction.amount) + "c"
