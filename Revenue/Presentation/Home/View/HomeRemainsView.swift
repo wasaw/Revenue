@@ -78,7 +78,6 @@ final class HomeRemainsView: UIView {
     private func configureBalanceView() {
         addSubview(balanceView)
         balanceView.snp.makeConstraints { make in
-//            make.top.equalTo(bottomUnderlineView.snp.bottom)
             make.top.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalTo(Constants.balanceViewHeight)
@@ -98,7 +97,7 @@ final class HomeRemainsView: UIView {
     }
     
     private func configureTableView() {
-        tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reusesIdentifire)
+        tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reuseIdentifire)
         addSubview(tableView)
         tableView.sectionHeaderTopPadding = 0
         tableView.delegate = self
@@ -113,7 +112,7 @@ final class HomeRemainsView: UIView {
     func setupDataSource(_ transactions: [HomeTransactions]) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
-        snapshot.appendSections(HomeSections.allCases)
+        snapshot.appendSections(HomeRemainsSections.allCases)
         transactions.forEach { transaction in
             snapshot.appendItems(transaction.item, toSection: transaction.sections)
         }
@@ -134,7 +133,7 @@ extension HomeRemainsView: UITableViewDelegate {
                              y: Constants.headerLabelPaddingTop,
                              width: tableView.frame.width - Constants.horizontalPadding,
                              height: Constants.headerViewHeight - Constants.headerLabelPaddingTop)
-        label.text = HomeSections.allCases[section].rawValue
+        label.text = HomeRemainsSections.allCases[section].rawValue
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .titleColorGray
         headerView.addSubview(label)

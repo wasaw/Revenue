@@ -258,6 +258,8 @@ final class HomeViewController: UIViewController {
         }
         
         updateVisibleView(for: sender.selectedSegmentIndex)
+        guard let segment = Segment(rawValue: sender.selectedSegmentIndex) else { return }
+        output.fetchData(for: segment)
     }
 }
 
@@ -266,6 +268,10 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeInputProtocol {
     func setTransactions(_ items: [HomeTransactions]) {
         remainsView.setupDataSource(items)
+    }
+    
+    func setRevenue(_ items: [HomeRevenueItem]) {
+        revenueView.setupDataSource(items)
     }
 }
 

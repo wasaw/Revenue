@@ -15,7 +15,7 @@ private enum Constants {
 }
 
 final class HomeCell: UITableViewCell {
-    static let reusesIdentifire = "homeCell"
+    static let reuseIdentifire = "homeCell"
     
 // MARK: - Properties
     
@@ -35,7 +35,7 @@ final class HomeCell: UITableViewCell {
         label.textColor = .incomeCash
         return label
     }()
-    private lazy var timeLabel: UILabel = {
+    private lazy var rightBottomLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .titleColorGray
@@ -76,17 +76,27 @@ final class HomeCell: UITableViewCell {
             make.bottom.equalTo(categoryIV.snp.bottom).offset(-Constants.labelVerticalPadding)
         }
         
-        contentView.addSubview(timeLabel)
-        timeLabel.snp.makeConstraints { make in
+        contentView.addSubview(rightBottomLabel)
+        rightBottomLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
             make.bottom.equalTo(categoryIV.snp.bottom).offset(-Constants.labelVerticalPadding)
         }
     }
     
-    func configure(with item: HomeItem) {
+    func configure(with item: HomeRemainsItem) {
         categoryIV.image = UIImage(named: item.image)
         titleLabel.text = item.title
         amountLabel.text = String(item.amount)
-        timeLabel.text = item.time
+        rightBottomLabel.text = item.time
+    }
+    
+    func configure(with item: HomeRevenueItem) {
+        categoryIV.image = UIImage(named: item.image)
+        titleLabel.text = item.title
+        amountLabel.text = String(item.amount)
+        rightBottomLabel.text = String(item.percent) + "%"
+        
+        rightBottomLabel.font = UIFont.systemFont(ofSize: 16)
+        rightBottomLabel.textColor = .black
     }
 }

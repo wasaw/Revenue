@@ -8,21 +8,40 @@
 import Foundation
 
 struct HomeTransactions {
-    let sections: HomeSections
-    let item: [HomeItem]
+    let sections: HomeRemainsSections
+    let item: [HomeRemainsItem]
 }
 
-enum HomeSections: String, Hashable, CaseIterable {
+enum HomeRemainsSections: String, Hashable, CaseIterable {
     case section1 = "First"
 //    case section2 = "Second"
 }
 
-struct HomeItem: Hashable {
+struct HomeRemainsItem: Hashable {
     let id = UUID()
     let image: String
     let title: String
     let amount: Double
     let time: String
+}
+
+enum HomeRevenueSections: Hashable, CaseIterable {
+    case section
+}
+
+struct HomeRevenueItem: Hashable {
+    let id = UUID()
+    let image: String
+    let title: String
+    let amount: Double
+    let percent: Double
+}
+
+enum Segment: Int {
+    case remains
+    case revenue
+    case expenses
+    case goals
 }
 
 final class HomePresenter {
@@ -56,7 +75,7 @@ extension HomePresenter: HomeOutput {
                 let items = transactions.compactMap { transaction in
                     let type = transaction.category.getInformation()
                     let date = dateFormatter.string(from: transaction.date)
-                    return HomeItem(image: type.image, title: type.title, amount: transaction.amount, time: date)
+                    return HomeRemainsItem(image: type.image, title: type.title, amount: transaction.amount, time: date)
                 }
                 let homeTransactions = HomeTransactions(sections: .section1, item: items)
                 self?.input?.setTransactions([homeTransactions])
@@ -69,5 +88,18 @@ extension HomePresenter: HomeOutput {
     func showDetails(at index: Int, in section: Int) {
         let transaction = selectedTransactions[index]
         output.showDetailed(for: transaction)
+    }
+    
+    func fetchData(for segment: Segment) {
+        switch segment {
+        case .remains:
+            break
+        case .revenue:
+            input?.setRevenue([HomeRevenueItem(image: "business", title: "Проверка", amount: 2000, percent: 12)])
+        case .expenses:
+            break
+        case .goals:
+            break
+        }
     }
 }

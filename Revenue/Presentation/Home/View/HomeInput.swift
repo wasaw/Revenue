@@ -9,4 +9,5 @@ import Foundation
 
 protocol HomeInputProtocol: AnyObject {
     func setTransactions(_ items: [HomeTransactions])
+    func setRevenue(_ items: [HomeRevenueItem])
 }
