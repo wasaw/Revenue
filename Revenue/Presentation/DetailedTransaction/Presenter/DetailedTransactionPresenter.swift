@@ -13,13 +13,14 @@ final class DetailedTransactionPresenter {
     
     weak var input: DetailedTransactionInput?
     private let output: DetailedPresenterOutput
-    private let transaction: Transaction
+    private var transaction: Transaction
     
 // MARK: - Lifecycle
     
     init(output: DetailedPresenterOutput, transaction: Transaction) {
         self.output = output
         self.transaction = transaction
+        output.detailedPresenterInput = self
     }
 }
 
@@ -31,6 +32,15 @@ extension DetailedTransactionPresenter: DetailedTransactionOutput {
     }
     
     func showChoiceCategory() {
-        output.showChoiceCategory()
+        output.showChoiceCategory(transaction.category)
+    }
+}
+
+// MARK: - DetailedTransactionPresenterInput
+
+extension DetailedTransactionPresenter: DetailedTransactionPresenterInput {
+    func updateTransactionCategory(_ category: TransactionCategory) {
+        transaction.category = category
+        input?.showTransaction(transaction)
     }
 }

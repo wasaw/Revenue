@@ -11,6 +11,7 @@ final class DetailedCoordinator {
     
 // MARK: - Properties
     
+    weak var detailedPresenterInput: DetailedTransactionPresenterInput?
     private let detailedAssembly: DetailedTransactionAssembly
     private let choiceCategoryAsembly: ChoiceCategoryAssembly
     private var presenterViewController: UIViewController?
@@ -34,13 +35,21 @@ final class DetailedCoordinator {
 // MARK: - DetailedPresenserOutput
 
 extension DetailedCoordinator: DetailedPresenterOutput {
-    func showChoiceCategory() {
-        let vc = choiceCategoryAsembly.makeDetailedModule()
+    func showChoiceCategory(_ category: TransactionCategory) {
+        let vc = choiceCategoryAsembly.makeDetailedModule(output: self, category: category)
         vc.modalPresentationStyle = .overCurrentContext
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
         guard let window = windowScene?.windows.first else { return }
         let topMostViewController = window.rootViewController
         topMostViewController?.present(vc, animated: false)
+    }
+}
+
+// MARK: - ChoiceCategoryPresenterOutput
+
+extension DetailedCoordinator: ChoiceCategoryPresenterOutput {
+    func updateSelectedCategory(_ category: TransactionCategory) {
+        detailedPresenterInput?.updateTransactionCategory(category)
     }
 }

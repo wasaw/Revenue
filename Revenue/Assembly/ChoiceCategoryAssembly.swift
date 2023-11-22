@@ -8,8 +8,8 @@
 import UIKit
 
 final class ChoiceCategoryAssembly {
-    func makeDetailedModule() -> UIViewController {
-        let presenter = ChoiceCategoryPresenter()
+    func makeDetailedModule(output: ChoiceCategoryPresenterOutput, category: TransactionCategory) -> UIViewController {
+        let presenter = ChoiceCategoryPresenter(output: output, selectedCategory: category)
         let vc = ChoiceCategoryViewController(output: presenter)
         presenter.input = vc
         return vc

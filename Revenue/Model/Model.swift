@@ -8,14 +8,19 @@
 import Foundation
 
 struct Transaction {
-    let category: TransactionCategory
+    var category: TransactionCategory
     let amount: Double
     let comment: String
     let date: Date
 }
 
-enum TransactionCategory: Int {
+enum TransactionCategory: Int, CaseIterable {
     case salary
+    case business
+    case credit
+    case deposite
+    case grant
+    case capital
     case medicine
     case transport
     case utilities
@@ -27,6 +32,16 @@ enum TransactionCategory: Int {
         switch self {
         case .salary:
             return TransactionCategoryStructure(image: "salary", title: "Заработная плата", isRevenue: true)
+        case .business:
+            return TransactionCategoryStructure(image: "business", title: "Доходы от бизнеса", isRevenue: true)
+        case .credit:
+            return TransactionCategoryStructure(image: "credit", title: "Кредит/Долг", isRevenue: true)
+        case .deposite:
+            return TransactionCategoryStructure(image: "deposit", title: "Депозит", isRevenue: true)
+        case .grant:
+            return TransactionCategoryStructure(image: "grant", title: "Стипендия", isRevenue: true)
+        case .capital:
+            return TransactionCategoryStructure(image: "capital", title: "Сбережения", isRevenue: true)
         case .medicine:
             return TransactionCategoryStructure(image: "medicine", title: "Медицина", isRevenue: false)
         case .transport:

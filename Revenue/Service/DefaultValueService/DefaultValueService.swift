@@ -23,7 +23,7 @@ final class DefaultValueService {
 // MARK: - DefaultValueServiceProtocol
 
 extension DefaultValueService: DefaultValueServiceProtocol {
-    func saveTransactions() {
+    func saveValues() {
         let transactions = [Transaction(category: .salary, amount: 90000, comment: "", date: Date()),
                            Transaction(category: .medicine, amount: 27000, comment: "", date: Date()),
                            Transaction(category: .transport, amount: 2500, comment: "", date: Date()),
@@ -39,6 +39,6 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                 transactionManagedObject.comment = transaction.comment
                 transactionManagedObject.date = transaction.date
             }
-        }
+        }        
     }
 }

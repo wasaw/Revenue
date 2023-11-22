@@ -10,7 +10,7 @@ import SnapKit
 
 private enum Constants {
     static let horizontalPadding: CGFloat = 16
-    static let verticalPadding: CGFloat = 8
+    static let verticalPadding: CGFloat = 16
 }
 
 final class ChoiceCategoryCell: UITableViewCell {
@@ -60,7 +60,7 @@ final class ChoiceCategoryCell: UITableViewCell {
     private func configureUI() {
         contentView.addSubview(typeImageView)
         typeImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.leading.equalToSuperview()
             make.top.equalToSuperview().offset(Constants.verticalPadding)
             make.bottom.equalToSuperview().offset(-Constants.verticalPadding)
         }

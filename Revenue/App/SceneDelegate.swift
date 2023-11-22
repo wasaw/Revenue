@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if UserDefaults.standard.value(forKey: "isFirstLaunce") == nil {
             let defaultService = DefaultValueService(coreData: coreData)
-            defaultService.saveTransactions()
+            defaultService.saveValues()
             UserDefaults.standard.set(false, forKey: "isFirstLaunce")
         }
         

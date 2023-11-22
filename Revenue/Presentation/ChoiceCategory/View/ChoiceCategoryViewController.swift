@@ -47,6 +47,7 @@ final class ChoiceCategoryViewController: UIViewController {
         sc.setTitleTextAttributes([.foregroundColor: UIColor.white,
                                    .font: UIFont.systemFont(ofSize: 16)], for: .selected)
         sc.selectedSegmentTintColor = .black
+        sc.addTarget(self, action: #selector(handleSegmentController), for: .valueChanged)
         return sc
     }()
     private lazy var edgeLineView: UIView = {
@@ -169,7 +170,16 @@ final class ChoiceCategoryViewController: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleCloseAction() {
+        output.updateSelectedCategory()
         animateDismissView()
+    }
+    
+    @objc private func handleSegmentController(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            output.fetchRevenue()
+        } else {
+            output.fetchExpense()
+        }
     }
 }
 
@@ -186,5 +196,6 @@ extension ChoiceCategoryViewController: ChoiceInput {
 extension ChoiceCategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        output.updateSelectedCell(at: indexPath.item, in: segmentController.selectedSegmentIndex)
     }
 }

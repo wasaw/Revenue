@@ -8,5 +8,7 @@
 import Foundation
 
 protocol DetailedPresenterOutput: AnyObject {
-    func showChoiceCategory()
+    var detailedPresenterInput: DetailedTransactionPresenterInput? { get set }
+
+    func showChoiceCategory(_ category: TransactionCategory)
 }
