@@ -25,6 +25,9 @@
 		BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */; };
 		BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */; };
 		BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */; };
+		BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A972B0E1D350085490B /* HomeRemainsView.swift */; };
+		BB799A9A2B0E26A40085490B /* HomeExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A992B0E26A40085490B /* HomeExpensesView.swift */; };
+		BB799A9C2B0E27570085490B /* HomeGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A9B2B0E27570085490B /* HomeGoalsView.swift */; };
 		BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031402B04BDEB000D8307 /* AppDelegate.swift */; };
 		BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031422B04BDEB000D8307 /* SceneDelegate.swift */; };
 		BB80314A2B04BDEF000D8307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8031492B04BDEF000D8307 /* Assets.xcassets */; };
@@ -37,6 +40,7 @@
 		BB8031692B0507A3000D8307 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BB8031682B0507A3000D8307 /* SnapKit */; };
 		BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80A6362B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift */; };
 		BB80A6392B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80A6382B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift */; };
+		BB80A63D2B0E0027003E98C7 /* HomeRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80A63C2B0E0027003E98C7 /* HomeRevenueView.swift */; };
 		BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */; };
 		BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */; };
 		BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CC2B0B9D3400AFCDED /* Model.swift */; };
@@ -66,6 +70,9 @@
 		BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryAssembly.swift; sourceTree = "<group>"; };
 		BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryDataSource.swift; sourceTree = "<group>"; };
 		BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryCell.swift; sourceTree = "<group>"; };
+		BB799A972B0E1D350085490B /* HomeRemainsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemainsView.swift; sourceTree = "<group>"; };
+		BB799A992B0E26A40085490B /* HomeExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpensesView.swift; sourceTree = "<group>"; };
+		BB799A9B2B0E27570085490B /* HomeGoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsView.swift; sourceTree = "<group>"; };
 		BB80313D2B04BDEB000D8307 /* Revenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Revenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8031402B04BDEB000D8307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8031422B04BDEB000D8307 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +86,7 @@
 		BB8031642B04F40B000D8307 /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
 		BB80A6362B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryPresenterOutput.swift; sourceTree = "<group>"; };
 		BB80A6382B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenterInput.swift; sourceTree = "<group>"; };
+		BB80A63C2B0E0027003E98C7 /* HomeRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRevenueView.swift; sourceTree = "<group>"; };
 		BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
 		BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceProtocol.swift; sourceTree = "<group>"; };
 		BBDCF0CC2B0B9D3400AFCDED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -280,6 +288,10 @@
 				BB8031622B04F3F1000D8307 /* HomeInput.swift */,
 				BB8031642B04F40B000D8307 /* HomeOutput.swift */,
 				BB77A3732B06474400D097E0 /* HomeCell.swift */,
+				BB799A972B0E1D350085490B /* HomeRemainsView.swift */,
+				BB80A63C2B0E0027003E98C7 /* HomeRevenueView.swift */,
+				BB799A992B0E26A40085490B /* HomeExpensesView.swift */,
+				BB799A9B2B0E27570085490B /* HomeGoalsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -416,6 +428,8 @@
 			files = (
 				BB77A38D2B09402700D097E0 /* DetailedPresenterOutput.swift in Sources */,
 				BB80A6392B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift in Sources */,
+				BB799A9A2B0E26A40085490B /* HomeExpensesView.swift in Sources */,
+				BB799A9C2B0E27570085490B /* HomeGoalsView.swift in Sources */,
 				BB77A39A2B0944EA00D097E0 /* ChoiceCategoryPresenter.swift in Sources */,
 				BB8031652B04F40B000D8307 /* HomeOutput.swift in Sources */,
 				BB77A3882B076CD300D097E0 /* HomePresenterOutput.swift in Sources */,
@@ -426,6 +440,7 @@
 				BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */,
 				BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */,
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
+				BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */,
 				BB77A3962B09444A00D097E0 /* ChoiceInput.swift in Sources */,
 				BBDCF0D32B0C91C400AFCDED /* CoreDataServiceProtocol.swift in Sources */,
 				BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */,
@@ -437,6 +452,7 @@
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
 				BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */,
+				BB80A63D2B0E0027003E98C7 /* HomeRevenueView.swift in Sources */,
 				BBDCF0D62B0C94E800AFCDED /* Model.xcdatamodeld in Sources */,
 				BB77A38B2B078AD200D097E0 /* DetailedTransactionAssembly.swift in Sources */,
 				BBDCF0D12B0C91B300AFCDED /* CoreDataService.swift in Sources */,

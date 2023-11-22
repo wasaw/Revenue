@@ -66,7 +66,7 @@ extension HomePresenter: HomeOutput {
         }
     }
     
-    func showDetails(for index: Int, in section: Int) {
+    func showDetails(at index: Int, in section: Int) {
         let transaction = selectedTransactions[index]
         output.showDetailed(for: transaction)
     }

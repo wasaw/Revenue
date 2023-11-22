@@ -14,13 +14,9 @@ private enum Constants {
     static let segmentedControllerHeight: CGFloat = 40
     static let bottomUnderlineViewBottomPadding: CGFloat = 4
     static let bottomUnderlineViewHeight: CGFloat = 2
-    static let balanceViewHeight: CGFloat = 100
     static let horizontalPadding: CGFloat = 16
-    static let balanceTitlePaddingTop: CGFloat = 20
-    static let balanceLabelPaddingTop: CGFloat = 8
     static let calendarRadius: CGFloat = 23
-    static let headerViewHeight: CGFloat = 45
-    static let headerLabelPaddingTop: CGFloat = 5
+    static let homeViewPaddingTop: CGFloat = bottomUnderlineViewBottomPadding + bottomUnderlineViewHeight
 }
 
 final class HomeViewController: UIViewController {
@@ -52,7 +48,10 @@ final class HomeViewController: UIViewController {
         let view = UIView()
         return view
     }()
-    private lazy var segmentItems = ["Остаток", "Доходы", "Расходы", "Цели"]
+    private lazy var segmentItems = ["Остаток",
+                                     "Доходы",
+                                     "Расходы",
+                                     "Цели"]
     private lazy var segmentedController: UISegmentedControl = {
         let sc = UISegmentedControl(items: segmentItems)
         sc.selectedSegmentIndex = 0
@@ -71,34 +70,27 @@ final class HomeViewController: UIViewController {
         view.backgroundColor = .bottomUnderline
         return view
     }()
-    
-    private lazy var balanceView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .balanceBackground
+    private lazy var remainsView: HomeRemainsView = {
+        let view = HomeRemainsView()
         return view
     }()
-    private lazy var balanceTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Текущий остаток"
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .titleColorGray
-        return label
+    private lazy var revenueView: HomeRevenueView = {
+        let view = HomeRevenueView()
+        return view
     }()
-    private lazy var balanceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "110 000,89 c"
-        label.font = UIFont.systemFont(ofSize: 32)
-        label.textColor = .incomeCash
-        return label
+    private lazy var expensesView: HomeExpensesView = {
+        let view = HomeExpensesView()
+        return view
     }()
-    
-    private lazy var tableView: UITableView = {
-        let table = UITableView()
-        table.backgroundColor = .white
-        return table
+    private lazy var goalsView: HomeGoalsView = {
+        let view = HomeGoalsView()
+        return view
     }()
-    private lazy var dataSource = HomeDataSource(tableView)
-    
+    private lazy var visibleViews = [remainsView,
+                                     revenueView,
+                                     expensesView,
+                                     goalsView]
+        
 // MARK: - Lifecycle
     
     init(output: HomeOutput) {
@@ -142,8 +134,10 @@ final class HomeViewController: UIViewController {
     private func configureUI() {
         configureCalendar()
         configureSegmentController()
-        configureBalanceView()
-        configureTableView()
+        configureRemainsView()
+        configureRevenueView()
+        configureExpensesView()
+        configureGoalsView()
 
         let backImage = UIImage(named: "chevron-left")
         navigationController?.navigationBar.backIndicatorImage = backImage
@@ -197,47 +191,56 @@ final class HomeViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(1 / CGFloat(segmentedController.numberOfSegments))
         }
     }
-    private func configureBalanceView() {
-        view.addSubview(balanceView)
-        balanceView.snp.makeConstraints { make in
-            make.top.equalTo(bottomUnderlineView.snp.bottom)
-            make.width.equalToSuperview()
-            make.height.equalTo(Constants.balanceViewHeight)
-        }
-        
-        balanceView.addSubview(balanceTitleLabel)
-        balanceTitleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
-            make.top.equalToSuperview().offset(Constants.balanceTitlePaddingTop)
-        }
-        
-        balanceView.addSubview(balanceLabel)
-        balanceLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
-            make.top.equalTo(balanceTitleLabel.snp.bottom).offset(Constants.balanceLabelPaddingTop)
-        }
-    }
-    private func configureTableView() {
-        tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reusesIdentifire)
-        view.addSubview(tableView)
-        tableView.sectionHeaderTopPadding = 0
-        tableView.delegate = self
-        tableView.snp.makeConstraints { make in
+    
+    private func configureRemainsView() {
+        view.addSubview(remainsView)
+        remainsView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.top.equalTo(balanceView.snp.bottom)
+            make.top.equalTo(segmentContainerView.snp.bottom).offset(Constants.homeViewPaddingTop)
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        remainsView.delegate = self
+    }
+    private func configureRevenueView() {
+        view.addSubview(revenueView)
+        revenueView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalTo(segmentContainerView.snp.bottom).offset(Constants.homeViewPaddingTop)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        revenueView.isHidden = true
+    }
+    private func configureExpensesView() {
+        view.addSubview(expensesView)
+        expensesView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalTo(segmentContainerView.snp.bottom).offset(Constants.homeViewPaddingTop)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        expensesView.isHidden = true
+    }
+    private func configureGoalsView() {
+        view.addSubview(goalsView)
+        goalsView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalTo(segmentContainerView.snp.bottom).offset(Constants.homeViewPaddingTop)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        goalsView.isHidden = true
     }
     
-    private func setupDataSource(_ transactions: [HomeTransactions]) {
-        var snapshot = dataSource.snapshot()
-        snapshot.deleteAllItems()
-        snapshot.appendSections(HomeSections.allCases)
-        transactions.forEach { transaction in
-            snapshot.appendItems(transaction.item, toSection: transaction.sections)
+    private func updateVisibleView(for segmentIndex: Int) {
+        visibleViews.enumerated().forEach { i, view in
+            if i == segmentIndex {
+                view.isHidden = false
+            } else {
+                view.isHidden = true
+            }
         }
-        dataSource.apply(snapshot)
     }
     
 // MARK: - Selecter
@@ -246,12 +249,15 @@ final class HomeViewController: UIViewController {
         let segmentIndex = CGFloat(segmentedController.selectedSegmentIndex)
         let segmentWidth = segmentedController.frame.width / CGFloat(segmentedController.numberOfSegments)
         let leadingDistance = segmentWidth * segmentIndex
+        
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.bottomUnderlineView.snp.updateConstraints({ make in
                 make.leading.equalToSuperview().offset(leadingDistance)
             })
             self?.view.layoutIfNeeded()
         }
+        
+        updateVisibleView(for: sender.selectedSegmentIndex)
     }
 }
 
@@ -259,34 +265,14 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeInputProtocol {
     func setTransactions(_ items: [HomeTransactions]) {
-        setupDataSource(items)
+        remainsView.setupDataSource(items)
     }
 }
 
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0,
-                                              y: 0,
-                                              width: tableView.frame.width,
-                                              height: Constants.headerViewHeight))
-        let label = UILabel()
-        label.frame = CGRect(x: Constants.horizontalPadding,
-                             y: Constants.headerLabelPaddingTop,
-                             width: tableView.frame.width - Constants.horizontalPadding,
-                             height: Constants.headerViewHeight - Constants.headerLabelPaddingTop)
-        label.text = HomeSections.allCases[section].rawValue
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .titleColorGray
-        headerView.addSubview(label)
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        output.showDetails(for: indexPath.row, in: indexPath.section)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        Constants.headerViewHeight
+// MARK: - HomeRemainsViewProtocol
+
+extension HomeViewController: HomeRemainsViewProtocol {
+    func details(at index: Int, in section: Int) {
+        output.showDetails(at: index, in: section)
     }
 }
