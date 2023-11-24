@@ -25,15 +25,19 @@ final class ChoiceCategoryPresenter {
     
     weak var input: ChoiceInput?
     private let output: ChoiceCategoryPresenterOutput
+    private let categoriesService: CategoriesServiceProtocol
     private var selectedCategory: TransactionCategory
     private var revenue: [TableCategoryItem] = []
     private var expense: [TableCategoryItem] = []
     
 // MARK: - Lifecycle
     
-    init(output: ChoiceCategoryPresenterOutput, selectedCategory: TransactionCategory) {
+    init(output: ChoiceCategoryPresenterOutput,
+         selectedCategory: TransactionCategory,
+         categoriesService: CategoriesServiceProtocol) {
         self.output = output
         self.selectedCategory = selectedCategory
+        self.categoriesService = categoriesService
     }
 }
 
@@ -49,56 +53,55 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
     }
     
     func viewIsReady() {
-        let items = TransactionCategory.allCases.compactMap { category in
-            let info = category.getInformation()
-            let isSelected = (category == selectedCategory) ? true : false
-            return TableCategoryItem(image: info.image,
-                                     title: info.title,
-                                     isRevenue: info.isRevenue,
-                                     isSelected: isSelected)
+        categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
+            switch result {
+            case .success(let categories):
+                let items: [TableCategoryItem] = categories.compactMap { category in
+                    let isSelected = (category.title == self?.selectedCategory.title) ? true : false
+                    return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
+                }
+                self?.input?.setCategories(items)
+                self?.revenue = items
+            case .failure:
+                break
+            }
         }
-        items.forEach { item in
-            item.isRevenue ? revenue.append(item) : expense.append(item)
+        categoriesService.fetchCategories(isRevenue: false) { [weak self] result in
+            switch result {
+            case .success(let categories):
+                let items: [TableCategoryItem] = categories.compactMap { category in
+                    let isSelected = (category.title == self?.selectedCategory.title) ? true : false
+                    return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
+                }
+                self?.expense = items
+            case .failure:
+                break
+            }
         }
-        input?.setCategories(revenue)
     }
     
     func updateSelectedCell(at index: Int, in segment: Int) {
         if segment == 0 {
-            let items = TransactionCategory.allCases.compactMap { category in
-                let info = category.getInformation()
-                let isSelected = (info.title == revenue[index].title) ? true : false
-                if (info.title == revenue[index].title) {
-                    selectedCategory = category
-                }
-                return TableCategoryItem(image: info.image,
-                                         title: info.title,
-                                         isRevenue: info.isRevenue,
-                                         isSelected: isSelected)
+            revenue.enumerated().forEach { iElement, _ in
+                revenue[iElement].isSelected = (iElement == index) ? true : false
             }
-            revenue = []
-            expense = []
-            items.forEach { item in
-                item.isRevenue ? revenue.append(item) : expense.append(item)
+            expense.enumerated().forEach { i, _ in
+                expense[i].isSelected = false
             }
+            selectedCategory = TransactionCategory(image: revenue[index].image,
+                                                   title: revenue[index].title,
+                                                   isRevenue: revenue[index].isRevenue)
             input?.setCategories(revenue)
         } else {
-            let items = TransactionCategory.allCases.compactMap { category in
-            let info = category.getInformation()
-            let isSelected = (info.title == expense[index].title) ? true : false
-            if (info.title == expense[index].title) {
-                selectedCategory = category
+            expense.enumerated().forEach { iElement, _ in
+                expense[iElement].isSelected = (iElement == index) ? true : false
             }
-            return TableCategoryItem(image: info.image,
-                                     title: info.title,
-                                     isRevenue: info.isRevenue,
-                                     isSelected: isSelected)
+            revenue.enumerated().forEach { i, _ in
+                revenue[i].isSelected = false
             }
-            revenue = []
-            expense = []
-            items.forEach { item in
-                item.isRevenue ? revenue.append(item) : expense.append(item)
-            }
+            selectedCategory = TransactionCategory(image: expense[index].image,
+                                                   title: expense[index].title,
+                                                   isRevenue: expense[index].isRevenue)
             input?.setCategories(expense)
         }
     }

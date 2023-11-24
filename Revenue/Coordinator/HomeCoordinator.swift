@@ -14,18 +14,24 @@ final class HomeCoordinator {
     private var navigation: UINavigationController?
     private let detailedCoordinator: DetailedCoordinator
     private let transactionService: TransactionsServiceProtocol
+    private let categoriesService: CategoriesServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(detailedCoordinator: DetailedCoordinator, transactionService: TransactionsServiceProtocol) {
+    init(detailedCoordinator: DetailedCoordinator,
+         transactionService: TransactionsServiceProtocol,
+         categoriesService: CategoriesServiceProtocol) {
         self.detailedCoordinator = detailedCoordinator
         self.transactionService = transactionService
+        self.categoriesService = categoriesService
     }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let presenter = HomePresenter(output: self, transactionService: transactionService)
+        let presenter = HomePresenter(output: self,
+                                      transactionService: transactionService,
+                                      categoriesService: categoriesService)
         let viewController = HomeViewController(output: presenter)
         presenter.input = viewController
         let nav = UINavigationController(rootViewController: viewController)

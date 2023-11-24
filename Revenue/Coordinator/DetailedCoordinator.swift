@@ -14,13 +14,17 @@ final class DetailedCoordinator {
     weak var detailedPresenterInput: DetailedTransactionPresenterInput?
     private let detailedAssembly: DetailedTransactionAssembly
     private let choiceCategoryAsembly: ChoiceCategoryAssembly
+    private let categoriesService: CategoriesServiceProtocol
     private var presenterViewController: UIViewController?
     
 // MARK: - Lifecycle
     
-    init(detailedAssembly: DetailedTransactionAssembly, choiceCategoryAssembly: ChoiceCategoryAssembly) {
+    init(detailedAssembly: DetailedTransactionAssembly,
+         choiceCategoryAssembly: ChoiceCategoryAssembly,
+         categoriesService: CategoriesServiceProtocol) {
         self.detailedAssembly = detailedAssembly
         self.choiceCategoryAsembly = choiceCategoryAssembly
+        self.categoriesService = categoriesService
     }
     
 // MARK: - Helpers
@@ -36,7 +40,9 @@ final class DetailedCoordinator {
 
 extension DetailedCoordinator: DetailedPresenterOutput {
     func showChoiceCategory(_ category: TransactionCategory) {
-        let vc = choiceCategoryAsembly.makeDetailedModule(output: self, category: category)
+        let vc = choiceCategoryAsembly.makeDetailedModule(output: self,
+                                                          category: category,
+                                                          categoriesService: categoriesService)
         vc.modalPresentationStyle = .overCurrentContext
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene

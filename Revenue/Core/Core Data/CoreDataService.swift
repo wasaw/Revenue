@@ -33,6 +33,11 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
+    func fetchCategories(isRevenue: Bool) throws -> [CategoryManagedObject] {
+        let fetchRequest = CategoryManagedObject.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isRevenue == %@", NSNumber(value: isRevenue))
+        return try viewContext.fetch(fetchRequest)
+    }
     
     func save(completion: @escaping (NSManagedObjectContext) throws -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()

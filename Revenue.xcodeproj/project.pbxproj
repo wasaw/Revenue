@@ -29,6 +29,8 @@
 		BB799A9A2B0E26A40085490B /* HomeExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A992B0E26A40085490B /* HomeExpensesView.swift */; };
 		BB799A9C2B0E27570085490B /* HomeGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A9B2B0E27570085490B /* HomeGoalsView.swift */; };
 		BB799AA02B0E35F70085490B /* HomeRemainsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A9F2B0E35F70085490B /* HomeRemainsDataSource.swift */; };
+		BB799AA32B0F52C60085490B /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799AA22B0F52C60085490B /* CategoriesService.swift */; };
+		BB799AA52B0F52DD0085490B /* CategoriesServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799AA42B0F52DD0085490B /* CategoriesServiceProtocol.swift */; };
 		BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031402B04BDEB000D8307 /* AppDelegate.swift */; };
 		BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031422B04BDEB000D8307 /* SceneDelegate.swift */; };
 		BB80314A2B04BDEF000D8307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8031492B04BDEF000D8307 /* Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		BB799A992B0E26A40085490B /* HomeExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpensesView.swift; sourceTree = "<group>"; };
 		BB799A9B2B0E27570085490B /* HomeGoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsView.swift; sourceTree = "<group>"; };
 		BB799A9F2B0E35F70085490B /* HomeRemainsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemainsDataSource.swift; sourceTree = "<group>"; };
+		BB799AA22B0F52C60085490B /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
+		BB799AA42B0F52DD0085490B /* CategoriesServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesServiceProtocol.swift; sourceTree = "<group>"; };
 		BB80313D2B04BDEB000D8307 /* Revenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Revenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8031402B04BDEB000D8307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8031422B04BDEB000D8307 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 			children = (
 				BBDCF0DC2B0C9BDF00AFCDED /* DefaultValueService */,
 				BB77A3A32B0B98B300D097E0 /* TransactionsService */,
+				BB799AA12B0F529C0085490B /* CategoriesService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -231,6 +236,15 @@
 				BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */,
 			);
 			path = TransactionsService;
+			sourceTree = "<group>";
+		};
+		BB799AA12B0F529C0085490B /* CategoriesService */ = {
+			isa = PBXGroup;
+			children = (
+				BB799AA22B0F52C60085490B /* CategoriesService.swift */,
+				BB799AA42B0F52DD0085490B /* CategoriesServiceProtocol.swift */,
+			);
+			path = CategoriesService;
 			sourceTree = "<group>";
 		};
 		BB8031342B04BDEA000D8307 = {
@@ -442,6 +456,7 @@
 				BBDCF0DE2B0C9BF000AFCDED /* DefaultValueService.swift in Sources */,
 				BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */,
 				BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */,
+				BB799AA32B0F52C60085490B /* CategoriesService.swift in Sources */,
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
 				BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */,
 				BB77A3962B09444A00D097E0 /* ChoiceInput.swift in Sources */,
@@ -461,6 +476,7 @@
 				BBDCF0D12B0C91B300AFCDED /* CoreDataService.swift in Sources */,
 				BB77A38F2B09406000D097E0 /* DetailedCoordinator.swift in Sources */,
 				BB77A37F2B07687700D097E0 /* DetailedTransactionOutput.swift in Sources */,
+				BB799AA52B0F52DD0085490B /* CategoriesServiceProtocol.swift in Sources */,
 				BB799AA02B0E35F70085490B /* HomeRemainsDataSource.swift in Sources */,
 				BBDCF0E02B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift in Sources */,
 				BB80315F2B04CCCE000D8307 /* Extensions.swift in Sources */,

@@ -17,11 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let detailedAssembly = DetailedTransactionAssembly()
         let choiceCategoryAssembly = ChoiceCategoryAssembly()
-        let detailedCoordinator = DetailedCoordinator(detailedAssembly: detailedAssembly, choiceCategoryAssembly: choiceCategoryAssembly)
         
         let coreData = CoreDataService()
         let transactionService = TransactionsService(coreData: coreData)
-        
+        let categoriesService = CategoriesService(coreData: coreData)
+        let detailedCoordinator = DetailedCoordinator(detailedAssembly: detailedAssembly,
+                                                      choiceCategoryAssembly: choiceCategoryAssembly,
+                                                      categoriesService: categoriesService)
+
         if UserDefaults.standard.value(forKey: "isFirstLaunce") == nil {
             let defaultService = DefaultValueService(coreData: coreData)
             defaultService.saveValues()
@@ -30,7 +33,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let homeCoordinator = HomeCoordinator(detailedCoordinator: detailedCoordinator, transactionService: transactionService)
+        let homeCoordinator = HomeCoordinator(detailedCoordinator: detailedCoordinator,
+                                              transactionService: transactionService,
+                                              categoriesService: categoriesService)
         window?.rootViewController = homeCoordinator.start()
         window?.makeKeyAndVisible()
     }

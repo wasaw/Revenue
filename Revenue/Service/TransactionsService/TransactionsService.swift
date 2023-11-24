@@ -28,11 +28,12 @@ extension TransactionsService: TransactionsServiceProtocol {
         do {
             let transactionManagedObject = try coreData.fetchTransactions()
             let transactions: [Transaction] = transactionManagedObject.compactMap { transaction in
-                guard let category = TransactionCategory(rawValue: Int(transaction.category)),
-                      let comment = transaction.comment,
-                      let date = transaction.date else {
-                    return nil
-                }
+                guard let comment = transaction.comment,
+                      let date = transaction.date,
+                      let image = transaction.category?.image,
+                      let title = transaction.category?.title,
+                      let isRevenue = transaction.category?.isRevenue else { return nil }
+                      let category = TransactionCategory(image: image, title: title, isRevenue: isRevenue)
                 return Transaction(category: category,
                                    amount: transaction.amount,
                                    comment: comment,

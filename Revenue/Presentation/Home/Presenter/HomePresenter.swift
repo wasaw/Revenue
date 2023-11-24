@@ -44,6 +44,11 @@ enum Segment: Int {
     case goals
 }
 
+struct Expense {
+    let category: Category
+    var amount: Double
+}
+
 final class HomePresenter {
     
 // MARK: - Properties
@@ -51,14 +56,18 @@ final class HomePresenter {
     weak var input: HomeInputProtocol?
     private let output: HomePresenterOutput
     private let transactionService: TransactionsServiceProtocol
+    private let categoriesService: CategoriesServiceProtocol
     
     private var selectedTransactions: [Transaction] = []
 
 // MARK: - Lifecycle
     
-    init(output: HomePresenterOutput, transactionService: TransactionsServiceProtocol) {
+    init(output: HomePresenterOutput,
+         transactionService: TransactionsServiceProtocol,
+         categoriesService: CategoriesServiceProtocol) {
         self.output = output
         self.transactionService = transactionService
+        self.categoriesService = categoriesService
     }
 }
 
@@ -73,9 +82,11 @@ extension HomePresenter: HomeOutput {
             case .success(let transactions):
                 self?.selectedTransactions = transactions
                 let items = transactions.compactMap { transaction in
-                    let type = transaction.category.getInformation()
                     let date = dateFormatter.string(from: transaction.date)
-                    return HomeRemainsItem(image: type.image, title: type.title, amount: transaction.amount, time: date)
+                    return HomeRemainsItem(image: transaction.category.image,
+                                           title: transaction.category.title,
+                                           amount: transaction.amount,
+                                           time: date)
                 }
                 let homeTransactions = HomeTransactions(sections: .section1, item: items)
                 self?.input?.setTransactions([homeTransactions])
@@ -95,7 +106,20 @@ extension HomePresenter: HomeOutput {
         case .remains:
             break
         case .revenue:
-            input?.setRevenue([HomeRevenueItem(image: "business", title: "Проверка", amount: 2000, percent: 12)])
+            categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
+                switch result {
+                case .success(let categories):
+                    let items = categories.compactMap { category in
+                        return HomeRevenueItem(image: category.image,
+                                               title: category.title,
+                                               amount: category.total,
+                                               percent: 0)
+                    }
+                    self?.input?.setRevenue(items)
+                case .failure:
+                    break
+                }
+            }
         case .expenses:
             break
         case .goals:
