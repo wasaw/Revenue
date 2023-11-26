@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let categoriesService = CategoriesService(coreData: coreData)
         let detailedCoordinator = DetailedCoordinator(detailedAssembly: detailedAssembly,
                                                       choiceCategoryAssembly: choiceCategoryAssembly,
-                                                      categoriesService: categoriesService)
+                                                      categoriesService: categoriesService,
+                                                      transactionsService: transactionService)
 
         if UserDefaults.standard.value(forKey: "isFirstLaunce") == nil {
             let defaultService = DefaultValueService(coreData: coreData)

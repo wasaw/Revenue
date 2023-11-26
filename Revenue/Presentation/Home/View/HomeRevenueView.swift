@@ -36,6 +36,7 @@ final class HomeRevenueView: UIView {
         btn.setTitle("Добавить доход", for: .normal)
         btn.layer.cornerRadius = Constants.cornerRadius
         btn.backgroundColor = .applyButton
+        btn.addTarget(self, action: #selector(handleAddRevenue), for: .touchUpInside)
         return btn
     }()
     
@@ -87,6 +88,12 @@ final class HomeRevenueView: UIView {
         snapshot.appendSections(HomeRevenueSections.allCases)
         snapshot.appendItems(items)
         dataSource.apply(snapshot)
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func handleAddRevenue() {
+        
     }
 }
 

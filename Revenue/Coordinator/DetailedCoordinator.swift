@@ -15,22 +15,28 @@ final class DetailedCoordinator {
     private let detailedAssembly: DetailedTransactionAssembly
     private let choiceCategoryAsembly: ChoiceCategoryAssembly
     private let categoriesService: CategoriesServiceProtocol
+    private let transactionsService: TransactionsServiceProtocol
     private var presenterViewController: UIViewController?
     
 // MARK: - Lifecycle
     
     init(detailedAssembly: DetailedTransactionAssembly,
          choiceCategoryAssembly: ChoiceCategoryAssembly,
-         categoriesService: CategoriesServiceProtocol) {
+         categoriesService: CategoriesServiceProtocol,
+         transactionsService: TransactionsServiceProtocol) {
         self.detailedAssembly = detailedAssembly
         self.choiceCategoryAsembly = choiceCategoryAssembly
         self.categoriesService = categoriesService
+        self.transactionsService = transactionsService
     }
     
 // MARK: - Helpers
     
     func start(transaction: Transaction) -> UIViewController {
-        let vc = detailedAssembly.makeDetailedModule(output: self, transaction: transaction)
+        let vc = detailedAssembly.makeDetailedModule(output: self,
+                                                     transaction: transaction,
+                                                     transactionsService: transactionsService,
+                                                     categoriesService: categoriesService)
         presenterViewController = vc
         return vc
     }

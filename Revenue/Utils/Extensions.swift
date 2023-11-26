@@ -18,4 +18,6 @@ extension UIColor {
     static let calendarBackground = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.1)
     static let backgroundLightGray = UIColor(displayP3Red: 247/255, green: 246/255, blue: 249/255, alpha: 1)
     static let applyButton = UIColor(displayP3Red: 61/255, green: 198/255, blue: 0, alpha: 1)
+    static let lockButton = UIColor(displayP3Red: 218/255, green: 218/255, blue: 218/255, alpha: 1)
+    static let lockButtonTitle = UIColor(displayP3Red: 151/255, green: 151/255, blue: 151/255, alpha: 1)
 }

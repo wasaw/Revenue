@@ -51,21 +51,21 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                                                  cafeCategory,
                                                  entertainmentCategory]
         
-        let transactions = [Transaction(category: salaryCategory, amount: 90000, comment: "", date: Date()),
-                            Transaction(category: medicineCategory, amount: 27000, comment: "", date: Date()),
-                            Transaction(category: transportCategory, amount: 2500, comment: "", date: Date()),
-                            Transaction(category: utilitiesCategory, amount: 20000, comment: "", date: Date()),
-                            Transaction(category: loanCategory, amount: 15000, comment: "", date: Date()),
-                            Transaction(category: cafeCategory, amount: 30000, comment: "", date: Date()),
-                            Transaction(category: entertainmentCategory, amount: 23000, comment: "", date: Date()),
-                            Transaction(category: salaryCategory, amount: 30000, comment: "", date: Date()),
-                            Transaction(category: salaryCategory, amount: 2000, comment: "", date: Date()),
-                            Transaction(category: businessCategory, amount: 323100, comment: "", date: Date()),
-                            Transaction(category: depositeCategory, amount: 27102, comment: "", date: Date()),
-                            Transaction(category: capitalCategory, amount: 2139222, comment: "", date: Date()),
-                            Transaction(category: grantCategory, amount: 1000, comment: "", date: Date()),
-                            Transaction(category: salaryCategory, amount: 23133, comment: "", date: Date()),
-                            Transaction(category: creditCategory, amount: 15000, comment: "", date: Date())]
+        let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Text", date: Date()),
+                            Transaction(id: UUID(), category: medicineCategory, amount: 27000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: transportCategory, amount: 2500, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: utilitiesCategory, amount: 20000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: loanCategory, amount: 15000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: cafeCategory, amount: 30000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: entertainmentCategory, amount: 23000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 30000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 2000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: businessCategory, amount: 323100, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: depositeCategory, amount: 27102, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: capitalCategory, amount: 2139222, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: grantCategory, amount: 1000, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 23133, comment: "", date: Date()),
+                            Transaction(id: UUID(), category: creditCategory, amount: 15000, comment: "", date: Date())]
 
         categories.forEach { category in
             coreData.save { context in
@@ -77,6 +77,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                 transactions.forEach { transaction in
                     guard transaction.category.title == category.title else { return }
                     let transactionManagedObject = TransactionManagedObject(context: context)
+                    transactionManagedObject.id = transaction.id
                     transactionManagedObject.amount = transaction.amount
                     transactionManagedObject.comment = transaction.comment
                     transactionManagedObject.date = transaction.date

@@ -8,5 +8,6 @@
 import Foundation
 
 protocol CategoriesServiceProtocol: AnyObject {
-    func fetchCategories(isRevenue: Bool, completion: @escaping (Result<[TransactionCategory], Error>) -> Void)
+    func fetchCategories(isRevenue: Bool, completion: @escaping (Result<(categories: [TransactionCategory], total: Double), Error>) -> Void)
+    func deleteTransactionFromCategory(transaction: Transaction) throws -> Void
 }

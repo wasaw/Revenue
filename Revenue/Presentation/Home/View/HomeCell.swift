@@ -94,7 +94,7 @@ final class HomeCell: UITableViewCell {
         categoryIV.image = UIImage(named: item.image)
         titleLabel.text = item.title
         amountLabel.text = String(item.amount)
-        rightBottomLabel.text = String(item.percent) + "%"
+        rightBottomLabel.text = String(format: "%.2f", item.percent) + "%"
         
         rightBottomLabel.font = UIFont.systemFont(ofSize: 16)
         rightBottomLabel.textColor = .black

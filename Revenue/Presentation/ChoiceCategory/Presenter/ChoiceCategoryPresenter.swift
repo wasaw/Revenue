@@ -55,8 +55,8 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
     func viewIsReady() {
         categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
             switch result {
-            case .success(let categories):
-                let items: [TableCategoryItem] = categories.compactMap { category in
+            case .success(let tuple):
+                let items: [TableCategoryItem] = tuple.categories.compactMap { category in
                     let isSelected = (category.title == self?.selectedCategory.title) ? true : false
                     return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
                 }
@@ -68,8 +68,8 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
         }
         categoriesService.fetchCategories(isRevenue: false) { [weak self] result in
             switch result {
-            case .success(let categories):
-                let items: [TableCategoryItem] = categories.compactMap { category in
+            case .success(let tuple):
+                let items: [TableCategoryItem] = tuple.categories.compactMap { category in
                     let isSelected = (category.title == self?.selectedCategory.title) ? true : false
                     return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
                 }

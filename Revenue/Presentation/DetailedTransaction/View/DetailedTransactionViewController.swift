@@ -74,6 +74,7 @@ final class DetailedTransactionViewController: UIViewController {
     
     private lazy var commentTextFiled: UITextField = {
         let tf = UITextField()
+        tf.delegate = self
         tf.placeholder = "Комментарий"
         return tf
     }()
@@ -89,6 +90,7 @@ final class DetailedTransactionViewController: UIViewController {
         let tf = UITextField()
         tf.becomeFirstResponder()
         tf.keyboardType = .numberPad
+        tf.delegate = self
         tf.font = UIFont.systemFont(ofSize: 16)
         return tf
     }()
@@ -97,7 +99,10 @@ final class DetailedTransactionViewController: UIViewController {
         let btn = UIButton(type: .custom)
         btn.layer.cornerRadius = Constants.saveButtonRadius
         btn.setTitle("Cохранить", for: .normal)
-        btn.backgroundColor = .applyButton
+        btn.setTitleColor(.lockButtonTitle, for: .normal)
+        btn.backgroundColor = .lockButton
+        btn.isEnabled = false
+        btn.addTarget(self, action: #selector(handleSaveButton), for: .touchUpInside)
         return btn
     }()
     
@@ -265,6 +270,10 @@ final class DetailedTransactionViewController: UIViewController {
             }
         }
     }
+    
+    @objc private func handleSaveButton() {
+        output.saveTransaction(comment: commentTextFiled.text, amount: amoutTextField.text)
+    }
 }
 
 // MARK: - DetaieldTransactionInput
@@ -273,6 +282,38 @@ extension DetailedTransactionViewController: DetailedTransactionInput {
     func showTransaction(_ transaction: Transaction) {
         typeImageView.image = UIImage(named: transaction.category.image)
         typeTitleLabel.text = transaction.category.title
+        commentTextFiled.text = transaction.comment
         amoutTextField.text = String(transaction.amount) + "c"
+    }
+    
+    func turnOnSaveButton() {
+        saveButton.isEnabled = true
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.backgroundColor = .applyButton
+    }
+    
+    func dismiss() {
+        handleBackButton()
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension DetailedTransactionViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == commentTextFiled {
+            turnOnSaveButton()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == commentTextFiled && (commentTextFiled.text == ""){
+            saveButton.setTitleColor(.lockButtonTitle, for: .normal)
+            saveButton.backgroundColor = .lockButton
+            saveButton.isEnabled = false
+        }
+        if textField == amoutTextField {
+            output.checkAmountChanges(amoutTextField.text)
+        }
     }
 }

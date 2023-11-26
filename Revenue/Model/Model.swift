@@ -8,6 +8,7 @@
 import Foundation
 
 struct Transaction {
+    let id: UUID
     var category: TransactionCategory
     let amount: Double
     let comment: String

@@ -10,4 +10,6 @@ import Foundation
 protocol DetailedTransactionOutput: AnyObject {
     func viewIsReady()
     func showChoiceCategory()
+    func checkAmountChanges(_ amount: String?)
+    func saveTransaction(comment: String?, amount: String?)
 }

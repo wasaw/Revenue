@@ -28,13 +28,15 @@ extension TransactionsService: TransactionsServiceProtocol {
         do {
             let transactionManagedObject = try coreData.fetchTransactions()
             let transactions: [Transaction] = transactionManagedObject.compactMap { transaction in
-                guard let comment = transaction.comment,
+                guard let id = transaction.id,
+                      let comment = transaction.comment,
                       let date = transaction.date,
                       let image = transaction.category?.image,
                       let title = transaction.category?.title,
                       let isRevenue = transaction.category?.isRevenue else { return nil }
                       let category = TransactionCategory(image: image, title: title, isRevenue: isRevenue)
-                return Transaction(category: category,
+                return Transaction(id: id,
+                                   category: category,
                                    amount: transaction.amount,
                                    comment: comment,
                                    date: date)
@@ -42,6 +44,15 @@ extension TransactionsService: TransactionsServiceProtocol {
             completion(.success(transactions))
         } catch {
             completion(.failure(error))
+        }
+    }
+    
+    func updateTransaction(transaction: Transaction, completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            try coreData.updateTransaction(transaction: transaction)
+            completion(.success(Void()))
+        } catch {
+            print(error)
         }
     }
 }

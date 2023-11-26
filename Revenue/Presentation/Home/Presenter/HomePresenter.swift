@@ -108,12 +108,12 @@ extension HomePresenter: HomeOutput {
         case .revenue:
             categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
                 switch result {
-                case .success(let categories):
-                    let items = categories.compactMap { category in
+                case .success(let tuple):
+                    let items = tuple.categories.compactMap { category in
                         return HomeRevenueItem(image: category.image,
                                                title: category.title,
                                                amount: category.total,
-                                               percent: 0)
+                                               percent: ((category.total / tuple.total) * 100))
                     }
                     self?.input?.setRevenue(items)
                 case .failure:

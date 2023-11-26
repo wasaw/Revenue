@@ -33,6 +33,35 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
+    func updateTransaction(transaction: Transaction) throws {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        let fetchRequest = TransactionManagedObject.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", transaction.id as CVarArg)
+        let fetchCategoryRequest = CategoryManagedObject.fetchRequest()
+        fetchCategoryRequest.predicate = NSPredicate(format: "title == %@", transaction.category.title)
+        do {
+            let result = try backgroundContext.fetch(fetchRequest)
+            let categoryManagedObject = try backgroundContext.fetch(fetchCategoryRequest).first
+            if let item = result.first {
+                item.amount = transaction.amount
+                item.comment = transaction.comment
+            } else {
+                let transactionManagedObject = TransactionManagedObject(context: backgroundContext)
+                transactionManagedObject.category = categoryManagedObject
+                transactionManagedObject.amount = transaction.amount
+                transactionManagedObject.id = UUID()
+                transactionManagedObject.comment = transaction.comment
+                transactionManagedObject.date = transaction.date
+                categoryManagedObject?.total += transaction.amount
+            }
+            if backgroundContext.hasChanges {
+                try backgroundContext.save()
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func fetchCategories(isRevenue: Bool) throws -> [CategoryManagedObject] {
         let fetchRequest = CategoryManagedObject.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isRevenue == %@", NSNumber(value: isRevenue))
@@ -44,6 +73,29 @@ extension CoreDataService: CoreDataServiceProtocol {
         backgroundContext.perform {
             do {
                 try completion(backgroundContext)
+                if backgroundContext.hasChanges {
+                    try backgroundContext.save()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteTransactionFromCategory(transaction: Transaction) throws {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.performAndWait {
+            do {
+                let fetchRequest = CategoryManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "title == %@", transaction.category.title)
+                let categoryManagedObject = try backgroundContext.fetch(fetchRequest).first
+                guard let transactionCollection = categoryManagedObject?.transactions?.array as? [TransactionManagedObject] else { return }
+                for item in transactionCollection {
+                    if item.id == transaction.id {
+                        categoryManagedObject?.total -= item.amount
+                        backgroundContext.delete(item)
+                    }
+                }
                 if backgroundContext.hasChanges {
                     try backgroundContext.save()
                 }

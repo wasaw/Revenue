@@ -9,6 +9,8 @@ import CoreData
 
 protocol CoreDataServiceProtocol: AnyObject {
     func fetchTransactions() throws -> [TransactionManagedObject]
+    func updateTransaction(transaction: Transaction) throws -> Void
     func fetchCategories(isRevenue: Bool) throws -> [CategoryManagedObject]
     func save(completion: @escaping (NSManagedObjectContext) throws -> Void)
+    func deleteTransactionFromCategory(transaction: Transaction) throws -> Void
 }
