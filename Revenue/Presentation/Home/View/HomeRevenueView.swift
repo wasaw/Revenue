@@ -7,9 +7,11 @@
 
 import UIKit
 import SnapKit
+import DGCharts
 
 private enum Constants {
     static let graphViewHeight: CGFloat = 230
+    static let tableViewPaddingTop: CGFloat = 30
     static let horizontalPadding: CGFloat = 16
     static let addRevenueBtnHeight: CGFloat = 54
     static let addRevenuePaddingBottom: CGFloat = 8
@@ -20,10 +22,20 @@ final class HomeRevenueView: UIView {
     
 // MARK: - Properties
     
-    private lazy var graphView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
+    private lazy var graphView: PieChartView = {
+        let view = PieChartView()
+        view.holeRadiusPercent = 0.75
+        view.rotationAngle = 0
+        view.rotationEnabled = false
+        view.legend.enabled = false
+        view.backgroundColor = .backgroundLightGray
         return view
+    }()
+    private lazy var graphLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .incomeCash
+        return label
     }()
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -62,12 +74,18 @@ final class HomeRevenueView: UIView {
             make.height.equalTo(Constants.graphViewHeight)
         }
         
+        graphView.addSubview(graphLabel)
+        graphLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
         addSubview(tableView)
         tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reuseIdentifire)
         tableView.delegate = self
         tableView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.top.equalTo(graphView.snp.bottom)
+            make.top.equalTo(graphView.snp.bottom).offset(Constants.tableViewPaddingTop)
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -83,6 +101,19 @@ final class HomeRevenueView: UIView {
     }
     
     func setupDataSource(_ items: [HomeRevenueItem]) {
+        var entries: [PieChartDataEntry] = Array()
+        var total: Double = 0
+        for item in items {
+            entries.append(PieChartDataEntry(value: item.percent))
+            total += item.amount
+        }
+        
+        let dataSet = PieChartDataSet(entries: entries)
+        dataSet.drawValuesEnabled = false
+        dataSet.colors = [.red, .blue, .orange, .brown, .cyan, .magenta, .purple]
+        graphView.data = PieChartData(dataSet: dataSet)
+        graphLabel.text = String(total) + "c"
+
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections(HomeRevenueSections.allCases)

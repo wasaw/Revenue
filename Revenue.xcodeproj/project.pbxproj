@@ -25,6 +25,7 @@
 		BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */; };
 		BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */; };
 		BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */; };
+		BB782A222B1376140018AF85 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = BB782A212B1376140018AF85 /* DGCharts */; };
 		BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A972B0E1D350085490B /* HomeRemainsView.swift */; };
 		BB799A9A2B0E26A40085490B /* HomeExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A992B0E26A40085490B /* HomeExpensesView.swift */; };
 		BB799A9C2B0E27570085490B /* HomeGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A9B2B0E27570085490B /* HomeGoalsView.swift */; };
@@ -108,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB782A222B1376140018AF85 /* DGCharts in Frameworks */,
 				BB8031692B0507A3000D8307 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +387,7 @@
 			name = Revenue;
 			packageProductDependencies = (
 				BB8031682B0507A3000D8307 /* SnapKit */,
+				BB782A212B1376140018AF85 /* DGCharts */,
 			);
 			productName = Revenue;
 			productReference = BB80313D2B04BDEB000D8307 /* Revenue.app */;
@@ -416,6 +419,7 @@
 			mainGroup = BB8031342B04BDEA000D8307;
 			packageReferences = (
 				BB8031672B0507A3000D8307 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				BB782A202B1376140018AF85 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = BB80313E2B04BDEB000D8307 /* Products */;
 			projectDirPath = "";
@@ -700,6 +704,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BB782A202B1376140018AF85 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		BB8031672B0507A3000D8307 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -711,6 +723,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BB782A212B1376140018AF85 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB782A202B1376140018AF85 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
 		BB8031682B0507A3000D8307 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB8031672B0507A3000D8307 /* XCRemoteSwiftPackageReference "SnapKit" */;
