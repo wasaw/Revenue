@@ -17,6 +17,7 @@ final class DetailedCoordinator {
     private let categoriesService: CategoriesServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private var presenterViewController: UIViewController?
+    private var transaction: Transaction?
     
 // MARK: - Lifecycle
     
@@ -56,6 +57,18 @@ extension DetailedCoordinator: DetailedPresenterOutput {
         let topMostViewController = window.rootViewController
         topMostViewController?.present(vc, animated: false)
     }
+    
+    func showDeleteAlert(with transaction: Transaction) {
+        self.transaction = transaction
+        let vc = DeleteViewController()
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        guard let window = windowScene?.windows.first else { return }
+        let topMostViewController = window.rootViewController
+        topMostViewController?.present(vc, animated: false)
+    }
 }
 
 // MARK: - ChoiceCategoryPresenterOutput
@@ -65,3 +78,17 @@ extension DetailedCoordinator: ChoiceCategoryPresenterOutput {
         detailedPresenterInput?.updateTransactionCategory(category)
     }
 }
+
+// MARK: - DeleteViewControllerDelegate
+
+extension DetailedCoordinator: DeleteViewControllerDelegate {
+    func delete() {
+        guard let transaction = transaction else { return }
+        transactionsService.deleteTransaction(transaction)
+    }
+    
+    func cancel() {
+        presenterViewController?.dismiss(animated: true)
+    }
+}
+

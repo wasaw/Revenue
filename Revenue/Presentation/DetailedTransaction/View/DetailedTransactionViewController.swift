@@ -242,12 +242,7 @@ final class DetailedTransactionViewController: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleDeleteButton() {
-        let alert = UIAlertController(title: "", message: "Вы действительно хотите удалить данную транзакцию", preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "Удалить", style: .default)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true)
+        output.showDeleteAlert()
     }
     
     @objc private func handleBackButton() {

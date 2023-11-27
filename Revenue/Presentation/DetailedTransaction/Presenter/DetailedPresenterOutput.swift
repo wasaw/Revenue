@@ -11,4 +11,5 @@ protocol DetailedPresenterOutput: AnyObject {
     var detailedPresenterInput: DetailedTransactionPresenterInput? { get set }
 
     func showChoiceCategory(_ category: TransactionCategory)
+    func showDeleteAlert(with transaction: Transaction)
 }

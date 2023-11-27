@@ -97,8 +97,6 @@ final class ChoiceCategoryViewController: UIViewController {
     private func configureUI() {
         view.addSubview(dimmedView)
         view.addSubview(containerView)
-        dimmedView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         dimmedView.snp.makeConstraints { make in
             make.leading.equalToSuperview()

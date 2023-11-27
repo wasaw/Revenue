@@ -98,6 +98,10 @@ extension DetailedTransactionPresenter: DetailedTransactionOutput {
             }
         }
     }
+    
+    func showDeleteAlert() {
+        output.showDeleteAlert(with: transaction)
+    }
 }
 
 // MARK: - DetailedTransactionPresenterInput

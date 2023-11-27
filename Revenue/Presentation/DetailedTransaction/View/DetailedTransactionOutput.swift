@@ -12,4 +12,5 @@ protocol DetailedTransactionOutput: AnyObject {
     func showChoiceCategory()
     func checkAmountChanges(_ amount: String?)
     func saveTransaction(comment: String?, amount: String?)
+    func showDeleteAlert()
 }

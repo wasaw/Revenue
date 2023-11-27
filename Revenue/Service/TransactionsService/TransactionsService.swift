@@ -55,4 +55,8 @@ extension TransactionsService: TransactionsServiceProtocol {
             print(error)
         }
     }
+    
+    func deleteTransaction(_ transaction: Transaction) {
+        
+    }
 }

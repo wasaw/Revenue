@@ -20,4 +20,7 @@ extension UIColor {
     static let applyButton = UIColor(displayP3Red: 61/255, green: 198/255, blue: 0, alpha: 1)
     static let lockButton = UIColor(displayP3Red: 218/255, green: 218/255, blue: 218/255, alpha: 1)
     static let lockButtonTitle = UIColor(displayP3Red: 151/255, green: 151/255, blue: 151/255, alpha: 1)
+    static let blackTitle = UIColor(displayP3Red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+    static let deleteButton = UIColor(displayP3Red: 1, green: 89/255, blue: 53/255, alpha: 1)
+    static let deleteButtonShadow = UIColor(displayP3Red: 1, green: 89/255, blue: 53/255, alpha: 0.6)
 }
