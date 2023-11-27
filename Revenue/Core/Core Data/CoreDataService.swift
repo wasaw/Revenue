@@ -82,6 +82,23 @@ extension CoreDataService: CoreDataServiceProtocol {
         }
     }
     
+    func deleteTransaction(_ transaction: Transaction) throws {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.performAndWait {
+            do {
+                let fetchRequest = TransactionManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id == %@", transaction.id as CVarArg)
+                guard let transactionManagedObject = try backgroundContext.fetch(fetchRequest).first else { return }
+                backgroundContext.delete(transactionManagedObject)
+                if backgroundContext.hasChanges {
+                    try backgroundContext.save()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func deleteTransactionFromCategory(transaction: Transaction) throws {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.performAndWait {

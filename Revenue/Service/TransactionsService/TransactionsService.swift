@@ -56,7 +56,12 @@ extension TransactionsService: TransactionsServiceProtocol {
         }
     }
     
-    func deleteTransaction(_ transaction: Transaction) {
-        
+    func deleteTransaction(_ transaction: Transaction, completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            try coreData.deleteTransaction(transaction)
+            completion(.success(Void()))
+        } catch {
+            completion(.failure(error))
+        }
     }
 }

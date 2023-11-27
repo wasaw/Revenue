@@ -84,7 +84,16 @@ extension DetailedCoordinator: ChoiceCategoryPresenterOutput {
 extension DetailedCoordinator: DeleteViewControllerDelegate {
     func delete() {
         guard let transaction = transaction else { return }
-        transactionsService.deleteTransaction(transaction)
+        transactionsService.deleteTransaction(transaction) { [weak self] result in
+            switch result {
+            case .success:
+                self?.presenterViewController?.dismiss(animated: true, completion: {
+                    self?.presenterViewController?.navigationController?.popToRootViewController(animated: true)
+                })
+            case .failure:
+                break
+            }
+        }
     }
     
     func cancel() {

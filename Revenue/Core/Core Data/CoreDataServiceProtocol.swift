@@ -12,5 +12,6 @@ protocol CoreDataServiceProtocol: AnyObject {
     func updateTransaction(transaction: Transaction) throws -> Void
     func fetchCategories(isRevenue: Bool) throws -> [CategoryManagedObject]
     func save(completion: @escaping (NSManagedObjectContext) throws -> Void)
+    func deleteTransaction(_ transaction: Transaction) throws -> Void
     func deleteTransactionFromCategory(transaction: Transaction) throws -> Void
 }
