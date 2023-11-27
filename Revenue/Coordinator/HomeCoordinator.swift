@@ -32,7 +32,7 @@ final class HomeCoordinator {
         let presenter = HomePresenter(output: self,
                                       transactionService: transactionService,
                                       categoriesService: categoriesService)
-        let viewController = HomeViewController(output: presenter)
+        let viewController = HomeViewController(output: presenter, outputRevenue: presenter)
         presenter.input = viewController
         let nav = UINavigationController(rootViewController: viewController)
         navigation = nav
@@ -45,6 +45,13 @@ final class HomeCoordinator {
 extension HomeCoordinator: HomePresenterOutput {
     func showDetailed(for transaction: Transaction) {
         let vc = detailedCoordinator.start(transaction: transaction)
+        navigation?.pushViewController(vc, animated: true)
+    }
+    
+    func showAddTransaction() {
+        let presenter = AddTransactionPresenter()
+        let vc = AddTransactionViewController(output: presenter)
+        presenter.input = vc
         navigation?.pushViewController(vc, animated: true)
     }
 }

@@ -25,6 +25,11 @@
 		BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */; };
 		BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */; };
 		BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */; };
+		BB77E7642B14BD6B00F80B2E /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E7632B14BD6B00F80B2E /* AddTransactionPresenter.swift */; };
+		BB77E7662B14BD7C00F80B2E /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E7652B14BD7C00F80B2E /* AddTransactionViewController.swift */; };
+		BB77E7682B14BD8600F80B2E /* AddTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E7672B14BD8600F80B2E /* AddTransactionInput.swift */; };
+		BB77E76A2B14BD9300F80B2E /* AddTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E7692B14BD9300F80B2E /* AddTransactionOutput.swift */; };
+		BB77E76D2B14BF7900F80B2E /* HomeRevenueOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E76C2B14BF7900F80B2E /* HomeRevenueOutput.swift */; };
 		BB782A222B1376140018AF85 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = BB782A212B1376140018AF85 /* DGCharts */; };
 		BB782A252B13BFB90018AF85 /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB782A242B13BFB90018AF85 /* DeleteViewController.swift */; };
 		BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB799A972B0E1D350085490B /* HomeRemainsView.swift */; };
@@ -75,6 +80,11 @@
 		BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryAssembly.swift; sourceTree = "<group>"; };
 		BB77A39E2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryDataSource.swift; sourceTree = "<group>"; };
 		BB77A3A02B0B5A6C00D097E0 /* ChoiceCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryCell.swift; sourceTree = "<group>"; };
+		BB77E7632B14BD6B00F80B2E /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
+		BB77E7652B14BD7C00F80B2E /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		BB77E7672B14BD8600F80B2E /* AddTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionInput.swift; sourceTree = "<group>"; };
+		BB77E7692B14BD9300F80B2E /* AddTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionOutput.swift; sourceTree = "<group>"; };
+		BB77E76C2B14BF7900F80B2E /* HomeRevenueOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRevenueOutput.swift; sourceTree = "<group>"; };
 		BB782A242B13BFB90018AF85 /* DeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
 		BB799A972B0E1D350085490B /* HomeRemainsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemainsView.swift; sourceTree = "<group>"; };
 		BB799A992B0E26A40085490B /* HomeExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExpensesView.swift; sourceTree = "<group>"; };
@@ -242,12 +252,48 @@
 			path = TransactionsService;
 			sourceTree = "<group>";
 		};
+		BB77E76B2B14BF5900F80B2E /* Revenue */ = {
+			isa = PBXGroup;
+			children = (
+				BB80A63C2B0E0027003E98C7 /* HomeRevenueView.swift */,
+				BB77E76C2B14BF7900F80B2E /* HomeRevenueOutput.swift */,
+			);
+			path = Revenue;
+			sourceTree = "<group>";
+		};
 		BB782A232B13BFA50018AF85 /* Delete */ = {
 			isa = PBXGroup;
 			children = (
 				BB782A242B13BFB90018AF85 /* DeleteViewController.swift */,
 			);
 			path = Delete;
+			sourceTree = "<group>";
+		};
+		BB782A282B14B5DB0018AF85 /* AddTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				BB782A292B14B5E40018AF85 /* Presenter */,
+				BB782A2A2B14B5EA0018AF85 /* View */,
+			);
+			path = AddTransaction;
+			sourceTree = "<group>";
+		};
+		BB782A292B14B5E40018AF85 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB77E7632B14BD6B00F80B2E /* AddTransactionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB782A2A2B14B5EA0018AF85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB77E7652B14BD7C00F80B2E /* AddTransactionViewController.swift */,
+				BB77E7672B14BD8600F80B2E /* AddTransactionInput.swift */,
+				BB77E7692B14BD9300F80B2E /* AddTransactionOutput.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BB799AA12B0F529C0085490B /* CategoriesService */ = {
@@ -306,6 +352,7 @@
 				BB77A3782B0767FF00D097E0 /* Home */,
 				BB77A3792B07680900D097E0 /* DetailedTransaction */,
 				BB77A3902B0943A300D097E0 /* ChoiceCategory */,
+				BB782A282B14B5DB0018AF85 /* AddTransaction */,
 				BB782A232B13BFA50018AF85 /* Delete */,
 			);
 			path = Presentation;
@@ -319,9 +366,9 @@
 				BB8031642B04F40B000D8307 /* HomeOutput.swift */,
 				BB77A3732B06474400D097E0 /* HomeCell.swift */,
 				BB799A972B0E1D350085490B /* HomeRemainsView.swift */,
-				BB80A63C2B0E0027003E98C7 /* HomeRevenueView.swift */,
 				BB799A992B0E26A40085490B /* HomeExpensesView.swift */,
 				BB799A9B2B0E27570085490B /* HomeGoalsView.swift */,
+				BB77E76B2B14BF5900F80B2E /* Revenue */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -469,6 +516,7 @@
 				BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */,
 				BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */,
 				BB782A252B13BFB90018AF85 /* DeleteViewController.swift in Sources */,
+				BB77E7642B14BD6B00F80B2E /* AddTransactionPresenter.swift in Sources */,
 				BBDCF0DE2B0C9BF000AFCDED /* DefaultValueService.swift in Sources */,
 				BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */,
 				BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */,
@@ -479,9 +527,11 @@
 				BBDCF0D32B0C91C400AFCDED /* CoreDataServiceProtocol.swift in Sources */,
 				BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */,
 				BB77A3862B076BD500D097E0 /* HomeCoordinator.swift in Sources */,
+				BB77E76D2B14BF7900F80B2E /* HomeRevenueOutput.swift in Sources */,
 				BB8031552B04C8B5000D8307 /* HomeViewController.swift in Sources */,
 				BB77A3982B09445F00D097E0 /* ChoiceOutput.swift in Sources */,
 				BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */,
+				BB77E7682B14BD8600F80B2E /* AddTransactionInput.swift in Sources */,
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
@@ -498,7 +548,9 @@
 				BB80315F2B04CCCE000D8307 /* Extensions.swift in Sources */,
 				BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */,
 				BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */,
+				BB77E76A2B14BD9300F80B2E /* AddTransactionOutput.swift in Sources */,
 				BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */,
+				BB77E7662B14BD7C00F80B2E /* AddTransactionViewController.swift in Sources */,
 				BB77A3832B0768F000D097E0 /* DetailedTransactionViewController.swift in Sources */,
 				BB8031632B04F3F1000D8307 /* HomeInput.swift in Sources */,
 			);

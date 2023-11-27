@@ -22,6 +22,7 @@ final class HomeRevenueView: UIView {
     
 // MARK: - Properties
     
+    private let output: HomeRevenueOutput
     private lazy var graphView: PieChartView = {
         let view = PieChartView()
         view.holeRadiusPercent = 0.75
@@ -54,7 +55,9 @@ final class HomeRevenueView: UIView {
     
 // MARK: - Lifecycle
     
-    init() {
+    init(output: HomeRevenueOutput) {
+        self.output = output
+
         super.init(frame: .zero)
         configureUI()
     }
@@ -124,7 +127,7 @@ final class HomeRevenueView: UIView {
 // MARK: - Selectors
     
     @objc private func handleAddRevenue() {
-        
+        output.showAddTransaction()
     }
 }
 

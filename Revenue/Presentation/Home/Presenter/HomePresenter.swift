@@ -127,3 +127,11 @@ extension HomePresenter: HomeOutput {
         }
     }
 }
+
+// MARK: - HomeRevenueOutput
+
+extension HomePresenter: HomeRevenueOutput {
+    func showAddTransaction() {
+        output.showAddTransaction()
+    }
+}

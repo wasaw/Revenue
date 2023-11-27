@@ -24,6 +24,7 @@ final class HomeViewController: UIViewController {
 // MARK: - Properties
     
     private let output: HomeOutput
+    private let outputRevenue: HomeRevenueOutput
     
     private lazy var calendarView: UIView = {
         let view = UIView()
@@ -75,7 +76,7 @@ final class HomeViewController: UIViewController {
         return view
     }()
     private lazy var revenueView: HomeRevenueView = {
-        let view = HomeRevenueView()
+        let view = HomeRevenueView(output: outputRevenue)
         return view
     }()
     private lazy var expensesView: HomeExpensesView = {
@@ -93,8 +94,9 @@ final class HomeViewController: UIViewController {
         
 // MARK: - Lifecycle
     
-    init(output: HomeOutput) {
+    init(output: HomeOutput, outputRevenue: HomeRevenueOutput) {
         self.output = output
+        self.outputRevenue = outputRevenue
         
         super.init(nibName: nil, bundle: nil)
     }
