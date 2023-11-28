@@ -53,7 +53,7 @@ final class HomeCoordinator {
 extension HomeCoordinator: HomePresenterOutput {
     func showDetailed(for transaction: Transaction) {
         let vc = detailedCoordinator.start(transaction: transaction)
-        navigation?.pushViewController(vc, animated: true)
+        navigation?.pushViewController(vc, animated: false)
     }
     
     func showAddTransaction() {
@@ -65,7 +65,9 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showShowTransactions(for category: TransactionCategory) {
-        let vc = showTransactionsAssembly.makeShowTransactionsModule(transactionsService: transactionService, category: category)
+        let vc = showTransactionsAssembly.makeShowTransactionsModule(transactionsService: transactionService,
+                                                                     output: self,
+                                                                     category: category)
         navigation?.pushViewController(vc, animated: true)
     }
 }
@@ -114,4 +116,10 @@ extension HomeCoordinator: OtherCategoryViewControllerDelegate {
     func cancel() {
         navigation?.dismiss(animated: true)
     }
+}
+
+// MARK: - ShowTransactionsPresenterOutput
+
+extension HomeCoordinator: ShowTransactionsPresenterOutput {
+    
 }

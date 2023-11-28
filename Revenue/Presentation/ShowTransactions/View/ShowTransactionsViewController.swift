@@ -54,7 +54,6 @@ final class ShowTransactionViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationItem.backButtonTitle = ""
-       
     }
     
 // MARK: - Helpers
@@ -107,5 +106,6 @@ extension ShowTransactionViewController: ShowTransactionsViewControllerInput {
 extension ShowTransactionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        output.showDetailed(at: indexPath.row)
     }
 }

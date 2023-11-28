@@ -9,4 +9,5 @@ import Foundation
 
 protocol ShowTransactionsViewControllerOutput: AnyObject {
     func viewIsReady()
+    func showDetailed(at index: Int)
 }

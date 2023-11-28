@@ -25,13 +25,18 @@ final class ShowTransactionsPresenter {
 // MARK: - Properties
     
     weak var input: ShowTransactionsViewControllerInput?
+    private let output: ShowTransactionsPresenterOutput
     private let transactionsService: TransactionsServiceProtocol
     private let category: TransactionCategory
+    private var transactions: [Transaction] = []
     
 // MARK: - Lifecycle
     
-    init(transactionsService: TransactionsServiceProtocol, category: TransactionCategory) {
+    init(transactionsService: TransactionsServiceProtocol,
+         output: ShowTransactionsPresenterOutput,
+         category: TransactionCategory) {
         self.transactionsService = transactionsService
+        self.output = output
         self.category = category
     }
 }
@@ -44,6 +49,7 @@ extension ShowTransactionsPresenter: ShowTransactionsViewControllerOutput {
         transactionsService.fetchTransctionsForCategory(category) { [weak self] result in
             switch result {
             case .success(let transactions):
+                self?.transactions = transactions
                 let items: [ShowTransactionsCategoryItem] = transactions.compactMap { transaction in
                     guard let image = self?.category.image else { return nil }
                     return ShowTransactionsCategoryItem(image: image,
@@ -56,5 +62,9 @@ extension ShowTransactionsPresenter: ShowTransactionsViewControllerOutput {
                 break
             }
         }
+    }
+    
+    func showDetailed(at index: Int) {
+        output.showDetailed(for: transactions[index])
     }
 }
