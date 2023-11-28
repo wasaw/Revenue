@@ -8,7 +8,7 @@
 import UIKit
 
 final class ChoiceCategoryAssembly {
-    func makeDetailedModule(output: ChoiceCategoryPresenterOutput,
+    func makeChoiceCategoryModule(output: ChoiceCategoryPresenterOutput,
                             category: TransactionCategory?,
                             categoriesService: CategoriesServiceProtocol) -> UIViewController {
         let presenter = ChoiceCategoryPresenter(output: output,

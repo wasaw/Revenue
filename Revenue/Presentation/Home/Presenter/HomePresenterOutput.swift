@@ -10,4 +10,5 @@ import Foundation
 protocol HomePresenterOutput: AnyObject {
     func showDetailed(for transaction: Transaction)
     func showAddTransaction()
+    func showShowTransactions(for category: TransactionCategory)
 }

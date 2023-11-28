@@ -47,7 +47,7 @@ final class DetailedCoordinator {
 
 extension DetailedCoordinator: DetailedPresenterOutput {
     func showChoiceCategory(_ category: TransactionCategory) {
-        let vc = choiceCategoryAssembly.makeDetailedModule(output: self,
+        let vc = choiceCategoryAssembly.makeChoiceCategoryModule(output: self,
                                                           category: category,
                                                           categoriesService: categoriesService)
         vc.modalPresentationStyle = .overCurrentContext

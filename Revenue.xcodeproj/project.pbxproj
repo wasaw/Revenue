@@ -54,6 +54,13 @@
 		BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */; };
 		BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */; };
 		BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */; };
+		BBAB57522B16318A00B7F645 /* ShowTransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57512B16318A00B7F645 /* ShowTransactionsPresenter.swift */; };
+		BBAB57542B1631BF00B7F645 /* ShowTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */; };
+		BBAB57562B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */; };
+		BBAB57582B16323300B7F645 /* ShowViewControllerOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57572B16323300B7F645 /* ShowViewControllerOutput.swift */; };
+		BBAB575A2B1633E800B7F645 /* ShowTransactionsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57592B1633E800B7F645 /* ShowTransactionsAssembly.swift */; };
+		BBAB575C2B163D8F00B7F645 /* ShowTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */; };
+		BBAB575F2B163F3C00B7F645 /* ShowTransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */; };
 		BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */; };
 		BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */; };
 		BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CC2B0B9D3400AFCDED /* Model.swift */; };
@@ -112,6 +119,13 @@
 		BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterOutput.swift; sourceTree = "<group>"; };
 		BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterInput.swift; sourceTree = "<group>"; };
 		BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategory.swift; sourceTree = "<group>"; };
+		BBAB57512B16318A00B7F645 /* ShowTransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsPresenter.swift; sourceTree = "<group>"; };
+		BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsViewController.swift; sourceTree = "<group>"; };
+		BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsViewControllerInput.swift; sourceTree = "<group>"; };
+		BBAB57572B16323300B7F645 /* ShowViewControllerOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewControllerOutput.swift; sourceTree = "<group>"; };
+		BBAB57592B1633E800B7F645 /* ShowTransactionsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsAssembly.swift; sourceTree = "<group>"; };
+		BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsCell.swift; sourceTree = "<group>"; };
+		BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsDataSource.swift; sourceTree = "<group>"; };
 		BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
 		BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceProtocol.swift; sourceTree = "<group>"; };
 		BBDCF0CC2B0B9D3400AFCDED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -197,6 +211,7 @@
 			children = (
 				BB77A38A2B078AD200D097E0 /* DetailedTransactionAssembly.swift */,
 				BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */,
+				BBAB57592B1633E800B7F645 /* ShowTransactionsAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -361,6 +376,7 @@
 				BB77A3792B07680900D097E0 /* DetailedTransaction */,
 				BB77A3902B0943A300D097E0 /* ChoiceCategory */,
 				BB782A282B14B5DB0018AF85 /* AddTransaction */,
+				BBAB574E2B16314900B7F645 /* ShowTransactions */,
 				BBAB574B2B160B4500B7F645 /* OtherCategory */,
 				BB782A232B13BFA50018AF85 /* Delete */,
 			);
@@ -416,6 +432,43 @@
 				BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */,
 			);
 			path = OtherCategory;
+			sourceTree = "<group>";
+		};
+		BBAB574E2B16314900B7F645 /* ShowTransactions */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB574F2B16316800B7F645 /* Presenter */,
+				BBAB57502B16316D00B7F645 /* View */,
+				BBAB575D2B163F2200B7F645 /* DataSource */,
+			);
+			path = ShowTransactions;
+			sourceTree = "<group>";
+		};
+		BBAB574F2B16316800B7F645 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57512B16318A00B7F645 /* ShowTransactionsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BBAB57502B16316D00B7F645 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */,
+				BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */,
+				BBAB57572B16323300B7F645 /* ShowViewControllerOutput.swift */,
+				BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBAB575D2B163F2200B7F645 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		BBDCF0CE2B0C914400AFCDED /* Core */ = {
@@ -541,7 +594,11 @@
 				BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */,
 				BB799AA32B0F52C60085490B /* CategoriesService.swift in Sources */,
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
+				BBAB575A2B1633E800B7F645 /* ShowTransactionsAssembly.swift in Sources */,
+				BBAB57582B16323300B7F645 /* ShowViewControllerOutput.swift in Sources */,
 				BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */,
+				BBAB575C2B163D8F00B7F645 /* ShowTransactionsCell.swift in Sources */,
+				BBAB57522B16318A00B7F645 /* ShowTransactionsPresenter.swift in Sources */,
 				BB77A3962B09444A00D097E0 /* ChoiceInput.swift in Sources */,
 				BBDCF0D32B0C91C400AFCDED /* CoreDataServiceProtocol.swift in Sources */,
 				BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */,
@@ -550,6 +607,7 @@
 				BB8031552B04C8B5000D8307 /* HomeViewController.swift in Sources */,
 				BB77A3982B09445F00D097E0 /* ChoiceOutput.swift in Sources */,
 				BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */,
+				BBAB57542B1631BF00B7F645 /* ShowTransactionsViewController.swift in Sources */,
 				BB77E7682B14BD8600F80B2E /* AddTransactionInput.swift in Sources */,
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
@@ -563,6 +621,7 @@
 				BB77A37F2B07687700D097E0 /* DetailedTransactionOutput.swift in Sources */,
 				BB799AA52B0F52DD0085490B /* CategoriesServiceProtocol.swift in Sources */,
 				BB799AA02B0E35F70085490B /* HomeRemainsDataSource.swift in Sources */,
+				BBAB57562B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift in Sources */,
 				BBDCF0E02B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift in Sources */,
 				BB80315F2B04CCCE000D8307 /* Extensions.swift in Sources */,
 				BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */,
@@ -570,6 +629,7 @@
 				BB77E76A2B14BD9300F80B2E /* AddTransactionOutput.swift in Sources */,
 				BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */,
 				BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */,
+				BBAB575F2B163F3C00B7F645 /* ShowTransactionsDataSource.swift in Sources */,
 				BB77E7662B14BD7C00F80B2E /* AddTransactionViewController.swift in Sources */,
 				BB77A3832B0768F000D097E0 /* DetailedTransactionViewController.swift in Sources */,
 				BB8031632B04F3F1000D8307 /* HomeInput.swift in Sources */,

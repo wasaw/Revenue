@@ -16,6 +16,7 @@ final class HomeCoordinator {
     private var navigation: UINavigationController?
     private let detailedCoordinator: DetailedCoordinator
     private let choiceCategoryAssembly: ChoiceCategoryAssembly
+    private let showTransactionsAssembly: ShowTransactionsAssembly
     private let transactionService: TransactionsServiceProtocol
     private let categoriesService: CategoriesServiceProtocol
     
@@ -23,10 +24,12 @@ final class HomeCoordinator {
     
     init(detailedCoordinator: DetailedCoordinator,
          choiceCategoryAssembly: ChoiceCategoryAssembly,
+         showTransactionsAssembly: ShowTransactionsAssembly,
          transactionService: TransactionsServiceProtocol,
          categoriesService: CategoriesServiceProtocol) {
         self.detailedCoordinator = detailedCoordinator
         self.choiceCategoryAssembly = choiceCategoryAssembly
+        self.showTransactionsAssembly = showTransactionsAssembly
         self.transactionService = transactionService
         self.categoriesService = categoriesService
     }
@@ -60,13 +63,18 @@ extension HomeCoordinator: HomePresenterOutput {
         presenterInput = presenter
         navigation?.pushViewController(vc, animated: true)
     }
+    
+    func showShowTransactions(for category: TransactionCategory) {
+        let vc = showTransactionsAssembly.makeShowTransactionsModule()
+        navigation?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - AddTranactionPresenterOutput
 
 extension HomeCoordinator: AddTransactionPresenterOutput {
     func showChoiceCategory() {
-        let vc = choiceCategoryAssembly.makeDetailedModule(output: self,
+        let vc = choiceCategoryAssembly.makeChoiceCategoryModule(output: self,
                                                            category: nil,
                                                            categoriesService: categoriesService)
         vc.modalPresentationStyle = .overCurrentContext

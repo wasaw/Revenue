@@ -9,4 +9,5 @@ import Foundation
 
 protocol HomeRevenueOutput: AnyObject {
     func showAddTransaction()
+    func showDetails(at index: Int)
 }

@@ -136,5 +136,6 @@ final class HomeRevenueView: UIView {
 extension HomeRevenueView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        output.showDetails(at: indexPath.row)
     }
 }

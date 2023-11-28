@@ -59,6 +59,7 @@ final class HomePresenter {
     private let categoriesService: CategoriesServiceProtocol
     
     private var selectedTransactions: [Transaction] = []
+    private var revenueCategories: [TransactionCategory] = []
 
 // MARK: - Lifecycle
     
@@ -109,7 +110,8 @@ extension HomePresenter: HomeOutput {
             categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
                 switch result {
                 case .success(let tuple):
-                    let items = tuple.categories.compactMap { category in
+                    let items = tuple.categories.compactMap { [weak self] category in
+                        self?.revenueCategories.append(category)
                         return HomeRevenueItem(image: category.image,
                                                title: category.title,
                                                amount: category.total,
@@ -133,5 +135,9 @@ extension HomePresenter: HomeOutput {
 extension HomePresenter: HomeRevenueOutput {
     func showAddTransaction() {
         output.showAddTransaction()
+    }
+    
+    func showDetails(at index: Int) {
+        output.showShowTransactions(for: revenueCategories[index])
     }
 }
