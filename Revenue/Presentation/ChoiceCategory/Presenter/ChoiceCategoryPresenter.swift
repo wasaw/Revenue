@@ -63,6 +63,7 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
             case .success(let tuple):
                 let items: [TableCategoryItem] = tuple.categories.compactMap { category in
                     let isSelected = (category.title == self?.selectedCategory?.title) ? true : false
+                    if (self?.selectedCategory != nil && category.title == "Другое") { return nil }
                     return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
                 }
                 self?.input?.setCategories(items)
@@ -114,6 +115,12 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
     func updateSelectedCategory() {
         if let selectedCategory = selectedCategory {
             output.updateSelectedCategory(selectedCategory)
+        }
+    }
+    
+    func showOtherCategory() {
+        if selectedCategory?.title == "Другое" {
+            output.showOtherCategory()
         }
     }
 }

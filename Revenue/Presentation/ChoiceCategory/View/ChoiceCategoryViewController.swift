@@ -163,7 +163,9 @@ final class ChoiceCategoryViewController: UIViewController {
         UIView.animate(withDuration: 0.4) {
             self.dimmedView.alpha = 0
         } completion: { _ in
-            self.dismiss(animated: false)
+            self.dismiss(animated: false) {
+                self.output.showOtherCategory()
+            }
         }
     }
     

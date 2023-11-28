@@ -13,4 +13,5 @@ protocol ChoiceOutput: AnyObject {
     func fetchExpense()
     func updateSelectedCell(at index: Int, in segment: Int)
     func updateSelectedCategory()
+    func showOtherCategory()
 }

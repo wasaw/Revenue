@@ -53,6 +53,7 @@
 		BB80A63D2B0E0027003E98C7 /* HomeRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80A63C2B0E0027003E98C7 /* HomeRevenueView.swift */; };
 		BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */; };
 		BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */; };
+		BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */; };
 		BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */; };
 		BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */; };
 		BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CC2B0B9D3400AFCDED /* Model.swift */; };
@@ -110,6 +111,7 @@
 		BB80A63C2B0E0027003E98C7 /* HomeRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRevenueView.swift; sourceTree = "<group>"; };
 		BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterOutput.swift; sourceTree = "<group>"; };
 		BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterInput.swift; sourceTree = "<group>"; };
+		BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategory.swift; sourceTree = "<group>"; };
 		BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
 		BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceProtocol.swift; sourceTree = "<group>"; };
 		BBDCF0CC2B0B9D3400AFCDED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				BB77A3792B07680900D097E0 /* DetailedTransaction */,
 				BB77A3902B0943A300D097E0 /* ChoiceCategory */,
 				BB782A282B14B5DB0018AF85 /* AddTransaction */,
+				BBAB574B2B160B4500B7F645 /* OtherCategory */,
 				BB782A232B13BFA50018AF85 /* Delete */,
 			);
 			path = Presentation;
@@ -405,6 +408,14 @@
 				BB80315E2B04CCCE000D8307 /* Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BBAB574B2B160B4500B7F645 /* OtherCategory */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */,
+			);
+			path = OtherCategory;
 			sourceTree = "<group>";
 		};
 		BBDCF0CE2B0C914400AFCDED /* Core */ = {
@@ -558,6 +569,7 @@
 				BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */,
 				BB77E76A2B14BD9300F80B2E /* AddTransactionOutput.swift in Sources */,
 				BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */,
+				BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */,
 				BB77E7662B14BD7C00F80B2E /* AddTransactionViewController.swift in Sources */,
 				BB77A3832B0768F000D097E0 /* DetailedTransactionViewController.swift in Sources */,
 				BB8031632B04F3F1000D8307 /* HomeInput.swift in Sources */,

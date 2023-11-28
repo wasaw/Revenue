@@ -37,6 +37,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
         let loanCategory = TransactionCategory(image: "loan", title: "Деньги взаймы", isRevenue: false)
         let cafeCategory = TransactionCategory(image: "cafe", title: "Кафе и рестораны", isRevenue: false)
         let entertainmentCategory = TransactionCategory(image: "entertainment", title: "Резвлечения", isRevenue: false)
+        let otherCategory = TransactionCategory(image: "other", title: "Другое", isRevenue: true)
         
         let categories: [TransactionCategory] = [salaryCategory,
                                                  businessCategory,
@@ -49,7 +50,8 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                                                  utilitiesCategory,
                                                  loanCategory,
                                                  cafeCategory,
-                                                 entertainmentCategory]
+                                                 entertainmentCategory,
+                                                 otherCategory]
         
         let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Text", date: Date()),
                             Transaction(id: UUID(), category: medicineCategory, amount: 27000, comment: "", date: Date()),

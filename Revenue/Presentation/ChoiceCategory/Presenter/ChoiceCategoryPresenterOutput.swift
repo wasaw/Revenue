@@ -9,4 +9,5 @@ import Foundation
 
 protocol ChoiceCategoryPresenterOutput: AnyObject {
     func updateSelectedCategory(_ category: TransactionCategory)
+    func showOtherCategory()
 }

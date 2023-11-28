@@ -84,4 +84,26 @@ extension HomeCoordinator: ChoiceCategoryPresenterOutput {
     func updateSelectedCategory(_ category: TransactionCategory) {
         presenterInput?.updateCategory(category)
     }
+    
+    func showOtherCategory() {
+        let vc = OtherCategory()
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        guard let window = windowScene?.windows.first else { return }
+        let topMostViewController = window.rootViewController
+        topMostViewController?.present(vc, animated: true)
+    }
+}
+
+// MARK: - OtherCategoryViewControllerDelegate
+
+extension HomeCoordinator: OtherCategoryViewControllerDelegate {
+    func addOther() {
+    }
+    
+    func cancel() {
+        navigation?.dismiss(animated: true)
+    }
 }

@@ -77,6 +77,9 @@ extension DetailedCoordinator: ChoiceCategoryPresenterOutput {
     func updateSelectedCategory(_ category: TransactionCategory) {
         detailedPresenterInput?.updateTransactionCategory(category)
     }
+    
+    func showOtherCategory() {
+    }
 }
 
 // MARK: - DeleteViewControllerDelegate
