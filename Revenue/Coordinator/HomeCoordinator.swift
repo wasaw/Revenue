@@ -11,17 +11,22 @@ final class HomeCoordinator {
     
 // MARK: - Properties
     
+    weak var presenterInput: AddTransactionPresenterInput?
+
     private var navigation: UINavigationController?
     private let detailedCoordinator: DetailedCoordinator
+    private let choiceCategoryAssembly: ChoiceCategoryAssembly
     private let transactionService: TransactionsServiceProtocol
     private let categoriesService: CategoriesServiceProtocol
     
 // MARK: - Lifecycle
     
     init(detailedCoordinator: DetailedCoordinator,
+         choiceCategoryAssembly: ChoiceCategoryAssembly,
          transactionService: TransactionsServiceProtocol,
          categoriesService: CategoriesServiceProtocol) {
         self.detailedCoordinator = detailedCoordinator
+        self.choiceCategoryAssembly = choiceCategoryAssembly
         self.transactionService = transactionService
         self.categoriesService = categoriesService
     }
@@ -49,9 +54,34 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showAddTransaction() {
-        let presenter = AddTransactionPresenter()
+        let presenter = AddTransactionPresenter(output: self, transactionService: transactionService)
         let vc = AddTransactionViewController(output: presenter)
         presenter.input = vc
+        presenterInput = presenter
         navigation?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - AddTranactionPresenterOutput
+
+extension HomeCoordinator: AddTransactionPresenterOutput {
+    func showChoiceCategory() {
+        let vc = choiceCategoryAssembly.makeDetailedModule(output: self,
+                                                           category: nil,
+                                                           categoriesService: categoriesService)
+        vc.modalPresentationStyle = .overCurrentContext
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        guard let window = windowScene?.windows.first else { return }
+        let topMostViewController = window.rootViewController
+        topMostViewController?.present(vc, animated: true)
+    }
+}
+
+// MARK: - ChoiceCaregoryPresenterOutput
+
+extension HomeCoordinator: ChoiceCategoryPresenterOutput {
+    func updateSelectedCategory(_ category: TransactionCategory) {
+        presenterInput?.updateCategory(category)
     }
 }

@@ -230,6 +230,20 @@ final class AddTransactionViewController: UIViewController {
         buttomConstraint?.isActive = true
     }
     
+    private func checkButtonStatus() {
+        if typeTitleLabel.text != "Выберите категорию" &&
+            commentTextFiled.text != "" &&
+            amoutTextField.text != "" {
+            addButton.setTitleColor(.white, for: .normal)
+            addButton.backgroundColor = .applyButton
+            addButton.isEnabled = true
+        } else {
+            addButton.setTitleColor(.lockButtonTitle, for: .normal)
+            addButton.backgroundColor = .lockButton
+            addButton.isEnabled = false
+        }
+    }
+    
 // MARK: - Helpers
     
     @objc private func handleBackButton() {
@@ -237,11 +251,11 @@ final class AddTransactionViewController: UIViewController {
     }
     
     @objc private func handleTypeView() {
-
+        output.showChoiceCategory()
     }
     
     @objc private func handleAddButton() {
-        
+        output.saveTransaction(comment: commentTextFiled.text, amount: amoutTextField.text)
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
@@ -256,7 +270,15 @@ final class AddTransactionViewController: UIViewController {
 // MARK: - AddTransactionInput
 
 extension AddTransactionViewController: AddTranactionInput {
+    func showCategory(_ category: TransactionCategory) {
+        typeImageView.image = UIImage(named: category.image)
+        typeTitleLabel.text = category.title
+        checkButtonStatus()
+    }
     
+    func dismissView() {
+        handleBackButton()
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -267,6 +289,6 @@ extension AddTransactionViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        checkButtonStatus()
     }
 }

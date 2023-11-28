@@ -26,14 +26,14 @@ final class ChoiceCategoryPresenter {
     weak var input: ChoiceInput?
     private let output: ChoiceCategoryPresenterOutput
     private let categoriesService: CategoriesServiceProtocol
-    private var selectedCategory: TransactionCategory
+    private var selectedCategory: TransactionCategory?
     private var revenue: [TableCategoryItem] = []
     private var expense: [TableCategoryItem] = []
     
 // MARK: - Lifecycle
     
     init(output: ChoiceCategoryPresenterOutput,
-         selectedCategory: TransactionCategory,
+         selectedCategory: TransactionCategory?,
          categoriesService: CategoriesServiceProtocol) {
         self.output = output
         self.selectedCategory = selectedCategory
@@ -53,11 +53,16 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
     }
     
     func viewIsReady() {
+        if selectedCategory == nil {
+            input?.showSegmentControlelr(isHidden: true)
+        } else {
+            input?.showSegmentControlelr(isHidden: false)
+        }
         categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
             switch result {
             case .success(let tuple):
                 let items: [TableCategoryItem] = tuple.categories.compactMap { category in
-                    let isSelected = (category.title == self?.selectedCategory.title) ? true : false
+                    let isSelected = (category.title == self?.selectedCategory?.title) ? true : false
                     return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
                 }
                 self?.input?.setCategories(items)
@@ -70,7 +75,7 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
             switch result {
             case .success(let tuple):
                 let items: [TableCategoryItem] = tuple.categories.compactMap { category in
-                    let isSelected = (category.title == self?.selectedCategory.title) ? true : false
+                    let isSelected = (category.title == self?.selectedCategory?.title) ? true : false
                     return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
                 }
                 self?.expense = items
@@ -107,6 +112,8 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
     }
     
     func updateSelectedCategory() {
-        output.updateSelectedCategory(selectedCategory)
+        if let selectedCategory = selectedCategory {
+            output.updateSelectedCategory(selectedCategory)
+        }
     }
 }

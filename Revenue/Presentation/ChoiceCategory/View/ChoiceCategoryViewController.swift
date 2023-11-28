@@ -50,6 +50,7 @@ final class ChoiceCategoryViewController: UIViewController {
         sc.addTarget(self, action: #selector(handleSegmentController), for: .valueChanged)
         return sc
     }()
+    private var segmentHeight: NSLayoutConstraint?
     private lazy var edgeLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .backgroundLightGray
@@ -86,6 +87,8 @@ final class ChoiceCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        segmentHeight = segmentController.heightAnchor.constraint(equalToConstant: Constants.segmentHeight)
+        segmentHeight?.isActive = true
         output.viewIsReady()
         configureUI()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCloseAction))
@@ -120,7 +123,6 @@ final class ChoiceCategoryViewController: UIViewController {
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
             make.top.equalToSuperview().offset(Constants.segmentPaddingTop)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
-            make.height.equalTo(Constants.segmentHeight)
         }
         
         tableView.register(ChoiceCategoryCell.self, forCellReuseIdentifier: ChoiceCategoryCell.reuseIdentifire)
@@ -186,6 +188,18 @@ final class ChoiceCategoryViewController: UIViewController {
 extension ChoiceCategoryViewController: ChoiceInput {
     func setCategories(_ items: [TableCategoryItem]) {
         setupDataSource(items)
+    }
+    
+    func showSegmentControlelr(isHidden: Bool) {
+        if isHidden {
+            segmentController.isHidden = true
+            segmentHeight?.constant = 0
+            view.layoutIfNeeded()
+        } else {
+            segmentController.isHidden = false
+            segmentHeight?.constant = Constants.segmentHeight
+            view.layoutIfNeeded()
+        }
     }
 }
 

@@ -13,7 +13,7 @@ final class DetailedCoordinator {
     
     weak var detailedPresenterInput: DetailedTransactionPresenterInput?
     private let detailedAssembly: DetailedTransactionAssembly
-    private let choiceCategoryAsembly: ChoiceCategoryAssembly
+    private let choiceCategoryAssembly: ChoiceCategoryAssembly
     private let categoriesService: CategoriesServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private var presenterViewController: UIViewController?
@@ -26,7 +26,7 @@ final class DetailedCoordinator {
          categoriesService: CategoriesServiceProtocol,
          transactionsService: TransactionsServiceProtocol) {
         self.detailedAssembly = detailedAssembly
-        self.choiceCategoryAsembly = choiceCategoryAssembly
+        self.choiceCategoryAssembly = choiceCategoryAssembly
         self.categoriesService = categoriesService
         self.transactionsService = transactionsService
     }
@@ -47,7 +47,7 @@ final class DetailedCoordinator {
 
 extension DetailedCoordinator: DetailedPresenterOutput {
     func showChoiceCategory(_ category: TransactionCategory) {
-        let vc = choiceCategoryAsembly.makeDetailedModule(output: self,
+        let vc = choiceCategoryAssembly.makeDetailedModule(output: self,
                                                           category: category,
                                                           categoriesService: categoriesService)
         vc.modalPresentationStyle = .overCurrentContext

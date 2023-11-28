@@ -64,4 +64,13 @@ extension TransactionsService: TransactionsServiceProtocol {
             completion(.failure(error))
         }
     }
+    
+    func saveTransaction(_ transaction: Transaction, completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            try coreData.saveTransaction(transaction: transaction)
+            completion(.success(Void()))
+        } catch {
+            completion(.failure(error))
+        }
+    }
 }
