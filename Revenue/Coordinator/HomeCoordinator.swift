@@ -65,7 +65,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showShowTransactions(for category: TransactionCategory) {
-        let vc = showTransactionsAssembly.makeShowTransactionsModule()
+        let vc = showTransactionsAssembly.makeShowTransactionsModule(transactionsService: transactionService, category: category)
         navigation?.pushViewController(vc, animated: true)
     }
 }

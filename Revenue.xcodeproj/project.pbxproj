@@ -57,7 +57,7 @@
 		BBAB57522B16318A00B7F645 /* ShowTransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57512B16318A00B7F645 /* ShowTransactionsPresenter.swift */; };
 		BBAB57542B1631BF00B7F645 /* ShowTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */; };
 		BBAB57562B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */; };
-		BBAB57582B16323300B7F645 /* ShowViewControllerOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57572B16323300B7F645 /* ShowViewControllerOutput.swift */; };
+		BBAB57582B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57572B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift */; };
 		BBAB575A2B1633E800B7F645 /* ShowTransactionsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57592B1633E800B7F645 /* ShowTransactionsAssembly.swift */; };
 		BBAB575C2B163D8F00B7F645 /* ShowTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */; };
 		BBAB575F2B163F3C00B7F645 /* ShowTransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */; };
@@ -122,7 +122,7 @@
 		BBAB57512B16318A00B7F645 /* ShowTransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsPresenter.swift; sourceTree = "<group>"; };
 		BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsViewController.swift; sourceTree = "<group>"; };
 		BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsViewControllerInput.swift; sourceTree = "<group>"; };
-		BBAB57572B16323300B7F645 /* ShowViewControllerOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewControllerOutput.swift; sourceTree = "<group>"; };
+		BBAB57572B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsViewControllerOutput.swift; sourceTree = "<group>"; };
 		BBAB57592B1633E800B7F645 /* ShowTransactionsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsAssembly.swift; sourceTree = "<group>"; };
 		BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsCell.swift; sourceTree = "<group>"; };
 		BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsDataSource.swift; sourceTree = "<group>"; };
@@ -457,7 +457,7 @@
 			children = (
 				BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */,
 				BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */,
-				BBAB57572B16323300B7F645 /* ShowViewControllerOutput.swift */,
+				BBAB57572B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift */,
 				BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */,
 			);
 			path = View;
@@ -595,7 +595,7 @@
 				BB799AA32B0F52C60085490B /* CategoriesService.swift in Sources */,
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
 				BBAB575A2B1633E800B7F645 /* ShowTransactionsAssembly.swift in Sources */,
-				BBAB57582B16323300B7F645 /* ShowViewControllerOutput.swift in Sources */,
+				BBAB57582B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift in Sources */,
 				BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */,
 				BBAB575C2B163D8F00B7F645 /* ShowTransactionsCell.swift in Sources */,
 				BBAB57522B16318A00B7F645 /* ShowTransactionsPresenter.swift in Sources */,

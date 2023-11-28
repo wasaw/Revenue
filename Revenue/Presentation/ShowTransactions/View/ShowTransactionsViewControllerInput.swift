@@ -8,5 +8,6 @@
 import Foundation
 
 protocol ShowTransactionsViewControllerInput: AnyObject {
-    
+    func setTitle(_ title: String)
+    func setTransactions(_ items: [ShowTransactionsCategoryItem])
 }

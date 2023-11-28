@@ -47,6 +47,7 @@ final class ShowTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        output.viewIsReady()
         configureUI()
     }
     
@@ -59,14 +60,12 @@ final class ShowTransactionViewController: UIViewController {
 // MARK: - Helpers
     
     private func configureUI() {
-        navigationItem.title = "Title"
-
         configureTableView()
+        
         let backImage = UIImage(named: "chevron-left")
         navigationController?.navigationBar.backIndicatorImage = backImage
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
         view.backgroundColor = .backgroundLightGray
-        setupDataSource([ShowTransactionsCategoryItem(image: "business", amount: 200, comment: "", date: "12:50")])
     }
     
     private func configureTableView() {
@@ -78,6 +77,7 @@ final class ShowTransactionViewController: UIViewController {
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        tableView.delegate = self
         tableView.backgroundColor = .white
     }
     
@@ -93,5 +93,19 @@ final class ShowTransactionViewController: UIViewController {
 // MARK: - ShowTransactionsViewControllerInput
 
 extension ShowTransactionViewController: ShowTransactionsViewControllerInput {
+    func setTitle(_ title: String) {
+        navigationItem.title = title
+    }
     
+    func setTransactions(_ items: [ShowTransactionsCategoryItem]) {
+        setupDataSource(items)
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension ShowTransactionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

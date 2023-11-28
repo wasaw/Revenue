@@ -47,6 +47,30 @@ extension TransactionsService: TransactionsServiceProtocol {
         }
     }
     
+    func fetchTransctionsForCategory(_ category: TransactionCategory, completion: @escaping (Result<[Transaction], Error>) -> Void) {
+        do {
+            let transactionsManagedObject = try coreData.fetchTransactions()
+            let transactions: [Transaction] = transactionsManagedObject.compactMap { transaction in
+                guard let id = transaction.id,
+                      let comment = transaction.comment,
+                      let date = transaction.date,
+                      let image = transaction.category?.image,
+                      let title = transaction.category?.title,
+                      let isRevenue = transaction.category?.isRevenue,
+                      (transaction.category?.title == category.title) else { return nil }
+                      let category = TransactionCategory(image: image, title: title, isRevenue: isRevenue)
+                return Transaction(id: id,
+                                   category: category,
+                                   amount: transaction.amount,
+                                   comment: comment,
+                                   date: date)
+            }
+            completion(.success(transactions))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
     func updateTransaction(transaction: Transaction, completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try coreData.updateTransaction(transaction: transaction)
