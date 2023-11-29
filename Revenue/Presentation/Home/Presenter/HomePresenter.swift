@@ -35,6 +35,7 @@ struct HomeRevenueItem: Hashable {
     let title: String
     let amount: Double
     let percent: Double
+    let isRevenue: Bool
 }
 
 enum Segment: Int {
@@ -110,12 +111,14 @@ extension HomePresenter: HomeOutput {
             categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
                 switch result {
                 case .success(let tuple):
+                    self?.revenueCategories = []
                     let items = tuple.categories.compactMap { [weak self] category in
                         self?.revenueCategories.append(category)
                         return HomeRevenueItem(image: category.image,
                                                title: category.title,
                                                amount: category.total,
-                                               percent: ((category.total / tuple.total) * 100))
+                                               percent: ((category.total / tuple.total) * 100),
+                                               isRevenue: category.isRevenue)
                     }
                     self?.input?.setRevenue(items)
                 case .failure:
@@ -123,7 +126,23 @@ extension HomePresenter: HomeOutput {
                 }
             }
         case .expenses:
-            break
+            categoriesService.fetchCategories(isRevenue: false) { [weak self] result in
+                switch result {
+                case .success(let tuple):
+                    self?.revenueCategories = []
+                    let items = tuple.categories.compactMap { [weak self] category in
+                        self?.revenueCategories.append(category)
+                        return HomeRevenueItem(image: category.image,
+                                               title: category.title,
+                                               amount: category.total,
+                                               percent: ((category.total / tuple.total) * 100),
+                                               isRevenue: category.isRevenue)
+                    }
+                    self?.input?.setRevenue(items)
+                case .failure:
+                    break
+                }
+            }
         case .goals:
             break
         }
@@ -132,9 +151,9 @@ extension HomePresenter: HomeOutput {
 
 // MARK: - HomeRevenueOutput
 
-extension HomePresenter: HomeRevenueOutput {
+extension HomePresenter: HomeTransactionsOutput {
     func showAddTransaction() {
-        output.showAddTransaction()
+        output.showAddTransaction(isRevenue: revenueCategories[0].isRevenue)
     }
     
     func showDetails(at index: Int) {

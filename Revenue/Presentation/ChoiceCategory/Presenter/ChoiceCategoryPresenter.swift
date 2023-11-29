@@ -27,6 +27,7 @@ final class ChoiceCategoryPresenter {
     private let output: ChoiceCategoryPresenterOutput
     private let categoriesService: CategoriesServiceProtocol
     private var selectedCategory: TransactionCategory?
+    private var isRevenue: Bool?
     private var revenue: [TableCategoryItem] = []
     private var expense: [TableCategoryItem] = []
     
@@ -34,10 +35,12 @@ final class ChoiceCategoryPresenter {
     
     init(output: ChoiceCategoryPresenterOutput,
          selectedCategory: TransactionCategory?,
-         categoriesService: CategoriesServiceProtocol) {
+         categoriesService: CategoriesServiceProtocol,
+         isRevenue: Bool?) {
         self.output = output
         self.selectedCategory = selectedCategory
         self.categoriesService = categoriesService
+        self.isRevenue = isRevenue
     }
 }
 
@@ -84,6 +87,8 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
                 break
             }
         }
+        guard let isRevenue = isRevenue, isRevenue == false else { return }
+        input?.setCategories(expense)
     }
     
     func updateSelectedCell(at index: Int, in segment: Int) {

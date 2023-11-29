@@ -49,7 +49,8 @@ extension DetailedCoordinator: DetailedPresenterOutput {
     func showChoiceCategory(_ category: TransactionCategory) {
         let vc = choiceCategoryAssembly.makeChoiceCategoryModule(output: self,
                                                           category: category,
-                                                          categoriesService: categoriesService)
+                                                          categoriesService: categoriesService,
+                                                          isRevenue: nil)
         vc.modalPresentationStyle = .overCurrentContext
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene

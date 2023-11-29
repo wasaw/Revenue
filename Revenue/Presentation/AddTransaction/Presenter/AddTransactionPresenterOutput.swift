@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AddTransactionPresenterOutput: AnyObject {
-    func showChoiceCategory()
+    func showChoiceCategory(isRevenue: Bool)
 }

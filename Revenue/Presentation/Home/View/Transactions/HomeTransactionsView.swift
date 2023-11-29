@@ -1,5 +1,5 @@
 //
-//  HomeRevenueView.swift
+//  HomeTransactionsView.swift
 //  Revenue
 //
 //  Created by Александр Меренков on 22.11.2023.
@@ -18,11 +18,11 @@ private enum Constants {
     static let cornerRadius: CGFloat = 12
 }
 
-final class HomeRevenueView: UIView {
+final class HomeTransactionsView: UIView {
     
 // MARK: - Properties
     
-    private let output: HomeRevenueOutput
+    private let output: HomeTransactionsOutput
     private lazy var graphView: PieChartView = {
         let view = PieChartView()
         view.holeRadiusPercent = 0.75
@@ -55,7 +55,7 @@ final class HomeRevenueView: UIView {
     
 // MARK: - Lifecycle
     
-    init(output: HomeRevenueOutput) {
+    init(output: HomeTransactionsOutput) {
         self.output = output
 
         super.init(frame: .zero)
@@ -103,7 +103,21 @@ final class HomeRevenueView: UIView {
         backgroundColor = .white
     }
     
+    private func setupButton(_ isRevenue: Bool) {
+        if isRevenue {
+            addRevenueBtn.setTitle("Добавить доход", for: .normal)
+            addRevenueBtn.backgroundColor = .applyButton
+        } else {
+            addRevenueBtn.setTitle("Добавить расход", for: .normal)
+            addRevenueBtn.backgroundColor = .deleteButton
+        }
+    }
+    
     func setupDataSource(_ items: [HomeRevenueItem]) {
+        if !items.isEmpty {
+            setupButton(items[0].isRevenue)
+        }
+        
         var entries: [PieChartDataEntry] = Array()
         var total: Double = 0
         for item in items {
@@ -133,7 +147,7 @@ final class HomeRevenueView: UIView {
 
 // MARK: - UITableViewDelegate
 
-extension HomeRevenueView: UITableViewDelegate {
+extension HomeTransactionsView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         output.showDetails(at: indexPath.row)

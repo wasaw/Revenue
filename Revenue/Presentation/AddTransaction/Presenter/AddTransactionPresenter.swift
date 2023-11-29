@@ -14,13 +14,17 @@ final class AddTransactionPresenter {
     weak var input: AddTranactionInput?
     private let output: AddTransactionPresenterOutput
     private let transactionService: TransactionsServiceProtocol
+    private let isRevenue: Bool
     private var selectedCategory: TransactionCategory?
     
 // MARK: - Lifecycle
     
-    init(output: AddTransactionPresenterOutput, transactionService: TransactionsServiceProtocol) {
+    init(output: AddTransactionPresenterOutput,
+         transactionService: TransactionsServiceProtocol,
+         isRevenue: Bool) {
         self.output = output
         self.transactionService = transactionService
+        self.isRevenue = isRevenue
     }
 }
 
@@ -28,7 +32,7 @@ final class AddTransactionPresenter {
 
 extension AddTransactionPresenter: AddTransactionOutput {
     func showChoiceCategory() {
-        output.showChoiceCategory()
+        output.showChoiceCategory(isRevenue: isRevenue)
     }
     
     func saveTransaction(comment: String?, amount: String?) {

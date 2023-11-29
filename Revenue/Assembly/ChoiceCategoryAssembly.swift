@@ -10,10 +10,12 @@ import UIKit
 final class ChoiceCategoryAssembly {
     func makeChoiceCategoryModule(output: ChoiceCategoryPresenterOutput,
                             category: TransactionCategory?,
-                            categoriesService: CategoriesServiceProtocol) -> UIViewController {
+                            categoriesService: CategoriesServiceProtocol,
+                                  isRevenue: Bool?) -> UIViewController {
         let presenter = ChoiceCategoryPresenter(output: output,
                                                 selectedCategory: category,
-                                                categoriesService: categoriesService)
+                                                categoriesService: categoriesService,
+                                                isRevenue: isRevenue)
         let vc = ChoiceCategoryViewController(output: presenter)
         presenter.input = vc
         return vc

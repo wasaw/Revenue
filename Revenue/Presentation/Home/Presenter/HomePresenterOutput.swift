@@ -9,6 +9,6 @@ import Foundation
 
 protocol HomePresenterOutput: AnyObject {
     func showDetailed(for transaction: Transaction)
-    func showAddTransaction()
+    func showAddTransaction(isRevenue: Bool)
     func showShowTransactions(for category: TransactionCategory)
 }

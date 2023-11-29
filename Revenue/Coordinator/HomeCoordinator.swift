@@ -56,8 +56,10 @@ extension HomeCoordinator: HomePresenterOutput {
         navigation?.pushViewController(vc, animated: false)
     }
     
-    func showAddTransaction() {
-        let presenter = AddTransactionPresenter(output: self, transactionService: transactionService)
+    func showAddTransaction(isRevenue: Bool) {
+        let presenter = AddTransactionPresenter(output: self,
+                                                transactionService: transactionService,
+                                                isRevenue: isRevenue)
         let vc = AddTransactionViewController(output: presenter)
         presenter.input = vc
         presenterInput = presenter
@@ -75,10 +77,11 @@ extension HomeCoordinator: HomePresenterOutput {
 // MARK: - AddTranactionPresenterOutput
 
 extension HomeCoordinator: AddTransactionPresenterOutput {
-    func showChoiceCategory() {
+    func showChoiceCategory(isRevenue: Bool) {
         let vc = choiceCategoryAssembly.makeChoiceCategoryModule(output: self,
                                                            category: nil,
-                                                           categoriesService: categoriesService)
+                                                           categoriesService: categoriesService,
+                                                           isRevenue: isRevenue)
         vc.modalPresentationStyle = .overCurrentContext
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene

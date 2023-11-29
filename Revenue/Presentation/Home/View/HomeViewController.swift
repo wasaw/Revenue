@@ -24,7 +24,7 @@ final class HomeViewController: UIViewController {
 // MARK: - Properties
     
     private let output: HomeOutput
-    private let outputRevenue: HomeRevenueOutput
+    private let outputRevenue: HomeTransactionsOutput
     
     private lazy var calendarView: UIView = {
         let view = UIView()
@@ -75,12 +75,12 @@ final class HomeViewController: UIViewController {
         let view = HomeRemainsView()
         return view
     }()
-    private lazy var revenueView: HomeRevenueView = {
-        let view = HomeRevenueView(output: outputRevenue)
+    private lazy var revenueView: HomeTransactionsView = {
+        let view = HomeTransactionsView(output: outputRevenue)
         return view
     }()
-    private lazy var expensesView: HomeExpensesView = {
-        let view = HomeExpensesView()
+    private lazy var expensesView: HomeTransactionsView = {
+        let view = HomeTransactionsView(output: outputRevenue)
         return view
     }()
     private lazy var goalsView: HomeGoalsView = {
@@ -94,7 +94,7 @@ final class HomeViewController: UIViewController {
         
 // MARK: - Lifecycle
     
-    init(output: HomeOutput, outputRevenue: HomeRevenueOutput) {
+    init(output: HomeOutput, outputRevenue: HomeTransactionsOutput) {
         self.output = output
         self.outputRevenue = outputRevenue
         
@@ -274,6 +274,7 @@ extension HomeViewController: HomeInputProtocol {
     
     func setRevenue(_ items: [HomeRevenueItem]) {
         revenueView.setupDataSource(items)
+        expensesView.setupDataSource(items)
     }
 }
 
