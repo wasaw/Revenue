@@ -41,7 +41,6 @@ final class HomeRemainsView: UIView {
     }()
     private lazy var balanceLabel: UILabel = {
         let label = UILabel()
-        label.text = "110 000,89 c"
         label.font = UIFont.systemFont(ofSize: 32)
         label.textColor = .incomeCash
         return label
@@ -117,6 +116,10 @@ final class HomeRemainsView: UIView {
             snapshot.appendItems(transaction.item, toSection: transaction.sections)
         }
         dataSource.apply(snapshot)
+    }
+    
+    func setupTotal(_ total: Double) {
+        balanceLabel.text = String(total) + "c"
     }
 }
 

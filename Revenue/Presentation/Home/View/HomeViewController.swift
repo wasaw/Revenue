@@ -268,8 +268,9 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeInputProtocol
 
 extension HomeViewController: HomeInputProtocol {
-    func setTransactions(_ items: [HomeTransactions]) {
+    func setTransactions(for items: [HomeTransactions], total: Double) {
         remainsView.setupDataSource(items)
+        remainsView.setupTotal(total)
     }
     
     func setRevenue(_ items: [HomeRevenueItem]) {

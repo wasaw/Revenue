@@ -79,6 +79,7 @@ extension HomePresenter: HomeOutput {
     func viewIsReady() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
+        let total = categoriesService.fetchTotalAmount()
         transactionService.fetchTransactions { [weak self] result in
             switch result {
             case .success(let transactions):
@@ -91,7 +92,7 @@ extension HomePresenter: HomeOutput {
                                            time: date)
                 }
                 let homeTransactions = HomeTransactions(sections: .section1, item: items)
-                self?.input?.setTransactions([homeTransactions])
+                self?.input?.setTransactions(for: [homeTransactions], total: total)
             case .failure:
                 break
             }

@@ -44,6 +44,23 @@ extension CategoriesService: CategoriesServiceProtocol {
         }
     }
     
+    func fetchTotalAmount() -> Double {
+        var total: Double = 0
+        do {
+            let categoryRevenueManagedObject = try coreData.fetchCategories(isRevenue: true)
+            categoryRevenueManagedObject.forEach { category in
+                total += category.total
+            }
+            let categoryExpenseManagedObject = try coreData.fetchCategories(isRevenue: false)
+            categoryExpenseManagedObject.forEach { category in
+                total -= category.total
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        return total
+    }
+    
     func deleteTransactionFromCategory(transaction: Transaction) throws {
         do {
             try coreData.deleteTransactionFromCategory(transaction: transaction)
