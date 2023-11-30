@@ -52,6 +52,7 @@ final class HomeRemainsView: UIView {
         return table
     }()
     private lazy var dataSource = HomeDataSource(tableView)
+    private var transactions: [HomeTransactions] = []
     
 // MARK: - Lifecycle
     
@@ -109,11 +110,12 @@ final class HomeRemainsView: UIView {
     }
     
     func setupDataSource(_ transactions: [HomeTransactions]) {
+        self.transactions = transactions
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
-        snapshot.appendSections(HomeRemainsSections.allCases)
+        snapshot.appendSections(sectionsArray)
         transactions.forEach { transaction in
-            snapshot.appendItems(transaction.item, toSection: transaction.sections)
+            snapshot.appendItems(transaction.item, toSection: transaction.sections[0])
         }
         dataSource.apply(snapshot)
     }
@@ -136,7 +138,7 @@ extension HomeRemainsView: UITableViewDelegate {
                              y: Constants.headerLabelPaddingTop,
                              width: tableView.frame.width - Constants.horizontalPadding,
                              height: Constants.headerViewHeight - Constants.headerLabelPaddingTop)
-        label.text = HomeRemainsSections.allCases[section].rawValue
+        label.text = sectionsArray[section]
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .titleColorGray
         headerView.addSubview(label)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeDataSource: UITableViewDiffableDataSource<HomeRemainsSections, HomeRemainsItem> {
+final class HomeDataSource: UITableViewDiffableDataSource<String, HomeRemainsItem> {
     init(_ tableView: UITableView) {
         super.init(tableView: tableView) { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseIdentifire, for: indexPath) as? HomeCell else {

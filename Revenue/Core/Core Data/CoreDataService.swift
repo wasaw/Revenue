@@ -30,6 +30,8 @@ final class CoreDataService {
 extension CoreDataService: CoreDataServiceProtocol {
     func fetchTransactions() throws -> [TransactionManagedObject] {
         let fetchRequest = TransactionManagedObject.fetchRequest()
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
         return try viewContext.fetch(fetchRequest)
     }
     

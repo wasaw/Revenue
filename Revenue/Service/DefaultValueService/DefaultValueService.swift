@@ -55,21 +55,21 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                                                  otherCategory,
                                                  otherCategoryFalse]
         
-        let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Text", date: Date()),
-                            Transaction(id: UUID(), category: medicineCategory, amount: 27000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: transportCategory, amount: 2500, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: utilitiesCategory, amount: 20000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: loanCategory, amount: 15000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: cafeCategory, amount: 30000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: entertainmentCategory, amount: 23000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: salaryCategory, amount: 30000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: salaryCategory, amount: 2000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: businessCategory, amount: 323100, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: depositeCategory, amount: 27102, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: capitalCategory, amount: 2139222, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: grantCategory, amount: 1000, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: salaryCategory, amount: 23133, comment: "", date: Date()),
-                            Transaction(id: UUID(), category: creditCategory, amount: 15000, comment: "", date: Date())]
+        let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Text", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: medicineCategory, amount: 27000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: transportCategory, amount: 2500, comment: "", date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: utilitiesCategory, amount: 20000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: loanCategory, amount: 15000, comment: "", date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: cafeCategory, amount: 30000, comment: "", date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: entertainmentCategory, amount: 23000, comment: "", date: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 30000, comment: "", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 2000, comment: "", date: Calendar.current.date(byAdding: .day, value: -10, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: businessCategory, amount: 323100, comment: "", date: Calendar.current.date(byAdding: .day, value: -11, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: depositeCategory, amount: 27102, comment: "", date: Calendar.current.date(byAdding: .day, value: -15, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: capitalCategory, amount: 2139222, comment: "", date: Calendar.current.date(byAdding: .day, value: -25, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: grantCategory, amount: 1000, comment: "", date: Calendar.current.date(byAdding: .day, value: -40, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 23133, comment: "", date: Calendar.current.date(byAdding: .day, value: -45, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: creditCategory, amount: 15000, comment: "", date: Calendar.current.date(byAdding: .day, value: -80, to: Date()) ?? Date())]
 
         categories.forEach { category in
             coreData.save { context in

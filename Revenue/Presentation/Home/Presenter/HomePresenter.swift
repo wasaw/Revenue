@@ -8,13 +8,8 @@
 import Foundation
 
 struct HomeTransactions {
-    let sections: HomeRemainsSections
+    let sections: [String]
     let item: [HomeRemainsItem]
-}
-
-enum HomeRemainsSections: String, Hashable, CaseIterable {
-    case section1 = "First"
-//    case section2 = "Second"
 }
 
 struct HomeRemainsItem: Hashable {
@@ -50,6 +45,8 @@ struct Expense {
     var amount: Double
 }
 
+var sectionsArray: [String] = []
+
 final class HomePresenter {
     
 // MARK: - Properties
@@ -79,20 +76,44 @@ extension HomePresenter: HomeOutput {
     func viewIsReady() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
+        let dayDateFormatter = DateFormatter()
+        dayDateFormatter.dateFormat = "dd.MM.YYYY"
         let total = categoriesService.fetchTotalAmount()
         transactionService.fetchTransactions { [weak self] result in
             switch result {
             case .success(let transactions):
                 self?.selectedTransactions = transactions
-                let items = transactions.compactMap { transaction in
-                    let date = dateFormatter.string(from: transaction.date)
-                    return HomeRemainsItem(image: transaction.category.image,
-                                           title: transaction.category.title,
-                                           amount: transaction.amount,
-                                           time: date)
+                var dateArray: [String] = []
+                var homeTransactions: [HomeTransactions] = []
+                transactions.forEach { transaction in
+                    let day = dayDateFormatter.string(from: transaction.date)
+                    if dateArray.isEmpty {
+                        dateArray.append(day)
+                    } else {
+                        let last = dateArray.last
+                        if last != day {
+                            dateArray.append(day)
+                        }
+                    }
                 }
-                let homeTransactions = HomeTransactions(sections: .section1, item: items)
-                self?.input?.setTransactions(for: [homeTransactions], total: total)
+                sectionsArray = dateArray
+                dateArray.forEach { dateItem in
+                    var items: [HomeRemainsItem] = []
+                    transactions.forEach { transaction in
+                        let day = dayDateFormatter.string(from: transaction.date)
+                        if dateItem == day {
+                            let date = dateFormatter.string(from: transaction.date)
+                            let element = HomeRemainsItem(image: transaction.category.image,
+                                            title: transaction.category.title,
+                                            amount: transaction.amount,
+                                            time: date)
+                            items.append(element)
+                        }
+                    }
+                    let homeTransactionElement = HomeTransactions(sections: [dateItem], item: items)
+                    homeTransactions.append(homeTransactionElement)
+                }
+                self?.input?.setTransactions(for: homeTransactions, total: total)
             case .failure:
                 break
             }
