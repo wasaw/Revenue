@@ -18,6 +18,7 @@ struct HomeRemainsItem: Hashable {
     let title: String
     let amount: Double
     let time: String
+    let isRevenue: Bool
 }
 
 enum HomeRevenueSections: Hashable, CaseIterable {
@@ -104,9 +105,10 @@ extension HomePresenter: HomeOutput {
                         if dateItem == day {
                             let date = dateFormatter.string(from: transaction.date)
                             let element = HomeRemainsItem(image: transaction.category.image,
-                                            title: transaction.category.title,
-                                            amount: transaction.amount,
-                                            time: date)
+                                                          title: transaction.category.title,
+                                                          amount: transaction.amount,
+                                                          time: date,
+                                                          isRevenue: transaction.category.isRevenue)
                             items.append(element)
                         }
                     }

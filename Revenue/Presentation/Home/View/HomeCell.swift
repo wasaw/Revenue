@@ -86,8 +86,20 @@ final class HomeCell: UITableViewCell {
     func configure(with item: HomeRemainsItem) {
         categoryIV.image = UIImage(named: item.image)
         titleLabel.text = item.title
-        amountLabel.text = String(item.amount)
         rightBottomLabel.text = item.time
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.groupingSize = 3
+        if item.isRevenue {
+            guard let amountString = numberFormatter.string(from: item.amount as NSNumber) else { return }
+            amountLabel.text = amountString + " c"
+            amountLabel.textColor = .incomeCash
+        } else {
+            guard let amountString = numberFormatter.string(from: item.amount as NSNumber) else { return }
+            amountLabel.text = "-" + amountString + " c"
+            amountLabel.textColor = .outboxCash
+        }
     }
     
     func configure(with item: HomeRevenueItem) {

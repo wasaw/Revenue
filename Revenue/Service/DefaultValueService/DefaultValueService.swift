@@ -55,7 +55,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                                                  otherCategory,
                                                  otherCategoryFalse]
         
-        let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Text", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
+        let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Text", date: Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: medicineCategory, amount: 27000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: transportCategory, amount: 2500, comment: "", date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: utilitiesCategory, amount: 20000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),

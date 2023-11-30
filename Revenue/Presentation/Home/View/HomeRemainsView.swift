@@ -138,7 +138,17 @@ extension HomeRemainsView: UITableViewDelegate {
                              y: Constants.headerLabelPaddingTop,
                              width: tableView.frame.width - Constants.horizontalPadding,
                              height: Constants.headerViewHeight - Constants.headerLabelPaddingTop)
-        label.text = sectionsArray[section]
+        let dayDateFormatter = DateFormatter()
+        dayDateFormatter.dateFormat = "dd.MM.YYYY"
+        let nowday = dayDateFormatter.string(from: Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date())
+        let yesterday = dayDateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date())
+        if sectionsArray[section] == nowday {
+            label.text = "Сегодня"
+        } else if sectionsArray[section] == yesterday {
+            label.text = "Вчера"
+        } else {
+            label.text = sectionsArray[section]
+        }
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .titleColorGray
         headerView.addSubview(label)
