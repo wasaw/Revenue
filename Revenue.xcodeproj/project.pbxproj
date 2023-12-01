@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB68762E2B19E6F800FC65BD /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -68,6 +69,11 @@
 		BBAB576F2B19242800B7F645 /* CalendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB576E2B19242800B7F645 /* CalendarDataSource.swift */; };
 		BBAB57712B1926DA00B7F645 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57702B1926DA00B7F645 /* CalendarCell.swift */; };
 		BBAB57732B19B26900B7F645 /* CalendarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57722B19B26900B7F645 /* CalendarAssembly.swift */; };
+		BBAB57782B19BE9F00B7F645 /* SelectionDatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57772B19BE9F00B7F645 /* SelectionDatePresenter.swift */; };
+		BBAB577A2B19BEBD00B7F645 /* SelectionDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57792B19BEBD00B7F645 /* SelectionDateViewController.swift */; };
+		BBAB577C2B19BF7400B7F645 /* SelectionDateInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB577B2B19BF7400B7F645 /* SelectionDateInput.swift */; };
+		BBAB577E2B19BF8A00B7F645 /* SelectionDateOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB577D2B19BF8A00B7F645 /* SelectionDateOutput.swift */; };
+		BBAB57802B19C0F600B7F645 /* CalendarPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB577F2B19C0F600B7F645 /* CalendarPresenterOutput.swift */; };
 		BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */; };
 		BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */; };
 		BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CC2B0B9D3400AFCDED /* Model.swift */; };
@@ -79,6 +85,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -140,6 +147,11 @@
 		BBAB576E2B19242800B7F645 /* CalendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDataSource.swift; sourceTree = "<group>"; };
 		BBAB57702B1926DA00B7F645 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		BBAB57722B19B26900B7F645 /* CalendarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAssembly.swift; sourceTree = "<group>"; };
+		BBAB57772B19BE9F00B7F645 /* SelectionDatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionDatePresenter.swift; sourceTree = "<group>"; };
+		BBAB57792B19BEBD00B7F645 /* SelectionDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionDateViewController.swift; sourceTree = "<group>"; };
+		BBAB577B2B19BF7400B7F645 /* SelectionDateInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionDateInput.swift; sourceTree = "<group>"; };
+		BBAB577D2B19BF8A00B7F645 /* SelectionDateOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionDateOutput.swift; sourceTree = "<group>"; };
+		BBAB577F2B19C0F600B7F645 /* CalendarPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPresenterOutput.swift; sourceTree = "<group>"; };
 		BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
 		BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceProtocol.swift; sourceTree = "<group>"; };
 		BBDCF0CC2B0B9D3400AFCDED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -493,6 +505,7 @@
 				BBAB57632B19179D00B7F645 /* Presenter */,
 				BBAB57642B1917A600B7F645 /* View */,
 				BBAB576D2B1923FC00B7F645 /* DataSource */,
+				BBAB57742B19BE3100B7F645 /* SelectionDate */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -501,6 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				BBAB57652B19199F00B7F645 /* CalendarPresenter.swift */,
+				BBAB577F2B19C0F600B7F645 /* CalendarPresenterOutput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -522,6 +536,42 @@
 				BBAB576E2B19242800B7F645 /* CalendarDataSource.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		BBAB57742B19BE3100B7F645 /* SelectionDate */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57812B19E4D700B7F645 /* DatePicker */,
+				BBAB57752B19BE5500B7F645 /* Presenter */,
+				BBAB57762B19BE6300B7F645 /* View */,
+			);
+			path = SelectionDate;
+			sourceTree = "<group>";
+		};
+		BBAB57752B19BE5500B7F645 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57772B19BE9F00B7F645 /* SelectionDatePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BBAB57762B19BE6300B7F645 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57792B19BEBD00B7F645 /* SelectionDateViewController.swift */,
+				BBAB577B2B19BF7400B7F645 /* SelectionDateInput.swift */,
+				BBAB577D2B19BF8A00B7F645 /* SelectionDateOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBAB57812B19E4D700B7F645 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */,
+			);
+			path = DatePicker;
 			sourceTree = "<group>";
 		};
 		BBDCF0CE2B0C914400AFCDED /* Core */ = {
@@ -638,6 +688,8 @@
 				BBAB57712B1926DA00B7F645 /* CalendarCell.swift in Sources */,
 				BB77A39A2B0944EA00D097E0 /* ChoiceCategoryPresenter.swift in Sources */,
 				BB8031652B04F40B000D8307 /* HomeOutput.swift in Sources */,
+				BBAB577E2B19BF8A00B7F645 /* SelectionDateOutput.swift in Sources */,
+				BBAB577A2B19BEBD00B7F645 /* SelectionDateViewController.swift in Sources */,
 				BB77A3882B076CD300D097E0 /* HomePresenterOutput.swift in Sources */,
 				BB77A3942B0943DB00D097E0 /* ChoiceCategoryViewController.swift in Sources */,
 				BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */,
@@ -648,8 +700,10 @@
 				BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */,
 				BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */,
 				BB799AA32B0F52C60085490B /* CategoriesService.swift in Sources */,
+				BB68762E2B19E6F800FC65BD /* DatePickerViewController.swift in Sources */,
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
 				BBAB575A2B1633E800B7F645 /* ShowTransactionsAssembly.swift in Sources */,
+				BBAB577C2B19BF7400B7F645 /* SelectionDateInput.swift in Sources */,
 				BBAB57582B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift in Sources */,
 				BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */,
 				BBAB575C2B163D8F00B7F645 /* ShowTransactionsCell.swift in Sources */,
@@ -666,6 +720,7 @@
 				BB77E7682B14BD8600F80B2E /* AddTransactionInput.swift in Sources */,
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
+				BBAB57802B19C0F600B7F645 /* CalendarPresenterOutput.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
 				BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */,
 				BBAB576C2B191A8900B7F645 /* CalendarOutput.swift in Sources */,
@@ -683,6 +738,7 @@
 				BBDCF0E02B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift in Sources */,
 				BB80315F2B04CCCE000D8307 /* Extensions.swift in Sources */,
 				BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */,
+				BBAB57782B19BE9F00B7F645 /* SelectionDatePresenter.swift in Sources */,
 				BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */,
 				BB77E76A2B14BD9300F80B2E /* AddTransactionOutput.swift in Sources */,
 				BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */,

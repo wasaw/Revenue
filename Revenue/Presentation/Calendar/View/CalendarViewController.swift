@@ -79,7 +79,7 @@ final class CalendarViewController: UIViewController {
         output.viewIsReady()
         configureUI()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCloseAction))
-        view.addGestureRecognizer(tapGesture)
+        dimmedView.addGestureRecognizer(tapGesture)
     }
     
 // MARK: - Helpers
@@ -113,6 +113,7 @@ final class CalendarViewController: UIViewController {
         containerView.addSubview(tableView)
         tableView.register(CalendarCell.self, forCellReuseIdentifier: CalendarCell.reuseIdentifire)
         tableView.separatorStyle = .none
+        tableView.delegate = self
         tableView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
             make.top.equalTo(titleLabel.snp.bottom).offset(Constants.tablePaddingTop)
@@ -163,5 +164,18 @@ final class CalendarViewController: UIViewController {
 extension CalendarViewController: CalendarInput {
     func setCalendar(_ items: [CalendarItem]) {
         setupDataSource(items)
+    }
+    
+    func hideCalendar() {
+        animateDismissView()
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension CalendarViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        output.updateSelectedCell(at: indexPath.item)
     }
 }

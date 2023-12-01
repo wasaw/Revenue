@@ -77,7 +77,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showCalendar() {
-        let vc = calendarAssembly.makeShowCalendarModule()
+        let vc = calendarAssembly.makeShowCalendarModule(output: self)
         vc.modalPresentationStyle = .overCurrentContext
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
@@ -138,4 +138,15 @@ extension HomeCoordinator: OtherCategoryViewControllerDelegate {
 
 extension HomeCoordinator: ShowTransactionsPresenterOutput {
     
+}
+
+// MARK: - CalendarPresenterOutput
+
+extension HomeCoordinator: CalendarPresenterOutput {
+    func showSelectionDate() {
+        let presenter = SelectionDatePresenter()
+        let vc = SelectionDateViewController(output: presenter)
+        presenter.input = vc
+        navigation?.pushViewController(vc, animated: true)
+    }
 }

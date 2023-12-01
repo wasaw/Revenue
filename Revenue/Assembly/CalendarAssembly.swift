@@ -8,8 +8,8 @@
 import UIKit
 
 final class CalendarAssembly {
-    func makeShowCalendarModule() -> UIViewController {
-        let presenter = CalendarPresenter()
+    func makeShowCalendarModule(output: CalendarPresenterOutput) -> UIViewController {
+        let presenter = CalendarPresenter(output: output)
         let vc = CalendarViewController(output: presenter)
         presenter.input = vc
         return vc

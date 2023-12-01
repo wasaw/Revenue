@@ -9,4 +9,5 @@ import Foundation
 
 protocol CalendarInput: AnyObject {
     func setCalendar(_ items: [CalendarItem])
+    func hideCalendar()
 }

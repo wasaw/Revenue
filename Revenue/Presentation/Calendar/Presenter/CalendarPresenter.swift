@@ -14,7 +14,7 @@ enum CalendarSections: Hashable, CaseIterable {
 struct CalendarItem: Hashable {
     let id = UUID()
     let title: String
-    let isSelected: Bool
+    var isSelected: Bool
 }
 
 final class CalendarPresenter {
@@ -22,6 +22,18 @@ final class CalendarPresenter {
 // MARK: - Properties
     
     weak var input: CalendarInput?
+    private let output: CalendarPresenterOutput
+    private var calendarItems: [CalendarItem]
+    
+// MARK: - Lifecycle
+    
+    init(output: CalendarPresenterOutput) {
+        self.output = output
+        self.calendarItems = [CalendarItem(title: "За неделю", isSelected: true),
+                              CalendarItem(title: "За месяц", isSelected: false),
+                              CalendarItem(title: "За полгода", isSelected: false),
+                              CalendarItem(title: "Другое", isSelected: false)]
+    }
     
 }
 
@@ -29,10 +41,22 @@ final class CalendarPresenter {
 
 extension CalendarPresenter: CalendarOutput {
     func viewIsReady() {
-        let calendarItems = [CalendarItem(title: "За неделю", isSelected: true),
-                             CalendarItem(title: "За неделю", isSelected: false),
-                             CalendarItem(title: "За полгода", isSelected: false),
-                             CalendarItem(title: "Другое", isSelected: false)]
         input?.setCalendar(calendarItems)
+    }
+    
+    func updateSelectedCell(at index: Int) {
+        for (indexFor, _) in calendarItems.enumerated() {
+            if indexFor == index {
+                calendarItems[indexFor].isSelected = true
+            } else {
+                calendarItems[indexFor].isSelected = false
+            }
+        }
+        if calendarItems.last?.isSelected == true {
+            input?.hideCalendar()
+            output.showSelectionDate()
+        } else {
+            input?.setCalendar(calendarItems)
+        }
     }
 }

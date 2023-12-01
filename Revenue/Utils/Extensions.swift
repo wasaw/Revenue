@@ -24,4 +24,5 @@ extension UIColor {
     static let blackTitle = UIColor(displayP3Red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
     static let deleteButton = UIColor(displayP3Red: 1, green: 89/255, blue: 53/255, alpha: 1)
     static let deleteButtonShadow = UIColor(displayP3Red: 1, green: 89/255, blue: 53/255, alpha: 0.6)
+    static let dateButton = UIColor(displayP3Red: 247/255, green: 246/255, blue: 249/255, alpha: 1)
 }
