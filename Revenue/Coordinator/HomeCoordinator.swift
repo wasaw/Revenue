@@ -17,6 +17,7 @@ final class HomeCoordinator {
     private let detailedCoordinator: DetailedCoordinator
     private let choiceCategoryAssembly: ChoiceCategoryAssembly
     private let showTransactionsAssembly: ShowTransactionsAssembly
+    private let calendarAssembly: CalendarAssembly
     private let transactionService: TransactionsServiceProtocol
     private let categoriesService: CategoriesServiceProtocol
     
@@ -25,11 +26,13 @@ final class HomeCoordinator {
     init(detailedCoordinator: DetailedCoordinator,
          choiceCategoryAssembly: ChoiceCategoryAssembly,
          showTransactionsAssembly: ShowTransactionsAssembly,
+         calendarAssembly: CalendarAssembly,
          transactionService: TransactionsServiceProtocol,
          categoriesService: CategoriesServiceProtocol) {
         self.detailedCoordinator = detailedCoordinator
         self.choiceCategoryAssembly = choiceCategoryAssembly
         self.showTransactionsAssembly = showTransactionsAssembly
+        self.calendarAssembly = calendarAssembly
         self.transactionService = transactionService
         self.categoriesService = categoriesService
     }
@@ -71,6 +74,16 @@ extension HomeCoordinator: HomePresenterOutput {
                                                                      output: self,
                                                                      category: category)
         navigation?.pushViewController(vc, animated: true)
+    }
+    
+    func showCalendar() {
+        let vc = calendarAssembly.makeShowCalendarModule()
+        vc.modalPresentationStyle = .overCurrentContext
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        guard let window = windowScene?.windows.first else { return }
+        let topMostViewController = window.rootViewController
+        topMostViewController?.present(vc, animated: true)
     }
 }
 

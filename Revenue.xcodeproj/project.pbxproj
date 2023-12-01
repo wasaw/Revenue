@@ -61,6 +61,13 @@
 		BBAB575C2B163D8F00B7F645 /* ShowTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */; };
 		BBAB575F2B163F3C00B7F645 /* ShowTransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */; };
 		BBAB57612B166AB000B7F645 /* ShowTransactionsPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57602B166AB000B7F645 /* ShowTransactionsPresenterOutput.swift */; };
+		BBAB57662B19199F00B7F645 /* CalendarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57652B19199F00B7F645 /* CalendarPresenter.swift */; };
+		BBAB57682B1919FF00B7F645 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57672B1919FF00B7F645 /* CalendarViewController.swift */; };
+		BBAB576A2B191A7200B7F645 /* CalendarInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57692B191A7100B7F645 /* CalendarInput.swift */; };
+		BBAB576C2B191A8900B7F645 /* CalendarOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB576B2B191A8900B7F645 /* CalendarOutput.swift */; };
+		BBAB576F2B19242800B7F645 /* CalendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB576E2B19242800B7F645 /* CalendarDataSource.swift */; };
+		BBAB57712B1926DA00B7F645 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57702B1926DA00B7F645 /* CalendarCell.swift */; };
+		BBAB57732B19B26900B7F645 /* CalendarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57722B19B26900B7F645 /* CalendarAssembly.swift */; };
 		BBDCF0C92B0B9CBA00AFCDED /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */; };
 		BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */; };
 		BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCF0CC2B0B9D3400AFCDED /* Model.swift */; };
@@ -126,6 +133,13 @@
 		BBAB575B2B163D8F00B7F645 /* ShowTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsCell.swift; sourceTree = "<group>"; };
 		BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsDataSource.swift; sourceTree = "<group>"; };
 		BBAB57602B166AB000B7F645 /* ShowTransactionsPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsPresenterOutput.swift; sourceTree = "<group>"; };
+		BBAB57652B19199F00B7F645 /* CalendarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPresenter.swift; sourceTree = "<group>"; };
+		BBAB57672B1919FF00B7F645 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		BBAB57692B191A7100B7F645 /* CalendarInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarInput.swift; sourceTree = "<group>"; };
+		BBAB576B2B191A8900B7F645 /* CalendarOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarOutput.swift; sourceTree = "<group>"; };
+		BBAB576E2B19242800B7F645 /* CalendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDataSource.swift; sourceTree = "<group>"; };
+		BBAB57702B1926DA00B7F645 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		BBAB57722B19B26900B7F645 /* CalendarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAssembly.swift; sourceTree = "<group>"; };
 		BBDCF0C82B0B9CBA00AFCDED /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
 		BBDCF0CA2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceProtocol.swift; sourceTree = "<group>"; };
 		BBDCF0CC2B0B9D3400AFCDED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -212,6 +226,7 @@
 				BB77A38A2B078AD200D097E0 /* DetailedTransactionAssembly.swift */,
 				BB77A39B2B09458F00D097E0 /* ChoiceCategoryAssembly.swift */,
 				BBAB57592B1633E800B7F645 /* ShowTransactionsAssembly.swift */,
+				BBAB57722B19B26900B7F645 /* CalendarAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -377,6 +392,7 @@
 				BB77A3902B0943A300D097E0 /* ChoiceCategory */,
 				BB782A282B14B5DB0018AF85 /* AddTransaction */,
 				BBAB574E2B16314900B7F645 /* ShowTransactions */,
+				BBAB57622B19179600B7F645 /* Calendar */,
 				BBAB574B2B160B4500B7F645 /* OtherCategory */,
 				BB782A232B13BFA50018AF85 /* Delete */,
 			);
@@ -467,6 +483,43 @@
 			isa = PBXGroup;
 			children = (
 				BBAB575E2B163F3C00B7F645 /* ShowTransactionsDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		BBAB57622B19179600B7F645 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57632B19179D00B7F645 /* Presenter */,
+				BBAB57642B1917A600B7F645 /* View */,
+				BBAB576D2B1923FC00B7F645 /* DataSource */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		BBAB57632B19179D00B7F645 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57652B19199F00B7F645 /* CalendarPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BBAB57642B1917A600B7F645 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB57672B1919FF00B7F645 /* CalendarViewController.swift */,
+				BBAB57692B191A7100B7F645 /* CalendarInput.swift */,
+				BBAB576B2B191A8900B7F645 /* CalendarOutput.swift */,
+				BBAB57702B1926DA00B7F645 /* CalendarCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBAB576D2B1923FC00B7F645 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB576E2B19242800B7F645 /* CalendarDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -575,11 +628,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBAB576A2B191A7200B7F645 /* CalendarInput.swift in Sources */,
+				BBAB57682B1919FF00B7F645 /* CalendarViewController.swift in Sources */,
 				BB77A38D2B09402700D097E0 /* DetailedPresenterOutput.swift in Sources */,
 				BB80A6392B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift in Sources */,
 				BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */,
 				BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */,
 				BB799A9C2B0E27570085490B /* HomeGoalsView.swift in Sources */,
+				BBAB57712B1926DA00B7F645 /* CalendarCell.swift in Sources */,
 				BB77A39A2B0944EA00D097E0 /* ChoiceCategoryPresenter.swift in Sources */,
 				BB8031652B04F40B000D8307 /* HomeOutput.swift in Sources */,
 				BB77A3882B076CD300D097E0 /* HomePresenterOutput.swift in Sources */,
@@ -612,13 +668,16 @@
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
 				BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */,
+				BBAB576C2B191A8900B7F645 /* CalendarOutput.swift in Sources */,
 				BB80A63D2B0E0027003E98C7 /* HomeTransactionsView.swift in Sources */,
 				BBDCF0D62B0C94E800AFCDED /* Model.xcdatamodeld in Sources */,
 				BB77A38B2B078AD200D097E0 /* DetailedTransactionAssembly.swift in Sources */,
 				BBDCF0D12B0C91B300AFCDED /* CoreDataService.swift in Sources */,
+				BBAB57732B19B26900B7F645 /* CalendarAssembly.swift in Sources */,
 				BB77A38F2B09406000D097E0 /* DetailedCoordinator.swift in Sources */,
 				BB77A37F2B07687700D097E0 /* DetailedTransactionOutput.swift in Sources */,
 				BB799AA52B0F52DD0085490B /* CategoriesServiceProtocol.swift in Sources */,
+				BBAB57662B19199F00B7F645 /* CalendarPresenter.swift in Sources */,
 				BB799AA02B0E35F70085490B /* HomeRemainsDataSource.swift in Sources */,
 				BBAB57562B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift in Sources */,
 				BBDCF0E02B0C9CB200AFCDED /* DefaultValueServiceProtocol.swift in Sources */,
@@ -630,6 +689,7 @@
 				BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */,
 				BBAB57612B166AB000B7F645 /* ShowTransactionsPresenterOutput.swift in Sources */,
 				BBAB575F2B163F3C00B7F645 /* ShowTransactionsDataSource.swift in Sources */,
+				BBAB576F2B19242800B7F645 /* CalendarDataSource.swift in Sources */,
 				BB77E7662B14BD7C00F80B2E /* AddTransactionViewController.swift in Sources */,
 				BB77A3832B0768F000D097E0 /* DetailedTransactionViewController.swift in Sources */,
 				BB8031632B04F3F1000D8307 /* HomeInput.swift in Sources */,

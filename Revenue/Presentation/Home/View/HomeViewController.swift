@@ -28,6 +28,8 @@ final class HomeViewController: UIViewController {
     
     private lazy var calendarView: UIView = {
         let view = UIView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleCalendar))
+        view.addGestureRecognizer(tap)
         view.layer.cornerRadius = Constants.calendarRadius
         view.backgroundColor = .calendarBackground
         return view
@@ -39,7 +41,6 @@ final class HomeViewController: UIViewController {
     }()
     private lazy var calendarLabel: UILabel = {
         let label = UILabel()
-        label.text = "с 01.07.2023 по 01.08.2023"
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .white
         return label
@@ -263,6 +264,10 @@ final class HomeViewController: UIViewController {
         guard let segment = Segment(rawValue: sender.selectedSegmentIndex) else { return }
         output.fetchData(for: segment)
     }
+    
+    @objc private func handleCalendar() {
+        output.showCalendar()
+    }
 }
 
 // MARK: - HomeInputProtocol
@@ -276,6 +281,10 @@ extension HomeViewController: HomeInputProtocol {
     func setRevenue(_ items: [HomeRevenueItem]) {
         revenueView.setupDataSource(items)
         expensesView.setupDataSource(items)
+    }
+    
+    func setCalendarDate(from start: String, to finish: String) {
+        calendarLabel.text = "с " + start + " по " + finish
     }
 }
 

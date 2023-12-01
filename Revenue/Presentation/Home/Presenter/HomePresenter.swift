@@ -59,6 +59,8 @@ final class HomePresenter {
     
     private var selectedTransactions: [Transaction] = []
     private var revenueCategories: [TransactionCategory] = []
+    private let dateFormatter = DateFormatter()
+    private let dayDateFormatter = DateFormatter()
 
 // MARK: - Lifecycle
     
@@ -68,6 +70,15 @@ final class HomePresenter {
         self.output = output
         self.transactionService = transactionService
         self.categoriesService = categoriesService
+        
+        dateFormatter.dateFormat = "HH:mm"
+        dayDateFormatter.dateFormat = "dd.MM.YYYY"
+    }
+    
+    private func setCurrentDate() {
+        let nowDay = Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()
+        let month = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date())) ?? Date()
+        input?.setCalendarDate(from: dayDateFormatter.string(from: month), to: dayDateFormatter.string(from: nowDay))
     }
 }
 
@@ -75,10 +86,7 @@ final class HomePresenter {
 
 extension HomePresenter: HomeOutput {
     func viewIsReady() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let dayDateFormatter = DateFormatter()
-        dayDateFormatter.dateFormat = "dd.MM.YYYY"
+        setCurrentDate()
         let total = categoriesService.fetchTotalAmount()
         transactionService.fetchTransactions { [weak self] result in
             switch result {
@@ -87,7 +95,7 @@ extension HomePresenter: HomeOutput {
                 var dateArray: [String] = []
                 var homeTransactions: [HomeTransactions] = []
                 transactions.forEach { transaction in
-                    let day = dayDateFormatter.string(from: transaction.date)
+                    guard let day = self?.dayDateFormatter.string(from: transaction.date) else { return }
                     if dateArray.isEmpty {
                         dateArray.append(day)
                     } else {
@@ -101,9 +109,9 @@ extension HomePresenter: HomeOutput {
                 dateArray.forEach { dateItem in
                     var items: [HomeRemainsItem] = []
                     transactions.forEach { transaction in
-                        let day = dayDateFormatter.string(from: transaction.date)
+                        let day = self?.dayDateFormatter.string(from: transaction.date)
                         if dateItem == day {
-                            let date = dateFormatter.string(from: transaction.date)
+                            guard let date = self?.dateFormatter.string(from: transaction.date) else { return }
                             let element = HomeRemainsItem(image: transaction.category.image,
                                                           title: transaction.category.title,
                                                           amount: transaction.amount,
@@ -170,6 +178,10 @@ extension HomePresenter: HomeOutput {
         case .goals:
             break
         }
+    }
+    
+    func showCalendar() {
+        output.showCalendar()
     }
 }
 

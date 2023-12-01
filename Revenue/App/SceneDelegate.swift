@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let detailedAssembly = DetailedTransactionAssembly()
         let choiceCategoryAssembly = ChoiceCategoryAssembly()
         let showTransactionsAssembly = ShowTransactionsAssembly()
+        let calendarAssembly = CalendarAssembly()
         
         let coreData = CoreDataService()
         let transactionService = TransactionsService(coreData: coreData)
@@ -38,6 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let homeCoordinator = HomeCoordinator(detailedCoordinator: detailedCoordinator,
                                               choiceCategoryAssembly: choiceCategoryAssembly,
                                               showTransactionsAssembly: showTransactionsAssembly,
+                                              calendarAssembly: calendarAssembly,
                                               transactionService: transactionService,
                                               categoriesService: categoriesService)
         window?.rootViewController = homeCoordinator.start()

@@ -139,7 +139,7 @@ final class ChoiceCategoryViewController: UIViewController {
         edgeLineView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.edgeLineViewPaddingTop)
             make.centerX.equalToSuperview()
-            make.width.equalTo(Constants.edgeLineViewPaddingTop)
+            make.width.equalTo(Constants.edgeLineViewWidth)
             make.height.equalTo(Constants.edgeLineViewHeight)
         }
         

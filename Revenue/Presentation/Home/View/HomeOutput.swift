@@ -11,4 +11,5 @@ protocol HomeOutput: AnyObject {
     func viewIsReady()
     func showDetails(at index: Int, in section: Int)
     func fetchData(for segment: Segment)
+    func showCalendar()
 }
