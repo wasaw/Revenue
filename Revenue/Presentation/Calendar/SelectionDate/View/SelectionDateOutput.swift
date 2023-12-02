@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SelectionDateOutput: AnyObject {
-    
+    func save(start: String, end: String)
 }

@@ -155,6 +155,7 @@ final class CalendarViewController: UIViewController {
 // MARK: - Selecters
     
     @objc private func handleCloseAction() {
+        output.saveValue()
         animateDismissView()
     }
 }

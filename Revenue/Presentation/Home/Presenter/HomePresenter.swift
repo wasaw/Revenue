@@ -73,12 +73,22 @@ final class HomePresenter {
         
         dateFormatter.dateFormat = "HH:mm"
         dayDateFormatter.dateFormat = "dd.MM.YYYY"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: Notification.Name("updateTime"), object: nil)
     }
     
     private func setCurrentDate() {
         let nowDay = Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()
         let month = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date())) ?? Date()
         input?.setCalendarDate(from: dayDateFormatter.string(from: month), to: dayDateFormatter.string(from: nowDay))
+    }
+    
+// MARK: - Selecter
+    
+    @objc private func updateTime() {
+        guard let start = UserDefaults.standard.value(forKey: "startTime") as? String,
+              let end = UserDefaults.standard.value(forKey: "endTime") as? String else { return }
+        input?.setCalendarDate(from: start, to: end)
     }
 }
 

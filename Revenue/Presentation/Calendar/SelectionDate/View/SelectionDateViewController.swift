@@ -45,6 +45,8 @@ final class SelectionDateViewController: UIViewController {
     private lazy var endDateView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEndDate))
+        view.addGestureRecognizer(tap)
         return view
     }()
     private lazy var endDateTextField: UITextField = {
@@ -64,7 +66,7 @@ final class SelectionDateViewController: UIViewController {
     private lazy var addButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.layer.cornerRadius = Constants.addButtonRadius
-        btn.setTitle("Добавить доход", for: .normal)
+        btn.setTitle("Применить", for: .normal)
         btn.setTitleColor(.lockButtonTitle, for: .normal)
         btn.backgroundColor = .lockButton
         btn.isEnabled = false
@@ -169,17 +171,15 @@ final class SelectionDateViewController: UIViewController {
     }
     
     private func checkButtonStatus() {
-//        if typeTitleLabel.text != "Выберите категорию" &&
-//            commentTextFiled.text != "" &&
-//            amoutTextField.text != "" {
-//            addButton.setTitleColor(.white, for: .normal)
-//            addButton.backgroundColor = .applyButton
-//            addButton.isEnabled = true
-//        } else {
-//            addButton.setTitleColor(.lockButtonTitle, for: .normal)
-//            addButton.backgroundColor = .lockButton
-//            addButton.isEnabled = false
-//        }
+        if startDateTextField.text != "" && endDateTextField.text != "" {
+            addButton.backgroundColor = .applyButton
+            addButton.setTitleColor(.white, for: .normal)
+            addButton.isEnabled = true
+        } else {
+            addButton.backgroundColor = .lockButton
+            addButton.setTitleColor(.lockButtonTitle, for: .normal)
+            addButton.isEnabled = false
+        }
     }
     
 // MARK: - Helpers
@@ -189,7 +189,10 @@ final class SelectionDateViewController: UIViewController {
     }
     
     @objc private func handleAddButton() {
-//        output.saveTransaction(comment: commentTextFiled.text, amount: amoutTextField.text)
+        guard let start = startDateTextField.text,
+              let end = endDateTextField.text else { return }
+        output.save(start: start, end: end)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
@@ -201,8 +204,16 @@ final class SelectionDateViewController: UIViewController {
     }
     
     @objc private func handleStartDate() {
-        let vc = DatePickerViewController()
+        let vc = DatePickerViewController(title: "С какого числа")
         vc.modalPresentationStyle = .overFullScreen
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    @objc private func handleEndDate() {
+        let vc = DatePickerViewController(title: "По какое число")
+        vc.modalPresentationStyle = .overFullScreen
+        vc.delegate = self
         present(vc, animated: true)
     }
 }
@@ -213,14 +224,16 @@ extension SelectionDateViewController: SelectionDateInput {
     
 }
 
-// MARK: - UITextFieldDelegate
+// MARK: - DatePicketiewDelegate
 
-//extension AddTransactionViewController: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        
-//    }
-//    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-////        checkButtonStatus()
-//    }
-//}
+extension SelectionDateViewController: DatePickerViewControllerDelegate {
+    func startDate(_ date: String) {
+        startDateTextField.text = date
+        checkButtonStatus()
+    }
+    
+    func endDate(_ date: String) {
+        endDateTextField.text = date
+        checkButtonStatus()
+    }
+}

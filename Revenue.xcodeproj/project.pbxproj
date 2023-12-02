@@ -541,9 +541,9 @@
 		BBAB57742B19BE3100B7F645 /* SelectionDate */ = {
 			isa = PBXGroup;
 			children = (
-				BBAB57812B19E4D700B7F645 /* DatePicker */,
 				BBAB57752B19BE5500B7F645 /* Presenter */,
 				BBAB57762B19BE6300B7F645 /* View */,
+				BBAB57812B19E4D700B7F645 /* DatePicker */,
 			);
 			path = SelectionDate;
 			sourceTree = "<group>";

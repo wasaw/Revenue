@@ -8,7 +8,8 @@
 import UIKit
 
 protocol DatePickerViewControllerDelegate: AnyObject {
-    func ready()
+    func startDate(_ date: String)
+    func endDate(_ date: String)
 }
 
 private enum Constants {
@@ -33,7 +34,6 @@ final class DatePickerViewController: UIViewController {
     }()
     private lazy var dateTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "С какого числа"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 19)
         return label
@@ -63,6 +63,16 @@ final class DatePickerViewController: UIViewController {
     private lazy var dimmedView = UIVisualEffectView(effect: blurEffect)
     
 // MARK: - Lifecycle
+    
+    init(title: String) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.dateTitleLabel.text = title
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,6 +133,15 @@ final class DatePickerViewController: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleDateButton() {
-        delegate?.ready()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        if  dateTitleLabel.text == "С какого числа" {
+            let date = datePicker.date
+            delegate?.startDate(formatter.string(from: date))
+        } else {
+            let date = datePicker.date
+            delegate?.endDate(formatter.string(from: date))
+        }
+        dismiss(animated: true)
     }
 }

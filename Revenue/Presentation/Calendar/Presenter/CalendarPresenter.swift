@@ -59,4 +59,39 @@ extension CalendarPresenter: CalendarOutput {
             input?.setCalendar(calendarItems)
         }
     }
+    
+    func saveValue() {
+        for (index, item) in calendarItems.enumerated() {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.YYYY"
+            if item.isSelected {
+                switch index {
+                case 0:
+                    let cal = Calendar.current
+                    var comp = cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: Date())
+                    comp.weekday = 2
+                    guard let monday = cal.date(from: comp) else { return }
+                    let start = formatter.string(from: monday)
+                    let end = formatter.string(from: Date())
+                    UserDefaults.standard.set(start, forKey: "startTime")
+                    UserDefaults.standard.set(end, forKey: "endTime")
+                case 1:
+                    let month = Calendar.current.date(byAdding: .day, value: -30, to: Date()) ?? Date()
+                    let start = formatter.string(from: month)
+                    let end = formatter.string(from: Date())
+                    UserDefaults.standard.set(start, forKey: "startTime")
+                    UserDefaults.standard.set(end, forKey: "endTime")
+                case 2:
+                    let month = Calendar.current.date(byAdding: .day, value: -180, to: Date()) ?? Date()
+                    let start = formatter.string(from: month)
+                    let end = formatter.string(from: Date())
+                    UserDefaults.standard.set(start, forKey: "startTime")
+                    UserDefaults.standard.set(end, forKey: "endTime")
+                default:
+                    break
+                }
+            }
+        }
+        NotificationCenter.default.post(name: Notification.Name("updateTime"), object: nil)
+    }
 }

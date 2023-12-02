@@ -10,4 +10,5 @@ import Foundation
 protocol CalendarOutput: AnyObject {
     func viewIsReady()
     func updateSelectedCell(at index: Int)
+    func saveValue()
 }
