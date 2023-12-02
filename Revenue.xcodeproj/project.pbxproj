@@ -18,6 +18,7 @@
 		BB68764D2B1B45DA00FC65BD /* GoalDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68764C2B1B45DA00FC65BD /* GoalDetailsCell.swift */; };
 		BB6876502B1B50A300FC65BD /* GoalDetailsBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68764F2B1B50A300FC65BD /* GoalDetailsBottomViewController.swift */; };
 		BB6876572B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */; };
+		BB68765E2B1B63FF00FC65BD /* EditSelectedDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -106,6 +107,7 @@
 		BB68764C2B1B45DA00FC65BD /* GoalDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsCell.swift; sourceTree = "<group>"; };
 		BB68764F2B1B50A300FC65BD /* GoalDetailsBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsBottomViewController.swift; sourceTree = "<group>"; };
 		BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsViewController.swift; sourceTree = "<group>"; };
+		BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSelectedDetail.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -198,10 +200,11 @@
 		BB68763E2B1B255800FC65BD /* GoalDetails */ = {
 			isa = PBXGroup;
 			children = (
-				BB6876512B1B5E0300FC65BD /* ShowAllDetails */,
 				BB6876402B1B259300FC65BD /* Presenter */,
 				BB68763F2B1B258D00FC65BD /* View */,
 				BB6876492B1B459300FC65BD /* DataSource */,
+				BB6876512B1B5E0300FC65BD /* ShowAllDetails */,
+				BB68765C2B1B63DE00FC65BD /* EditSelectedDetail */,
 			);
 			path = GoalDetails;
 			sourceTree = "<group>";
@@ -240,6 +243,14 @@
 				BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */,
 			);
 			path = ShowAllDetails;
+			sourceTree = "<group>";
+		};
+		BB68765C2B1B63DE00FC65BD /* EditSelectedDetail */ = {
+			isa = PBXGroup;
+			children = (
+				BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */,
+			);
+			path = EditSelectedDetail;
 			sourceTree = "<group>";
 		};
 		BB77A3752B0647CF00D097E0 /* DataSource */ = {
@@ -793,6 +804,7 @@
 				BBAB57542B1631BF00B7F645 /* ShowTransactionsViewController.swift in Sources */,
 				BB77E7682B14BD8600F80B2E /* AddTransactionInput.swift in Sources */,
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,
+				BB68765E2B1B63FF00FC65BD /* EditSelectedDetail.swift in Sources */,
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
 				BBAB57802B19C0F600B7F645 /* CalendarPresenterOutput.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
