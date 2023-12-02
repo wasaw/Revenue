@@ -323,7 +323,9 @@ final class GoalDetailsViewController: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleDetailButton() {
-//        output.showDeleteAlert()
+        let vc = GoalDetailsBottomViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     @objc private func handleBackButton() {
