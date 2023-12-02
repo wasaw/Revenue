@@ -92,6 +92,11 @@ extension HomeCoordinator: HomePresenterOutput {
         presenter.input = vc
         navigation?.pushViewController(vc, animated: true)
     }
+    
+    func showAddGoal() {
+        let vc = AddGoal()
+        navigation?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - AddTranactionPresenterOutput

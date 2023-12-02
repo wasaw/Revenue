@@ -303,4 +303,8 @@ extension HomeViewController: HomeGoalsViewProtocol {
     func showDetails() {
         output.showGoalDetails()
     }
+    
+    func showAddGoal() {
+        output.showAddGoal()
+    }
 }

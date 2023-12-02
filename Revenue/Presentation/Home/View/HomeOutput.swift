@@ -13,4 +13,5 @@ protocol HomeOutput: AnyObject {
     func fetchData(for segment: Segment)
     func showCalendar()
     func showGoalDetails()
+    func showAddGoal()
 }

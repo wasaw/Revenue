@@ -10,6 +10,7 @@ import SnapKit
 
 protocol HomeGoalsViewProtocol: AnyObject {
     func showDetails()
+    func showAddGoal()
 }
 
 private enum Constants {
@@ -170,7 +171,7 @@ final class HomeGoalsView: UIView {
     }
     
     @objc private func handleAddGoal() {
-        
+        delegate?.showAddGoal()
     }
 }
 

@@ -19,6 +19,7 @@
 		BB6876502B1B50A300FC65BD /* GoalDetailsBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68764F2B1B50A300FC65BD /* GoalDetailsBottomViewController.swift */; };
 		BB6876572B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */; };
 		BB68765E2B1B63FF00FC65BD /* EditSelectedDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */; };
+		BB6876612B1B682D00FC65BD /* AddGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876602B1B682D00FC65BD /* AddGoal.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -108,6 +109,7 @@
 		BB68764F2B1B50A300FC65BD /* GoalDetailsBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsBottomViewController.swift; sourceTree = "<group>"; };
 		BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsViewController.swift; sourceTree = "<group>"; };
 		BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSelectedDetail.swift; sourceTree = "<group>"; };
+		BB6876602B1B682D00FC65BD /* AddGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoal.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -251,6 +253,14 @@
 				BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */,
 			);
 			path = EditSelectedDetail;
+			sourceTree = "<group>";
+		};
+		BB68765F2B1B680600FC65BD /* AddGoal */ = {
+			isa = PBXGroup;
+			children = (
+				BB6876602B1B682D00FC65BD /* AddGoal.swift */,
+			);
+			path = AddGoal;
 			sourceTree = "<group>";
 		};
 		BB77A3752B0647CF00D097E0 /* DataSource */ = {
@@ -485,6 +495,7 @@
 				BBAB574E2B16314900B7F645 /* ShowTransactions */,
 				BBAB57622B19179600B7F645 /* Calendar */,
 				BB68763E2B1B255800FC65BD /* GoalDetails */,
+				BB68765F2B1B680600FC65BD /* AddGoal */,
 				BBAB574B2B160B4500B7F645 /* OtherCategory */,
 				BB782A232B13BFA50018AF85 /* Delete */,
 			);
@@ -774,6 +785,7 @@
 				BBAB577A2B19BEBD00B7F645 /* SelectionDateViewController.swift in Sources */,
 				BB77A3882B076CD300D097E0 /* HomePresenterOutput.swift in Sources */,
 				BB77A3942B0943DB00D097E0 /* ChoiceCategoryViewController.swift in Sources */,
+				BB6876612B1B682D00FC65BD /* AddGoal.swift in Sources */,
 				BB6876462B1B25D800FC65BD /* GoalDetailsInput.swift in Sources */,
 				BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */,
 				BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */,

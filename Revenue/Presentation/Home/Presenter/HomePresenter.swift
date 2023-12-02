@@ -203,6 +203,10 @@ extension HomePresenter: HomeOutput {
     func showCalendar() {
         output.showCalendar()
     }
+    
+    func showAddGoal() {
+        output.showAddGoal()
+    }
 }
 
 // MARK: - HomeRevenueOutput
