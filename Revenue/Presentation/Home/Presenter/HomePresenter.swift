@@ -215,4 +215,8 @@ extension HomePresenter: HomeTransactionsOutput {
     func showDetails(at index: Int) {
         output.showShowTransactions(for: revenueCategories[index])
     }
+    
+    func showGoalDetails() {
+        output.showGoalDetails()
+    }
 }

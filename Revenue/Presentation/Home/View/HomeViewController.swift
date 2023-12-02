@@ -86,6 +86,7 @@ final class HomeViewController: UIViewController {
     }()
     private lazy var goalsView: HomeGoalsView = {
         let view = HomeGoalsView()
+        view.delegate = self
         return view
     }()
     private lazy var visibleViews = [remainsView,
@@ -293,5 +294,13 @@ extension HomeViewController: HomeInputProtocol {
 extension HomeViewController: HomeRemainsViewProtocol {
     func details(at index: Int, in section: Int) {
         output.showDetails(at: index, in: section)
+    }
+}
+
+// MARK: - HomeGoalsViewProtocol
+
+extension HomeViewController: HomeGoalsViewProtocol {
+    func showDetails() {
+        output.showGoalDetails()
     }
 }

@@ -15,6 +15,7 @@ private enum Constants {
     static let imageHeight: CGFloat = 42
     static let progressBarPaddingTop: CGFloat = 12
     static let labelPaddingTop: CGFloat = 2
+    static let imageRadius: CGFloat = 8
 }
 
 final class HomeGoalsCell: UITableViewCell {
@@ -24,7 +25,9 @@ final class HomeGoalsCell: UITableViewCell {
     
     private lazy var logoImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "trash")
+        view.image = UIImage(named: "goal1")
+        view.layer.cornerRadius = Constants.imageRadius
+        view.layer.masksToBounds = true
         return view
     }()
     private lazy var titleLabel: UILabel = {

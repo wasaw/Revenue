@@ -85,6 +85,13 @@ extension HomeCoordinator: HomePresenterOutput {
         let topMostViewController = window.rootViewController
         topMostViewController?.present(vc, animated: true)
     }
+    
+    func showGoalDetails() {
+        let presenter = GoalDetailsPresenter()
+        let vc = GoalDetailsViewController(output: presenter)
+        presenter.input = vc
+        navigation?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - AddTranactionPresenterOutput

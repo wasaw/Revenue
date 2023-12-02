@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol HomeGoalsViewProtocol: AnyObject {
+    func showDetails()
+}
+
 private enum Constants {
     static let horizontalPadding: CGFloat = 16
     static let balanceTitlePaddingTop: CGFloat = 20
@@ -25,6 +29,8 @@ private enum Constants {
 final class HomeGoalsView: UIView {
     
 // MARK: - Properties
+    
+    weak var delegate: HomeGoalsViewProtocol?
     
     private lazy var balanceView: UIView = {
         let view = UIView()
@@ -173,5 +179,10 @@ final class HomeGoalsView: UIView {
 extension HomeGoalsView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.showDetails()
     }
 }
