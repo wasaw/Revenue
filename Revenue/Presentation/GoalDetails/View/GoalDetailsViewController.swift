@@ -125,6 +125,7 @@ final class GoalDetailsViewController: UIViewController {
         btn.setTitle("Подробнее", for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.backgroundColor = .white
+        btn.addTarget(self, action: #selector(handleDetailTable), for: .touchUpInside)
         return btn
     }()
     
@@ -334,6 +335,11 @@ final class GoalDetailsViewController: UIViewController {
     
     @objc private func handleSaveButton() {
 //        output.saveTransaction(comment: commentTextFiled.text, amount: amoutTextField.text)
+    }
+    
+    @objc private func handleDetailTable() {
+        let vc = ShowAllDetailsViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

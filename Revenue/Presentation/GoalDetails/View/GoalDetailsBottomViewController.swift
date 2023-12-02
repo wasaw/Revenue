@@ -61,6 +61,8 @@ final class GoalDetailsBottomViewController: UIViewController {
     }()
     private lazy var deleteView: UIView = {
         let view = UIView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDelete))
+        view.addGestureRecognizer(tap)
         return view
     }()
     private lazy var deleteImageView: UIImageView = {
@@ -188,5 +190,11 @@ final class GoalDetailsBottomViewController: UIViewController {
     
     @objc private func handleCloseAction() {
         animateDismissView()
+    }
+    
+    @objc private func handleDelete() {
+        let vc = DeleteViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
 }
