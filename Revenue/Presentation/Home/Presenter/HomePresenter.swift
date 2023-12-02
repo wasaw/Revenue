@@ -34,6 +34,16 @@ struct HomeRevenueItem: Hashable {
     let isRevenue: Bool
 }
 
+enum HomeGoalsSections: Hashable, CaseIterable {
+    case section
+}
+
+struct HomeGoalsItem: Hashable {
+    let id = UUID()
+    let image: String
+    let title: String
+}
+
 enum Segment: Int {
     case remains
     case revenue

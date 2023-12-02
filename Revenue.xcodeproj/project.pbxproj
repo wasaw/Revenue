@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BB68762E2B19E6F800FC65BD /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */; };
+		BB68763B2B1B12DF00FC65BD /* HomeGoalsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */; };
+		BB68763D2B1B133D00FC65BD /* HomeGoalsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68763C2B1B133D00FC65BD /* HomeGoalsDataSource.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -86,6 +88,8 @@
 
 /* Begin PBXFileReference section */
 		BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsCell.swift; sourceTree = "<group>"; };
+		BB68763C2B1B133D00FC65BD /* HomeGoalsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsDataSource.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 			children = (
 				BB77A3762B0647F900D097E0 /* HomeDataSource.swift */,
 				BB799A9F2B0E35F70085490B /* HomeRemainsDataSource.swift */,
+				BB68763C2B1B133D00FC65BD /* HomeGoalsDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				BB77A3732B06474400D097E0 /* HomeCell.swift */,
 				BB799A972B0E1D350085490B /* HomeRemainsView.swift */,
 				BB799A9B2B0E27570085490B /* HomeGoalsView.swift */,
+				BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */,
 				BB77E76B2B14BF5900F80B2E /* Transactions */,
 			);
 			path = View;
@@ -709,6 +715,8 @@
 				BBAB575C2B163D8F00B7F645 /* ShowTransactionsCell.swift in Sources */,
 				BBAB57522B16318A00B7F645 /* ShowTransactionsPresenter.swift in Sources */,
 				BB77A3962B09444A00D097E0 /* ChoiceInput.swift in Sources */,
+				BB68763B2B1B12DF00FC65BD /* HomeGoalsCell.swift in Sources */,
+				BB68763D2B1B133D00FC65BD /* HomeGoalsDataSource.swift in Sources */,
 				BBDCF0D32B0C91C400AFCDED /* CoreDataServiceProtocol.swift in Sources */,
 				BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */,
 				BB77A3862B076BD500D097E0 /* HomeCoordinator.swift in Sources */,
