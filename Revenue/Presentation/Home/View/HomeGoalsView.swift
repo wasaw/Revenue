@@ -19,6 +19,7 @@ private enum Constants {
     static let cornerRadius: CGFloat = 12
     static let addGoalBtnHeight: CGFloat = 54
     static let addGoalPaddingBottom: CGFloat = 8
+    static let cellHeight: CGFloat = 120
 }
 
 final class HomeGoalsView: UIView {
@@ -134,6 +135,7 @@ final class HomeGoalsView: UIView {
             make.bottom.equalToSuperview()
         }
         tableView.backgroundColor = .white
+        tableView.delegate = self
         setupDataSource([HomeGoalsItem(image: "", title: "")])
     }
     
@@ -163,5 +165,13 @@ final class HomeGoalsView: UIView {
     
     @objc private func handleAddGoal() {
         
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension HomeGoalsView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.cellHeight
     }
 }
