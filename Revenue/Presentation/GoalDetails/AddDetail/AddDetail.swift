@@ -177,7 +177,7 @@ final class AddDetail: UIViewController {
     @objc private func handleSaveButton() {
         guard let amountString = amoutTextField.text,
               let amount = Double(amountString) else { return }
-        contributionService.saveContribution(Contribution(amount: amount, date: Date(), goal: id))
+        contributionService.saveContribution(Contribution(id: UUID(), amount: amount, date: Date(), goal: id))
         handleBackButton()
     }
 }

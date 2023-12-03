@@ -174,4 +174,21 @@ extension CoreDataService: CoreDataServiceProtocol {
             }
         }
     }
+    
+    func deleteContributions(for id: UUID) {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.performAndWait {
+            do {
+                let fetchRequest = ContributionManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+                guard let contributionManagedObject = try backgroundContext.fetch(fetchRequest).first else { return }
+                backgroundContext.delete(contributionManagedObject)
+                if backgroundContext.hasChanges {
+                    try backgroundContext.save()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

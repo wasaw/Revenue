@@ -50,10 +50,12 @@ final class EditSelectedDetail: UIViewController {
         let tf = UITextField()
         tf.becomeFirstResponder()
         tf.keyboardType = .numberPad
-        tf.delegate = self
+        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         tf.font = UIFont.systemFont(ofSize: 16)
         return tf
     }()
+    private let contributionsService = ContributionsService(coreData: CoreDataService())
+    private let goalItem: GoalDetilsItem
     
     private lazy var saveButton: UIButton = {
         let btn = UIButton(type: .custom)
@@ -79,6 +81,16 @@ final class EditSelectedDetail: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
+    init(goalItem: GoalDetilsItem) {
+        self.goalItem = goalItem
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,6 +105,7 @@ final class EditSelectedDetail: UIViewController {
         configureDetailView()
         configureAmountView()
         
+        amoutTextField.text = String(goalItem.amount)
         view.addSubview(saveButton)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWilLShow),
@@ -101,7 +114,9 @@ final class EditSelectedDetail: UIViewController {
     }
     
     private func configureNavigationItem() {
-        navigationItem.title = "Детали"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        navigationItem.title = "Взнос на " + formatter.string(from: goalItem.date)
 
         let rightBarButton = UIBarButtonItem(customView: deleteButton)
         navigationItem.rightBarButtonItem = rightBarButton
@@ -138,6 +153,10 @@ final class EditSelectedDetail: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleDeleteButton() {
+        let vc = DeleteViewController()
+        vc.delegate = self
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     @objc private func handleBackButton() {
@@ -161,26 +180,30 @@ final class EditSelectedDetail: UIViewController {
     }
     
     @objc private func handleSaveButton() {
+        guard let amountString = amoutTextField.text,
+              let amount = Double(amountString) else { return }
+        contributionsService.saveContribution(Contribution(id: UUID(), amount: amount, date: Date(), goal: goalItem.goalId))
+        contributionsService.delete(for: goalItem.detailId)
+        handleBackButton()
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        saveButton.backgroundColor = .applyButton
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.isEnabled = true
     }
 }
 
-// MARK: - UITextFieldDelegate
+// MARK: - DeleteViewControllerDelegate
 
-extension EditSelectedDetail: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField == commentTextFiled {
-//            turnOnSaveButton()
-//        }
+extension EditSelectedDetail: DeleteViewControllerDelegate {
+    func delete() {
+        dismiss(animated: true)
+        handleBackButton()
+        contributionsService.delete(for: goalItem.detailId)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == commentTextFiled && (commentTextFiled.text == ""){
-//            saveButton.setTitleColor(.lockButtonTitle, for: .normal)
-//            saveButton.backgroundColor = .lockButton
-//            saveButton.isEnabled = false
-//        }
-//        if textField == amoutTextField {
-//            output.checkAmountChanges(amoutTextField.text)
-//        }
+    func cancel() {
+        dismiss(animated: true)
     }
 }

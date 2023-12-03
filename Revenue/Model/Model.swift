@@ -33,6 +33,7 @@ struct Goal {
 }
 
 struct Contribution {
+    let id: UUID
     let amount: Double
     let date: Date
     let goal: UUID

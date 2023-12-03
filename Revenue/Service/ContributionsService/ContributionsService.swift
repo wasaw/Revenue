@@ -28,8 +28,10 @@ extension ContributionsService: ContributionsServiceProtocol {
             let contributionManagedObject = try coreData.fetchContributions(id: id)
             let items: [Contribution] = contributionManagedObject.compactMap { managedObject in
                 guard let date = managedObject.date,
-                      let goal = managedObject.goal else { return nil }
-                return Contribution(amount: managedObject.amount,
+                      let goal = managedObject.goal,
+                      let id = managedObject.id else { return nil }
+                return Contribution(id: id,
+                                    amount: managedObject.amount,
                                     date: date,
                                     goal: goal)
             }
@@ -42,9 +44,14 @@ extension ContributionsService: ContributionsServiceProtocol {
     func saveContribution(_ item: Contribution) {
         coreData.save { context in
             let contributionManagedObject = ContributionManagedObject(context: context)
+            contributionManagedObject.id = item.id
             contributionManagedObject.goal = item.goal
             contributionManagedObject.amount = item.amount
             contributionManagedObject.date = item.date
         }
+    }
+    
+    func delete(for id: UUID) {
+        coreData.deleteContributions(for: id)
     }
 }

@@ -15,6 +15,8 @@ struct GoalDetilsItem: Hashable {
     let id = UUID()
     let date: Date
     let amount: Double
+    let detailId: UUID
+    let goalId: UUID
 }
 
 final class GoalDetailsPresenter {
@@ -56,7 +58,7 @@ extension GoalDetailsPresenter: GoalDetailsOutput {
             switch result {
             case .success(let contributions):
                 let items: [GoalDetilsItem] = contributions.compactMap { contribution in
-                    return GoalDetilsItem(date: contribution.date, amount: contribution.amount)
+                    return GoalDetilsItem(date: contribution.date, amount: contribution.amount, detailId: contribution.id, goalId: contribution.goal)
                 }
                 self?.input?.setDate(items)
             case .failure:
