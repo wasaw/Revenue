@@ -288,8 +288,8 @@ extension HomeViewController: HomeInputProtocol {
         calendarLabel.text = "с " + start + " по " + finish
     }
     
-    func setGoals(_ items: [HomeGoalsItem]) {
-        goalsView.setupDataSource(items)
+    func setGoals(_ items: [HomeGoalsItem], total: Double) {
+        goalsView.setupDataSource(items, total: total)
     }
 }
 

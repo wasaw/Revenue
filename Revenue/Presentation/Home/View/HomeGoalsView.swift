@@ -48,7 +48,6 @@ final class HomeGoalsView: UIView {
     }()
     private lazy var balanceLabel: UILabel = {
         let label = UILabel()
-        label.text = "390 000c"
         label.font = UIFont.systemFont(ofSize: 32)
         label.textColor = .incomeCash
         return label
@@ -156,12 +155,13 @@ final class HomeGoalsView: UIView {
         }
     }
     
-    func setupDataSource(_ items: [HomeGoalsItem]) {
+    func setupDataSource(_ items: [HomeGoalsItem], total: Double) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections(HomeGoalsSections.allCases)
         snapshot.appendItems(items)
         dataSource.apply(snapshot)
+        balanceLabel.text = String(format: "%.0f", total) + "c"
     }
     
 // MARK: - Selectors

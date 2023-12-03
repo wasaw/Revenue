@@ -11,5 +11,5 @@ protocol HomeInputProtocol: AnyObject {
     func setTransactions(for items: [HomeTransactions], total: Double)
     func setRevenue(_ items: [HomeRevenueItem])
     func setCalendarDate(from start: String, to finish: String)
-    func setGoals(_ items: [HomeGoalsItem])
+    func setGoals(_ items: [HomeGoalsItem], total: Double)
 }

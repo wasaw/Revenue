@@ -203,13 +203,14 @@ extension HomePresenter: HomeOutput {
                 }
             }
         case .goals:
-            
             goalService.fetchGoals { [weak self] result in
                 switch result {
                 case .success(let goals):
                     self?.isFinishedGoals = []
                     self?.isNotFinishedGoals = []
+                    var introduce: Double = 0
                     let items: [HomeGoalsItem] = goals.compactMap { goal in
+                        introduce += goal.introduced
                         if goal.isFinished == false {
                             self?.isNotFinishedGoals.append(goal)
                             return HomeGoalsItem(image: goal.image,
@@ -220,7 +221,7 @@ extension HomePresenter: HomeOutput {
                         self?.isFinishedGoals.append(goal)
                         return nil
                     }
-                    self?.input?.setGoals(items)
+                    self?.input?.setGoals(items, total: introduce)
                 case .failure:
                     break
                 }
@@ -240,7 +241,9 @@ extension HomePresenter: HomeOutput {
         goalService.fetchGoals { [weak self] result in
             switch result {
             case .success(let goals):
+                var introduce: Double = 0
                 let items: [HomeGoalsItem] = goals.compactMap { goal in
+                    introduce += goal.introduced
                     if goal.isFinished == isFinished {
                         return HomeGoalsItem(image: goal.image,
                                              title: goal.title,
@@ -249,7 +252,7 @@ extension HomePresenter: HomeOutput {
                     }
                     return nil
                 }
-                self?.input?.setGoals(items)
+                self?.input?.setGoals(items, total: introduce)
             case .failure:
                 break
             }
