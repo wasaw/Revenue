@@ -15,4 +15,5 @@ protocol CoreDataServiceProtocol: AnyObject {
     func saveTransaction(transaction: Transaction) throws -> Void
     func deleteTransaction(_ transaction: Transaction) throws -> Void
     func deleteTransactionFromCategory(transaction: Transaction) throws -> Void
+    func fetchGoals() throws -> [GoalManagedObject]
 }

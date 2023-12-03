@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreData = CoreDataService()
         let transactionService = TransactionsService(coreData: coreData)
         let categoriesService = CategoriesService(coreData: coreData)
-        let goalService = GoalsService()
+        let goalService = GoalsService(coreData: coreData)
         let contributionsService = ContributionsService()
         
         let detailedCoordinator = DetailedCoordinator(detailedAssembly: detailedAssembly,

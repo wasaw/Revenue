@@ -146,4 +146,9 @@ extension CoreDataService: CoreDataServiceProtocol {
             }
         }
     }
+    
+    func fetchGoals() throws -> [GoalManagedObject] {
+        let fetchRequest = GoalManagedObject.fetchRequest()
+        return try viewContext.fetch(fetchRequest)
+    }
 }

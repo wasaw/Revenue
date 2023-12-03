@@ -11,15 +11,33 @@ final class GoalsService {
     
 // MARK: - Properties
     
-    private let goals: [Goal] = [Goal(image: "goal1", title: "Накопить на машину", total: 40000000, isFinished: false),
-                                 Goal(image: "goal1", title: "Ипотека", total: 7230000, isFinished: false),
-                                 Goal(image: "goal1", title: "Телефон", total: 25000, isFinished: true)]
+    private let coreData: CoreDataServiceProtocol
+    
+// MARK: - Lifecycle
+    
+    init(coreData: CoreDataServiceProtocol) {
+        self.coreData = coreData
+    }
 }
 
 // MARK: - GoalsServiceProtocol
 
 extension GoalsService: GoalsServiceProtocol {
     func fetchGoals(completion: @escaping (Result<[Goal], Error>) -> Void) {
-        completion(.success(goals))
+        do {
+            let goalsManagedObject = try coreData.fetchGoals()
+            let goals: [Goal] = goalsManagedObject.compactMap { managedObject in
+                guard let id = managedObject.id,
+                      let title = managedObject.title else { return nil }
+                return Goal(id: id,
+                            image: "goal1",
+                            title: title,
+                            total: managedObject.total,
+                            isFinished: managedObject.isFinished)
+            }
+            completion(.success(goals))
+        } catch {
+            print(error)
+        }
     }
 }

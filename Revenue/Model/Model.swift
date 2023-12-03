@@ -23,6 +23,7 @@ struct TransactionCategory {
 }
 
 struct Goal {
+    let id: UUID
     let image: String
     let title: String
     let total: Double
