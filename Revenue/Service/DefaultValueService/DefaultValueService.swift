@@ -100,8 +100,9 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                              Goal(id: id3, image: id3.uuidString, title: "Телефон", introduced: 0, total: 25000, date: Date(), isFinished: true)]
         
         let contributions: [Contribution] = [Contribution(amount: 1000, date: Date(), goal: goals[0].id),
-                                                     Contribution(amount: 15000, date: Date(), goal: goals[0].id),
-                                                     Contribution(amount: 20000, date: Date(), goal: goals[1].id)]
+                                             Contribution(amount: 15000, date: Date(), goal: goals[0].id),
+                                             Contribution(amount: 20000, date: Date(), goal: goals[1].id),
+                                             Contribution(amount: 25000, date: Date(), goal: goals[2].id)]
         
         goals.forEach { goal in
             coreData.save { context in

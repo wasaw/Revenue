@@ -24,6 +24,7 @@
 		BB6876662B1C624200FC65BD /* GoalsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */; };
 		BB6EE43C2B1C70D700D6ED8F /* ContributionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */; };
 		BB6EE43E2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */; };
+		BB6EE4422B1CCA2800D6ED8F /* AddDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE4412B1CCA2800D6ED8F /* AddDetail.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -118,6 +119,7 @@
 		BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsServiceProtocol.swift; sourceTree = "<group>"; };
 		BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsService.swift; sourceTree = "<group>"; };
 		BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsServiceProtocol.swift; sourceTree = "<group>"; };
+		BB6EE4412B1CCA2800D6ED8F /* AddDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDetail.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				BB68763F2B1B258D00FC65BD /* View */,
 				BB6876492B1B459300FC65BD /* DataSource */,
 				BB6876512B1B5E0300FC65BD /* ShowAllDetails */,
+				BB6EE4402B1CCA0A00D6ED8F /* AddDetail */,
 				BB68765C2B1B63DE00FC65BD /* EditSelectedDetail */,
 			);
 			path = GoalDetails;
@@ -287,6 +290,14 @@
 				BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */,
 			);
 			path = ContributionsService;
+			sourceTree = "<group>";
+		};
+		BB6EE4402B1CCA0A00D6ED8F /* AddDetail */ = {
+			isa = PBXGroup;
+			children = (
+				BB6EE4412B1CCA2800D6ED8F /* AddDetail.swift */,
+			);
+			path = AddDetail;
 			sourceTree = "<group>";
 		};
 		BB77A3752B0647CF00D097E0 /* DataSource */ = {
@@ -828,6 +839,7 @@
 				BB68762E2B19E6F800FC65BD /* DatePickerViewController.swift in Sources */,
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
 				BBAB575A2B1633E800B7F645 /* ShowTransactionsAssembly.swift in Sources */,
+				BB6EE4422B1CCA2800D6ED8F /* AddDetail.swift in Sources */,
 				BBAB577C2B19BF7400B7F645 /* SelectionDateInput.swift in Sources */,
 				BBAB57582B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift in Sources */,
 				BB799A982B0E1D360085490B /* HomeRemainsView.swift in Sources */,

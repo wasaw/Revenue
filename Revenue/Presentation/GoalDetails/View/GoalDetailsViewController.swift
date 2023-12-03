@@ -123,6 +123,7 @@ final class GoalDetailsViewController: UIViewController {
         return btn
     }()
     private var goalItems: [GoalDetilsItem] = []
+    private var selectedId = UUID()
     
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = GoalDetailsDataSource(tableView)
@@ -328,7 +329,8 @@ final class GoalDetailsViewController: UIViewController {
     }
     
     @objc private func handleSaveButton() {
-//        output.saveTransaction(comment: commentTextFiled.text, amount: amoutTextField.text)
+        let vc = AddDetail(id: selectedId)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func handleDetailTable() {
@@ -355,6 +357,17 @@ extension GoalDetailsViewController: GoalDetailsInput {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         periodLabel.text = formatter.string(from: Date())
+        selectedId = item.id
+        
+        if item.isFinished {
+            saveButton.backgroundColor = .lockButton
+            saveButton.setTitleColor(.lockButtonTitle, for: .normal)
+            saveButton.isEnabled = false
+        } else {
+            saveButton.backgroundColor = .applyButton
+            saveButton.setTitleColor(.white, for: .normal)
+            saveButton.isEnabled = true
+        }
         
         guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileUrl = directoryUrl.appendingPathComponent(item.image)

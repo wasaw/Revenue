@@ -9,4 +9,5 @@ import Foundation
 
 protocol ContributionsServiceProtocol: AnyObject {
     func fetchContributions(for id: UUID, completion: @escaping (Result<[Contribution], Error>) -> Void)
+    func saveContribution(_ item: Contribution)
 }

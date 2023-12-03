@@ -38,4 +38,13 @@ extension ContributionsService: ContributionsServiceProtocol {
             print(error)
         }
     }
+    
+    func saveContribution(_ item: Contribution) {
+        coreData.save { context in
+            let contributionManagedObject = ContributionManagedObject(context: context)
+            contributionManagedObject.goal = item.goal
+            contributionManagedObject.amount = item.amount
+            contributionManagedObject.date = item.date
+        }
+    }
 }
