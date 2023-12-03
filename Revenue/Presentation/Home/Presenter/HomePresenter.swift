@@ -42,6 +42,7 @@ struct HomeGoalsItem: Hashable {
     let id = UUID()
     let image: String
     let title: String
+    let introduced: Double
     let total: Double
 }
 
@@ -202,6 +203,7 @@ extension HomePresenter: HomeOutput {
                 }
             }
         case .goals:
+            
             goalService.fetchGoals { [weak self] result in
                 switch result {
                 case .success(let goals):
@@ -210,7 +212,10 @@ extension HomePresenter: HomeOutput {
                     let items: [HomeGoalsItem] = goals.compactMap { goal in
                         if goal.isFinished == false {
                             self?.isNotFinishedGoals.append(goal)
-                            return HomeGoalsItem(image: goal.image, title: goal.title, total: goal.total)
+                            return HomeGoalsItem(image: goal.image,
+                                                 title: goal.title,
+                                                 introduced: goal.introduced,
+                                                 total: goal.total)
                         }
                         self?.isFinishedGoals.append(goal)
                         return nil
@@ -237,7 +242,10 @@ extension HomePresenter: HomeOutput {
             case .success(let goals):
                 let items: [HomeGoalsItem] = goals.compactMap { goal in
                     if goal.isFinished == isFinished {
-                        return HomeGoalsItem(image: goal.image, title: goal.title, total: goal.total)
+                        return HomeGoalsItem(image: goal.image,
+                                             title: goal.title,
+                                             introduced: goal.introduced,
+                                             total: goal.total)
                     }
                     return nil
                 }

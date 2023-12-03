@@ -26,6 +26,7 @@ struct Goal {
     let id: UUID
     let image: String
     let title: String
+    let introduced: Double
     let total: Double
     let isFinished: Bool
 }

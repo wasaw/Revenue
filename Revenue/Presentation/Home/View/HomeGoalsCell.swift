@@ -103,13 +103,14 @@ final class HomeGoalsCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
         }
         
-        progressBar.setProgress(0.8, animated: true)
         backgroundColor = .white
     }
     
     func configure(with item: HomeGoalsItem) {
         logoImage.image = UIImage(named: item.image)
         titleLabel.text = item.title
-        amountLabel.text = "340 000 с из " + String(item.total) + "с"
+        amountLabel.text = String(format: "%.0f", item.introduced) + " с из " + String(format: "%.0f", item.total) + "с"
+        let progress: Float = Float(item.introduced / item.total)
+        progressBar.setProgress(progress, animated: true)
     }
 }

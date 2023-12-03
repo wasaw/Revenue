@@ -92,9 +92,9 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             }
         }
         
-        let goals: [Goal] = [Goal(id: UUID(), image: "goal1", title: "Накопить на машину", total: 40000000, isFinished: false),
-                             Goal(id: UUID(), image: "goal1", title: "Ипотека", total: 7230000, isFinished: false),
-                             Goal(id: UUID(), image: "goal1", title: "Телефон", total: 25000, isFinished: true)]
+        let goals: [Goal] = [Goal(id: UUID(), image: "goal1", title: "Накопить на машину", introduced: 0, total: 40000000, isFinished: false),
+                             Goal(id: UUID(), image: "goal1", title: "Ипотека", introduced: 0, total: 7230000, isFinished: false),
+                             Goal(id: UUID(), image: "goal1", title: "Телефон", introduced: 0, total: 25000, isFinished: true)]
         
         let contributions: [Contribution] = [Contribution(amount: 1000, date: Date(), goal: goals[0].id),
                                                      Contribution(amount: 15000, date: Date(), goal: goals[0].id),
