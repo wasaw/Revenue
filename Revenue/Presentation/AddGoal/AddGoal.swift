@@ -27,6 +27,7 @@ final class AddGoal: UIViewController {
     
 // MARK: - Properties
     
+    private let goalService: GoalsServiceProtocol
     private lazy var backButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "chevron-left"), for: .normal)
@@ -66,6 +67,7 @@ final class AddGoal: UIViewController {
     private lazy var titleTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Название цели"
+        tf.delegate = self
         tf.textColor = .titleColorGray
         return tf
     }()
@@ -106,7 +108,7 @@ final class AddGoal: UIViewController {
     }()
     private lazy var currentAmountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Целевая сумма"
+        label.text = "Текущая сумма"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .titleColorGray
         return label
@@ -131,6 +133,7 @@ final class AddGoal: UIViewController {
         view.backgroundColor = .backgroundLightGray
         return view
     }()
+    private var saveImage = UIImage(named: "goal1")
     
     private lazy var addButton: UIButton = {
         let btn = UIButton(type: .custom)
@@ -144,6 +147,16 @@ final class AddGoal: UIViewController {
     }()
     
 // MARK: - Lifecycle
+    
+    init(goalService: GoalsServiceProtocol) {
+        self.goalService = goalService
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -293,6 +306,18 @@ final class AddGoal: UIViewController {
         view.backgroundColor = .backgroundLightGray
     }
     
+    private func checkButtonStatus() {
+        if titleTextField.text != "" && timeLabel.text != "" && goalAmountTextField.text != "" && currentAmountTextField.text != "" {
+            addButton.backgroundColor = .applyButton
+            addButton.setTitleColor(.white, for: .normal)
+            addButton.isEnabled = true
+        } else {
+            addButton.backgroundColor = .lockButton
+            addButton.setTitleColor(.lockButtonTitle, for: .normal)
+            addButton.isEnabled = false
+        }
+    }
+    
 // MARK: - Helpers
     
     @objc private func handleBackButton() {
@@ -300,7 +325,31 @@ final class AddGoal: UIViewController {
     }
     
     @objc private func handleAddButton() {
+        guard let title = titleTextField.text,
+              let introducedString = currentAmountTextField.text,
+              let introduced = Double(introducedString),
+              let goalString = goalAmountTextField.text,
+              let goal = Double(goalString) else { return }
+        let id = UUID()
         
+        guard let directlyUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileUrl = directlyUrl.appendingPathComponent(id.uuidString)
+        do {
+            if let data = saveImage?.pngData() {
+                try data.write(to: fileUrl)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        goalService.saveGoal(Goal(id: id,
+                                  image: id.uuidString,
+                                  title: title,
+                                  introduced: introduced,
+                                  total: goal,
+                                  date: Date(),
+                                  isFinished: false))
+        handleBackButton()
     }
     
     @objc private func handleTimeView() {
@@ -316,6 +365,7 @@ final class AddGoal: UIViewController {
     
     @objc private func handleHideKeyboard() {
         view.endEditing(true)
+        checkButtonStatus()
     }
 }
 
@@ -327,6 +377,7 @@ extension AddGoal: DatePickerViewControllerDelegate {
     
     func endDate(_ date: String) {
         timeLabel.text = date
+        checkButtonStatus()
     }
 }
 
@@ -335,7 +386,16 @@ extension AddGoal: DatePickerViewControllerDelegate {
 extension AddGoal: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
+        saveImage = image
         goalView.backgroundColor = UIColor(patternImage: image)
         dismiss(animated: true)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension AddGoal: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        checkButtonStatus()
     }
 }

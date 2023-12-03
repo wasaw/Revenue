@@ -188,6 +188,6 @@ extension HomeGoalsView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.showDetailsGoal(for: indexPath.section, at: indexPath.row)
+        delegate?.showDetailsGoal(for: segmentController.selectedSegmentIndex, at: indexPath.row)
     }
 }

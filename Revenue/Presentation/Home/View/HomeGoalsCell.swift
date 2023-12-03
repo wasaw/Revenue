@@ -107,10 +107,21 @@ final class HomeGoalsCell: UITableViewCell {
     }
     
     func configure(with item: HomeGoalsItem) {
-        logoImage.image = UIImage(named: item.image)
         titleLabel.text = item.title
         amountLabel.text = String(format: "%.0f", item.introduced) + " с из " + String(format: "%.0f", item.total) + "с"
         let progress: Float = Float(item.introduced / item.total)
         progressBar.setProgress(progress, animated: true)
+        
+        guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileUrl = directoryUrl.appendingPathComponent(item.image)
+        if FileManager.default.fileExists(atPath: fileUrl.path) {
+            do {
+                let fileData = try Data(contentsOf: fileUrl)
+                guard let image = UIImage(data: fileData) else { return }
+                logoImage.image = image
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }

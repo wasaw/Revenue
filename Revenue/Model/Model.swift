@@ -28,6 +28,7 @@ struct Goal {
     let title: String
     let introduced: Double
     let total: Double
+    let date: Date
     let isFinished: Bool
 }
 

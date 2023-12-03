@@ -5,7 +5,7 @@
 //  Created by Александр Меренков on 03.12.2023.
 //
 
-import Foundation
+import UIKit
 
 final class GoalsService {
     
@@ -28,22 +28,35 @@ extension GoalsService: GoalsServiceProtocol {
             let goalsManagedObject = try coreData.fetchGoals()
             let goals: [Goal] = goalsManagedObject.compactMap { managedObject in
                 guard let id = managedObject.id,
-                      let title = managedObject.title else { return nil }
+                      let title = managedObject.title,
+                      let date = managedObject.date else { return nil }
                 let contributionManagedObject = try? coreData.fetchContributions(id: id)
                 var introduced: Double = 0
                 contributionManagedObject?.forEach { contribution in
                     introduced += contribution.amount
                 }
                 return Goal(id: id,
-                            image: "goal1",
+                            image: id.uuidString,
                             title: title,
                             introduced: introduced,
                             total: managedObject.total,
+                            date: date,
                             isFinished: managedObject.isFinished)
             }
             completion(.success(goals))
         } catch {
             print(error)
+        }
+    }
+    
+    func saveGoal(_ goal: Goal) {
+        coreData.save { context in
+            let goalsManagedObject = GoalManagedObject(context: context)
+            goalsManagedObject.id = goal.id
+            goalsManagedObject.title = goal.title
+            goalsManagedObject.total = goal.total
+            goalsManagedObject.date = goal.date
+            goalsManagedObject.isFinished = goal.isFinished
         }
     }
 }

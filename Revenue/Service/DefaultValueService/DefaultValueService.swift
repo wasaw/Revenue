@@ -5,7 +5,7 @@
 //  Created by Александр Меренков on 21.11.2023.
 //
 
-import Foundation
+import UIKit
 
 final class DefaultValueService {
     
@@ -92,9 +92,12 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             }
         }
         
-        let goals: [Goal] = [Goal(id: UUID(), image: "goal1", title: "Накопить на машину", introduced: 0, total: 40000000, isFinished: false),
-                             Goal(id: UUID(), image: "goal1", title: "Ипотека", introduced: 0, total: 7230000, isFinished: false),
-                             Goal(id: UUID(), image: "goal1", title: "Телефон", introduced: 0, total: 25000, isFinished: true)]
+        let id1 = UUID()
+        let id2 = UUID()
+        let id3 = UUID()
+        let goals: [Goal] = [Goal(id: id1, image: id1.uuidString, title: "Накопить на машину", introduced: 0, total: 40000000, date: Date(), isFinished: false),
+                             Goal(id: id2, image: id2.uuidString, title: "Ипотека", introduced: 0, total: 7230000, date: Date(), isFinished: false),
+                             Goal(id: id3, image: id3.uuidString, title: "Телефон", introduced: 0, total: 25000, date: Date(), isFinished: true)]
         
         let contributions: [Contribution] = [Contribution(amount: 1000, date: Date(), goal: goals[0].id),
                                                      Contribution(amount: 15000, date: Date(), goal: goals[0].id),
@@ -106,6 +109,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                 goalManagedObject.id = goal.id
                 goalManagedObject.title = goal.title
                 goalManagedObject.total = goal.total
+                goalManagedObject.date = goal.date
                 goalManagedObject.isFinished = goal.isFinished
             }
         }
@@ -118,5 +122,18 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                 contributonManagedObject.goal = contribution.goal
             }
         }
+        
+        goals.forEach { goal in
+            guard let directlyUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            let fileUrl = directlyUrl.appendingPathComponent(goal.id.uuidString)
+            do {
+                if let data = UIImage(named: "goal1")!.pngData() {
+                    try data.write(to: fileUrl)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
     }
 }

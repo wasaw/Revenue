@@ -41,13 +41,11 @@ final class GoalDetailsViewController: UIViewController {
     
     private lazy var logoIV: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "goal1")
         iv.contentMode = .scaleAspectFill
         return iv
     }()
     private lazy var titleLable: UILabel = {
         let label = UILabel()
-        label.text = "Накопить на ZEEKR из авто салона"
         label.font = UIFont.systemFont(ofSize: 24)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -81,28 +79,24 @@ final class GoalDetailsViewController: UIViewController {
     }()
     private lazy var goalLabel: UILabel = {
         let label = UILabel()
-        label.text = "4000000c"
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .black
         return label
     }()
     private lazy var periodLabel: UILabel = {
         let label = UILabel()
-        label.text = "21.12.2024"
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .black
         return label
     }()
     private lazy var goalResultLabel: UILabel = {
         let label = UILabel()
-        label.text = "4 000 000 с из 4 000 000 с"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var goalPersentLabel: UILabel = {
         let label = UILabel()
-        label.text = "100%"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .titleColorGray
         return label
@@ -277,7 +271,6 @@ final class GoalDetailsViewController: UIViewController {
             make.top.equalTo(goalResultLabel.snp.bottom)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
         }
-        progressBar.setProgress(0.8, animated: true)
         
         containerView.addSubview(historyLabel)
         historyLabel.snp.makeConstraints { make in
@@ -350,5 +343,29 @@ extension GoalDetailsViewController: GoalDetailsInput {
     func setDate(_ items: [GoalDetilsItem]) {
         goalItems = items
         setupDataSource(items)
+    }
+    
+    func setGoalData(_ item: Goal) {
+        titleLable.text = item.title
+        goalLabel.text = String(format: "%.0f", item.total) + "c"
+        goalResultLabel.text = String(format: "%.0f", item.introduced) + " с из " + String(format: "%.0f", item.total) + "с"
+        let persent: Float = Float(item.introduced / item.total)
+        progressBar.setProgress(persent, animated: true)
+        goalPersentLabel.text = String(format: "%.0f", persent * 100) + "%"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        periodLabel.text = formatter.string(from: Date())
+        
+        guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileUrl = directoryUrl.appendingPathComponent(item.image)
+        if FileManager.default.fileExists(atPath: fileUrl.path) {
+            do {
+                let fileData = try Data(contentsOf: fileUrl)
+                guard let image = UIImage(data: fileData) else { return }
+                logoIV.image = image
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }

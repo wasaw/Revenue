@@ -213,7 +213,7 @@ extension HomePresenter: HomeOutput {
                         introduce += goal.introduced
                         if goal.isFinished == false {
                             self?.isNotFinishedGoals.append(goal)
-                            return HomeGoalsItem(image: goal.image,
+                            return HomeGoalsItem(image: goal.id.uuidString,
                                                  title: goal.title,
                                                  introduced: goal.introduced,
                                                  total: goal.total)
@@ -245,7 +245,7 @@ extension HomePresenter: HomeOutput {
                 let items: [HomeGoalsItem] = goals.compactMap { goal in
                     introduce += goal.introduced
                     if goal.isFinished == isFinished {
-                        return HomeGoalsItem(image: goal.image,
+                        return HomeGoalsItem(image: goal.id.uuidString,
                                              title: goal.title,
                                              introduced: goal.introduced,
                                              total: goal.total)

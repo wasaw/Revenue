@@ -22,12 +22,14 @@ final class GoalDetailsPresenter {
 // MARK: - Properties
     
     weak var input: GoalDetailsInput?
+    private let goalsService: GoalsServiceProtocol
     private let contributinsService: ContributionsServiceProtocol
     private let id: UUID
     
 // MARK: - Lifecycle
     
-    init(contributinsService: ContributionsServiceProtocol, id: UUID) {
+    init(goalsService: GoalsServiceProtocol, contributinsService: ContributionsServiceProtocol, id: UUID) {
+        self.goalsService = goalsService
         self.contributinsService = contributinsService
         self.id = id
     }
@@ -37,6 +39,19 @@ final class GoalDetailsPresenter {
 
 extension GoalDetailsPresenter: GoalDetailsOutput {
     func viewIsReady() {
+        goalsService.fetchGoals { [weak self] result in
+            switch result {
+            case .success(let goals):
+                goals.forEach { goal in
+                    if goal.id == self?.id {
+                        self?.input?.setGoalData(goal)
+                    }
+                }
+            case .failure:
+                break
+            }
+        }
+        
         contributinsService.fetchContributions(for: id) { [weak self] result in
             switch result {
             case .success(let contributions):
