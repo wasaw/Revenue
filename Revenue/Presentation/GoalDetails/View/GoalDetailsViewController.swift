@@ -128,6 +128,7 @@ final class GoalDetailsViewController: UIViewController {
         btn.addTarget(self, action: #selector(handleDetailTable), for: .touchUpInside)
         return btn
     }()
+    private var goalItems: [GoalDetilsItem] = []
     
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = GoalDetailsDataSource(tableView)
@@ -175,6 +176,7 @@ final class GoalDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        output.viewIsReady()
     }
     
 // MARK: - Helpers
@@ -300,7 +302,6 @@ final class GoalDetailsViewController: UIViewController {
             make.bottom.equalToSuperview()
         }
         tableView.backgroundColor = .white
-        setupDataSource([GoalDetilsItem(date: Date(), amount: "")])
     }
     
     private func configureSaveButton() {
@@ -313,7 +314,7 @@ final class GoalDetailsViewController: UIViewController {
         }
     }
     
-    func setupDataSource(_ items: [GoalDetilsItem]) {
+    private func setupDataSource(_ items: [GoalDetilsItem]) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections(GoalDetailsSections.allCases)
@@ -338,7 +339,7 @@ final class GoalDetailsViewController: UIViewController {
     }
     
     @objc private func handleDetailTable() {
-        let vc = ShowAllDetailsViewController()
+        let vc = ShowAllDetailsViewController(goalItems: goalItems)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -346,5 +347,8 @@ final class GoalDetailsViewController: UIViewController {
 // MARK: - GoalDetailsInput
 
 extension GoalDetailsViewController: GoalDetailsInput {
-    
+    func setDate(_ items: [GoalDetilsItem]) {
+        goalItems = items
+        setupDataSource(items)
+    }
 }

@@ -22,10 +22,21 @@ final class ShowAllDetailsViewController: UIViewController {
         btn.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
         return btn
     }()
+    private let goalItems: [GoalDetilsItem]
         
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = GoalDetailsDataSource(tableView)
 // MARK: - Lifecycle
+    
+    init(goalItems: [GoalDetilsItem]) {
+        self.goalItems = goalItems
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -72,7 +83,7 @@ final class ShowAllDetailsViewController: UIViewController {
         }
         tableView.delegate = self
         tableView.backgroundColor = .white
-        setupDataSource([GoalDetilsItem(date: Date(), amount: "")])
+        setupDataSource(goalItems)
     }
     
     private func setupDataSource(_ transactions: [GoalDetilsItem]) {

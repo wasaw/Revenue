@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let transactionService = TransactionsService(coreData: coreData)
         let categoriesService = CategoriesService(coreData: coreData)
         let goalService = GoalsService()
+        let contributionsService = ContributionsService()
         
         let detailedCoordinator = DetailedCoordinator(detailedAssembly: detailedAssembly,
                                                       choiceCategoryAssembly: choiceCategoryAssembly,
@@ -44,7 +45,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               calendarAssembly: calendarAssembly,
                                               transactionService: transactionService,
                                               categoriesService: categoriesService,
-                                              goalService: goalService)
+                                              goalService: goalService,
+                                              contributionsService: contributionsService)
         window?.rootViewController = homeCoordinator.start()
         window?.makeKeyAndVisible()
     }

@@ -22,6 +22,8 @@
 		BB6876612B1B682D00FC65BD /* AddGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876602B1B682D00FC65BD /* AddGoal.swift */; };
 		BB6876642B1C622700FC65BD /* GoalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876632B1C622700FC65BD /* GoalsService.swift */; };
 		BB6876662B1C624200FC65BD /* GoalsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */; };
+		BB6EE43C2B1C70D700D6ED8F /* ContributionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */; };
+		BB6EE43E2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -114,6 +116,8 @@
 		BB6876602B1B682D00FC65BD /* AddGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoal.swift; sourceTree = "<group>"; };
 		BB6876632B1C622700FC65BD /* GoalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsService.swift; sourceTree = "<group>"; };
 		BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsServiceProtocol.swift; sourceTree = "<group>"; };
+		BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsService.swift; sourceTree = "<group>"; };
+		BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsServiceProtocol.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -276,6 +280,15 @@
 			path = GoalsService;
 			sourceTree = "<group>";
 		};
+		BB6EE43A2B1C70BC00D6ED8F /* ContributionsService */ = {
+			isa = PBXGroup;
+			children = (
+				BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */,
+				BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */,
+			);
+			path = ContributionsService;
+			sourceTree = "<group>";
+		};
 		BB77A3752B0647CF00D097E0 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +403,7 @@
 				BB77A3A32B0B98B300D097E0 /* TransactionsService */,
 				BB799AA12B0F529C0085490B /* CategoriesService */,
 				BB6876622B1C620C00FC65BD /* GoalsService */,
+				BB6EE43A2B1C70BC00D6ED8F /* ContributionsService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -805,6 +819,7 @@
 				BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */,
 				BB782A252B13BFB90018AF85 /* DeleteViewController.swift in Sources */,
 				BB77E7642B14BD6B00F80B2E /* AddTransactionPresenter.swift in Sources */,
+				BB6EE43C2B1C70D700D6ED8F /* ContributionsService.swift in Sources */,
 				BBDCF0DE2B0C9BF000AFCDED /* DefaultValueService.swift in Sources */,
 				BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */,
 				BB6876662B1C624200FC65BD /* GoalsServiceProtocol.swift in Sources */,
@@ -836,6 +851,7 @@
 				BB6876642B1C622700FC65BD /* GoalsService.swift in Sources */,
 				BBAB57802B19C0F600B7F645 /* CalendarPresenterOutput.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
+				BB6EE43E2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift in Sources */,
 				BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */,
 				BBAB576C2B191A8900B7F645 /* CalendarOutput.swift in Sources */,
 				BB80A63D2B0E0027003E98C7 /* HomeTransactionsView.swift in Sources */,

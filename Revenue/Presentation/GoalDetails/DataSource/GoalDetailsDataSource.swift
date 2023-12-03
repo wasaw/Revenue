@@ -13,7 +13,7 @@ final class GoalDetailsDataSource: UITableViewDiffableDataSource<GoalDetailsSect
             guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalDetailsCell.reuseIdentifire, for: indexPath) as? GoalDetailsCell else {
                 return UITableViewCell()
             }
-//            cell.configure(with: itemIdentifier)
+            cell.configure(with: itemIdentifier)
             return cell
         }
     }

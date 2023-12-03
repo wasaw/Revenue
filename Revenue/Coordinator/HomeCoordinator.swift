@@ -21,6 +21,7 @@ final class HomeCoordinator {
     private let transactionService: TransactionsServiceProtocol
     private let categoriesService: CategoriesServiceProtocol
     private let goalService: GoalsServiceProtocol
+    private let contributionsService: ContributionsServiceProtocol
     
 // MARK: - Lifecycle
     
@@ -30,7 +31,8 @@ final class HomeCoordinator {
          calendarAssembly: CalendarAssembly,
          transactionService: TransactionsServiceProtocol,
          categoriesService: CategoriesServiceProtocol,
-         goalService: GoalsServiceProtocol) {
+         goalService: GoalsServiceProtocol,
+         contributionsService: ContributionsServiceProtocol) {
         self.detailedCoordinator = detailedCoordinator
         self.choiceCategoryAssembly = choiceCategoryAssembly
         self.showTransactionsAssembly = showTransactionsAssembly
@@ -38,6 +40,7 @@ final class HomeCoordinator {
         self.transactionService = transactionService
         self.categoriesService = categoriesService
         self.goalService = goalService
+        self.contributionsService = contributionsService
     }
     
 // MARK: - Helpers
@@ -91,7 +94,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showGoalDetails() {
-        let presenter = GoalDetailsPresenter()
+        let presenter = GoalDetailsPresenter(contributinsService: contributionsService)
         let vc = GoalDetailsViewController(output: presenter)
         presenter.input = vc
         navigation?.pushViewController(vc, animated: true)

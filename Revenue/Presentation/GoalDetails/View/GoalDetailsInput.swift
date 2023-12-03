@@ -8,5 +8,5 @@
 import Foundation
 
 protocol GoalDetailsInput: AnyObject {
-    
+    func setDate(_ items: [GoalDetilsItem])
 }
