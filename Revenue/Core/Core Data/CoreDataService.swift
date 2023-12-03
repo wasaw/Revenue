@@ -157,4 +157,21 @@ extension CoreDataService: CoreDataServiceProtocol {
         fetchRequest.predicate = NSPredicate(format: "goal == %@", id as CVarArg)
         return try viewContext.fetch(fetchRequest)
     }
+    
+    func deleteGols(for id: UUID) {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.performAndWait {
+            do {
+                let fetchRequest = GoalManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+                guard let goalManagedObject = try backgroundContext.fetch(fetchRequest).first else { return }
+                backgroundContext.delete(goalManagedObject)
+                if backgroundContext.hasChanges {
+                    try backgroundContext.save()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

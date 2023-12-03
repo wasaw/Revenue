@@ -59,4 +59,8 @@ extension GoalsService: GoalsServiceProtocol {
             goalsManagedObject.isFinished = goal.isFinished
         }
     }
+    
+    func deleteGoal(for id: UUID) {
+        coreData.deleteGols(for: id)
+    }
 }

@@ -320,6 +320,7 @@ final class GoalDetailsViewController: UIViewController {
     
     @objc private func handleDetailButton() {
         let vc = GoalDetailsBottomViewController()
+        vc.delegate = self
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
     }
@@ -380,5 +381,14 @@ extension GoalDetailsViewController: GoalDetailsInput {
                 print(error.localizedDescription)
             }
         }
+    }
+}
+
+// MARK: - GoalDetailsBottomViewControllerDelegate
+
+extension GoalDetailsViewController: GoalDetailsBottomViewControllerDelegate {
+    func deleteItem() {
+        handleBackButton()
+        output.delete()
     }
 }

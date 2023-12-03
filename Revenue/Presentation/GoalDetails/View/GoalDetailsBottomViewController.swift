@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol GoalDetailsBottomViewControllerDelegate: AnyObject {
+    func deleteItem()
+}
+
 private enum Constants {
     static let cornerRadius: CGFloat = 30
     static let defaultHeight: CGFloat = 200
@@ -24,6 +28,8 @@ final class GoalDetailsBottomViewController: UIViewController {
 
 // MARK: - Properties
         
+    weak var delegate: GoalDetailsBottomViewControllerDelegate?
+    
     private lazy var blurEffect = UIBlurEffect(style: .dark)
     private lazy var dimmedView = UIVisualEffectView(effect: blurEffect)
     private lazy var containerView: UIView = {
@@ -195,6 +201,20 @@ final class GoalDetailsBottomViewController: UIViewController {
     @objc private func handleDelete() {
         let vc = DeleteViewController()
         vc.modalPresentationStyle = .overFullScreen
+        vc.delegate = self
         present(vc, animated: true)
+    }
+}
+
+// MARK - DeleteViewControllerDelegate
+
+extension GoalDetailsBottomViewController: DeleteViewControllerDelegate {
+    func delete() {
+        delegate?.deleteItem()
+        animateDismissView()
+    }
+    
+    func cancel() {
+        animateDismissView()
     }
 }

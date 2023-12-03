@@ -10,4 +10,5 @@ import Foundation
 protocol GoalsServiceProtocol: AnyObject {
     func fetchGoals(completion: @escaping (Result<[Goal], Error>) -> Void)
     func saveGoal(_ goal: Goal)
+    func deleteGoal(for id: UUID)
 }

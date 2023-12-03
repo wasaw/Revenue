@@ -64,4 +64,8 @@ extension GoalDetailsPresenter: GoalDetailsOutput {
             }
         }
     }
+    
+    func delete() {
+        goalsService.deleteGoal(for: id)
+    }
 }

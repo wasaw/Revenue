@@ -9,4 +9,5 @@ import Foundation
 
 protocol GoalDetailsOutput: AnyObject {
     func viewIsReady()
+    func delete()
 }
