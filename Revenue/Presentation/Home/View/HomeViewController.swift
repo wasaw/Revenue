@@ -304,8 +304,8 @@ extension HomeViewController: HomeRemainsViewProtocol {
 // MARK: - HomeGoalsViewProtocol
 
 extension HomeViewController: HomeGoalsViewProtocol {
-    func showDetails() {
-        output.showGoalDetails()
+    func showDetailsGoal(for section: Int, at index: Int) {
+        output.showGoalDetails(for: section, at: index)
     }
     
     func showAddGoal() {

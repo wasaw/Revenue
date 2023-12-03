@@ -11,21 +11,31 @@ final class ContributionsService {
     
 // MARK: - Properties
     
-    private let contributions: [Contribution] = [Contribution(amount: 1000, date: Date(), goal: "123"),
-                                                 Contribution(amount: 15000, date: Date(), goal: "123"),
-                                                 Contribution(amount: 20000, date: Date(), goal: "11")]
+    private let coreData: CoreDataServiceProtocol
+    
+// MARK: - Lifecycle
+    
+    init(coreData: CoreDataServiceProtocol) {
+        self.coreData = coreData
+    }
 }
 
 // MARK: - ContributionsServiceProtocol
 
 extension ContributionsService: ContributionsServiceProtocol {
-    func fetchContributions(for id: String, completion: @escaping (Result<[Contribution], Error>) -> Void) {
-        let items: [Contribution] = contributions.compactMap { contribution in
-            if contribution.goal == id {
-                return contribution
+    func fetchContributions(for id: UUID, completion: @escaping (Result<[Contribution], Error>) -> Void) {
+        do {
+            let contributionManagedObject = try coreData.fetchContributions(id: id)
+            let items: [Contribution] = contributionManagedObject.compactMap { managedObject in
+                guard let date = managedObject.date,
+                      let goal = managedObject.goal else { return nil }
+                return Contribution(amount: managedObject.amount,
+                                    date: date,
+                                    goal: goal)
             }
-            return nil
+            completion(.success(items))
+        } catch {
+            print(error)
         }
-        completion(.success(items))
     }
 }

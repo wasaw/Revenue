@@ -7,6 +7,11 @@
         <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TransactionManagedObject" inverseName="category" inverseEntity="TransactionManagedObject"/>
     </entity>
+    <entity name="ContributionManagedObject" representedClassName="ContributionManagedObject" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="goal" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
     <entity name="GoalManagedObject" representedClassName="GoalManagedObject" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isFinished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

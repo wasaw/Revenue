@@ -33,5 +33,5 @@ struct Goal {
 struct Contribution {
     let amount: Double
     let date: Date
-    let goal: String
+    let goal: UUID
 }

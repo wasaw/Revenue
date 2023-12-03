@@ -23,11 +23,13 @@ final class GoalDetailsPresenter {
     
     weak var input: GoalDetailsInput?
     private let contributinsService: ContributionsServiceProtocol
+    private let id: UUID
     
 // MARK: - Lifecycle
     
-    init(contributinsService: ContributionsServiceProtocol) {
+    init(contributinsService: ContributionsServiceProtocol, id: UUID) {
         self.contributinsService = contributinsService
+        self.id = id
     }
 }
 
@@ -35,7 +37,7 @@ final class GoalDetailsPresenter {
 
 extension GoalDetailsPresenter: GoalDetailsOutput {
     func viewIsReady() {
-        contributinsService.fetchContributions(for: "123") { [weak self] result in
+        contributinsService.fetchContributions(for: id) { [weak self] result in
             switch result {
             case .success(let contributions):
                 let items: [GoalDetilsItem] = contributions.compactMap { contribution in

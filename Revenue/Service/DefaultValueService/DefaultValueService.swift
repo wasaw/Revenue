@@ -96,6 +96,10 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                              Goal(id: UUID(), image: "goal1", title: "Ипотека", total: 7230000, isFinished: false),
                              Goal(id: UUID(), image: "goal1", title: "Телефон", total: 25000, isFinished: true)]
         
+        let contributions: [Contribution] = [Contribution(amount: 1000, date: Date(), goal: goals[0].id),
+                                                     Contribution(amount: 15000, date: Date(), goal: goals[0].id),
+                                                     Contribution(amount: 20000, date: Date(), goal: goals[1].id)]
+        
         goals.forEach { goal in
             coreData.save { context in
                 let goalManagedObject = GoalManagedObject(context: context)
@@ -103,6 +107,15 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                 goalManagedObject.title = goal.title
                 goalManagedObject.total = goal.total
                 goalManagedObject.isFinished = goal.isFinished
+            }
+        }
+        
+        contributions.forEach { contribution in
+            coreData.save { context in
+                let contributonManagedObject = ContributionManagedObject(context: context)
+                contributonManagedObject.amount = contribution.amount
+                contributonManagedObject.date = contribution.date
+                contributonManagedObject.goal = contribution.goal
             }
         }
     }

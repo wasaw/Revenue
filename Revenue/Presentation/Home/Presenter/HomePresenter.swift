@@ -71,6 +71,8 @@ final class HomePresenter {
     
     private var selectedTransactions: [Transaction] = []
     private var revenueCategories: [TransactionCategory] = []
+    private var isFinishedGoals: [Goal] = []
+    private var isNotFinishedGoals: [Goal] = []
     private let dateFormatter = DateFormatter()
     private let dayDateFormatter = DateFormatter()
 
@@ -203,10 +205,14 @@ extension HomePresenter: HomeOutput {
             goalService.fetchGoals { [weak self] result in
                 switch result {
                 case .success(let goals):
+                    self?.isFinishedGoals = []
+                    self?.isNotFinishedGoals = []
                     let items: [HomeGoalsItem] = goals.compactMap { goal in
                         if goal.isFinished == false {
+                            self?.isNotFinishedGoals.append(goal)
                             return HomeGoalsItem(image: goal.image, title: goal.title, total: goal.total)
                         }
+                        self?.isFinishedGoals.append(goal)
                         return nil
                     }
                     self?.input?.setGoals(items)
@@ -254,7 +260,11 @@ extension HomePresenter: HomeTransactionsOutput {
         output.showShowTransactions(for: revenueCategories[index])
     }
     
-    func showGoalDetails() {
-        output.showGoalDetails()
+    func showGoalDetails(for section: Int, at index: Int) {
+        if section == 0 {
+            output.showGoalDetails(id: isNotFinishedGoals[index].id)
+        } else {
+            output.showGoalDetails(id: isFinishedGoals[index].id)
+        }
     }
 }

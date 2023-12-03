@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ContributionsServiceProtocol: AnyObject {
-    func fetchContributions(for id: String, completion: @escaping (Result<[Contribution], Error>) -> Void)
+    func fetchContributions(for id: UUID, completion: @escaping (Result<[Contribution], Error>) -> Void)
 }

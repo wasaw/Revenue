@@ -12,6 +12,6 @@ protocol HomePresenterOutput: AnyObject {
     func showAddTransaction(isRevenue: Bool)
     func showShowTransactions(for category: TransactionCategory)
     func showCalendar()
-    func showGoalDetails()
+    func showGoalDetails(id: UUID)
     func showAddGoal()
 }

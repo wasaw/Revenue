@@ -12,7 +12,7 @@ protocol HomeOutput: AnyObject {
     func showDetails(at index: Int, in section: Int)
     func fetchData(for segment: Segment)
     func showCalendar()
-    func showGoalDetails()
+    func showGoalDetails(for section: Int, at index: Int)
     func showAddGoal()
     func fetchGoals(isFinished: Bool)
 }

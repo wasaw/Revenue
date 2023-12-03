@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol HomeGoalsViewProtocol: AnyObject {
-    func showDetails()
+    func showDetailsGoal(for section: Int, at index: Int)
     func showAddGoal()
     func fetchGoals(isFinished: Bool)
 }
@@ -188,6 +188,6 @@ extension HomeGoalsView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.showDetails()
+        delegate?.showDetailsGoal(for: indexPath.section, at: indexPath.row)
     }
 }

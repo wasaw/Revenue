@@ -93,8 +93,8 @@ extension HomeCoordinator: HomePresenterOutput {
         topMostViewController?.present(vc, animated: true)
     }
     
-    func showGoalDetails() {
-        let presenter = GoalDetailsPresenter(contributinsService: contributionsService)
+    func showGoalDetails(id: UUID) {
+        let presenter = GoalDetailsPresenter(contributinsService: contributionsService, id: id)
         let vc = GoalDetailsViewController(output: presenter)
         presenter.input = vc
         navigation?.pushViewController(vc, animated: true)
