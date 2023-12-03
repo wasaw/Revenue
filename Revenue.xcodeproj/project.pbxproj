@@ -25,6 +25,7 @@
 		BB6EE43C2B1C70D700D6ED8F /* ContributionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */; };
 		BB6EE43E2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */; };
 		BB6EE4422B1CCA2800D6ED8F /* AddDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE4412B1CCA2800D6ED8F /* AddDetail.swift */; };
+		BB6EE4442B1D06B300D6ED8F /* GoalEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE4432B1D06B300D6ED8F /* GoalEditViewController.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -120,6 +121,7 @@
 		BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsService.swift; sourceTree = "<group>"; };
 		BB6EE43D2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsServiceProtocol.swift; sourceTree = "<group>"; };
 		BB6EE4412B1CCA2800D6ED8F /* AddDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDetail.swift; sourceTree = "<group>"; };
+		BB6EE4432B1D06B300D6ED8F /* GoalEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditViewController.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				BB6876472B1B25F100FC65BD /* GoalDetailsOutput.swift */,
 				BB68764C2B1B45DA00FC65BD /* GoalDetailsCell.swift */,
 				BB68764F2B1B50A300FC65BD /* GoalDetailsBottomViewController.swift */,
+				BB6EE4432B1D06B300D6ED8F /* GoalEditViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -897,6 +900,7 @@
 				BB77A3832B0768F000D097E0 /* DetailedTransactionViewController.swift in Sources */,
 				BB6876422B1B25A100FC65BD /* GoalDetailsPresenter.swift in Sources */,
 				BB8031632B04F3F1000D8307 /* HomeInput.swift in Sources */,
+				BB6EE4442B1D06B300D6ED8F /* GoalEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

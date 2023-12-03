@@ -15,7 +15,7 @@ private enum Constants {
     static let dividerHeight: CGFloat = 0.8
     static let saveButtonHeight: CGFloat = 54
     static let saveButtonRadius: CGFloat = 12
-    static let saveButtonPaddingBottom: CGFloat = 25
+    static let saveButtonPaddingBottom: CGFloat = 45
     static let cornerRadius: CGFloat = 16
     static let valueLabelPadding: CGFloat = 5
 }
@@ -390,5 +390,11 @@ extension GoalDetailsViewController: GoalDetailsBottomViewControllerDelegate {
     func deleteItem() {
         handleBackButton()
         output.delete()
+    }
+    
+    func showEdit() {
+        let goalService = GoalsService(coreData: CoreDataService())
+        let vc = GoalEditViewController(goalService: goalService, selectedId: selectedId)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

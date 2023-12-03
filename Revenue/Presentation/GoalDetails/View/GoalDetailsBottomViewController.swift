@@ -10,6 +10,7 @@ import SnapKit
 
 protocol GoalDetailsBottomViewControllerDelegate: AnyObject {
     func deleteItem()
+    func showEdit()
 }
 
 private enum Constants {
@@ -25,9 +26,9 @@ private enum Constants {
 }
 
 final class GoalDetailsBottomViewController: UIViewController {
-
-// MARK: - Properties
-        
+    
+    // MARK: - Properties
+    
     weak var delegate: GoalDetailsBottomViewControllerDelegate?
     
     private lazy var blurEffect = UIBlurEffect(style: .dark)
@@ -52,6 +53,8 @@ final class GoalDetailsBottomViewController: UIViewController {
     }()
     private lazy var editView: UIView = {
         let view = UIView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEdit))
+        view.addGestureRecognizer(tap)
         return view
     }()
     private lazy var editImageView: UIImageView = {
@@ -85,15 +88,15 @@ final class GoalDetailsBottomViewController: UIViewController {
     private var containerViewHeightConstraint: NSLayoutConstraint?
     private var containerViewBottomConstraint: NSLayoutConstraint?
     
-// MARK: - Lifecycle
-
+    // MARK: - Lifecycle
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         UIView.animate(withDuration: 0.3) {
-           self.containerViewBottomConstraint?.constant = 0
-           self.view.layoutIfNeeded()
-       }
+            self.containerViewBottomConstraint?.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
     
     
@@ -105,7 +108,7 @@ final class GoalDetailsBottomViewController: UIViewController {
         dimmedView.addGestureRecognizer(tapGesture)
     }
     
-// MARK: - Helpers
+    // MARK: - Helpers
     
     private func configureUI() {
         view.addSubview(dimmedView)
@@ -192,7 +195,7 @@ final class GoalDetailsBottomViewController: UIViewController {
         }
     }
     
-// MARK: - Selecters
+    // MARK: - Selecters
     
     @objc private func handleCloseAction() {
         animateDismissView()
@@ -203,6 +206,11 @@ final class GoalDetailsBottomViewController: UIViewController {
         vc.modalPresentationStyle = .overFullScreen
         vc.delegate = self
         present(vc, animated: true)
+    }
+    
+    @objc private func handleEdit() {
+        handleCloseAction()
+        delegate?.showEdit()
     }
 }
 
