@@ -13,7 +13,7 @@ final class HomeGoalsDataSource: UITableViewDiffableDataSource<HomeGoalsSections
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeGoalsCell.reuseIdentifire, for: indexPath) as? HomeGoalsCell else {
                 return UITableViewCell()
             }
-//            cell.configure(with: itemIdentifier)
+            cell.configure(with: itemIdentifier)
             return cell
         }
     }

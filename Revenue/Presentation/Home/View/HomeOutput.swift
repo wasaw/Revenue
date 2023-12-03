@@ -14,4 +14,5 @@ protocol HomeOutput: AnyObject {
     func showCalendar()
     func showGoalDetails()
     func showAddGoal()
+    func fetchGoals(isFinished: Bool)
 }

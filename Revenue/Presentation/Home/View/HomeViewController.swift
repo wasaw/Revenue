@@ -287,6 +287,10 @@ extension HomeViewController: HomeInputProtocol {
     func setCalendarDate(from start: String, to finish: String) {
         calendarLabel.text = "с " + start + " по " + finish
     }
+    
+    func setGoals(_ items: [HomeGoalsItem]) {
+        goalsView.setupDataSource(items)
+    }
 }
 
 // MARK: - HomeRemainsViewProtocol
@@ -306,5 +310,9 @@ extension HomeViewController: HomeGoalsViewProtocol {
     
     func showAddGoal() {
         output.showAddGoal()
+    }
+    
+    func fetchGoals(isFinished: Bool) {
+        output.fetchGoals(isFinished: isFinished)
     }
 }

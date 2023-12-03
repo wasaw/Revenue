@@ -25,14 +25,12 @@ final class HomeGoalsCell: UITableViewCell {
     
     private lazy var logoImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "goal1")
         view.layer.cornerRadius = Constants.imageRadius
         view.layer.masksToBounds = true
         return view
     }()
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Накопить на ZEEKR из авто салона"
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
@@ -44,7 +42,6 @@ final class HomeGoalsCell: UITableViewCell {
     }()
     private lazy var amountLabel: UILabel = {
         let label = UILabel()
-        label.text = "340 000 с из 4 000 000 с"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .titleColorGray
         return label
@@ -108,5 +105,11 @@ final class HomeGoalsCell: UITableViewCell {
         
         progressBar.setProgress(0.8, animated: true)
         backgroundColor = .white
+    }
+    
+    func configure(with item: HomeGoalsItem) {
+        logoImage.image = UIImage(named: item.image)
+        titleLabel.text = item.title
+        amountLabel.text = "340 000 с из " + String(item.total) + "с"
     }
 }

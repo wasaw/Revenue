@@ -20,6 +20,8 @@
 		BB6876572B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */; };
 		BB68765E2B1B63FF00FC65BD /* EditSelectedDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */; };
 		BB6876612B1B682D00FC65BD /* AddGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876602B1B682D00FC65BD /* AddGoal.swift */; };
+		BB6876642B1C622700FC65BD /* GoalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876632B1C622700FC65BD /* GoalsService.swift */; };
+		BB6876662B1C624200FC65BD /* GoalsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */; };
 		BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3732B06474400D097E0 /* HomeCell.swift */; };
 		BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A3762B0647F900D097E0 /* HomeDataSource.swift */; };
 		BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */; };
@@ -110,6 +112,8 @@
 		BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsViewController.swift; sourceTree = "<group>"; };
 		BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSelectedDetail.swift; sourceTree = "<group>"; };
 		BB6876602B1B682D00FC65BD /* AddGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoal.swift; sourceTree = "<group>"; };
+		BB6876632B1C622700FC65BD /* GoalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsService.swift; sourceTree = "<group>"; };
+		BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsServiceProtocol.swift; sourceTree = "<group>"; };
 		BB77A3732B06474400D097E0 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB77A3762B0647F900D097E0 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		BB77A37C2B07685800D097E0 /* DetailedTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -263,6 +267,15 @@
 			path = AddGoal;
 			sourceTree = "<group>";
 		};
+		BB6876622B1C620C00FC65BD /* GoalsService */ = {
+			isa = PBXGroup;
+			children = (
+				BB6876632B1C622700FC65BD /* GoalsService.swift */,
+				BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */,
+			);
+			path = GoalsService;
+			sourceTree = "<group>";
+		};
 		BB77A3752B0647CF00D097E0 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +389,7 @@
 				BBDCF0DC2B0C9BDF00AFCDED /* DefaultValueService */,
 				BB77A3A32B0B98B300D097E0 /* TransactionsService */,
 				BB799AA12B0F529C0085490B /* CategoriesService */,
+				BB6876622B1C620C00FC65BD /* GoalsService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -793,6 +807,7 @@
 				BB77E7642B14BD6B00F80B2E /* AddTransactionPresenter.swift in Sources */,
 				BBDCF0DE2B0C9BF000AFCDED /* DefaultValueService.swift in Sources */,
 				BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */,
+				BB6876662B1C624200FC65BD /* GoalsServiceProtocol.swift in Sources */,
 				BBDCF0CD2B0B9D3400AFCDED /* Model.swift in Sources */,
 				BB799AA32B0F52C60085490B /* CategoriesService.swift in Sources */,
 				BB68762E2B19E6F800FC65BD /* DatePickerViewController.swift in Sources */,
@@ -818,6 +833,7 @@
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,
 				BB68765E2B1B63FF00FC65BD /* EditSelectedDetail.swift in Sources */,
 				BB77A39C2B09458F00D097E0 /* ChoiceCategoryAssembly.swift in Sources */,
+				BB6876642B1C622700FC65BD /* GoalsService.swift in Sources */,
 				BBAB57802B19C0F600B7F645 /* CalendarPresenterOutput.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
 				BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */,

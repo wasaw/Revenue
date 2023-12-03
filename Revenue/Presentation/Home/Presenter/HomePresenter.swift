@@ -42,6 +42,7 @@ struct HomeGoalsItem: Hashable {
     let id = UUID()
     let image: String
     let title: String
+    let total: Double
 }
 
 enum Segment: Int {
@@ -66,6 +67,7 @@ final class HomePresenter {
     private let output: HomePresenterOutput
     private let transactionService: TransactionsServiceProtocol
     private let categoriesService: CategoriesServiceProtocol
+    private let goalService: GoalsServiceProtocol
     
     private var selectedTransactions: [Transaction] = []
     private var revenueCategories: [TransactionCategory] = []
@@ -76,10 +78,12 @@ final class HomePresenter {
     
     init(output: HomePresenterOutput,
          transactionService: TransactionsServiceProtocol,
-         categoriesService: CategoriesServiceProtocol) {
+         categoriesService: CategoriesServiceProtocol,
+         goalService: GoalsServiceProtocol) {
         self.output = output
         self.transactionService = transactionService
         self.categoriesService = categoriesService
+        self.goalService = goalService
         
         dateFormatter.dateFormat = "HH:mm"
         dayDateFormatter.dateFormat = "dd.MM.YYYY"
@@ -196,7 +200,20 @@ extension HomePresenter: HomeOutput {
                 }
             }
         case .goals:
-            break
+            goalService.fetchGoals { [weak self] result in
+                switch result {
+                case .success(let goals):
+                    let items: [HomeGoalsItem] = goals.compactMap { goal in
+                        if goal.isFinished == false {
+                            return HomeGoalsItem(image: goal.image, title: goal.title, total: goal.total)
+                        }
+                        return nil
+                    }
+                    self?.input?.setGoals(items)
+                case .failure:
+                    break
+                }
+            }
         }
     }
     
@@ -206,6 +223,23 @@ extension HomePresenter: HomeOutput {
     
     func showAddGoal() {
         output.showAddGoal()
+    }
+    
+    func fetchGoals(isFinished: Bool) {
+        goalService.fetchGoals { [weak self] result in
+            switch result {
+            case .success(let goals):
+                let items: [HomeGoalsItem] = goals.compactMap { goal in
+                    if goal.isFinished == isFinished {
+                        return HomeGoalsItem(image: goal.image, title: goal.title, total: goal.total)
+                    }
+                    return nil
+                }
+                self?.input?.setGoals(items)
+            case .failure:
+                break
+            }
+        }
     }
 }
 

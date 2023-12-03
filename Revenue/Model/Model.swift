@@ -21,3 +21,16 @@ struct TransactionCategory {
     let isRevenue: Bool
     var total: Double = 0
 }
+
+struct Goal {
+    let image: String
+    let title: String
+    let total: Double
+    let isFinished: Bool
+}
+
+struct Contribution {
+    let amount: Double
+    let date: Date
+    let goal: Goal
+}

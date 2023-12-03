@@ -11,6 +11,7 @@ import SnapKit
 protocol HomeGoalsViewProtocol: AnyObject {
     func showDetails()
     func showAddGoal()
+    func fetchGoals(isFinished: Bool)
 }
 
 private enum Constants {
@@ -143,7 +144,6 @@ final class HomeGoalsView: UIView {
         }
         tableView.backgroundColor = .white
         tableView.delegate = self
-        setupDataSource([HomeGoalsItem(image: "", title: "")])
     }
     
     private func configureButton() {
@@ -167,7 +167,11 @@ final class HomeGoalsView: UIView {
 // MARK: - Selectors
     
     @objc private func handleSegmentController() {
-        
+        if segmentController.selectedSegmentIndex == 0 {
+            delegate?.fetchGoals(isFinished: false)
+        } else {
+            delegate?.fetchGoals(isFinished: true)
+        }
     }
     
     @objc private func handleAddGoal() {
