@@ -26,3 +26,10 @@ extension UIColor {
     static let deleteButtonShadow = UIColor(displayP3Red: 1, green: 89/255, blue: 53/255, alpha: 0.6)
     static let dateButton = UIColor(displayP3Red: 247/255, green: 246/255, blue: 249/255, alpha: 1)
 }
+
+// MARK: - Notification
+
+extension Notification.Name {
+    static let addTransaction = Notification.Name("addTransaction")
+    static let updateTime = Notification.Name("updateTime")
+}

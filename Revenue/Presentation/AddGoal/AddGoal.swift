@@ -372,11 +372,13 @@ final class AddGoal: UIViewController {
 // MARK: - DatePickerViewControllerDelegate
 
 extension AddGoal: DatePickerViewControllerDelegate {
-    func startDate(_ date: String) {
+    func startDate(_ date: Date) {
     }
     
-    func endDate(_ date: String) {
-        timeLabel.text = date
+    func finishDate(_ date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        timeLabel.text = formatter.string(from: date)
         checkButtonStatus()
     }
 }

@@ -12,6 +12,7 @@ final class DefaultValueService {
 // MARK: - Properties
     
     private let coreData: CoreDataServiceProtocol
+    private let userDefaults = UserDefaults.standard
     
 // MARK: - Lifecycle
     
@@ -137,5 +138,9 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             }
         }
         
+        let nowDay = Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()
+        let month = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date())) ?? Date()
+        userDefaults.set(month, forKey: DefaultsValues.startDate)
+        userDefaults.set(nowDay, forKey: DefaultsValues.finishDate)
     }
 }

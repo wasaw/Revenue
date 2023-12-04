@@ -189,9 +189,13 @@ final class SelectionDateViewController: UIViewController {
     }
     
     @objc private func handleAddButton() {
-        guard let start = startDateTextField.text,
-              let end = endDateTextField.text else { return }
-        output.save(start: start, end: end)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        guard let startString = startDateTextField.text,
+              let finishString = endDateTextField.text,
+              let start = formatter.date(from: startString),
+              let finish = formatter.date(from: finishString) else { return }
+        output.save(start: start, finish: finish)
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -227,13 +231,19 @@ extension SelectionDateViewController: SelectionDateInput {
 // MARK: - DatePicketiewDelegate
 
 extension SelectionDateViewController: DatePickerViewControllerDelegate {
-    func startDate(_ date: String) {
-        startDateTextField.text = date
+    func startDate(_ date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        startDateTextField.text = formatter.string(from: date)
+        UserDefaults.standard.set(date, forKey: DefaultsValues.startDate)
         checkButtonStatus()
     }
     
-    func endDate(_ date: String) {
-        endDateTextField.text = date
+    func finishDate(_ date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        endDateTextField.text = formatter.string(from: date)
+        UserDefaults.standard.set(date, forKey: DefaultsValues.finishDate)
         checkButtonStatus()
     }
 }

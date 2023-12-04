@@ -91,7 +91,7 @@ final class HomePresenter {
         dateFormatter.dateFormat = "HH:mm"
         dayDateFormatter.dateFormat = "dd.MM.YYYY"
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: Notification.Name("updateTime"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: .updateTime, object: nil)
     }
     
     private func setCurrentDate() {
@@ -103,19 +103,19 @@ final class HomePresenter {
 // MARK: - Selecter
     
     @objc private func updateTime() {
-        guard let start = UserDefaults.standard.value(forKey: "startTime") as? String,
-              let end = UserDefaults.standard.value(forKey: "endTime") as? String else { return }
-        input?.setCalendarDate(from: start, to: end)
+        guard let start = UserDefaults.standard.value(forKey: DefaultsValues.startDate) as? Date,
+              let finish = UserDefaults.standard.value(forKey: DefaultsValues.finishDate) as? Date else { return }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        input?.setCalendarDate(from: formatter.string(from: start), to: formatter.string(from: finish))
+        load()
     }
-}
-
-// MARK: HomeOutputProtocol
-
-extension HomePresenter: HomeOutput {
-    func viewIsReady() {
-        setCurrentDate()
+    
+    private func load() {
         let total = categoriesService.fetchTotalAmount()
-        transactionService.fetchTransactions { [weak self] result in
+        guard let start = UserDefaults.standard.value(forKey: DefaultsValues.startDate) as? Date,
+              let finish = UserDefaults.standard.value(forKey: DefaultsValues.finishDate) as? Date else { return }
+        transactionService.fetchTransactions(startDate: start, finishDate: finish) { [weak self] result in
             switch result {
             case .success(let transactions):
                 self?.selectedTransactions = transactions
@@ -155,6 +155,15 @@ extension HomePresenter: HomeOutput {
                 break
             }
         }
+    }
+}
+
+// MARK: HomeOutputProtocol
+
+extension HomePresenter: HomeOutput {
+    func viewIsReady() {
+        setCurrentDate()
+        load()
     }
     
     func showDetails(at index: Int, in section: Int) {

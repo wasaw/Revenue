@@ -12,11 +12,15 @@ final class TransactionsService {
 // MARK: - Properties
     
     private let coreData: CoreDataServiceProtocol
+    private let userDefaults = UserDefaults.standard
+    private let formatter = DateFormatter()
     
 // MARK: - Lifecycle
     
     init(coreData: CoreDataServiceProtocol) {
         self.coreData = coreData
+        
+        formatter.dateFormat = "dd.MM.YYYY"
     }
     
 }
@@ -24,22 +28,24 @@ final class TransactionsService {
 // MARK: - TransactionServiceProtocol
 
 extension TransactionsService: TransactionsServiceProtocol {
-    func fetchTransactions(completion: @escaping (Result<[Transaction], Error>) -> Void) {
+    func fetchTransactions(startDate: Date, finishDate: Date, completion: @escaping (Result<[Transaction], Error>) -> Void) {
         do {
             let transactionManagedObject = try coreData.fetchTransactions()
             let transactions: [Transaction] = transactionManagedObject.compactMap { transaction in
-                guard let id = transaction.id,
-                      let comment = transaction.comment,
-                      let date = transaction.date,
-                      let image = transaction.category?.image,
-                      let title = transaction.category?.title,
-                      let isRevenue = transaction.category?.isRevenue else { return nil }
-                      let category = TransactionCategory(image: image, title: title, isRevenue: isRevenue)
-                return Transaction(id: id,
-                                   category: category,
-                                   amount: transaction.amount,
-                                   comment: comment,
-                                   date: date)
+                    guard let id = transaction.id,
+                          let comment = transaction.comment,
+                          let date = transaction.date,
+                          let image = transaction.category?.image,
+                          let title = transaction.category?.title,
+                          let isRevenue = transaction.category?.isRevenue,
+                          date > startDate,
+                          date < finishDate else { return nil }
+                    let category = TransactionCategory(image: image, title: title, isRevenue: isRevenue)
+                    return Transaction(id: id,
+                                       category: category,
+                                       amount: transaction.amount,
+                                       comment: comment,
+                                       date: date)
             }
             completion(.success(transactions))
         } catch {

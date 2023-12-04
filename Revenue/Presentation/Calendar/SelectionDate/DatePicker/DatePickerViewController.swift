@@ -8,8 +8,8 @@
 import UIKit
 
 protocol DatePickerViewControllerDelegate: AnyObject {
-    func startDate(_ date: String)
-    func endDate(_ date: String)
+    func startDate(_ date: Date)
+    func finishDate(_ date: Date)
 }
 
 private enum Constants {
@@ -133,14 +133,14 @@ final class DatePickerViewController: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleDateButton() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YYYY"
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd.MM.YYYY"
         if  dateTitleLabel.text == "С какого числа" {
-            let date = datePicker.date
-            delegate?.startDate(formatter.string(from: date))
+//            let date = datePicker.date
+            delegate?.startDate(datePicker.date)
         } else {
-            let date = datePicker.date
-            delegate?.endDate(formatter.string(from: date))
+//            let date = datePicker.date
+            delegate?.finishDate(datePicker.date)
         }
         dismiss(animated: true)
     }

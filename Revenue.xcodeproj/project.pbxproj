@@ -211,6 +211,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB000DEA2B1DF751000B34F2 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				BB799A9B2B0E27570085490B /* HomeGoalsView.swift */,
+				BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
 		BB68763E2B1B255800FC65BD /* GoalDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,8 +561,7 @@
 				BB8031642B04F40B000D8307 /* HomeOutput.swift */,
 				BB77A3732B06474400D097E0 /* HomeCell.swift */,
 				BB799A972B0E1D350085490B /* HomeRemainsView.swift */,
-				BB799A9B2B0E27570085490B /* HomeGoalsView.swift */,
-				BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */,
+				BB000DEA2B1DF751000B34F2 /* Goals */,
 				BB77E76B2B14BF5900F80B2E /* Transactions */,
 			);
 			path = View;

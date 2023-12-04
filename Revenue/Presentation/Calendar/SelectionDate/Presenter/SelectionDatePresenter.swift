@@ -17,9 +17,7 @@ final class SelectionDatePresenter {
 // MARK: - SelectionDateOutput
 
 extension SelectionDatePresenter: SelectionDateOutput {
-    func save(start: String, end: String) {
-        UserDefaults.standard.set(start, forKey: "startTime")
-        UserDefaults.standard.set(end, forKey: "endTime")
-        NotificationCenter.default.post(name: Notification.Name("updateTime"), object: nil)
+    func save(start: Date, finish: Date) {
+        NotificationCenter.default.post(name: .updateTime, object: nil)
     }
 }

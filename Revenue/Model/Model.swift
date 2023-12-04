@@ -38,3 +38,8 @@ struct Contribution {
     let date: Date
     let goal: UUID
 }
+
+enum DefaultsValues {
+    static let startDate = "startDate"
+    static let finishDate = "finishDate"
+}
