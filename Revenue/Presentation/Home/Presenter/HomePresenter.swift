@@ -76,6 +76,7 @@ final class HomePresenter {
     private var isNotFinishedGoals: [Goal] = []
     private let dateFormatter = DateFormatter()
     private let dayDateFormatter = DateFormatter()
+    private let userDefaults = UserDefaults.standard
 
 // MARK: - Lifecycle
     
@@ -97,14 +98,16 @@ final class HomePresenter {
     private func setCurrentDate() {
         let nowDay = Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()
         let month = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date())) ?? Date()
+        userDefaults.set(month, forKey: DefaultsValues.startDate)
+        userDefaults.set(nowDay, forKey: DefaultsValues.finishDate)
         input?.setCalendarDate(from: dayDateFormatter.string(from: month), to: dayDateFormatter.string(from: nowDay))
     }
     
 // MARK: - Selecter
     
     @objc private func updateTime() {
-        guard let start = UserDefaults.standard.value(forKey: DefaultsValues.startDate) as? Date,
-              let finish = UserDefaults.standard.value(forKey: DefaultsValues.finishDate) as? Date else { return }
+        guard let start = userDefaults.value(forKey: DefaultsValues.startDate) as? Date,
+              let finish = userDefaults.value(forKey: DefaultsValues.finishDate) as? Date else { return }
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         input?.setCalendarDate(from: formatter.string(from: start), to: formatter.string(from: finish))
@@ -113,8 +116,8 @@ final class HomePresenter {
     
     private func load() {
         let total = categoriesService.fetchTotalAmount()
-        guard let start = UserDefaults.standard.value(forKey: DefaultsValues.startDate) as? Date,
-              let finish = UserDefaults.standard.value(forKey: DefaultsValues.finishDate) as? Date else { return }
+        guard let start = userDefaults.value(forKey: DefaultsValues.startDate) as? Date,
+              let finish = userDefaults.value(forKey: DefaultsValues.finishDate) as? Date else { return }
         transactionService.fetchTransactions(startDate: start, finishDate: finish) { [weak self] result in
             switch result {
             case .success(let transactions):
