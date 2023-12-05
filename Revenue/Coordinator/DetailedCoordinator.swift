@@ -61,7 +61,7 @@ extension DetailedCoordinator: DetailedPresenterOutput {
     
     func showDeleteAlert(with transaction: Transaction) {
         self.transaction = transaction
-        let vc = DeleteViewController()
+        let vc = DeleteViewController(titleAlert: "Вы действительно хотите удалить данную транзакцию?")
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         let scenes = UIApplication.shared.connectedScenes

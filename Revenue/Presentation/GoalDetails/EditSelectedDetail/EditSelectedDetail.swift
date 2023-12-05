@@ -153,7 +153,7 @@ final class EditSelectedDetail: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleDeleteButton() {
-        let vc = DeleteViewController()
+        let vc = DeleteViewController(titleAlert: "Вы действительно хотите удалить данный взнос?")
         vc.delegate = self
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
@@ -201,6 +201,7 @@ extension EditSelectedDetail: DeleteViewControllerDelegate {
         dismiss(animated: true)
         handleBackButton()
         contributionsService.delete(for: goalItem.detailId)
+        NotificationCenter.default.post(Notification(name: .delete))
     }
     
     func cancel() {

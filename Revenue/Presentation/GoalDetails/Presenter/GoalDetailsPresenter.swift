@@ -69,5 +69,6 @@ extension GoalDetailsPresenter: GoalDetailsOutput {
     
     func delete() {
         goalsService.deleteGoal(for: id)
+        NotificationCenter.default.post(Notification(name: .delete))
     }
 }

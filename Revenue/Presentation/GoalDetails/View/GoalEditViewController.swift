@@ -381,6 +381,7 @@ final class GoalEditViewController: UIViewController {
                                   date: Date(),
                                   isFinished: false))
         handleBackButton()
+        NotificationCenter.default.post(Notification(name: .updateGoal))
     }
     
     @objc private func handleTimeView() {

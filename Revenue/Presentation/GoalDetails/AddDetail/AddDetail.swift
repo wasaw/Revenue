@@ -179,5 +179,6 @@ final class AddDetail: UIViewController {
               let amount = Double(amountString) else { return }
         contributionService.saveContribution(Contribution(id: UUID(), amount: amount, date: Date(), goal: id))
         handleBackButton()
+        NotificationCenter.default.post(Notification(name: .addContribution))
     }
 }

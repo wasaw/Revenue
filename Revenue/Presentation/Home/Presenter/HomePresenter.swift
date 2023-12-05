@@ -94,6 +94,8 @@ final class HomePresenter {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: .updateTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .addTransaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteTransactions), name: .delete, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTransaction), name: .updateTransaction, object: nil)
     }
     
     private func setCurrentDate() {
@@ -167,6 +169,19 @@ final class HomePresenter {
         load()
         fetchData(for: .revenue)
         fetchData(for: .expenses)
+        input?.showPopUp(.addExpense)
+    }
+    
+    @objc private func deleteTransactions() {
+        sleep(2)
+        load()
+        fetchData(for: .revenue)
+        fetchData(for: .expenses)
+        input?.showPopUp(.deleteTransaction)
+    }
+    
+    @objc private func updateTransaction() {
+        input?.showPopUp(.update)
     }
 }
 

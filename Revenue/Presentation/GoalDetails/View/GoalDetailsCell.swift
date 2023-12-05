@@ -20,7 +20,6 @@ final class GoalDetailsCell: UITableViewCell {
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "12.09.2023"
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
         return label
@@ -63,5 +62,8 @@ final class GoalDetailsCell: UITableViewCell {
     
     func configure(with item: GoalDetilsItem) {
         amountLabel.text = String(item.amount) + "c"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        dateLabel.text = formatter.string(from: item.date)
     }
 }

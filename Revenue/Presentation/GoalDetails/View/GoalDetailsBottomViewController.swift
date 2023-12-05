@@ -202,7 +202,7 @@ final class GoalDetailsBottomViewController: UIViewController {
     }
     
     @objc private func handleDelete() {
-        let vc = DeleteViewController()
+        let vc = DeleteViewController(titleAlert: "Вы действительно хотите удалить данную цель?")
         vc.modalPresentationStyle = .overFullScreen
         vc.delegate = self
         present(vc, animated: true)

@@ -97,6 +97,7 @@ extension DetailedTransactionPresenter: DetailedTransactionOutput {
                 }
             }
         }
+        NotificationCenter.default.post(Notification(name: .updateTransaction))
     }
     
     func showDeleteAlert() {

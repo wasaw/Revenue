@@ -350,6 +350,7 @@ final class AddGoal: UIViewController {
                                   date: Date(),
                                   isFinished: false))
         handleBackButton()
+        NotificationCenter.default.post(Notification(name: .addGoal))
     }
     
     @objc private func handleTimeView() {

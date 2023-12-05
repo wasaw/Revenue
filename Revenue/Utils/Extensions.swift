@@ -31,5 +31,10 @@ extension UIColor {
 
 extension Notification.Name {
     static let addTransaction = Notification.Name("addTransaction")
+    static let addGoal = Notification.Name("addGoal")
+    static let addContribution = Notification.Name("addContributon")
+    static let updateTransaction = Notification.Name("updateTransaction")
     static let updateTime = Notification.Name("updateTime")
+    static let updateGoal = Notification.Name("updateGoal")
+    static let delete = Notification.Name("delete")
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB000DED2B1F6C5B000B34F2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000DEC2B1F6C5B000B34F2 /* PopUp.swift */; };
 		BB68762E2B19E6F800FC65BD /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */; };
 		BB68763B2B1B12DF00FC65BD /* HomeGoalsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */; };
 		BB68763D2B1B133D00FC65BD /* HomeGoalsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68763C2B1B133D00FC65BD /* HomeGoalsDataSource.swift */; };
@@ -103,6 +104,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB000DEC2B1F6C5B000B34F2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
 		BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsCell.swift; sourceTree = "<group>"; };
 		BB68763C2B1B133D00FC65BD /* HomeGoalsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsDataSource.swift; sourceTree = "<group>"; };
@@ -218,6 +220,14 @@
 				BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */,
 			);
 			path = Goals;
+			sourceTree = "<group>";
+		};
+		BB000DEB2B1F6C04000B34F2 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				BB000DEC2B1F6C5B000B34F2 /* PopUp.swift */,
+			);
+			path = PopUp;
 			sourceTree = "<group>";
 		};
 		BB68763E2B1B255800FC65BD /* GoalDetails */ = {
@@ -548,6 +558,7 @@
 				BB68763E2B1B255800FC65BD /* GoalDetails */,
 				BB68765F2B1B680600FC65BD /* AddGoal */,
 				BBAB574B2B160B4500B7F645 /* OtherCategory */,
+				BB000DEB2B1F6C04000B34F2 /* PopUp */,
 				BB782A232B13BFA50018AF85 /* Delete */,
 			);
 			path = Presentation;
@@ -866,6 +877,7 @@
 				BB8031552B04C8B5000D8307 /* HomeViewController.swift in Sources */,
 				BB77A3982B09445F00D097E0 /* ChoiceOutput.swift in Sources */,
 				BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */,
+				BB000DED2B1F6C5B000B34F2 /* PopUp.swift in Sources */,
 				BBAB57542B1631BF00B7F645 /* ShowTransactionsViewController.swift in Sources */,
 				BB77E7682B14BD8600F80B2E /* AddTransactionInput.swift in Sources */,
 				BB8031612B04F3DD000D8307 /* HomePresenter.swift in Sources */,

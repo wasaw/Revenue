@@ -12,6 +12,7 @@ protocol HomeGoalsViewProtocol: AnyObject {
     func showDetailsGoal(for section: Int, at index: Int)
     func showAddGoal()
     func fetchGoals(isFinished: Bool)
+    func showPopUpAlert(_ title: PopUpTitle)
 }
 
 private enum Constants {
@@ -98,6 +99,10 @@ final class HomeGoalsView: UIView {
         configureTableView()
         configureButton()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(addGoal), name: .addGoal, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addContribution), name: .addContribution, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateGoal), name: .updateGoal, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteGoal), name: .delete, object: nil)
         backgroundColor = .white
     }
     
@@ -176,6 +181,27 @@ final class HomeGoalsView: UIView {
     
     @objc private func handleAddGoal() {
         delegate?.showAddGoal()
+    }
+    
+    @objc private func addGoal() {
+        sleep(2)
+        delegate?.fetchGoals(isFinished: false)
+        delegate?.showPopUpAlert(.addGoal)
+    }
+    
+    @objc private func addContribution() {
+        delegate?.showPopUpAlert(.addContributons)
+    }
+    
+    @objc private func updateGoal() {
+        sleep(2)
+        delegate?.fetchGoals(isFinished: false)
+        delegate?.showPopUpAlert(.update)
+    }
+    
+    @objc private func deleteGoal() {
+        delegate?.fetchGoals(isFinished: false)
+        delegate?.showPopUpAlert(.deleteGoal)
     }
 }
 

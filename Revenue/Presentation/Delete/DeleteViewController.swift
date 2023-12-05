@@ -32,6 +32,7 @@ final class DeleteViewController: UIViewController {
 // MARK: - Properties
     
     weak var delegate: DeleteViewControllerDelegate?
+    private let titleAlert: String
     private lazy var alertView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = Constants.cornerRadius
@@ -45,7 +46,6 @@ final class DeleteViewController: UIViewController {
     }()
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Вы действительно хотите удалить данную транзакцию?"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .blackTitle
         label.numberOfLines = 0
@@ -78,6 +78,16 @@ final class DeleteViewController: UIViewController {
     private lazy var dimmedView = UIVisualEffectView(effect: blurEffect)
     
 // MARK: - Lifecycle
+    
+    init(titleAlert: String) {
+        self.titleAlert = titleAlert
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +127,7 @@ final class DeleteViewController: UIViewController {
             make.top.equalTo(trashIV.snp.bottom).offset(Constants.labelPaddingTop)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
         }
+        titleLabel.text = titleAlert
         
         alertView.addSubview(deleteButton)
         deleteButton.snp.makeConstraints { make in
@@ -139,6 +150,7 @@ final class DeleteViewController: UIViewController {
     
     @objc private func handleDeleteButton() {
         delegate?.delete()
+        NotificationCenter.default.post(Notification(name: .delete))
     }
     
     @objc private func handleCancelButton() {

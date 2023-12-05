@@ -291,6 +291,15 @@ extension HomeViewController: HomeInputProtocol {
     func setGoals(_ items: [HomeGoalsItem], total: Double) {
         goalsView.setupDataSource(items, total: total)
     }
+    
+    func showPopUp(_ title: PopUpTitle) {
+        let vc = PopUp(title)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true) { [weak self] in
+            sleep(2)
+            self?.dismiss(animated: true)
+        }
+    }
 }
 
 // MARK: - HomeRemainsViewProtocol
@@ -314,5 +323,14 @@ extension HomeViewController: HomeGoalsViewProtocol {
     
     func fetchGoals(isFinished: Bool) {
         output.fetchGoals(isFinished: isFinished)
+    }
+    
+    func showPopUpAlert(_ title: PopUpTitle) {
+        let vc = PopUp(title)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true) { [weak self] in
+            sleep(1)
+            self?.dismiss(animated: true)
+        }
     }
 }
