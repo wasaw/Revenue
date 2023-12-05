@@ -166,7 +166,13 @@ final class HomeGoalsView: UIView {
         snapshot.appendSections(HomeGoalsSections.allCases)
         snapshot.appendItems(items)
         dataSource.apply(snapshot)
-        balanceLabel.text = String(format: "%.0f", total) + "c"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.decimalSeparator = "."
+        formatter.groupingSeparator = " "
+        guard let balance = formatter.string(from: total as NSNumber) else { return }
+        balanceLabel.text = balance + "c"
     }
     
 // MARK: - Selectors

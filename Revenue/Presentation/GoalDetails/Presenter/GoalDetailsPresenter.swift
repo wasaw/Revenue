@@ -17,6 +17,19 @@ struct GoalDetilsItem: Hashable {
     let amount: Double
     let detailId: UUID
     let goalId: UUID
+    
+    var amountForOutput: String {
+        guard let string = numberFormatter.string(from: amount as NSNumber) else { return "" }
+        return  string + " c"
+    }
+    
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        formatter.groupingSize = 3
+        return formatter
+    }()
 }
 
 final class GoalDetailsPresenter {

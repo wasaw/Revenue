@@ -87,17 +87,11 @@ final class HomeCell: UITableViewCell {
         categoryIV.image = UIImage(named: item.image)
         titleLabel.text = item.title
         rightBottomLabel.text = item.time
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.groupingSeparator = " "
-        numberFormatter.groupingSize = 3
         if item.isRevenue {
-            guard let amountString = numberFormatter.string(from: item.amount as NSNumber) else { return }
-            amountLabel.text = amountString + " c"
+            amountLabel.text = item.amountForOutput
             amountLabel.textColor = .incomeCash
         } else {
-            guard let amountString = numberFormatter.string(from: item.amount as NSNumber) else { return }
-            amountLabel.text = "-" + amountString + " c"
+            amountLabel.text = "-" + item.amountForOutput
             amountLabel.textColor = .outboxCash
         }
     }

@@ -22,6 +22,19 @@ struct ShowTransactionsCategoryItem: Hashable {
     let amount: Double
     let comment: String
     var date: String
+    
+    var amountForOutput: String {
+        guard let string = numberFormatter.string(from: amount as NSNumber) else { return "" }
+        return  string + " c"
+    }
+    
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        formatter.groupingSize = 3
+        return formatter
+    }()
 }
 
 var sectionsShowArray: [String] = []

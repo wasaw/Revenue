@@ -61,7 +61,7 @@ final class GoalDetailsCell: UITableViewCell {
     }
     
     func configure(with item: GoalDetilsItem) {
-        amountLabel.text = String(item.amount) + "c"
+        amountLabel.text = item.amountForOutput
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         dateLabel.text = formatter.string(from: item.date)

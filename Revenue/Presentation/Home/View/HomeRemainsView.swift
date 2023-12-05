@@ -121,7 +121,13 @@ final class HomeRemainsView: UIView {
     }
     
     func setupTotal(_ total: Double) {
-        balanceLabel.text = String(total) + "c"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.decimalSeparator = "."
+        formatter.groupingSeparator = " "
+        guard let balance = formatter.string(from: total as NSNumber) else { return }
+        balanceLabel.text = balance + " c"
     }
 }
 

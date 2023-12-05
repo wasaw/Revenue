@@ -105,7 +105,7 @@ final class ShowTransactionsCell: UITableViewCell {
     
     func configure(with item: ShowTransactionsCategoryItem) {
         categoryIV.image = UIImage(named: item.image)
-        amountLabel.text = String(item.amount) + "c"
+        amountLabel.text = item.amountForOutput
         timeLabel.text = item.date
         if item.comment == "" {
             categoryBottomConstraint?.constant = -Constants.verticalPadding
