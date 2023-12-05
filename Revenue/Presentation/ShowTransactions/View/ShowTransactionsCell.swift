@@ -10,8 +10,11 @@ import SnapKit
 
 private enum Constants {
     static let horizontalPadding: CGFloat = 16
-    static let ivVerticalPadding: CGFloat = 8
+    static let verticalPadding: CGFloat = 8
     static let labelVerticalPadding: CGFloat = 2
+    static let commentViewHeight: CGFloat = 34
+    static let commentPaddingTop: CGFloat = 16
+    static let categoryIV: CGFloat = 50
 }
 
 final class ShowTransactionsCell: UITableViewCell {
@@ -34,6 +37,21 @@ final class ShowTransactionsCell: UITableViewCell {
         label.textColor = .titleColorGray
         return label
     }()
+    private lazy var commentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .dateButton
+        view.layer.borderColor = UIColor.orange.cgColor
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    private lazy var commentLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .titleColorGray
+        label.layer.zPosition = 2
+        return label
+    }()
+    private var categoryBottomConstraint: NSLayoutConstraint?
     
 // MARK: - Lifecycle
     
@@ -53,9 +71,10 @@ final class ShowTransactionsCell: UITableViewCell {
         contentView.addSubview(categoryIV)
         categoryIV.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
-            make.top.equalToSuperview().offset(Constants.ivVerticalPadding)
-            make.bottom.equalToSuperview().offset(-Constants.ivVerticalPadding)
+            make.top.equalToSuperview().offset(Constants.verticalPadding)
         }
+        categoryBottomConstraint = categoryIV.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.categoryIV)
+        categoryBottomConstraint?.isActive = true
         
         contentView.addSubview(amountLabel)
         amountLabel.snp.makeConstraints { make in
@@ -68,11 +87,30 @@ final class ShowTransactionsCell: UITableViewCell {
             make.leading.equalTo(categoryIV.snp.trailing).offset(Constants.horizontalPadding)
             make.bottom.equalTo(categoryIV.snp.bottom).offset(-Constants.labelVerticalPadding)
         }
+        
+        contentView.addSubview(commentLabel)
+        commentLabel.snp.makeConstraints { make in
+            make.leading.equalTo(categoryIV.snp.leading).offset(Constants.verticalPadding)
+            make.top.equalTo(categoryIV.snp.bottom).offset(Constants.commentPaddingTop)
+        }
+        
+        contentView.addSubview(commentView)
+        commentView.snp.makeConstraints { make in
+            make.leading.equalTo(categoryIV.snp.leading)
+            make.top.equalTo(categoryIV.snp.bottom).offset(Constants.verticalPadding)
+            make.trailing.equalTo(commentLabel.snp.trailing).offset(Constants.verticalPadding)
+            make.height.equalTo(Constants.commentViewHeight)
+        }
     }
     
     func configure(with item: ShowTransactionsCategoryItem) {
         categoryIV.image = UIImage(named: item.image)
         amountLabel.text = String(item.amount) + "c"
         timeLabel.text = item.date
+        if item.comment == "" {
+            categoryBottomConstraint?.constant = -Constants.verticalPadding
+            commentView.isHidden = true
+        }
+        commentLabel.text = item.comment
     }
 }
