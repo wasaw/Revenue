@@ -87,7 +87,6 @@ final class AddTransactionViewController: UIViewController {
     private lazy var addButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.layer.cornerRadius = Constants.addButtonRadius
-        btn.setTitle("Добавить доход", for: .normal)
         btn.setTitleColor(.lockButtonTitle, for: .normal)
         btn.backgroundColor = .lockButton
         btn.isEnabled = false
@@ -122,6 +121,7 @@ final class AddTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        output.viewIsReady()
         configureUI()
     }
     
@@ -142,8 +142,6 @@ final class AddTransactionViewController: UIViewController {
     }
     
     private func configureNavigationItem() {
-        navigationItem.title = "Добавление дохода"
-        
         let leftBarButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = leftBarButton
     }
@@ -235,12 +233,27 @@ final class AddTransactionViewController: UIViewController {
             commentTextFiled.text != "" &&
             amoutTextField.text != "" {
             addButton.setTitleColor(.white, for: .normal)
-            addButton.backgroundColor = .applyButton
             addButton.isEnabled = true
         } else {
             addButton.setTitleColor(.lockButtonTitle, for: .normal)
-            addButton.backgroundColor = .lockButton
             addButton.isEnabled = false
+        }
+        if addButton.currentTitle == "Добавить доход" {
+            viewSetUp(isRevenue: true)
+        } else {
+            viewSetUp(isRevenue: false)
+        }
+    }
+    
+    internal func viewSetUp(isRevenue: Bool) {
+        if isRevenue {
+            navigationItem.title = "Добавление дохода"
+            addButton.setTitle("Добавить доход", for: .normal)
+            addButton.backgroundColor = addButton.isEnabled ? .applyButton : .lockButton
+        } else {
+            navigationItem.title = "Добавление расхода"
+            addButton.setTitle("Добавить расход", for: .normal)
+            addButton.backgroundColor = addButton.isEnabled ? .deleteButton : .lockButton
         }
     }
     
@@ -278,6 +291,10 @@ extension AddTransactionViewController: AddTranactionInput {
     
     func dismissView() {
         handleBackButton()
+    }
+    
+    func setUp(isRevenue: Bool) {
+        viewSetUp(isRevenue: isRevenue)
     }
 }
 

@@ -93,6 +93,7 @@ final class HomePresenter {
         dayDateFormatter.dateFormat = "dd.MM.YYYY"
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: .updateTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .addTransaction, object: nil)
     }
     
     private func setCurrentDate() {
@@ -158,6 +159,14 @@ final class HomePresenter {
                 break
             }
         }
+    }
+    
+// MARK: - Selectors
+
+    @objc private func updateTransactions() {
+        load()
+        fetchData(for: .revenue)
+        fetchData(for: .expenses)
     }
 }
 

@@ -8,6 +8,7 @@
 import Foundation
 
 protocol AddTranactionInput: AnyObject {
+    func setUp(isRevenue: Bool)
     func showCategory(_ category: TransactionCategory)
     func dismissView()
 }

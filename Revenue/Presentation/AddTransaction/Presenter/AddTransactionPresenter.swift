@@ -48,11 +48,16 @@ extension AddTransactionPresenter: AddTransactionOutput {
         transactionService.saveTransaction(transaction) { [weak self] result in
             switch result {
             case .success:
+                NotificationCenter.default.post(Notification(name: .addTransaction))
                 self?.input?.dismissView()
             case .failure:
                 break
             }
         }
+    }
+    
+    func viewIsReady() {
+        input?.setUp(isRevenue: isRevenue)
     }
 }
 

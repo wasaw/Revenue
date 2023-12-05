@@ -8,6 +8,7 @@
 import Foundation
 
 protocol AddTransactionOutput: AnyObject {
+    func viewIsReady()
     func showChoiceCategory()
     func saveTransaction(comment: String?, amount: String?)
 }

@@ -95,15 +95,6 @@ extension ShowTransactionsPresenter: ShowTransactionsViewControllerOutput {
                     showTransactions.append(showTransactionsElement)
                 }
                 self?.input?.setTransactions(for: showTransactions)
-//                let items: [ShowTransactionsCategoryItem] = transactions.compactMap { transaction in
-//                    guard let image = self?.category.image,
-//                          let date = self?.timeFormatter.string(from: transaction.date) else { return nil }
-//                    return ShowTransactionsCategoryItem(image: image,
-//                                                        amount: transaction.amount,
-//                                                        comment: transaction.comment,
-//                                                        date: date)
-//                }
-//                self?.input?.setTransactions(items)
             case .failure:
                 break
             }
