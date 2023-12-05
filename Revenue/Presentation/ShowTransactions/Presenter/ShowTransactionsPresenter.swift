@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct ShowTransactions {
+    let sections: [String]
+    let items: [ShowTransactionsCategoryItem]
+}
+
 enum ShowTransactionsCategorySections: Hashable, CaseIterable {
     case section
 }
@@ -19,6 +24,7 @@ struct ShowTransactionsCategoryItem: Hashable {
     var date: String
 }
 
+var sectionsShowArray: [String] = []
 
 final class ShowTransactionsPresenter {
     
@@ -29,6 +35,8 @@ final class ShowTransactionsPresenter {
     private let transactionsService: TransactionsServiceProtocol
     private let category: TransactionCategory
     private var transactions: [Transaction] = []
+    private let timeFormatter = DateFormatter()
+    private let dateFormatter = DateFormatter()
     
 // MARK: - Lifecycle
     
@@ -38,6 +46,9 @@ final class ShowTransactionsPresenter {
         self.transactionsService = transactionsService
         self.output = output
         self.category = category
+        
+        timeFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "dd.MM.YYYY"
     }
 }
 
@@ -50,14 +61,49 @@ extension ShowTransactionsPresenter: ShowTransactionsViewControllerOutput {
             switch result {
             case .success(let transactions):
                 self?.transactions = transactions
-                let items: [ShowTransactionsCategoryItem] = transactions.compactMap { transaction in
-                    guard let image = self?.category.image else { return nil }
-                    return ShowTransactionsCategoryItem(image: image,
-                                                        amount: transaction.amount,
-                                                        comment: transaction.comment,
-                                                        date: "12:50")
+                var dateArray: [String] = []
+                var showTransactions: [ShowTransactions] = []
+                transactions.forEach { [weak self] transaction in
+                    guard let day = self?.dateFormatter.string(from: transaction.date) else {
+                        return
+                    }
+                    if dateArray.isEmpty {
+                        dateArray.append(day)
+                    } else {
+                        let last = dateArray.last
+                        if last != day {
+                            dateArray.append(day)
+                        }
+                    }
                 }
-                self?.input?.setTransactions(items)
+                sectionsShowArray = dateArray
+                dateArray.forEach { dateItem in
+                    var items: [ShowTransactionsCategoryItem] = []
+                    transactions.forEach { transaction in
+                        let day = self?.dateFormatter.string(from: transaction.date)
+                        if dateItem == day {
+                            guard let image = self?.category.image,
+                                  let date = self?.timeFormatter.string(from: transaction.date) else { return }
+                            let element = ShowTransactionsCategoryItem(image: image,
+                                                                       amount: transaction.amount,
+                                                                       comment: transaction.comment,
+                                                                       date: date)
+                            items.append(element)
+                        }
+                    }
+                    let showTransactionsElement = ShowTransactions(sections: [dateItem], items: items)
+                    showTransactions.append(showTransactionsElement)
+                }
+                self?.input?.setTransactions(for: showTransactions)
+//                let items: [ShowTransactionsCategoryItem] = transactions.compactMap { transaction in
+//                    guard let image = self?.category.image,
+//                          let date = self?.timeFormatter.string(from: transaction.date) else { return nil }
+//                    return ShowTransactionsCategoryItem(image: image,
+//                                                        amount: transaction.amount,
+//                                                        comment: transaction.comment,
+//                                                        date: date)
+//                }
+//                self?.input?.setTransactions(items)
             case .failure:
                 break
             }

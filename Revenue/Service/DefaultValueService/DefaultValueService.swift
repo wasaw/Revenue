@@ -57,6 +57,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                                                  otherCategoryFalse]
         
         let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Зарплата", date: Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 7200, comment: "", date: Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: medicineCategory, amount: 27000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: transportCategory, amount: 2500, comment: "", date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: utilitiesCategory, amount: 20000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
@@ -64,6 +65,8 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                             Transaction(id: UUID(), category: cafeCategory, amount: 30000, comment: "Обед", date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: entertainmentCategory, amount: 23000, comment: "", date: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: salaryCategory, amount: 30000, comment: "Аванс", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 1200, comment: "", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 170000, comment: "Премия", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: salaryCategory, amount: 2000, comment: "", date: Calendar.current.date(byAdding: .day, value: -10, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: businessCategory, amount: 323100, comment: "", date: Calendar.current.date(byAdding: .day, value: -11, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: depositeCategory, amount: 27102, comment: "", date: Calendar.current.date(byAdding: .day, value: -15, to: Date()) ?? Date()),

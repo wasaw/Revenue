@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ShowTransactionsDataSource: UITableViewDiffableDataSource<ShowTransactionsCategorySections, ShowTransactionsCategoryItem> {
+final class ShowTransactionsDataSource: UITableViewDiffableDataSource<String, ShowTransactionsCategoryItem> {
     init(_ tableView: UITableView) {
         super.init(tableView: tableView) { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowTransactionsCell.reuseIdentifire, for: indexPath) as? ShowTransactionsCell else {

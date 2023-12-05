@@ -9,7 +9,10 @@ import UIKit
 import SnapKit
 
 private enum Constants {
+    static let horizontalPadding: CGFloat = 16
     static let tablePaddingTop: CGFloat = 10
+    static let headerViewHeight: CGFloat = 45
+    static let headerLabelPaddingTop: CGFloat = 5
 }
 
 final class ShowTransactionViewController: UIViewController {
@@ -18,6 +21,12 @@ final class ShowTransactionViewController: UIViewController {
     
     private let output: ShowTransactionsViewControllerOutput
     
+    private lazy var backButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "chevron-left"), for: .normal)
+        btn.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
+        return btn
+    }()
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = ShowTransactionsDataSource(tableView)
 // MARK: - Lifecycle
@@ -61,14 +70,14 @@ final class ShowTransactionViewController: UIViewController {
     private func configureUI() {
         configureTableView()
         
-        let backImage = UIImage(named: "chevron-left")
-        navigationController?.navigationBar.backIndicatorImage = backImage
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
+        let leftBarButton = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = leftBarButton
         view.backgroundColor = .backgroundLightGray
     }
     
     private func configureTableView() {
         view.addSubview(tableView)
+        tableView.sectionHeaderTopPadding = 0
         tableView.register(ShowTransactionsCell.self, forCellReuseIdentifier: ShowTransactionsCell.reuseIdentifire)
         tableView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -78,14 +87,23 @@ final class ShowTransactionViewController: UIViewController {
         }
         tableView.delegate = self
         tableView.backgroundColor = .white
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
     }
     
-    private func setupDataSource(_ transactions: [ShowTransactionsCategoryItem]) {
+    private func setupDataSource(_ transactions: [ShowTransactions]) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
-        snapshot.appendSections(ShowTransactionsCategorySections.allCases)
-        snapshot.appendItems(transactions)
+        snapshot.appendSections(sectionsShowArray)
+        transactions.forEach { transaction in
+            snapshot.appendItems(transaction.items, toSection: transaction.sections[0])
+        }
         dataSource.apply(snapshot)
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func handleBackButton() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
@@ -96,7 +114,7 @@ extension ShowTransactionViewController: ShowTransactionsViewControllerInput {
         navigationItem.title = title
     }
     
-    func setTransactions(_ items: [ShowTransactionsCategoryItem]) {
+    func setTransactions(for items: [ShowTransactions]) {
         setupDataSource(items)
     }
 }
@@ -107,5 +125,36 @@ extension ShowTransactionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         output.showDetailed(at: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: tableView.frame.width,
+                                              height: Constants.headerViewHeight))
+        let label = UILabel()
+        label.frame = CGRect(x: Constants.horizontalPadding,
+                             y: Constants.headerLabelPaddingTop,
+                             width: tableView.frame.width - Constants.horizontalPadding,
+                             height: Constants.headerViewHeight - Constants.headerLabelPaddingTop)
+        let dayDateFormatter = DateFormatter()
+        dayDateFormatter.dateFormat = "dd.MM.YYYY"
+        let nowday = dayDateFormatter.string(from: Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date())
+        let yesterday = dayDateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date())
+        if sectionsShowArray[section] == nowday {
+            label.text = "Сегодня"
+        } else if sectionsShowArray[section] == yesterday {
+            label.text = "Вчера"
+        } else {
+            label.text = sectionsShowArray[section]
+        }
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .titleColorGray
+        headerView.addSubview(label)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        Constants.headerViewHeight
     }
 }

@@ -117,14 +117,14 @@ final class HomeTransactionsView: UIView {
         if !items.isEmpty {
             setupButton(items[0].isRevenue)
         }
-        
+
         var entries: [PieChartDataEntry] = Array()
         var total: Double = 0
         for item in items {
             entries.append(PieChartDataEntry(value: item.percent))
             total += item.amount
         }
-        
+
         let dataSet = PieChartDataSet(entries: entries)
         dataSet.drawValuesEnabled = false
         dataSet.colors = [.red, .blue, .orange, .brown, .cyan, .magenta, .purple]
