@@ -60,6 +60,8 @@ final class GoalDetailsViewController: UIViewController {
         view.clipsToBounds = true
         return view
     }()
+    private let maximumContainerHeight: CGFloat = UIScreen.main.bounds.height - 84
+    private var currentContainerHeight: CGFloat = Constants.detailViewHeight
     private var containerViewHeightConstraint: NSLayoutConstraint?
     private var containerViewBottomConstraint: NSLayoutConstraint?
     
@@ -171,6 +173,7 @@ final class GoalDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        setupPanGestire()
         output.viewIsReady()
     }
     
@@ -184,7 +187,6 @@ final class GoalDetailsViewController: UIViewController {
         configureContainerContent()
         configureTableView()
         configureSaveButton()
-        
     }
     
     private func configureNavigationItem() {
@@ -308,6 +310,21 @@ final class GoalDetailsViewController: UIViewController {
         }
     }
     
+    private func setupPanGestire() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(gesture: )))
+        panGesture.delaysTouchesBegan = false
+        panGesture.delaysTouchesEnded = false
+        view.addGestureRecognizer(panGesture)
+    }
+    
+    private func animateContainerHeight(_ height: CGFloat) {
+        UIView.animate(withDuration: 0.4) {
+            self.containerViewHeightConstraint?.constant = height
+            self.view.layoutIfNeeded()
+        }
+        currentContainerHeight = height
+    }
+    
     private func setupDataSource(_ items: [GoalDetilsItem]) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
@@ -337,6 +354,31 @@ final class GoalDetailsViewController: UIViewController {
     @objc private func handleDetailTable() {
         let vc = ShowAllDetailsViewController(goalItems: goalItems)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        let isDraggingDown  = translation.y > 0
+        let newHeight = currentContainerHeight - translation.y
+        switch gesture.state {
+        case .changed:
+            if newHeight < maximumContainerHeight {
+                containerViewHeightConstraint?.constant = newHeight
+                view.layoutIfNeeded()
+            }
+        case .ended:
+            if newHeight < Constants.detailViewHeight {
+                animateContainerHeight(Constants.detailViewHeight)
+            }
+            else if newHeight < maximumContainerHeight && isDraggingDown {
+                animateContainerHeight(Constants.detailViewHeight)
+            }
+            else if newHeight > Constants.detailViewHeight && !isDraggingDown {
+                animateContainerHeight(maximumContainerHeight)
+            }
+        default:
+            break
+        }
     }
 }
 
