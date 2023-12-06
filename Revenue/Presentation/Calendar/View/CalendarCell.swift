@@ -24,7 +24,7 @@ final class CalendarCell: UITableViewCell {
     }()
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "MontserratRoman-Bold", size: 18)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 18)
         return label
     }()
     private lazy var checkmarkImageView: UIImageView = {

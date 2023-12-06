@@ -34,15 +34,14 @@ final class DetailedTransactionPresenter {
 // MARK: - Helpers
     
     private func deleteLastCharacter(_ text: String?) -> Double? {
-        let lastCharacter = text?.last
-        if lastCharacter == "c" {
-            guard var text = text else { return nil }
+        var lastCharacter = text?.last
+        guard var text = text else { return nil }
+        while lastCharacter == " " || lastCharacter == "c" {
             _ = text.popLast()
-            return Double(text)
-        } else {
-            guard let text = text else { return nil }
-            return Double(text)
+            lastCharacter = text.last
         }
+        let trimmedString = text.replacingOccurrences(of: " ", with: "")
+        return Double(trimmedString)
     }
 }
 

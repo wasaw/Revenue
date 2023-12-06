@@ -392,7 +392,7 @@ extension GoalDetailsViewController: GoalDetailsInput {
     
     func setGoalData(_ item: Goal) {
         titleLable.text = item.title
-        goalLabel.text = String(format: "%.0f", item.total) + "c"
+        goalLabel.text = item.amountForOutput
         goalResultLabel.text = String(format: "%.0f", item.introduced) + " с из " + String(format: "%.0f", item.total) + "с"
         let persent: Float = Float(item.introduced / item.total)
         progressBar.setProgress(persent, animated: true)

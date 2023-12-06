@@ -106,6 +106,7 @@ final class DetailedTransactionViewController: UIViewController {
         btn.addTarget(self, action: #selector(handleSaveButton), for: .touchUpInside)
         return btn
     }()
+    private var bottomConstraint: NSLayoutConstraint?
     
 // MARK: - Lifecycle
     
@@ -145,6 +146,7 @@ final class DetailedTransactionViewController: UIViewController {
         configureDetailView()
         configureComment()
         configureAmountView()
+        configureButton()
         
         view.addSubview(saveButton)
         NotificationCenter.default.addObserver(self,
@@ -239,6 +241,18 @@ final class DetailedTransactionViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-Constants.verticalPadding)
         }
     }
+    
+    private func configureButton() {
+        view.addSubview(saveButton)
+        saveButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
+//            make.bottom.equalToSuperview().offset(-keyboardHeight - Constants.horizontalPadding)
+            make.height.equalTo(Constants.saveButtonHeight)
+        }
+        bottomConstraint = saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.horizontalPadding)
+        bottomConstraint?.isActive = true
+    }
         
 // MARK: - Selectors
     
@@ -257,13 +271,8 @@ final class DetailedTransactionViewController: UIViewController {
     @objc private func keyboardWilLShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
-            view.addSubview(saveButton)
-            saveButton.snp.makeConstraints { make in
-                make.leading.equalToSuperview().offset(Constants.horizontalPadding)
-                make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
-                make.bottom.equalToSuperview().offset(-keyboardHeight - Constants.horizontalPadding)
-                make.height.equalTo(Constants.saveButtonHeight)
-            }
+            bottomConstraint?.constant = -keyboardHeight
+            view.layoutIfNeeded()
         }
     }
     

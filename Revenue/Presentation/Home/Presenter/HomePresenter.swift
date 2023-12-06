@@ -95,7 +95,7 @@ final class HomePresenter {
     private let categoriesService: CategoriesServiceProtocol
     private let goalService: GoalsServiceProtocol
     
-    private var selectedTransactions: [Transaction] = []
+    private var selectedTransactions: [[Transaction]] = []
     private var revenueCategories: [TransactionCategory] = []
     private var isFinishedGoals: [Goal] = []
     private var isNotFinishedGoals: [Goal] = []
@@ -120,7 +120,7 @@ final class HomePresenter {
         NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: .updateTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .addTransaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteTransactions), name: .delete, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTransaction), name: .updateTransaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .updateTransaction, object: nil)
     }
     
     private func setCurrentDate() {
@@ -149,7 +149,6 @@ final class HomePresenter {
         transactionService.fetchTransactions(startDate: start, finishDate: finish) { [weak self] result in
             switch result {
             case .success(let transactions):
-                self?.selectedTransactions = transactions
                 var dateArray: [String] = []
                 var homeTransactions: [HomeTransactions] = []
                 transactions.forEach { transaction in
@@ -166,9 +165,11 @@ final class HomePresenter {
                 sectionsArray = dateArray
                 dateArray.forEach { dateItem in
                     var items: [HomeRemainsItem] = []
+                    var transactionsArray: [Transaction] = []
                     transactions.forEach { transaction in
                         let day = self?.dayDateFormatter.string(from: transaction.date)
                         if dateItem == day {
+                            transactionsArray.append(transaction)
                             guard let date = self?.dateFormatter.string(from: transaction.date) else { return }
                             let element = HomeRemainsItem(image: transaction.category.image,
                                                           title: transaction.category.title,
@@ -178,6 +179,7 @@ final class HomePresenter {
                             items.append(element)
                         }
                     }
+                    self?.selectedTransactions.append(transactionsArray)
                     let homeTransactionElement = HomeTransactions(sections: [dateItem], item: items)
                     homeTransactions.append(homeTransactionElement)
                 }
@@ -193,15 +195,14 @@ final class HomePresenter {
     @objc private func updateTransactions() {
         load()
         fetchData(for: .revenue)
-        fetchData(for: .expenses)
+//        fetchData(for: .expenses)
         input?.showPopUp(.addExpense)
     }
     
     @objc private func deleteTransactions() {
-        sleep(2)
         load()
         fetchData(for: .revenue)
-        fetchData(for: .expenses)
+//        fetchData(for: .expenses)
         input?.showPopUp(.deleteTransaction)
     }
     
@@ -219,7 +220,7 @@ extension HomePresenter: HomeOutput {
     }
     
     func showDetails(at index: Int, in section: Int) {
-        let transaction = selectedTransactions[index]
+        let transaction = selectedTransactions[section][index]
         output.showDetailed(for: transaction)
     }
     

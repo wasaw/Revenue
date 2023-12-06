@@ -43,6 +43,19 @@ struct Goal {
     let total: Double
     let date: Date
     let isFinished: Bool
+    
+    var amountForOutput: String {
+        guard let string = numberFormatter.string(from: total as NSNumber) else { return "" }
+        return  string + " c"
+    }
+    
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        formatter.groupingSize = 3
+        return formatter
+    }()
 }
 
 struct Contribution {
