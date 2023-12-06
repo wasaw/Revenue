@@ -20,12 +20,13 @@ final class GoalDetailsCell: UITableViewCell {
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         label.textColor = .black
         return label
     }()
     private lazy var amountLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         label.textColor = .incomeCash
         return label
     }()

@@ -46,7 +46,7 @@ final class GoalDetailsViewController: UIViewController {
     }()
     private lazy var titleLable: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 24)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textColor = .white
@@ -66,38 +66,38 @@ final class GoalDetailsViewController: UIViewController {
     private lazy var goalTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Целевая сумма"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 14)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var periodTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Срок"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 14)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var goalLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 24)
         label.textColor = .black
         return label
     }()
     private lazy var periodLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 24)
         label.textColor = .black
         return label
     }()
     private lazy var goalResultLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var goalPersentLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
@@ -110,7 +110,7 @@ final class GoalDetailsViewController: UIViewController {
     private lazy var historyLabel: UILabel = {
         let label = UILabel()
         label.text = "История взносов"
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 18)
         label.textColor = .titleColorGray
         return label
     }()

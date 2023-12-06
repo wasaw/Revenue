@@ -44,7 +44,7 @@ final class PopUp: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Взнос добавлен"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 14)
         return label
     }()
     

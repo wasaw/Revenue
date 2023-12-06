@@ -45,7 +45,7 @@ final class OtherCategory: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Другое"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 20)
         label.textColor = .blackTitle
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -60,6 +60,7 @@ final class OtherCategory: UIViewController {
     private lazy var titleTextField: UITextField = {
         let tf = UITextField()
         tf.textColor = .blackTitle
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         tf.backgroundColor = .backgroundLightGray
         tf.becomeFirstResponder()
         tf.delegate = self

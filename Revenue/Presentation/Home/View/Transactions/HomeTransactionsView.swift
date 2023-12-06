@@ -34,7 +34,7 @@ final class HomeTransactionsView: UIView {
     }()
     private lazy var graphLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         label.textColor = .incomeCash
         return label
     }()
@@ -129,13 +129,22 @@ final class HomeTransactionsView: UIView {
         dataSet.drawValuesEnabled = false
         dataSet.colors = [.red, .blue, .orange, .brown, .cyan, .magenta, .purple]
         graphView.data = PieChartData(dataSet: dataSet)
-        graphLabel.text = String(total) + "c"
 
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections(HomeRevenueSections.allCases)
         snapshot.appendItems(items)
         dataSource.apply(snapshot)
+        
+        let numberFormatter: NumberFormatter = {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.groupingSeparator = " "
+            formatter.groupingSize = 3
+            return formatter
+        }()
+        guard let string = numberFormatter.string(from: total as NSNumber) else { return }
+        graphLabel.text = string + "c"
     }
     
 // MARK: - Selectors

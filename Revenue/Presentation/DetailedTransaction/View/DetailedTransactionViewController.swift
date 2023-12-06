@@ -53,7 +53,7 @@ final class DetailedTransactionViewController: UIViewController {
     }()
     private lazy var typeTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return label
     }()
     private lazy var choiceTypeImage: UIImageView = {
@@ -75,6 +75,7 @@ final class DetailedTransactionViewController: UIViewController {
     private lazy var commentTextFiled: UITextField = {
         let tf = UITextField()
         tf.delegate = self
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         tf.placeholder = "Комментарий"
         return tf
     }()
@@ -82,7 +83,7 @@ final class DetailedTransactionViewController: UIViewController {
     private lazy var amountTitleLabel: UITextField = {
         let label = UITextField()
         label.text = "Сумма"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
@@ -91,7 +92,7 @@ final class DetailedTransactionViewController: UIViewController {
         tf.becomeFirstResponder()
         tf.keyboardType = .numberPad
         tf.delegate = self
-        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
     
@@ -278,7 +279,7 @@ extension DetailedTransactionViewController: DetailedTransactionInput {
         typeImageView.image = UIImage(named: transaction.category.image)
         typeTitleLabel.text = transaction.category.title
         commentTextFiled.text = transaction.comment
-        amoutTextField.text = String(transaction.amount) + "c"
+        amoutTextField.text = transaction.amountForOutput
     }
     
     func turnOnSaveButton() {

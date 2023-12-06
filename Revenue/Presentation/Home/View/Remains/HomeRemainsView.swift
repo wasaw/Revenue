@@ -35,13 +35,13 @@ final class HomeRemainsView: UIView {
     private lazy var balanceTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Текущий остаток"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var balanceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 32)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 32)
         label.textColor = .incomeCash
         return label
     }()
@@ -155,7 +155,7 @@ extension HomeRemainsView: UITableViewDelegate {
         } else {
             label.text = sectionsArray[section]
         }
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Inter-Regular_Bold", size: 16)
         label.textColor = .titleColorGray
         headerView.addSubview(label)
         return headerView

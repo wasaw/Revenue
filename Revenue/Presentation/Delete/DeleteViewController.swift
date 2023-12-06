@@ -46,7 +46,7 @@ final class DeleteViewController: UIViewController {
     }()
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 18)
         label.textColor = .blackTitle
         label.numberOfLines = 0
         label.textAlignment = .center

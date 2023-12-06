@@ -41,7 +41,7 @@ final class HomeViewController: UIViewController {
     }()
     private lazy var calendarLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         label.textColor = .white
         return label
     }()

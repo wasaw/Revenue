@@ -70,6 +70,9 @@
 		BB80A6372B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80A6362B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift */; };
 		BB80A6392B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80A6382B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift */; };
 		BB80A63D2B0E0027003E98C7 /* HomeTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80A63C2B0E0027003E98C7 /* HomeTransactionsView.swift */; };
+		BB87AAE82B20560F008B763C /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB87AAE62B20560E008B763C /* Montserrat-VariableFont_wght.ttf */; };
+		BB87AAE92B20560F008B763C /* Montserrat-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB87AAE72B20560F008B763C /* Montserrat-Italic-VariableFont_wght.ttf */; };
+		BB87AAEC2B205EC3008B763C /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB87AAEB2B205EC3008B763C /* Inter-VariableFont_slnt,wght.ttf */; };
 		BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */; };
 		BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */; };
 		BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */; };
@@ -167,6 +170,9 @@
 		BB80A6362B0D06EB003E98C7 /* ChoiceCategoryPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCategoryPresenterOutput.swift; sourceTree = "<group>"; };
 		BB80A6382B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionPresenterInput.swift; sourceTree = "<group>"; };
 		BB80A63C2B0E0027003E98C7 /* HomeTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTransactionsView.swift; sourceTree = "<group>"; };
+		BB87AAE62B20560E008B763C /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		BB87AAE72B20560F008B763C /* Montserrat-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		BB87AAEB2B205EC3008B763C /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
 		BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterOutput.swift; sourceTree = "<group>"; };
 		BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterInput.swift; sourceTree = "<group>"; };
 		BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategory.swift; sourceTree = "<group>"; };
@@ -571,9 +577,9 @@
 				BB8031622B04F3F1000D8307 /* HomeInput.swift */,
 				BB8031642B04F40B000D8307 /* HomeOutput.swift */,
 				BB77A3732B06474400D097E0 /* HomeCell.swift */,
-				BB799A972B0E1D350085490B /* HomeRemainsView.swift */,
-				BB000DEA2B1DF751000B34F2 /* Goals */,
+				BB87AAEA2B205D3B008B763C /* Remains */,
 				BB77E76B2B14BF5900F80B2E /* Transactions */,
+				BB000DEA2B1DF751000B34F2 /* Goals */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,6 +596,7 @@
 		BB80315C2B04CC9C000D8307 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				BB87AAE52B2055A7008B763C /* Fonts */,
 				BB8031402B04BDEB000D8307 /* AppDelegate.swift */,
 				BB8031422B04BDEB000D8307 /* SceneDelegate.swift */,
 				BB8031492B04BDEF000D8307 /* Assets.xcassets */,
@@ -604,6 +611,24 @@
 				BB80315E2B04CCCE000D8307 /* Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BB87AAE52B2055A7008B763C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BB87AAE72B20560F008B763C /* Montserrat-Italic-VariableFont_wght.ttf */,
+				BB87AAE62B20560E008B763C /* Montserrat-VariableFont_wght.ttf */,
+				BB87AAEB2B205EC3008B763C /* Inter-VariableFont_slnt,wght.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		BB87AAEA2B205D3B008B763C /* Remains */ = {
+			isa = PBXGroup;
+			children = (
+				BB799A972B0E1D350085490B /* HomeRemainsView.swift */,
+			);
+			path = Remains;
 			sourceTree = "<group>";
 		};
 		BBAB574B2B160B4500B7F645 /* OtherCategory */ = {
@@ -819,7 +844,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB87AAE92B20560F008B763C /* Montserrat-Italic-VariableFont_wght.ttf in Resources */,
+				BB87AAEC2B205EC3008B763C /* Inter-VariableFont_slnt,wght.ttf in Resources */,
 				BB80314D2B04BDEF000D8307 /* LaunchScreen.storyboard in Resources */,
+				BB87AAE82B20560F008B763C /* Montserrat-VariableFont_wght.ttf in Resources */,
 				BB80314A2B04BDEF000D8307 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

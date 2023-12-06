@@ -36,7 +36,7 @@ final class AddDetail: UIViewController {
     private lazy var amountTitleLabel: UITextField = {
         let label = UITextField()
         label.text = "Сумма"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
@@ -44,7 +44,7 @@ final class AddDetail: UIViewController {
         let tf = UITextField()
         tf.becomeFirstResponder()
         tf.keyboardType = .numberPad
-        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
     private let contributionService = ContributionsService(coreData: CoreDataService())

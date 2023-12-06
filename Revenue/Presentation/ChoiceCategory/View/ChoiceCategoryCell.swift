@@ -24,7 +24,7 @@ final class ChoiceCategoryCell: UITableViewCell {
     }()
     private lazy var typeTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 15)
         return label
     }()
     private lazy var checkmarkImageView: UIImageView = {

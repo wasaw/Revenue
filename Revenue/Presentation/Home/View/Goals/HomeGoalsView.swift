@@ -43,13 +43,13 @@ final class HomeGoalsView: UIView {
     private lazy var balanceTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Общие накопления"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var balanceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 32)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 32)
         label.textColor = .incomeCash
         return label
     }()

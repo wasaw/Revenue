@@ -42,7 +42,7 @@ final class EditSelectedDetail: UIViewController {
     private lazy var amountTitleLabel: UITextField = {
         let label = UITextField()
         label.text = "Сумма"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
@@ -51,7 +51,7 @@ final class EditSelectedDetail: UIViewController {
         tf.becomeFirstResponder()
         tf.keyboardType = .numberPad
         tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
     private let contributionsService = ContributionsService(coreData: CoreDataService())
@@ -105,7 +105,7 @@ final class EditSelectedDetail: UIViewController {
         configureDetailView()
         configureAmountView()
         
-        amoutTextField.text = String(goalItem.amount)
+        amoutTextField.text = goalItem.amountForOutput
         view.addSubview(saveButton)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWilLShow),

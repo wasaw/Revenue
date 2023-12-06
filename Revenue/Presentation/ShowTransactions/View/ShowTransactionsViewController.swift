@@ -148,7 +148,7 @@ extension ShowTransactionViewController: UITableViewDelegate {
         } else {
             label.text = sectionsShowArray[section]
         }
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Inter-Regular_Bold", size: 16)
         label.textColor = .titleColorGray
         headerView.addSubview(label)
         return headerView

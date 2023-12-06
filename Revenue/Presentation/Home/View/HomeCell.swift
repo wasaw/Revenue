@@ -25,13 +25,13 @@ final class HomeCell: UITableViewCell {
     }()
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var amountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont(name: "MontserratRoman-SemiBold", size: 18)
         label.textColor = .incomeCash
         return label
     }()
@@ -99,7 +99,7 @@ final class HomeCell: UITableViewCell {
     func configure(with item: HomeRevenueItem) {
         categoryIV.image = UIImage(named: item.image)
         titleLabel.text = item.title
-        amountLabel.text = String(item.amount)
+        amountLabel.text = item.amountForOutput
         amountLabel.textColor = .outboxCash
         rightBottomLabel.text = String(format: "%.2f", item.percent) + "%"
         

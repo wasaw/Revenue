@@ -13,6 +13,19 @@ struct Transaction {
     let amount: Double
     let comment: String
     let date: Date
+    
+    var amountForOutput: String {
+        guard let string = numberFormatter.string(from: amount as NSNumber) else { return "" }
+        return  string + " c"
+    }
+    
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        formatter.groupingSize = 3
+        return formatter
+    }()
 }
 
 struct TransactionCategory {

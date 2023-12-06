@@ -55,7 +55,7 @@ final class AddGoal: UIViewController {
     private lazy var goalLabel: UILabel = {
         let label = UILabel()
         label.text = "Добавить изображение"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         label.textColor = .titleColorGray
         return label
     }()
@@ -69,6 +69,7 @@ final class AddGoal: UIViewController {
         tf.placeholder = "Название цели"
         tf.delegate = self
         tf.textColor = .titleColorGray
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
     private lazy var timeView: UIView = {
@@ -82,6 +83,7 @@ final class AddGoal: UIViewController {
         let label = UILabel()
         label.text = "Срок выполнения цели"
         label.textColor = .titleColorGray
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return label
     }()
     private lazy var goalAmountView: UIView = {
@@ -92,13 +94,14 @@ final class AddGoal: UIViewController {
     private lazy var goalAmountLabel: UILabel = {
         let label = UILabel()
         label.text = "Целевая сумма"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var goalAmountTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "0c"
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
     private lazy var currentAmountView: UIView = {
@@ -109,13 +112,14 @@ final class AddGoal: UIViewController {
     private lazy var currentAmountLabel: UILabel = {
         let label = UILabel()
         label.text = "Текущая сумма"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
     private lazy var currentAmountTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "0c"
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
     private lazy var dividerTopView: UIView = {

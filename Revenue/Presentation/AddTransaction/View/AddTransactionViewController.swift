@@ -50,7 +50,7 @@ final class AddTransactionViewController: UIViewController {
     private lazy var typeTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Выберите категорию"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return label
     }()
     private lazy var choiceTypeImage: UIImageView = {
@@ -81,7 +81,7 @@ final class AddTransactionViewController: UIViewController {
         tf.placeholder = "Сумма"
         tf.keyboardType = .numberPad
         tf.delegate = self
-        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
     private lazy var addButton: UIButton = {

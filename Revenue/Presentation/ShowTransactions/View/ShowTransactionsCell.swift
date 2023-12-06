@@ -28,12 +28,12 @@ final class ShowTransactionsCell: UITableViewCell {
     }()
     private lazy var amountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return label
     }()
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
         label.textColor = .titleColorGray
         return label
     }()
@@ -46,7 +46,7 @@ final class ShowTransactionsCell: UITableViewCell {
     }()
     private lazy var commentLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "MontserratRoman-Medium", size: 14)
         label.textColor = .titleColorGray
         label.layer.zPosition = 2
         return label

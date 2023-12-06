@@ -44,6 +44,19 @@ struct HomeRevenueItem: Hashable {
     let amount: Double
     let percent: Double
     let isRevenue: Bool
+    
+    var amountForOutput: String {
+        guard let string = numberFormatter.string(from: amount as NSNumber) else { return "" }
+        return  string + " c"
+    }
+    
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        formatter.groupingSize = 3
+        return formatter
+    }()
 }
 
 enum HomeGoalsSections: Hashable, CaseIterable {

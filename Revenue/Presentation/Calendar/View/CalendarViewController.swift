@@ -38,7 +38,7 @@ final class CalendarViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Период"
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont(name: "MontserratRoman-Bold", size: 18)
         return label
     }()
     private lazy var edgeLineView: UIView = {
