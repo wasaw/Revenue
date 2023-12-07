@@ -14,8 +14,9 @@ private enum Constants {
     static let addButtonHeight: CGFloat = 54
     static let addButtonPaddingBottom: CGFloat = 12
     static let dateViewHeight: CGFloat = 74
-    static let stackViewPaddingTop: CGFloat = 10
+    static let stackViewPaddingTop: CGFloat = 14
     static let separatorViewHeight: CGFloat = 0.8
+    static let titlePaddingTop: CGFloat = 8
 }
 
 final class SelectionDateViewController: UIViewController {
@@ -37,19 +38,33 @@ final class SelectionDateViewController: UIViewController {
         view.addGestureRecognizer(tap)
         return view
     }()
+    private lazy var startDateTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Дата начала"
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
+        label.textColor = .titleColorGray
+        return label
+    }()
     private lazy var startDateTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Дата начала"
         return tf
     }()
-    private lazy var endDateView: UIView = {
+    private lazy var finishDateView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleEndDate))
         view.addGestureRecognizer(tap)
         return view
     }()
-    private lazy var endDateTextField: UITextField = {
+    private lazy var finishDateTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Дата конца"
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
+        label.textColor = .titleColorGray
+        return label
+    }()
+    private lazy var finishDateTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Дата конца"
         return tf
@@ -146,15 +161,15 @@ final class SelectionDateViewController: UIViewController {
             make.centerY.equalToSuperview()
         }
         
-        endDateView.addSubview(endDateTextField)
-        endDateView.snp.makeConstraints { make in
+        finishDateView.addSubview(finishDateTextField)
+        finishDateView.snp.makeConstraints { make in
             make.height.equalTo(Constants.dateViewHeight)
         }
-        endDateTextField.snp.makeConstraints { make in
+        finishDateTextField.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
             make.centerY.equalToSuperview()
         }
-        let stackView = UIStackView(arrangedSubviews: [startDateView, separatorView, endDateView])
+        let stackView = UIStackView(arrangedSubviews: [startDateView, separatorView, finishDateView])
         stackView.axis = .vertical
         view.addSubview(stackView)
         stackView.snp.makeConstraints { make in
@@ -168,10 +183,24 @@ final class SelectionDateViewController: UIViewController {
             make.height.equalTo(Constants.separatorViewHeight)
             make.trailing.equalTo(stackView.snp.trailing)
         }
+        
+        view.addSubview(startDateTitleLabel)
+        startDateTitleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalTo(stackView.snp.top).offset(Constants.titlePaddingTop)
+        }
+        startDateTitleLabel.layer.opacity = 0
+        
+        view.addSubview(finishDateTitleLabel)
+        finishDateTitleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalTo(separatorView.snp.bottom).offset(Constants.titlePaddingTop)
+        }
+        finishDateTitleLabel.layer.opacity = 0
     }
     
     private func checkButtonStatus() {
-        if startDateTextField.text != "" && endDateTextField.text != "" {
+        if startDateTextField.text != "" && finishDateTextField.text != "" {
             addButton.backgroundColor = .applyButton
             addButton.setTitleColor(.white, for: .normal)
             addButton.isEnabled = true
@@ -179,6 +208,16 @@ final class SelectionDateViewController: UIViewController {
             addButton.backgroundColor = .lockButton
             addButton.setTitleColor(.lockButtonTitle, for: .normal)
             addButton.isEnabled = false
+        }
+    }
+    
+    private func showTitle(isStart: Bool) {
+        UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+            if isStart {
+                self?.startDateTitleLabel.layer.opacity = 1
+            } else {
+                self?.finishDateTitleLabel.layer.opacity = 1
+            }
         }
     }
     
@@ -192,7 +231,7 @@ final class SelectionDateViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         guard let startString = startDateTextField.text,
-              let finishString = endDateTextField.text,
+              let finishString = finishDateTextField.text,
               let start = formatter.date(from: startString),
               let finish = formatter.date(from: finishString) else { return }
         output.save(start: start, finish: finish)
@@ -237,13 +276,15 @@ extension SelectionDateViewController: DatePickerViewControllerDelegate {
         startDateTextField.text = formatter.string(from: date)
         UserDefaults.standard.set(date, forKey: DefaultsValues.startDate)
         checkButtonStatus()
+        showTitle(isStart: true)
     }
     
     func finishDate(_ date: Date) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
-        endDateTextField.text = formatter.string(from: date)
+        finishDateTextField.text = formatter.string(from: date)
         UserDefaults.standard.set(date, forKey: DefaultsValues.finishDate)
         checkButtonStatus()
+        showTitle(isStart: false)
     }
 }

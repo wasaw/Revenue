@@ -16,6 +16,7 @@ private enum Constants {
     static let dividerHeight: CGFloat = 0.8
     static let saveButtonHeight: CGFloat = 54
     static let saveButtonRadius: CGFloat = 12
+    static let titlePaddingTop: CGFloat = 8
 }
 
 final class DetailedTransactionViewController: UIViewController {
@@ -72,6 +73,13 @@ final class DetailedTransactionViewController: UIViewController {
         return view
     }()
     
+    private lazy var commentTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Комментарий"
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
+        label.textColor = .titleColorGray
+        return label
+    }()
     private lazy var commentTextFiled: UITextField = {
         let tf = UITextField()
         tf.delegate = self
@@ -136,6 +144,7 @@ final class DetailedTransactionViewController: UIViewController {
         
         output.viewIsReady()
         configureUI()
+        showTitle()
         view.backgroundColor = .backgroundLightGray
     }
     
@@ -209,6 +218,14 @@ final class DetailedTransactionViewController: UIViewController {
             make.height.equalTo(Constants.dividerHeight)
         }
         
+        detailTransactionView.addSubview(commentTitleLabel)
+        commentTitleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalTo(dividerTopView.snp.bottom).offset(Constants.titlePaddingTop)
+            make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
+        }
+        commentTitleLabel.layer.opacity = 0
+        
         detailTransactionView.addSubview(commentTextFiled)
         commentTextFiled.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
@@ -230,15 +247,17 @@ final class DetailedTransactionViewController: UIViewController {
         detailTransactionView.addSubview(amountTitleLabel)
         amountTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
-            make.top.equalTo(dividerBottomView.snp.bottom).offset(Constants.verticalPadding)
+            make.top.equalTo(dividerBottomView.snp.bottom).offset(Constants.titlePaddingTop)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
         }
+        amountTitleLabel.layer.opacity = 0
         
         detailTransactionView.addSubview(amoutTextField)
         amoutTextField.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalTo(dividerBottomView.snp.bottom)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
-            make.bottom.equalToSuperview().offset(-Constants.verticalPadding)
+            make.height.equalTo(Constants.detailViewHeight / 3)
         }
     }
     
@@ -247,11 +266,25 @@ final class DetailedTransactionViewController: UIViewController {
         saveButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
-//            make.bottom.equalToSuperview().offset(-keyboardHeight - Constants.horizontalPadding)
             make.height.equalTo(Constants.saveButtonHeight)
         }
         bottomConstraint = saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.horizontalPadding)
         bottomConstraint?.isActive = true
+    }
+    
+    private func showTitle() {
+        UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+            if self?.commentTextFiled.text == "" {
+                self?.commentTitleLabel.layer.opacity = 0
+            } else {
+                self?.commentTitleLabel.layer.opacity = 1
+            }
+            if self?.amoutTextField.text == "" {
+                self?.commentTitleLabel.layer.opacity = 0
+            } else {
+                self?.amountTitleLabel.layer.opacity = 1
+            }
+        }
     }
         
 // MARK: - Selectors
@@ -309,6 +342,7 @@ extension DetailedTransactionViewController: UITextFieldDelegate {
         if textField == commentTextFiled {
             turnOnSaveButton()
         }
+        showTitle()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -320,5 +354,6 @@ extension DetailedTransactionViewController: UITextFieldDelegate {
         if textField == amoutTextField {
             output.checkAmountChanges(amoutTextField.text)
         }
+        showTitle()
     }
 }

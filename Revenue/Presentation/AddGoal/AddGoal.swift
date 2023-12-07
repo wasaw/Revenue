@@ -21,6 +21,7 @@ private enum Constants {
     static let addButtonHeight: CGFloat = 54
     static let addButtonRadius: CGFloat = 12
     static let addButtonPaddingBottom: CGFloat = 12
+    static let titlePaddingTop: CGFloat = 8
 }
 
 final class AddGoal: UIViewController {
@@ -64,6 +65,13 @@ final class AddGoal: UIViewController {
         view.backgroundColor = .white
         return view
     }()
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Название цели"
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
+        label.textColor = .titleColorGray
+        return label
+    }()
     private lazy var titleTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Название цели"
@@ -78,6 +86,13 @@ final class AddGoal: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTimeView))
         view.addGestureRecognizer(tap)
         return view
+    }()
+    private lazy var timeTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Срок выполнения цели"
+        label.font = UIFont(name: "MontserratRoman-Light", size: 12)
+        label.textColor = .titleColorGray
+        return label
     }()
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
@@ -220,6 +235,12 @@ final class AddGoal: UIViewController {
             make.trailing.equalToSuperview()
             make.height.equalTo(Constants.rowHeight)
         }
+        titleTextView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalToSuperview().offset(Constants.titlePaddingTop)
+        }
+        titleLabel.layer.opacity = 0
         titleTextView.addSubview(titleTextField)
         titleTextField.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
@@ -241,6 +262,12 @@ final class AddGoal: UIViewController {
             make.trailing.equalToSuperview()
             make.height.equalTo(Constants.rowHeight)
         }
+        timeView.addSubview(timeTitleLabel)
+        timeTitleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.horizontalPadding)
+            make.top.equalToSuperview().offset(Constants.titlePaddingTop)
+        }
+        timeTitleLabel.layer.opacity = 0
         timeView.addSubview(timeLabel)
         timeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
@@ -310,6 +337,21 @@ final class AddGoal: UIViewController {
         view.backgroundColor = .backgroundLightGray
     }
     
+    private func showTitle() {
+        UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+            if self?.titleTextField.text == "" {
+                self?.titleLabel.layer.opacity = 0
+            } else {
+                self?.titleLabel.layer.opacity = 1
+            }
+            if self?.timeLabel.text == "Срок выполнения цели" {
+                self?.timeTitleLabel.layer.opacity = 0
+            } else {
+                self?.timeTitleLabel.layer.opacity = 1
+            }
+        }
+    }
+    
     private func checkButtonStatus() {
         if titleTextField.text != "" && timeLabel.text != "" && goalAmountTextField.text != "" && currentAmountTextField.text != "" {
             addButton.backgroundColor = .applyButton
@@ -371,6 +413,7 @@ final class AddGoal: UIViewController {
     @objc private func handleHideKeyboard() {
         view.endEditing(true)
         checkButtonStatus()
+        showTitle()
     }
 }
 
@@ -385,6 +428,7 @@ extension AddGoal: DatePickerViewControllerDelegate {
         formatter.dateFormat = "dd.MM.YYYY"
         timeLabel.text = formatter.string(from: date)
         checkButtonStatus()
+        showTitle()
     }
 }
 
@@ -404,5 +448,6 @@ extension AddGoal: UIImagePickerControllerDelegate, UINavigationControllerDelega
 extension AddGoal: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkButtonStatus()
+        showTitle()
     }
 }
