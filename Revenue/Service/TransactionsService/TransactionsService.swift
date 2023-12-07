@@ -96,11 +96,13 @@ extension TransactionsService: TransactionsServiceProtocol {
     }
     
     func saveTransaction(_ transaction: Transaction, completion: @escaping (Result<Void, Error>) -> Void) {
-        do {
-            try coreData.saveTransaction(transaction: transaction)
-            completion(.success(Void()))
-        } catch {
-            completion(.failure(error))
-        }
+        coreData.saveTransaction(transaction: transaction, completion: { result in
+            switch result {
+            case .success:
+                completion(.success(Void()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 }

@@ -281,6 +281,9 @@ extension HomeViewController: HomeInputProtocol {
     
     func setRevenue(_ items: [HomeRevenueItem]) {
         revenueView.setupDataSource(items)
+    }
+    
+    func setExpenses(_ items: [HomeRevenueItem]) {
         expensesView.setupDataSource(items)
     }
     

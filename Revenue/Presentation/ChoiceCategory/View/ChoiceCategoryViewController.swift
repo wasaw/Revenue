@@ -188,15 +188,17 @@ final class ChoiceCategoryViewController: UIViewController {
 // MARK: - ChoiceInput
 
 extension ChoiceCategoryViewController: ChoiceInput {
-    func setCategories(_ items: [TableCategoryItem]) {
+    func setCategories(_ items: [TableCategoryItem], isHidden: Bool?) {
         setupDataSource(items)
-    }
-    
-    func showSegmentControlelr(isHidden: Bool) {
+        
+        guard let isHidden = isHidden else { return }
         if isHidden {
             segmentController.isHidden = true
             segmentHeight?.constant = 0
             view.layoutIfNeeded()
+            if items[0].isRevenue == false {
+                segmentController.selectedSegmentIndex = 1
+            }
         } else {
             segmentController.isHidden = false
             segmentHeight?.constant = Constants.segmentHeight

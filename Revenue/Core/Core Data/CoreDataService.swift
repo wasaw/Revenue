@@ -84,7 +84,7 @@ extension CoreDataService: CoreDataServiceProtocol {
         }
     }
     
-    func saveTransaction(transaction: Transaction) throws -> Void {
+    func saveTransaction(transaction: Transaction, completion: @escaping (Result<Void, Error>) -> Void){
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.performAndWait {
             do {
@@ -100,9 +100,10 @@ extension CoreDataService: CoreDataServiceProtocol {
                 categoryManagedObject?.addToTransactions(transactionManagedObject)
                 if backgroundContext.hasChanges {
                     try backgroundContext.save()
+                    completion(.success(()))
                 }
             } catch {
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
     }

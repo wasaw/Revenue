@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 protocol OtherCategoryViewControllerDelegate: AnyObject {
-    func addOther()
     func cancel()
+    func root()
 }
 
 private enum Constants {
@@ -63,6 +63,7 @@ final class OtherCategory: UIViewController {
         tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         tf.backgroundColor = .backgroundLightGray
         tf.becomeFirstResponder()
+        tf.keyboardType = .numberPad
         tf.delegate = self
         return tf
     }()
@@ -164,7 +165,20 @@ final class OtherCategory: UIViewController {
 // MARK: - Selectors
     
     @objc private func handleAddButton() {
-        delegate?.addOther()
+        guard let text = titleTextField.text else { return }
+        let amount = (text as NSString).doubleValue
+        let service = TransactionsService(coreData: CoreDataService())
+        service.saveTransaction(Transaction(id: UUID(),
+                                            category: TransactionCategory(image: "other", title: "Другое", isRevenue: true),
+                                            amount: amount, comment: "",
+                                            date: Date())) { [weak self] result in
+            switch result {
+            case .success:
+                self?.delegate?.root()
+            case .failure:
+                break
+            }
+        }
     }
     
     @objc private func handleCancelButton() {

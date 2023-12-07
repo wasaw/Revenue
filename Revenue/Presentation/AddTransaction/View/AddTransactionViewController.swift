@@ -94,6 +94,7 @@ final class AddTransactionViewController: UIViewController {
         return btn
     }()
     private var buttomConstraint: NSLayoutConstraint?
+    private var isRevenue = true
     
 // MARK: - Lifecycle
     
@@ -255,6 +256,7 @@ final class AddTransactionViewController: UIViewController {
             addButton.setTitle("Добавить расход", for: .normal)
             addButton.backgroundColor = addButton.isEnabled ? .deleteButton : .lockButton
         }
+        self.isRevenue = isRevenue
     }
     
 // MARK: - Helpers
@@ -268,7 +270,7 @@ final class AddTransactionViewController: UIViewController {
     }
     
     @objc private func handleAddButton() {
-        output.saveTransaction(comment: commentTextFiled.text, amount: amoutTextField.text)
+        output.saveTransaction(comment: commentTextFiled.text, amount: amoutTextField.text, for: isRevenue)
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {

@@ -35,7 +35,7 @@ extension AddTransactionPresenter: AddTransactionOutput {
         output.showChoiceCategory(isRevenue: isRevenue)
     }
     
-    func saveTransaction(comment: String?, amount: String?) {
+    func saveTransaction(comment: String?, amount: String?, for isRevenue: Bool) {
         guard let category = selectedCategory,
               let comment = comment,
               let amountString = amount,
@@ -49,7 +49,11 @@ extension AddTransactionPresenter: AddTransactionOutput {
             switch result {
             case .success:
                 self?.input?.dismissView()
-                NotificationCenter.default.post(Notification(name: .addTransaction))
+                if isRevenue {
+                    NotificationCenter.default.post(Notification(name: .addRevenue))
+                } else {
+                    NotificationCenter.default.post(Notification(name: .addExpenses))
+                }
             case .failure:
                 break
             }

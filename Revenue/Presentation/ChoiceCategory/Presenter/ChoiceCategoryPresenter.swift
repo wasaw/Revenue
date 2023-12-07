@@ -48,19 +48,15 @@ final class ChoiceCategoryPresenter {
 
 extension ChoiceCategoryPresenter: ChoiceOutput {
     func fetchRevenue() {
-        input?.setCategories(revenue)
+        input?.setCategories(revenue, isHidden: nil)
     }
     
     func fetchExpense() {
-        input?.setCategories(expense)
+        input?.setCategories(expense, isHidden: nil)
     }
     
     func viewIsReady() {
-        if selectedCategory == nil {
-            input?.showSegmentControlelr(isHidden: true)
-        } else {
-            input?.showSegmentControlelr(isHidden: false)
-        }
+        let isHidden = (selectedCategory == nil) ? true : false
         categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
             switch result {
             case .success(let tuple):
@@ -69,7 +65,7 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
                     if (self?.selectedCategory != nil && category.title == "Другое") { return nil }
                     return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
                 }
-                self?.input?.setCategories(items)
+                self?.input?.setCategories(items, isHidden: self?.isHidden)
                 self?.revenue = items
             case .failure:
                 break
@@ -88,9 +84,10 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
             }
         }
         guard let isRevenue = isRevenue, isRevenue == false else { return }
-        input?.setCategories(expense)
+        input?.setCategories(expense, isHidden: isHidden)
     }
     
+//  MARK: -  Check
     func updateSelectedCell(at index: Int, in segment: Int) {
         if segment == 0 {
             revenue.enumerated().forEach { iElement, _ in
@@ -102,7 +99,7 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
             selectedCategory = TransactionCategory(image: revenue[index].image,
                                                    title: revenue[index].title,
                                                    isRevenue: revenue[index].isRevenue)
-            input?.setCategories(revenue)
+            input?.setCategories(revenue, isHidden: nil)
         } else {
             expense.enumerated().forEach { iElement, _ in
                 expense[iElement].isSelected = (iElement == index) ? true : false
@@ -113,7 +110,7 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
             selectedCategory = TransactionCategory(image: expense[index].image,
                                                    title: expense[index].title,
                                                    isRevenue: expense[index].isRevenue)
-            input?.setCategories(expense)
+            input?.setCategories(expense, isHidden: nil)
         }
     }
     

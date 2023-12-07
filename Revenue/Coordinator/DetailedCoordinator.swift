@@ -75,11 +75,11 @@ extension DetailedCoordinator: DetailedPresenterOutput {
 // MARK: - ChoiceCategoryPresenterOutput
 
 extension DetailedCoordinator: ChoiceCategoryPresenterOutput {
-    func updateSelectedCategory(_ category: TransactionCategory) {
-        detailedPresenterInput?.updateTransactionCategory(category)
+    func showOtherCategory() {
     }
     
-    func showOtherCategory() {
+    func updateSelectedCategory(_ category: TransactionCategory) {
+        detailedPresenterInput?.updateTransactionCategory(category)
     }
 }
 

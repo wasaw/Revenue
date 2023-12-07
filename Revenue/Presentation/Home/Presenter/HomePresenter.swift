@@ -119,9 +119,10 @@ final class HomePresenter {
         dayDateFormatter.dateFormat = "dd.MM.YYYY"
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: .updateTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .addTransaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .addRevenue, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteTransactions), name: .delete, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .updateTransaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateExpenses), name: .addExpenses, object: nil)
     }
     
     private func setCurrentDate() {
@@ -196,19 +197,23 @@ final class HomePresenter {
     @objc private func updateTransactions() {
         load()
         fetchData(for: .revenue)
-//        fetchData(for: .expenses)
-        input?.showPopUp(.addExpense)
+        input?.showPopUp(.addIncome)
     }
     
     @objc private func deleteTransactions() {
         load()
         fetchData(for: .revenue)
-//        fetchData(for: .expenses)
         input?.showPopUp(.deleteTransaction)
     }
     
     @objc private func updateTransaction() {
         input?.showPopUp(.update)
+    }
+    
+    @objc private func updateExpenses() {
+        load()
+        fetchData(for: .expenses)
+        input?.showPopUp(.addExpense)
     }
 }
 
@@ -260,7 +265,7 @@ extension HomePresenter: HomeOutput {
                                                percent: ((category.total / tuple.total) * 100),
                                                isRevenue: category.isRevenue)
                     }
-                    self?.input?.setRevenue(items)
+                    self?.input?.setExpenses(items)
                 case .failure:
                     break
                 }

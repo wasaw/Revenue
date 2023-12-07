@@ -147,7 +147,9 @@ extension HomeCoordinator: ChoiceCategoryPresenterOutput {
 // MARK: - OtherCategoryViewControllerDelegate
 
 extension HomeCoordinator: OtherCategoryViewControllerDelegate {
-    func addOther() {
+    func root() {
+        navigation?.dismiss(animated: true)
+        navigation?.popToRootViewController(animated: true)
     }
     
     func cancel() {

@@ -8,6 +8,5 @@
 import Foundation
 
 protocol ChoiceInput: AnyObject {
-    func setCategories(_ items: [TableCategoryItem])
-    func showSegmentControlelr(isHidden: Bool)
+    func setCategories(_ items: [TableCategoryItem], isHidden: Bool?)
 }
