@@ -103,10 +103,26 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                              Goal(id: id2, image: id2.uuidString, title: "Ипотека", introduced: 0, total: 7230000, date: Date(), isFinished: false),
                              Goal(id: id3, image: id3.uuidString, title: "Телефон", introduced: 0, total: 25000, date: Date(), isFinished: true)]
         
-        let contributions: [Contribution] = [Contribution(id: UUID(), amount: 1000, date: Date(), goal: goals[0].id),
-                                             Contribution(id: UUID(), amount: 15000, date: Date(), goal: goals[0].id),
-                                             Contribution(id: UUID(), amount: 20000, date: Date(), goal: goals[1].id),
-                                             Contribution(id: UUID(), amount: 25000, date: Date(), goal: goals[2].id)]
+        let contributions: [Contribution] = [Contribution(id: UUID(), amount: 1000, date: Date(), goal: id1),
+                                             Contribution(id: UUID(), amount: 5000, date: Date(), goal: id1),
+                                             Contribution(id: UUID(), amount: 300, date: Date(), goal: id1),
+                                             Contribution(id: UUID(), amount: 15000, date: Date(), goal: id1),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -11, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -4, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -6, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -8, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -10, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -11, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -12, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -13, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 20000, date: Calendar.current.date(byAdding: .day, value: -14, to: Date()) ?? Date(), goal: id2),
+                                             Contribution(id: UUID(), amount: 25000, date: Date(), goal: id3)]
         
         goals.forEach { goal in
             coreData.save { context in

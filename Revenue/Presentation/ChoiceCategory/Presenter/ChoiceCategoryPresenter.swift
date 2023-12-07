@@ -65,7 +65,7 @@ extension ChoiceCategoryPresenter: ChoiceOutput {
                     if (self?.selectedCategory != nil && category.title == "Другое") { return nil }
                     return TableCategoryItem(image: category.image, title: category.title, isRevenue: category.isRevenue, isSelected: isSelected)
                 }
-                self?.input?.setCategories(items, isHidden: self?.isHidden)
+                self?.input?.setCategories(items, isHidden: isHidden)
                 self?.revenue = items
             case .failure:
                 break
