@@ -69,6 +69,7 @@ struct HomeGoalsItem: Hashable {
     let title: String
     let introduced: Double
     let total: Double
+    let date: Date
 }
 
 enum Segment: Int {
@@ -278,7 +279,8 @@ extension HomePresenter: HomeOutput {
                             return HomeGoalsItem(image: goal.id.uuidString,
                                                  title: goal.title,
                                                  introduced: goal.introduced,
-                                                 total: goal.total)
+                                                 total: goal.total,
+                                                 date: goal.date)
                         }
                         self?.isFinishedGoals.append(goal)
                         return nil
@@ -310,7 +312,8 @@ extension HomePresenter: HomeOutput {
                         return HomeGoalsItem(image: goal.id.uuidString,
                                              title: goal.title,
                                              introduced: goal.introduced,
-                                             total: goal.total)
+                                             total: goal.total,
+                                             date: goal.date)
                     }
                     return nil
                 }

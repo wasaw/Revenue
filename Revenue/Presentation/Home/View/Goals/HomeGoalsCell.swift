@@ -48,7 +48,6 @@ final class HomeGoalsCell: UITableViewCell {
     }()
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "до 21.12.2024"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .titleColorGray
         return label
@@ -111,6 +110,9 @@ final class HomeGoalsCell: UITableViewCell {
         amountLabel.text = String(format: "%.0f", item.introduced) + " с из " + String(format: "%.0f", item.total) + "с"
         let progress: Float = Float(item.introduced / item.total)
         progressBar.setProgress(progress, animated: true)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        dateLabel.text = "до " + formatter.string(from: item.date)
         
         guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileUrl = directoryUrl.appendingPathComponent(item.image)

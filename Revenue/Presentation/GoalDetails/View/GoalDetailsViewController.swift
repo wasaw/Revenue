@@ -399,7 +399,7 @@ extension GoalDetailsViewController: GoalDetailsInput {
         goalPersentLabel.text = String(format: "%.0f", persent * 100) + "%"
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
-        periodLabel.text = formatter.string(from: Date())
+        periodLabel.text = formatter.string(from: item.date)
         selectedId = item.id
         
         if item.isFinished {

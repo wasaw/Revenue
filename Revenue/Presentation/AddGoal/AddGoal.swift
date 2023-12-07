@@ -116,6 +116,7 @@ final class AddGoal: UIViewController {
     private lazy var goalAmountTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "0c"
+        tf.keyboardType = .numberPad
         tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
@@ -134,6 +135,7 @@ final class AddGoal: UIViewController {
     private lazy var currentAmountTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "0c"
+        tf.keyboardType = .numberPad
         tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
@@ -152,6 +154,7 @@ final class AddGoal: UIViewController {
         view.backgroundColor = .backgroundLightGray
         return view
     }()
+    private var goalFinishDate = Date()
     private var saveImage = UIImage(named: "goal1")
     
     private lazy var addButton: UIButton = {
@@ -393,7 +396,7 @@ final class AddGoal: UIViewController {
                                   title: title,
                                   introduced: introduced,
                                   total: goal,
-                                  date: Date(),
+                                  date: goalFinishDate,
                                   isFinished: false))
         handleBackButton()
         NotificationCenter.default.post(Notification(name: .addGoal))
@@ -427,6 +430,7 @@ extension AddGoal: DatePickerViewControllerDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         timeLabel.text = formatter.string(from: date)
+        goalFinishDate = date
         checkButtonStatus()
         showTitle()
     }
