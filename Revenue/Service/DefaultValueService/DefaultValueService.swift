@@ -132,16 +132,19 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                 goalManagedObject.total = goal.total
                 goalManagedObject.date = goal.date
                 goalManagedObject.isFinished = goal.isFinished
-            }
-        }
-        
-        contributions.forEach { contribution in
-            coreData.save { context in
-                let contributonManagedObject = ContributionManagedObject(context: context)
-                contributonManagedObject.id = contribution.id
-                contributonManagedObject.amount = contribution.amount
-                contributonManagedObject.date = contribution.date
-                contributonManagedObject.goal = contribution.goal
+                contributions.forEach { contribution in
+//                    coreData.save { context in
+                    if contribution.goal == goal.id {
+                        let contributonManagedObject = ContributionManagedObject(context: context)
+                        contributonManagedObject.id = contribution.id
+                        contributonManagedObject.amount = contribution.amount
+                        contributonManagedObject.date = contribution.date
+//                        contributonManagedObject.goal = contribution.goal
+                        goalManagedObject.addToContributions(contributonManagedObject)
+                    }
+                        
+//                    }
+                }
             }
         }
         

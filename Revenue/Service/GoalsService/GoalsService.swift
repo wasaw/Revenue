@@ -30,7 +30,7 @@ extension GoalsService: GoalsServiceProtocol {
                 guard let id = managedObject.id,
                       let title = managedObject.title,
                       let date = managedObject.date else { return nil }
-                let contributionManagedObject = try? coreData.fetchContributions(id: id)
+                let contributionManagedObject  = managedObject.contributions?.array as? [ContributionManagedObject]
                 var introduced: Double = 0
                 contributionManagedObject?.forEach { contribution in
                     introduced += contribution.amount

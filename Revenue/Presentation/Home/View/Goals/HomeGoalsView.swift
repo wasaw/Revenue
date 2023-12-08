@@ -206,8 +206,8 @@ final class HomeGoalsView: UIView {
     }
     
     @objc private func deleteGoal() {
-        delegate?.fetchGoals(isFinished: false)
         delegate?.showPopUpAlert(.deleteGoal)
+        delegate?.fetchGoals(isFinished: false)
     }
 }
 
