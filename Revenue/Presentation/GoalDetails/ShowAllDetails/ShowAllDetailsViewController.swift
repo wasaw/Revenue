@@ -91,7 +91,7 @@ final class ShowAllDetailsViewController: UIViewController {
         snapshot.deleteAllItems()
         snapshot.appendSections(GoalDetailsSections.allCases)
         snapshot.appendItems(transactions)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
 // MARK: - Helpers

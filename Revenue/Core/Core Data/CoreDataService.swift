@@ -8,6 +8,7 @@
 import CoreData
 
 final class CoreDataService {
+    static let shared = CoreDataService()
     
 // MARK: - Properties
     

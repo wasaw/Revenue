@@ -135,7 +135,7 @@ final class CalendarViewController: UIViewController {
         snapshot.deleteAllItems()
         snapshot.appendSections(CalendarSections.allCases)
         snapshot.appendItems(items)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func animateDismissView() {

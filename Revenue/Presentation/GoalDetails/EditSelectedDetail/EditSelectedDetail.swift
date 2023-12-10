@@ -180,8 +180,14 @@ final class EditSelectedDetail: UIViewController {
     }
     
     @objc private func handleSaveButton() {
-        guard let amountString = amoutTextField.text,
-              let amount = Double(amountString) else { return }
+        var lastCharacter = amoutTextField.text?.last
+        guard var text = amoutTextField.text else { return }
+        while lastCharacter == " " || lastCharacter == "c" {
+            _ = text.popLast()
+            lastCharacter = text.last
+        }
+        let trimmedString = text.replacingOccurrences(of: " ", with: "")
+        guard let amount = Double(trimmedString) else { return }
         contributionsService.saveContribution(Contribution(id: UUID(), amount: amount, date: Date(), goal: goalItem.goalId))
         contributionsService.delete(for: goalItem.detailId)
         handleBackButton()

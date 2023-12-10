@@ -330,7 +330,7 @@ final class GoalDetailsViewController: UIViewController {
         snapshot.deleteAllItems()
         snapshot.appendSections(GoalDetailsSections.allCases)
         snapshot.appendItems(items)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 
 // MARK: - Selectors

@@ -329,7 +329,7 @@ final class GoalEditViewController: UIViewController {
         addButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
-            make.bottom.equalToSuperview().offset(-Constants.verticalPadding)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Constants.verticalPadding)
             make.height.equalTo(Constants.addButtonHeight)
         }
  

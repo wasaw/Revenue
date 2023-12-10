@@ -97,7 +97,7 @@ final class ShowTransactionViewController: UIViewController {
         transactions.forEach { transaction in
             snapshot.appendItems(transaction.items, toSection: transaction.sections[0])
         }
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
 // MARK: - Selectors

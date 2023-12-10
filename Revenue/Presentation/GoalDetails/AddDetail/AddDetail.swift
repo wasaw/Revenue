@@ -47,7 +47,7 @@ final class AddDetail: UIViewController {
         tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
-    private let contributionService = ContributionsService(coreData: CoreDataService())
+    private let contributionService = ContributionsService(coreData: CoreDataService.shared)
     private let id: UUID
     
     private lazy var saveButton: UIButton = {

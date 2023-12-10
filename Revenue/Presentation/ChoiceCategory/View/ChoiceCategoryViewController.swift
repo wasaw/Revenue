@@ -151,7 +151,7 @@ final class ChoiceCategoryViewController: UIViewController {
         snapshot.deleteAllItems()
         snapshot.appendSections(TableCategorySections.allCases)
         snapshot.appendItems(items)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func animateDismissView() {

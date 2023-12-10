@@ -59,21 +59,24 @@ extension DefaultValueService: DefaultValueServiceProtocol {
         let transactions = [Transaction(id: UUID(), category: salaryCategory, amount: 90000, comment: "Зарплата", date: Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: salaryCategory, amount: 7200, comment: "", date: Calendar.current.date(byAdding: .day, value: 0, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: medicineCategory, amount: 27000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: medicineCategory, amount: 200, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: medicineCategory, amount: 3000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: transportCategory, amount: 2500, comment: "", date: Calendar.current.date(byAdding: .day, value: -2, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: utilitiesCategory, amount: 20000, comment: "", date: Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()),
-                            Transaction(id: UUID(), category: loanCategory, amount: 15000, comment: "", date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: loanCategory, amount: 15013, comment: "", date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: cafeCategory, amount: 30000, comment: "Обед", date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: entertainmentCategory, amount: 23000, comment: "", date: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date()),
-                            Transaction(id: UUID(), category: salaryCategory, amount: 30000, comment: "Аванс", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: salaryCategory, amount: 30127, comment: "Аванс", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: salaryCategory, amount: 1200, comment: "", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: salaryCategory, amount: 170000, comment: "Премия", date: Calendar.current.date(byAdding: .day, value: -9, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: salaryCategory, amount: 2000, comment: "", date: Calendar.current.date(byAdding: .day, value: -10, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: businessCategory, amount: 323100, comment: "", date: Calendar.current.date(byAdding: .day, value: -11, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: depositeCategory, amount: 27102, comment: "", date: Calendar.current.date(byAdding: .day, value: -15, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: capitalCategory, amount: 2139222, comment: "", date: Calendar.current.date(byAdding: .day, value: -25, to: Date()) ?? Date()),
-                            Transaction(id: UUID(), category: grantCategory, amount: 1000, comment: "", date: Calendar.current.date(byAdding: .day, value: -40, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: grantCategory, amount: 1004, comment: "", date: Calendar.current.date(byAdding: .day, value: -40, to: Date()) ?? Date()),
                             Transaction(id: UUID(), category: salaryCategory, amount: 23133, comment: "", date: Calendar.current.date(byAdding: .day, value: -45, to: Date()) ?? Date()),
-                            Transaction(id: UUID(), category: creditCategory, amount: 15000, comment: "Машина", date: Calendar.current.date(byAdding: .day, value: -80, to: Date()) ?? Date())]
+                            Transaction(id: UUID(), category: otherCategory, amount: 23133, comment: "", date: Calendar.current.date(byAdding: .day, value: -45, to: Date()) ?? Date()),
+                            Transaction(id: UUID(), category: creditCategory, amount: 15011, comment: "Машина", date: Calendar.current.date(byAdding: .day, value: -80, to: Date()) ?? Date())]
 
         categories.forEach { category in
             coreData.save { context in
@@ -99,8 +102,8 @@ extension DefaultValueService: DefaultValueServiceProtocol {
         let id1 = UUID()
         let id2 = UUID()
         let id3 = UUID()
-        let goals: [Goal] = [Goal(id: id1, image: id1.uuidString, title: "Накопить на машину", introduced: 0, total: 40000000, date: Date(), isFinished: false),
-                             Goal(id: id2, image: id2.uuidString, title: "Ипотека", introduced: 0, total: 7230000, date: Date(), isFinished: false),
+        let goals: [Goal] = [Goal(id: id1, image: id1.uuidString, title: "Накопить на машину", introduced: 0, total: 4000000, date: Date().addingTimeInterval(86400 * 300), isFinished: false),
+                             Goal(id: id2, image: id2.uuidString, title: "Ипотека", introduced: 0, total: 7230000, date: Date().addingTimeInterval(86400 * 365 * 15), isFinished: false),
                              Goal(id: id3, image: id3.uuidString, title: "Телефон", introduced: 0, total: 25000, date: Date(), isFinished: true)]
         
         let contributions: [Contribution] = [Contribution(id: UUID(), amount: 1000, date: Date(), goal: id1),
@@ -133,17 +136,13 @@ extension DefaultValueService: DefaultValueServiceProtocol {
                 goalManagedObject.date = goal.date
                 goalManagedObject.isFinished = goal.isFinished
                 contributions.forEach { contribution in
-//                    coreData.save { context in
                     if contribution.goal == goal.id {
                         let contributonManagedObject = ContributionManagedObject(context: context)
                         contributonManagedObject.id = contribution.id
                         contributonManagedObject.amount = contribution.amount
                         contributonManagedObject.date = contribution.date
-//                        contributonManagedObject.goal = contribution.goal
                         goalManagedObject.addToContributions(contributonManagedObject)
-                    }
-                        
-//                    }
+                    }                        
                 }
             }
         }

@@ -44,7 +44,7 @@ extension AddTransactionPresenter: AddTransactionOutput {
                                       category: category,
                                       amount: amount,
                                       comment: comment,
-                                      date: Date())
+                                      date: Date().addingTimeInterval(-100))
         transactionService.saveTransaction(transaction) { [weak self] result in
             switch result {
             case .success:

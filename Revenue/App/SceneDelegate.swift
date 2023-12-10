@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let showTransactionsAssembly = ShowTransactionsAssembly()
         let calendarAssembly = CalendarAssembly()
         
-        let coreData = CoreDataService()
+        let coreData = CoreDataService.shared
         let transactionService = TransactionsService(coreData: coreData)
         let categoriesService = CategoriesService(coreData: coreData)
         let goalService = GoalsService(coreData: coreData)

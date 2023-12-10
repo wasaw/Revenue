@@ -103,6 +103,7 @@ final class HomePresenter {
     private let dateFormatter = DateFormatter()
     private let dayDateFormatter = DateFormatter()
     private let userDefaults = UserDefaults.standard
+    private let notification = NotificationCenter.default
 
 // MARK: - Lifecycle
     
@@ -115,14 +116,17 @@ final class HomePresenter {
         self.categoriesService = categoriesService
         self.goalService = goalService
         
+        setNotifications()
         dateFormatter.dateFormat = "HH:mm"
         dayDateFormatter.dateFormat = "dd.MM.YYYY"
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: .updateTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .addRevenue, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(deleteTransactions), name: .delete, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTransactions), name: .updateTransaction, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateExpenses), name: .addExpenses, object: nil)
+    }
+    
+    private func setNotifications() {
+        notification.addObserver(self, selector: #selector(updateTime), name: .updateTime, object: nil)
+        notification.addObserver(self, selector: #selector(updateTransactions), name: .addRevenue, object: nil)
+        notification.addObserver(self, selector: #selector(deleteTransactions), name: .delete, object: nil)
+        notification.addObserver(self, selector: #selector(updateTransaction), name: .updateTransaction, object: nil)
+        notification.addObserver(self, selector: #selector(updateExpenses), name: .addExpenses, object: nil)
     }
     
     private func setCurrentDate() {
@@ -207,6 +211,8 @@ final class HomePresenter {
     }
     
     @objc private func updateTransaction() {
+        load()
+        fetchData(for: .revenue)
         input?.showPopUp(.update)
     }
     
@@ -233,7 +239,7 @@ extension HomePresenter: HomeOutput {
     func fetchData(for segment: Segment) {
         switch segment {
         case .remains:
-            break
+            load()
         case .revenue:
             categoriesService.fetchCategories(isRevenue: true) { [weak self] result in
                 switch result {

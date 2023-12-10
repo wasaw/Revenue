@@ -39,7 +39,7 @@ extension TransactionsService: TransactionsServiceProtocol {
                           let title = transaction.category?.title,
                           let isRevenue = transaction.category?.isRevenue,
                           date > startDate,
-                          date < finishDate else { return nil }
+                          date <= finishDate else { return nil }
                     let category = TransactionCategory(image: image, title: title, isRevenue: isRevenue)
                     return Transaction(id: id,
                                        category: category,

@@ -165,7 +165,7 @@ final class HomeGoalsView: UIView {
         snapshot.deleteAllItems()
         snapshot.appendSections(HomeGoalsSections.allCases)
         snapshot.appendItems(items)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
@@ -197,6 +197,8 @@ final class HomeGoalsView: UIView {
     
     @objc private func addContribution() {
         delegate?.showPopUpAlert(.addContributons)
+        sleep(2)
+        delegate?.fetchGoals(isFinished: false)
     }
     
     @objc private func updateGoal() {

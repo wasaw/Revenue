@@ -134,7 +134,7 @@ final class HomeTransactionsView: UIView {
         snapshot.deleteAllItems()
         snapshot.appendSections(HomeRevenueSections.allCases)
         snapshot.appendItems(items)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
         
         let numberFormatter: NumberFormatter = {
             let formatter = NumberFormatter()
