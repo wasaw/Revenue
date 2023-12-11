@@ -1,5 +1,5 @@
 //
-//  AddGoal.swift
+//  AddGoalViewController.swift
 //  Revenue
 //
 //  Created by Александр Меренков on 02.12.2023.
@@ -13,7 +13,6 @@ private enum Constants {
     static let goalViewHeight: CGFloat = 154
     static let goalImageViewPaddingTop: CGFloat = 16
     static let goalLabelPaddingTop: CGFloat = 16
-    static let goalStackViewHeight: CGFloat = 224
     static let rowHeight: CGFloat = 74
     static let horizontalPadding: CGFloat = 16
     static let verticalPadding: CGFloat = 18
@@ -24,11 +23,11 @@ private enum Constants {
     static let titlePaddingTop: CGFloat = 8
 }
 
-final class AddGoal: UIViewController {
+final class AddGoalViewController: UIViewController {
     
 // MARK: - Properties
     
-    private let goalService: GoalsServiceProtocol
+    private let output: AddGoalOutput
     private lazy var backButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "chevron-left"), for: .normal)
@@ -170,8 +169,8 @@ final class AddGoal: UIViewController {
     
 // MARK: - Lifecycle
     
-    init(goalService: GoalsServiceProtocol) {
-        self.goalService = goalService
+    init(output: AddGoalOutput) {
+        self.output = output
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -379,27 +378,9 @@ final class AddGoal: UIViewController {
               let introduced = Double(introducedString),
               let goalString = goalAmountTextField.text,
               let goal = Double(goalString) else { return }
-        let id = UUID()
         
-        guard let directlyUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = directlyUrl.appendingPathComponent(id.uuidString)
-        do {
-            if let data = saveImage?.pngData() {
-                try data.write(to: fileUrl)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        goalService.saveGoal(Goal(id: id,
-                                  image: id.uuidString,
-                                  title: title,
-                                  introduced: introduced,
-                                  total: goal,
-                                  date: goalFinishDate,
-                                  isFinished: false))
+        output.save(title: title, introduced: introduced, total: goal, date: goalFinishDate)
         handleBackButton()
-        NotificationCenter.default.post(Notification(name: .addGoal))
     }
     
     @objc private func handleTimeView() {
@@ -422,7 +403,7 @@ final class AddGoal: UIViewController {
 
 // MARK: - DatePickerViewControllerDelegate
 
-extension AddGoal: DatePickerViewControllerDelegate {
+extension AddGoalViewController: DatePickerViewControllerDelegate {
     func startDate(_ date: Date) {
     }
     
@@ -438,10 +419,10 @@ extension AddGoal: DatePickerViewControllerDelegate {
 
 // MARK: - UIImagePickerControllerDelegate
 
-extension AddGoal: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension AddGoalViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
-        saveImage = image
+        output.setImage(image)
         goalView.backgroundColor = UIColor(patternImage: image)
         dismiss(animated: true)
     }
@@ -449,9 +430,15 @@ extension AddGoal: UIImagePickerControllerDelegate, UINavigationControllerDelega
 
 // MARK: - UITextFieldDelegate
 
-extension AddGoal: UITextFieldDelegate {
+extension AddGoalViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkButtonStatus()
         showTitle()
     }
+}
+
+// MARK: - AddGoalInput
+
+extension AddGoalViewController: AddGoalInput {
+    
 }

@@ -103,7 +103,9 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showAddGoal() {
-        let vc = AddGoal(goalService: goalService)
+        let presenter = AddGoalPresenter(goalService: goalService)
+        let vc = AddGoalViewController(output: presenter)
+        presenter.input = vc
         navigation?.pushViewController(vc, animated: true)
     }
 }

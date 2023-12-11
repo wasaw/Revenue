@@ -20,7 +20,7 @@
 		BB6876502B1B50A300FC65BD /* GoalDetailsBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68764F2B1B50A300FC65BD /* GoalDetailsBottomViewController.swift */; };
 		BB6876572B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */; };
 		BB68765E2B1B63FF00FC65BD /* EditSelectedDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */; };
-		BB6876612B1B682D00FC65BD /* AddGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876602B1B682D00FC65BD /* AddGoal.swift */; };
+		BB6876612B1B682D00FC65BD /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876602B1B682D00FC65BD /* AddGoalViewController.swift */; };
 		BB6876642B1C622700FC65BD /* GoalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876632B1C622700FC65BD /* GoalsService.swift */; };
 		BB6876662B1C624200FC65BD /* GoalsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */; };
 		BB6EE43C2B1C70D700D6ED8F /* ContributionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */; };
@@ -79,6 +79,9 @@
 		BB87AAF92B26FBB2008B763C /* OtherCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAF82B26FBB2008B763C /* OtherCategoryPresenter.swift */; };
 		BB87AAFB2B26FBF1008B763C /* OtherCategoryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAFA2B26FBF1008B763C /* OtherCategoryInput.swift */; };
 		BB87AAFD2B26FC12008B763C /* OtherCategoryOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAFC2B26FC12008B763C /* OtherCategoryOutput.swift */; };
+		BB87AB012B2700A8008B763C /* AddGoalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB002B2700A8008B763C /* AddGoalPresenter.swift */; };
+		BB87AB032B2700C6008B763C /* AddGoalInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB022B2700C6008B763C /* AddGoalInput.swift */; };
+		BB87AB052B2700E4008B763C /* AddGoalOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB042B2700E4008B763C /* AddGoalOutput.swift */; };
 		BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */; };
 		BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */; };
 		BBAB574D2B160B8C00B7F645 /* OtherCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB574C2B160B8C00B7F645 /* OtherCategoryViewController.swift */; };
@@ -126,7 +129,7 @@
 		BB68764F2B1B50A300FC65BD /* GoalDetailsBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsBottomViewController.swift; sourceTree = "<group>"; };
 		BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsViewController.swift; sourceTree = "<group>"; };
 		BB68765D2B1B63FF00FC65BD /* EditSelectedDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSelectedDetail.swift; sourceTree = "<group>"; };
-		BB6876602B1B682D00FC65BD /* AddGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoal.swift; sourceTree = "<group>"; };
+		BB6876602B1B682D00FC65BD /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		BB6876632B1C622700FC65BD /* GoalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsService.swift; sourceTree = "<group>"; };
 		BB6876652B1C624200FC65BD /* GoalsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsServiceProtocol.swift; sourceTree = "<group>"; };
 		BB6EE43B2B1C70D700D6ED8F /* ContributionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsService.swift; sourceTree = "<group>"; };
@@ -185,6 +188,9 @@
 		BB87AAF82B26FBB2008B763C /* OtherCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryPresenter.swift; sourceTree = "<group>"; };
 		BB87AAFA2B26FBF1008B763C /* OtherCategoryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryInput.swift; sourceTree = "<group>"; };
 		BB87AAFC2B26FC12008B763C /* OtherCategoryOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryOutput.swift; sourceTree = "<group>"; };
+		BB87AB002B2700A8008B763C /* AddGoalPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalPresenter.swift; sourceTree = "<group>"; };
+		BB87AB022B2700C6008B763C /* AddGoalInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalInput.swift; sourceTree = "<group>"; };
+		BB87AB042B2700E4008B763C /* AddGoalOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalOutput.swift; sourceTree = "<group>"; };
 		BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterOutput.swift; sourceTree = "<group>"; };
 		BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterInput.swift; sourceTree = "<group>"; };
 		BBAB574C2B160B8C00B7F645 /* OtherCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryViewController.swift; sourceTree = "<group>"; };
@@ -310,7 +316,8 @@
 		BB68765F2B1B680600FC65BD /* AddGoal */ = {
 			isa = PBXGroup;
 			children = (
-				BB6876602B1B682D00FC65BD /* AddGoal.swift */,
+				BB87AAFF2B27009C008B763C /* Presenter */,
+				BB87AAFE2B270098008B763C /* View */,
 			);
 			path = AddGoal;
 			sourceTree = "<group>";
@@ -680,6 +687,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BB87AAFE2B270098008B763C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6876602B1B682D00FC65BD /* AddGoalViewController.swift */,
+				BB87AB022B2700C6008B763C /* AddGoalInput.swift */,
+				BB87AB042B2700E4008B763C /* AddGoalOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB87AAFF2B27009C008B763C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB87AB002B2700A8008B763C /* AddGoalPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		BBAB574B2B160B4500B7F645 /* OtherCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -912,6 +937,7 @@
 				BBAB576A2B191A7200B7F645 /* CalendarInput.swift in Sources */,
 				BB87AAFB2B26FBF1008B763C /* OtherCategoryInput.swift in Sources */,
 				BBAB57682B1919FF00B7F645 /* CalendarViewController.swift in Sources */,
+				BB87AB012B2700A8008B763C /* AddGoalPresenter.swift in Sources */,
 				BB77A38D2B09402700D097E0 /* DetailedPresenterOutput.swift in Sources */,
 				BB80A6392B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift in Sources */,
 				BB87AAFD2B26FC12008B763C /* OtherCategoryOutput.swift in Sources */,
@@ -924,11 +950,13 @@
 				BB8031652B04F40B000D8307 /* HomeOutput.swift in Sources */,
 				BBAB577E2B19BF8A00B7F645 /* SelectionDateOutput.swift in Sources */,
 				BBAB577A2B19BEBD00B7F645 /* SelectionDateViewController.swift in Sources */,
+				BB87AB052B2700E4008B763C /* AddGoalOutput.swift in Sources */,
 				BB77A3882B076CD300D097E0 /* HomePresenterOutput.swift in Sources */,
 				BB77A3942B0943DB00D097E0 /* ChoiceCategoryViewController.swift in Sources */,
-				BB6876612B1B682D00FC65BD /* AddGoal.swift in Sources */,
+				BB6876612B1B682D00FC65BD /* AddGoalViewController.swift in Sources */,
 				BB6876462B1B25D800FC65BD /* GoalDetailsInput.swift in Sources */,
 				BB8031412B04BDEB000D8307 /* AppDelegate.swift in Sources */,
+				BB87AB032B2700C6008B763C /* AddGoalInput.swift in Sources */,
 				BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */,
 				BB782A252B13BFB90018AF85 /* DeleteViewController.swift in Sources */,
 				BB77E7642B14BD6B00F80B2E /* AddTransactionPresenter.swift in Sources */,
