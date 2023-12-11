@@ -133,7 +133,9 @@ extension HomeCoordinator: ChoiceCategoryPresenterOutput {
     }
     
     func showOtherCategory() {
-        let vc = OtherCategory()
+        let presenter = OtherCategoryPresenter(transactionsService: transactionService)
+        let vc = OtherCategoryViewController(output: presenter)
+        presenter.input = vc
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         let scenes = UIApplication.shared.connectedScenes

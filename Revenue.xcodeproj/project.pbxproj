@@ -76,9 +76,12 @@
 		BB87AAF12B26EF15008B763C /* EditSelectedDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAF02B26EF15008B763C /* EditSelectedDetailPresenter.swift */; };
 		BB87AAF32B26EF45008B763C /* EditSelectedDetailInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAF22B26EF45008B763C /* EditSelectedDetailInput.swift */; };
 		BB87AAF52B26EF6C008B763C /* EditSelectedDetailOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAF42B26EF6C008B763C /* EditSelectedDetailOutput.swift */; };
+		BB87AAF92B26FBB2008B763C /* OtherCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAF82B26FBB2008B763C /* OtherCategoryPresenter.swift */; };
+		BB87AAFB2B26FBF1008B763C /* OtherCategoryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAFA2B26FBF1008B763C /* OtherCategoryInput.swift */; };
+		BB87AAFD2B26FC12008B763C /* OtherCategoryOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AAFC2B26FC12008B763C /* OtherCategoryOutput.swift */; };
 		BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */; };
 		BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */; };
-		BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */; };
+		BBAB574D2B160B8C00B7F645 /* OtherCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB574C2B160B8C00B7F645 /* OtherCategoryViewController.swift */; };
 		BBAB57522B16318A00B7F645 /* ShowTransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57512B16318A00B7F645 /* ShowTransactionsPresenter.swift */; };
 		BBAB57542B1631BF00B7F645 /* ShowTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */; };
 		BBAB57562B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */; };
@@ -179,9 +182,12 @@
 		BB87AAF02B26EF15008B763C /* EditSelectedDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSelectedDetailPresenter.swift; sourceTree = "<group>"; };
 		BB87AAF22B26EF45008B763C /* EditSelectedDetailInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSelectedDetailInput.swift; sourceTree = "<group>"; };
 		BB87AAF42B26EF6C008B763C /* EditSelectedDetailOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSelectedDetailOutput.swift; sourceTree = "<group>"; };
+		BB87AAF82B26FBB2008B763C /* OtherCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryPresenter.swift; sourceTree = "<group>"; };
+		BB87AAFA2B26FBF1008B763C /* OtherCategoryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryInput.swift; sourceTree = "<group>"; };
+		BB87AAFC2B26FC12008B763C /* OtherCategoryOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryOutput.swift; sourceTree = "<group>"; };
 		BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterOutput.swift; sourceTree = "<group>"; };
 		BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterInput.swift; sourceTree = "<group>"; };
-		BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategory.swift; sourceTree = "<group>"; };
+		BBAB574C2B160B8C00B7F645 /* OtherCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryViewController.swift; sourceTree = "<group>"; };
 		BBAB57512B16318A00B7F645 /* ShowTransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsPresenter.swift; sourceTree = "<group>"; };
 		BBAB57532B1631BF00B7F645 /* ShowTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsViewController.swift; sourceTree = "<group>"; };
 		BBAB57552B16320C00B7F645 /* ShowTransactionsViewControllerInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTransactionsViewControllerInput.swift; sourceTree = "<group>"; };
@@ -656,10 +662,29 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		BB87AAF62B26FB91008B763C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB87AAF82B26FBB2008B763C /* OtherCategoryPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB87AAF72B26FB98008B763C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBAB574C2B160B8C00B7F645 /* OtherCategoryViewController.swift */,
+				BB87AAFA2B26FBF1008B763C /* OtherCategoryInput.swift */,
+				BB87AAFC2B26FC12008B763C /* OtherCategoryOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BBAB574B2B160B4500B7F645 /* OtherCategory */ = {
 			isa = PBXGroup;
 			children = (
-				BBAB574C2B160B8C00B7F645 /* OtherCategory.swift */,
+				BB87AAF62B26FB91008B763C /* Presenter */,
+				BB87AAF72B26FB98008B763C /* View */,
 			);
 			path = OtherCategory;
 			sourceTree = "<group>";
@@ -885,9 +910,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBAB576A2B191A7200B7F645 /* CalendarInput.swift in Sources */,
+				BB87AAFB2B26FBF1008B763C /* OtherCategoryInput.swift in Sources */,
 				BBAB57682B1919FF00B7F645 /* CalendarViewController.swift in Sources */,
 				BB77A38D2B09402700D097E0 /* DetailedPresenterOutput.swift in Sources */,
 				BB80A6392B0D09A1003E98C7 /* DetailedTransactionPresenterInput.swift in Sources */,
+				BB87AAFD2B26FC12008B763C /* OtherCategoryOutput.swift in Sources */,
 				BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */,
 				BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */,
 				BB799A9C2B0E27570085490B /* HomeGoalsView.swift in Sources */,
@@ -967,7 +994,7 @@
 				BB77A3772B0647F900D097E0 /* HomeDataSource.swift in Sources */,
 				BB77E76A2B14BD9300F80B2E /* AddTransactionOutput.swift in Sources */,
 				BBDCF0CB2B0B9CDC00AFCDED /* TransactionServiceProtocol.swift in Sources */,
-				BBAB574D2B160B8C00B7F645 /* OtherCategory.swift in Sources */,
+				BBAB574D2B160B8C00B7F645 /* OtherCategoryViewController.swift in Sources */,
 				BBAB57612B166AB000B7F645 /* ShowTransactionsPresenterOutput.swift in Sources */,
 				BB68764D2B1B45DA00FC65BD /* GoalDetailsCell.swift in Sources */,
 				BBAB575F2B163F3C00B7F645 /* ShowTransactionsDataSource.swift in Sources */,
@@ -977,6 +1004,7 @@
 				BB6876422B1B25A100FC65BD /* GoalDetailsPresenter.swift in Sources */,
 				BB8031632B04F3F1000D8307 /* HomeInput.swift in Sources */,
 				BB6EE4442B1D06B300D6ED8F /* GoalEditViewController.swift in Sources */,
+				BB87AAF92B26FBB2008B763C /* OtherCategoryPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

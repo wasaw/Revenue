@@ -1,5 +1,5 @@
 //
-//  OtherCategory.swift
+//  OtherCategoryViewController.swift
 //  Revenue
 //
 //  Created by Александр Меренков on 28.11.2023.
@@ -19,7 +19,6 @@ private enum Constants {
     static let cornerRadius: CGFloat = 25
     static let titlePaddingTop: CGFloat = 25
     static let horizontalPadding: CGFloat = 12
-    static let labelPaddingTop: CGFloat = 25
     static let buttonWidth: CGFloat = 296
     static let buttonHeight: CGFloat = 54
     static let buttonRadius: CGFloat = 12
@@ -31,11 +30,12 @@ private enum Constants {
     static let cancelButtonPaddingTop: CGFloat = 10
 }
 
-final class OtherCategory: UIViewController {
+final class OtherCategoryViewController: UIViewController {
     
 // MARK: - Properties
     
     weak var delegate: OtherCategoryViewControllerDelegate?
+    private let output: OtherCategoryOutput
     private lazy var alertView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = Constants.cornerRadius
@@ -91,6 +91,16 @@ final class OtherCategory: UIViewController {
     private lazy var dimmedView = UIVisualEffectView(effect: blurEffect)
     
 // MARK: - Lifecycle
+    
+    init(output: OtherCategoryOutput) {
+        self.output = output
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,18 +177,7 @@ final class OtherCategory: UIViewController {
     @objc private func handleAddButton() {
         guard let text = titleTextField.text else { return }
         let amount = (text as NSString).doubleValue
-        let service = TransactionsService(coreData: CoreDataService())
-        service.saveTransaction(Transaction(id: UUID(),
-                                            category: TransactionCategory(image: "other", title: "Другое", isRevenue: true),
-                                            amount: amount, comment: "",
-                                            date: Date())) { [weak self] result in
-            switch result {
-            case .success:
-                self?.delegate?.root()
-            case .failure:
-                break
-            }
-        }
+        output.save(amount)
     }
     
     @objc private func handleCancelButton() {
@@ -196,7 +195,7 @@ final class OtherCategory: UIViewController {
 
 // MARK: - UITextFieldDelegate
 
-extension OtherCategory: UITextFieldDelegate {
+extension OtherCategoryViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if titleTextField.text != "" {
             addButton.layer.shadowColor = UIColor.applyButton.cgColor
@@ -215,5 +214,13 @@ extension OtherCategory: UITextFieldDelegate {
             addButton.backgroundColor = .lockButton
         }
         return true
+    }
+}
+
+// MAKR: - OtherCategoryInput
+
+extension OtherCategoryViewController: OtherCategoryInput {
+    func backToRoot() {
+        delegate?.root()
     }
 }
