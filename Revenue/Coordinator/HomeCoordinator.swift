@@ -15,6 +15,7 @@ final class HomeCoordinator {
 
     private var navigation: UINavigationController?
     private let detailedCoordinator: DetailedCoordinator
+    private let goalDetailsCoordinator: GoalDetailsCoordinator
     private let choiceCategoryAssembly: ChoiceCategoryAssembly
     private let showTransactionsAssembly: ShowTransactionsAssembly
     private let calendarAssembly: CalendarAssembly
@@ -26,6 +27,7 @@ final class HomeCoordinator {
 // MARK: - Lifecycle
     
     init(detailedCoordinator: DetailedCoordinator,
+         goalDetailsCoordinator: GoalDetailsCoordinator,
          choiceCategoryAssembly: ChoiceCategoryAssembly,
          showTransactionsAssembly: ShowTransactionsAssembly,
          calendarAssembly: CalendarAssembly,
@@ -34,6 +36,7 @@ final class HomeCoordinator {
          goalService: GoalsServiceProtocol,
          contributionsService: ContributionsServiceProtocol) {
         self.detailedCoordinator = detailedCoordinator
+        self.goalDetailsCoordinator = goalDetailsCoordinator
         self.choiceCategoryAssembly = choiceCategoryAssembly
         self.showTransactionsAssembly = showTransactionsAssembly
         self.calendarAssembly = calendarAssembly
@@ -94,12 +97,9 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showGoalDetails(id: UUID) {
-        let presenter = GoalDetailsPresenter(goalsService: goalService,
-                                             contributinsService: contributionsService,
-                                             id: id)
-        let vc = GoalDetailsViewController(output: presenter)
-        presenter.input = vc
-        navigation?.pushViewController(vc, animated: true)
+        let nav = goalDetailsCoordinator.start(id: id)
+        nav.modalPresentationStyle = .fullScreen
+        navigation?.present(nav, animated: true)
     }
     
     func showAddGoal() {

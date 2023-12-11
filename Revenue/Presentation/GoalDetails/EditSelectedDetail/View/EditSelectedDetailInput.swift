@@ -8,5 +8,5 @@
 import Foundation
 
 protocol EditSelectedDetailInput: AnyObject {
-    func setData(_ item: GoalDetilsItem)
+    func setData(_ item: GoalDetailsItem)
 }

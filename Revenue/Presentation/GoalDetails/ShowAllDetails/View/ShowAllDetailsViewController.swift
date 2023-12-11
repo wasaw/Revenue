@@ -86,7 +86,7 @@ final class ShowAllDetailsViewController: UIViewController {
         tableView.backgroundColor = .white
     }
     
-    private func setupDataSource(_ transactions: [GoalDetilsItem]) {
+    private func setupDataSource(_ transactions: [GoalDetailsItem]) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections(GoalDetailsSections.allCases)
@@ -113,7 +113,7 @@ extension ShowAllDetailsViewController: UITableViewDelegate {
 // MARK: - ShowAllDetailsInput
 
 extension ShowAllDetailsViewController: ShowAllDetailsInput {
-    func setData(_ item: [GoalDetilsItem]) {
+    func setData(_ item: [GoalDetailsItem]) {
         setupDataSource(item)
     }
 }

@@ -212,7 +212,7 @@ extension EditSelectedDetail: DeleteViewControllerDelegate {
 // MARK: - EditSelectedDetailInput
 
 extension EditSelectedDetail: EditSelectedDetailInput {
-    func setData(_ item: GoalDetilsItem) {
+    func setData(_ item: GoalDetailsItem) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         navigationItem.title = "Взнос на " + formatter.string(from: item.date)

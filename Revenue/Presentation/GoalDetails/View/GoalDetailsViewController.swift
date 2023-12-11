@@ -12,10 +12,9 @@ private enum Constants {
     static let detailViewHeight: CGFloat = 450
     static let horizontalPadding: CGFloat = 16
     static let verticalPadding: CGFloat = 16
-    static let dividerHeight: CGFloat = 0.8
-    static let saveButtonHeight: CGFloat = 54
-    static let saveButtonRadius: CGFloat = 12
-    static let saveButtonPaddingBottom: CGFloat = 45
+    static let addButtonHeight: CGFloat = 54
+    static let addButtonRadius: CGFloat = 12
+    static let addButtonPaddingBottom: CGFloat = 45
     static let cornerRadius: CGFloat = 16
     static let valueLabelPadding: CGFloat = 5
 }
@@ -124,20 +123,18 @@ final class GoalDetailsViewController: UIViewController {
         btn.addTarget(self, action: #selector(handleDetailTable), for: .touchUpInside)
         return btn
     }()
-    private var goalItems: [GoalDetilsItem] = []
-    private var selectedId = UUID()
     
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = GoalDetailsDataSource(tableView)
     
-    private lazy var saveButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.layer.cornerRadius = Constants.saveButtonRadius
+        btn.layer.cornerRadius = Constants.addButtonRadius
         btn.setTitle("Добавить взнос", for: .normal)
         btn.setTitleColor(.lockButtonTitle, for: .normal)
         btn.backgroundColor = .lockButton
         btn.isEnabled = false
-        btn.addTarget(self, action: #selector(handleSaveButton), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
         return btn
     }()
     
@@ -186,7 +183,7 @@ final class GoalDetailsViewController: UIViewController {
         configureTitle()
         configureContainerContent()
         configureTableView()
-        configureSaveButton()
+        configureAddButton()
     }
     
     private func configureNavigationItem() {
@@ -297,16 +294,17 @@ final class GoalDetailsViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
             make.bottom.equalToSuperview()
         }
+        tableView.delegate = self
         tableView.backgroundColor = .white
     }
     
-    private func configureSaveButton() {
-        view.addSubview(saveButton)
-        saveButton.snp.makeConstraints { make in
+    private func configureAddButton() {
+        view.addSubview(addButton)
+        addButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Constants.horizontalPadding)
             make.trailing.equalToSuperview().offset(-Constants.horizontalPadding)
-            make.bottom.equalToSuperview().offset(-Constants.saveButtonPaddingBottom)
-            make.height.equalTo(Constants.saveButtonHeight)
+            make.bottom.equalToSuperview().offset(-Constants.addButtonPaddingBottom)
+            make.height.equalTo(Constants.addButtonHeight)
         }
     }
     
@@ -325,7 +323,7 @@ final class GoalDetailsViewController: UIViewController {
         currentContainerHeight = height
     }
     
-    private func setupDataSource(_ items: [GoalDetilsItem]) {
+    private func setupDataSource(_ items: [GoalDetailsItem]) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections(GoalDetailsSections.allCases)
@@ -343,19 +341,15 @@ final class GoalDetailsViewController: UIViewController {
     }
     
     @objc private func handleBackButton() {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.dismiss(animated: true)
     }
     
-    @objc private func handleSaveButton() {
-        let vc = AddDetail(id: selectedId)
-        navigationController?.pushViewController(vc, animated: true)
+    @objc private func handleAddButton() {
+        output.showAddDetail()
     }
     
     @objc private func handleDetailTable() {
-        let presenter = ShowAllDetailsPresenter(output: self, goalItems: goalItems)
-        let vc = ShowAllDetailsViewController(output: presenter)
-        presenter.input = vc
-        navigationController?.pushViewController(vc, animated: true)
+        output.showAllDetails()
     }
     
     @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {
@@ -387,8 +381,7 @@ final class GoalDetailsViewController: UIViewController {
 // MARK: - GoalDetailsInput
 
 extension GoalDetailsViewController: GoalDetailsInput {
-    func setDate(_ items: [GoalDetilsItem]) {
-        goalItems = items
+    func setData(_ items: [GoalDetailsItem]) {
         setupDataSource(items)
     }
     
@@ -402,16 +395,15 @@ extension GoalDetailsViewController: GoalDetailsInput {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         periodLabel.text = formatter.string(from: item.date)
-        selectedId = item.id
         
         if item.isFinished {
-            saveButton.backgroundColor = .lockButton
-            saveButton.setTitleColor(.lockButtonTitle, for: .normal)
-            saveButton.isEnabled = false
+            addButton.backgroundColor = .lockButton
+            addButton.setTitleColor(.lockButtonTitle, for: .normal)
+            addButton.isEnabled = false
         } else {
-            saveButton.backgroundColor = .applyButton
-            saveButton.setTitleColor(.white, for: .normal)
-            saveButton.isEnabled = true
+            addButton.backgroundColor = .applyButton
+            addButton.setTitleColor(.white, for: .normal)
+            addButton.isEnabled = true
         }
         
         guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
@@ -437,20 +429,14 @@ extension GoalDetailsViewController: GoalDetailsBottomViewControllerDelegate {
     }
     
     func showEdit() {
-        let goalService = GoalsService(coreData: CoreDataService())
-        let vc = GoalEditViewController(goalService: goalService, selectedId: selectedId)
-        navigationController?.pushViewController(vc, animated: true)
+        output.showEdit()
     }
 }
 
-// MARK: - ShowAllDetailsPresenterOutput
+// MARK: - UITableViewDelegate
 
-extension GoalDetailsViewController: ShowAllDetailsPresenterOutput {
-    func showEditSelectedDetail(_ item: GoalDetilsItem) {
-        let contributionsService = ContributionsService(coreData: CoreDataService.shared)
-        let presenter = EditSelectedDetailPresenter(contributionsService: contributionsService, goalItem: item)
-        let vc = EditSelectedDetail(output: presenter)
-        presenter.input = vc
-        navigationController?.pushViewController(vc, animated: false)
+extension GoalDetailsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

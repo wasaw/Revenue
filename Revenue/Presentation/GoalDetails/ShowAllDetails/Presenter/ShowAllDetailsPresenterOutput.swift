@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ShowAllDetailsPresenterOutput: AnyObject {
-    func showEditSelectedDetail(_ item: GoalDetilsItem)
+    func showEditSelectedDetail(_ item: GoalDetailsItem)
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ShowAllDetailsInput: AnyObject {
-    func setData(_ item: [GoalDetilsItem])
+    func setData(_ item: [GoalDetailsItem])
 }

@@ -10,4 +10,7 @@ import Foundation
 protocol GoalDetailsOutput: AnyObject {
     func viewIsReady()
     func delete()
+    func showEdit()
+    func showAddDetail()
+    func showAllDetails()
 }

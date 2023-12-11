@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GoalDetailsDataSource: UITableViewDiffableDataSource<GoalDetailsSections, GoalDetilsItem> {
+final class GoalDetailsDataSource: UITableViewDiffableDataSource<GoalDetailsSections, GoalDetailsItem> {
     init(_ tableView: UITableView) {
         super.init(tableView: tableView) { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalDetailsCell.reuseIdentifire, for: indexPath) as? GoalDetailsCell else {

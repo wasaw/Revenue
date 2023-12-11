@@ -13,12 +13,12 @@ final class EditSelectedDetailPresenter {
     
     weak var input: EditSelectedDetailInput?
     private let contributionsService: ContributionsServiceProtocol
-    private let goalItem: GoalDetilsItem
+    private let goalItem: GoalDetailsItem
     
     
 // MARK: - Lifecycle
     
-    init(contributionsService: ContributionsServiceProtocol, goalItem: GoalDetilsItem) {
+    init(contributionsService: ContributionsServiceProtocol, goalItem: GoalDetailsItem) {
         self.contributionsService = contributionsService
         self.goalItem = goalItem
     }

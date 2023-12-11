@@ -8,6 +8,6 @@
 import Foundation
 
 protocol GoalDetailsInput: AnyObject {
-    func setDate(_ items: [GoalDetilsItem])
+    func setData(_ items: [GoalDetailsItem])
     func setGoalData(_ item: Goal)
 }

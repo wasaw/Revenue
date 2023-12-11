@@ -11,7 +11,7 @@ enum GoalDetailsSections: Hashable, CaseIterable {
     case section
 }
 
-struct GoalDetilsItem: Hashable {
+struct GoalDetailsItem: Hashable {
     let id = UUID()
     let date: Date
     let amount: Double
@@ -37,13 +37,20 @@ final class GoalDetailsPresenter {
 // MARK: - Properties
     
     weak var input: GoalDetailsInput?
+    private let output: GoalDetailsPresenterOutput
     private let goalsService: GoalsServiceProtocol
     private let contributinsService: ContributionsServiceProtocol
     private let id: UUID
+    private var goalItems: [GoalDetailsItem] = []
+    private var selectedId = UUID()
     
 // MARK: - Lifecycle
     
-    init(goalsService: GoalsServiceProtocol, contributinsService: ContributionsServiceProtocol, id: UUID) {
+    init(output: GoalDetailsPresenterOutput,
+         goalsService: GoalsServiceProtocol,
+         contributinsService: ContributionsServiceProtocol,
+         id: UUID) {
+        self.output = output
         self.goalsService = goalsService
         self.contributinsService = contributinsService
         self.id = id
@@ -59,6 +66,7 @@ extension GoalDetailsPresenter: GoalDetailsOutput {
             case .success(let goals):
                 goals.forEach { goal in
                     if goal.id == self?.id {
+                        self?.selectedId = goal.id
                         self?.input?.setGoalData(goal)
                     }
                 }
@@ -70,10 +78,11 @@ extension GoalDetailsPresenter: GoalDetailsOutput {
         contributinsService.fetchContributions(for: id) { [weak self] result in
             switch result {
             case .success(let contributions):
-                let items: [GoalDetilsItem] = contributions.compactMap { contribution in
-                    return GoalDetilsItem(date: contribution.date, amount: contribution.amount, detailId: contribution.id, goalId: contribution.goal)
+                let items: [GoalDetailsItem] = contributions.compactMap { contribution in
+                    return GoalDetailsItem(date: contribution.date, amount: contribution.amount, detailId: contribution.id, goalId: contribution.goal)
                 }
-                self?.input?.setDate(items)
+                self?.goalItems = items
+                self?.input?.setData(items)
             case .failure:
                 break
             }
@@ -83,5 +92,17 @@ extension GoalDetailsPresenter: GoalDetailsOutput {
     func delete() {
         goalsService.deleteGoal(for: id)
         NotificationCenter.default.post(Notification(name: .delete))
+    }
+    
+    func showEdit() {
+        output.showGoalEditView(for: selectedId)
+    }
+    
+    func showAddDetail() {
+        output.showAddDetailView(for: selectedId)
+    }
+    
+    func showAllDetails() {
+        output.showAllDetailsView(goalItems: goalItems)
     }
 }

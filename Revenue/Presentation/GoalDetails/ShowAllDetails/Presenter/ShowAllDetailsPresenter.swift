@@ -13,11 +13,11 @@ final class ShowAllDetailsPresenter {
     
     weak var input: ShowAllDetailsInput?
     private let output: ShowAllDetailsPresenterOutput
-    private let goalItems: [GoalDetilsItem]
+    private let goalItems: [GoalDetailsItem]
 
 // MARK: - Lifecycle
     
-    init(output: ShowAllDetailsPresenterOutput, goalItems: [GoalDetilsItem]) {
+    init(output: ShowAllDetailsPresenterOutput, goalItems: [GoalDetailsItem]) {
         self.output = output
         self.goalItems = goalItems
     }
