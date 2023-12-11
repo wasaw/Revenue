@@ -22,6 +22,7 @@ final class EditSelectedDetail: UIViewController {
     
 // MARK: - Properties
         
+    private let output: EditSeelctedDetailOutput
     private lazy var deleteButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "trash"), for: .normal)
@@ -54,8 +55,6 @@ final class EditSelectedDetail: UIViewController {
         tf.font = UIFont(name: "MontserratRoman-Medium", size: 16)
         return tf
     }()
-    private let contributionsService = ContributionsService(coreData: CoreDataService())
-    private let goalItem: GoalDetilsItem
     
     private lazy var saveButton: UIButton = {
         let btn = UIButton(type: .custom)
@@ -81,8 +80,8 @@ final class EditSelectedDetail: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    init(goalItem: GoalDetilsItem) {
-        self.goalItem = goalItem
+    init(output: EditSeelctedDetailOutput) {
+        self.output = output
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -95,6 +94,7 @@ final class EditSelectedDetail: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        output.viewIsReady()
         view.backgroundColor = .backgroundLightGray
     }
     
@@ -105,7 +105,6 @@ final class EditSelectedDetail: UIViewController {
         configureDetailView()
         configureAmountView()
         
-        amoutTextField.text = goalItem.amountForOutput
         view.addSubview(saveButton)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWilLShow),
@@ -114,10 +113,6 @@ final class EditSelectedDetail: UIViewController {
     }
     
     private func configureNavigationItem() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YYYY"
-        navigationItem.title = "Взнос на " + formatter.string(from: goalItem.date)
-
         let rightBarButton = UIBarButtonItem(customView: deleteButton)
         navigationItem.rightBarButtonItem = rightBarButton
         
@@ -188,8 +183,8 @@ final class EditSelectedDetail: UIViewController {
         }
         let trimmedString = text.replacingOccurrences(of: " ", with: "")
         guard let amount = Double(trimmedString) else { return }
-        contributionsService.saveContribution(Contribution(id: UUID(), amount: amount, date: Date(), goal: goalItem.goalId))
-        contributionsService.delete(for: goalItem.detailId)
+        output.save(amount)
+        output.delete()
         handleBackButton()
     }
     
@@ -206,11 +201,22 @@ extension EditSelectedDetail: DeleteViewControllerDelegate {
     func delete() {
         dismiss(animated: true)
         handleBackButton()
-        contributionsService.delete(for: goalItem.detailId)
-        NotificationCenter.default.post(Notification(name: .delete))
+        output.delete()
     }
     
     func cancel() {
         dismiss(animated: true)
+    }
+}
+
+// MARK: - EditSelectedDetailInput
+
+extension EditSelectedDetail: EditSelectedDetailInput {
+    func setData(_ item: GoalDetilsItem) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        navigationItem.title = "Взнос на " + formatter.string(from: item.date)
+        
+        amoutTextField.text = item.amountForOutput
     }
 }

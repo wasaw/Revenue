@@ -106,7 +106,10 @@ final class ShowAllDetailsViewController: UIViewController {
 extension ShowAllDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = EditSelectedDetail(goalItem: goalItems[indexPath.row])
+        let contributionsService = ContributionsService(coreData: CoreDataService.shared)
+        let presenter = EditSelectedDetailPresenter(contributionsService: contributionsService, goalItem: goalItems[indexPath.row])
+        let vc = EditSelectedDetail(output: presenter)
+        presenter.input = vc
         navigationController?.pushViewController(vc, animated: false)
     }
 }
