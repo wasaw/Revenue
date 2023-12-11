@@ -352,7 +352,9 @@ final class GoalDetailsViewController: UIViewController {
     }
     
     @objc private func handleDetailTable() {
-        let vc = ShowAllDetailsViewController(goalItems: goalItems)
+        let presenter = ShowAllDetailsPresenter(output: self, goalItems: goalItems)
+        let vc = ShowAllDetailsViewController(output: presenter)
+        presenter.input = vc
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -438,5 +440,17 @@ extension GoalDetailsViewController: GoalDetailsBottomViewControllerDelegate {
         let goalService = GoalsService(coreData: CoreDataService())
         let vc = GoalEditViewController(goalService: goalService, selectedId: selectedId)
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - ShowAllDetailsPresenterOutput
+
+extension GoalDetailsViewController: ShowAllDetailsPresenterOutput {
+    func showEditSelectedDetail(_ item: GoalDetilsItem) {
+        let contributionsService = ContributionsService(coreData: CoreDataService.shared)
+        let presenter = EditSelectedDetailPresenter(contributionsService: contributionsService, goalItem: item)
+        let vc = EditSelectedDetail(output: presenter)
+        presenter.input = vc
+        navigationController?.pushViewController(vc, animated: false)
     }
 }

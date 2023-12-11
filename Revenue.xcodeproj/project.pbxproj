@@ -82,6 +82,10 @@
 		BB87AB012B2700A8008B763C /* AddGoalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB002B2700A8008B763C /* AddGoalPresenter.swift */; };
 		BB87AB032B2700C6008B763C /* AddGoalInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB022B2700C6008B763C /* AddGoalInput.swift */; };
 		BB87AB052B2700E4008B763C /* AddGoalOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB042B2700E4008B763C /* AddGoalOutput.swift */; };
+		BB87AB092B270B40008B763C /* ShowAllDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB082B270B40008B763C /* ShowAllDetailsPresenter.swift */; };
+		BB87AB0B2B270B69008B763C /* ShowAllDetailsInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB0A2B270B69008B763C /* ShowAllDetailsInput.swift */; };
+		BB87AB0D2B270B82008B763C /* ShowAllDetailsOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB0C2B270B82008B763C /* ShowAllDetailsOutput.swift */; };
+		BB87AB0F2B2720BC008B763C /* ShowAllDetailsPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB87AB0E2B2720BB008B763C /* ShowAllDetailsPresenterOutput.swift */; };
 		BBAB57482B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */; };
 		BBAB574A2B15E29100B7F645 /* AddTransactionPresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */; };
 		BBAB574D2B160B8C00B7F645 /* OtherCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB574C2B160B8C00B7F645 /* OtherCategoryViewController.swift */; };
@@ -191,6 +195,10 @@
 		BB87AB002B2700A8008B763C /* AddGoalPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalPresenter.swift; sourceTree = "<group>"; };
 		BB87AB022B2700C6008B763C /* AddGoalInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalInput.swift; sourceTree = "<group>"; };
 		BB87AB042B2700E4008B763C /* AddGoalOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalOutput.swift; sourceTree = "<group>"; };
+		BB87AB082B270B40008B763C /* ShowAllDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsPresenter.swift; sourceTree = "<group>"; };
+		BB87AB0A2B270B69008B763C /* ShowAllDetailsInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsInput.swift; sourceTree = "<group>"; };
+		BB87AB0C2B270B82008B763C /* ShowAllDetailsOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsOutput.swift; sourceTree = "<group>"; };
+		BB87AB0E2B2720BB008B763C /* ShowAllDetailsPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllDetailsPresenterOutput.swift; sourceTree = "<group>"; };
 		BBAB57472B14DBBF00B7F645 /* AddTransactionPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterOutput.swift; sourceTree = "<group>"; };
 		BBAB57492B15E29100B7F645 /* AddTransactionPresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenterInput.swift; sourceTree = "<group>"; };
 		BBAB574C2B160B8C00B7F645 /* OtherCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCategoryViewController.swift; sourceTree = "<group>"; };
@@ -299,7 +307,8 @@
 		BB6876512B1B5E0300FC65BD /* ShowAllDetails */ = {
 			isa = PBXGroup;
 			children = (
-				BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */,
+				BB87AB072B270B32008B763C /* Presenter */,
+				BB87AB062B270B2C008B763C /* View */,
 			);
 			path = ShowAllDetails;
 			sourceTree = "<group>";
@@ -705,6 +714,25 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		BB87AB062B270B2C008B763C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6876562B1B5E7A00FC65BD /* ShowAllDetailsViewController.swift */,
+				BB87AB0A2B270B69008B763C /* ShowAllDetailsInput.swift */,
+				BB87AB0C2B270B82008B763C /* ShowAllDetailsOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB87AB072B270B32008B763C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB87AB082B270B40008B763C /* ShowAllDetailsPresenter.swift */,
+				BB87AB0E2B2720BB008B763C /* ShowAllDetailsPresenterOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		BBAB574B2B160B4500B7F645 /* OtherCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -959,6 +987,7 @@
 				BB87AB032B2700C6008B763C /* AddGoalInput.swift in Sources */,
 				BB77A3742B06474400D097E0 /* HomeCell.swift in Sources */,
 				BB782A252B13BFB90018AF85 /* DeleteViewController.swift in Sources */,
+				BB87AB0F2B2720BC008B763C /* ShowAllDetailsPresenterOutput.swift in Sources */,
 				BB77E7642B14BD6B00F80B2E /* AddTransactionPresenter.swift in Sources */,
 				BB6EE43C2B1C70D700D6ED8F /* ContributionsService.swift in Sources */,
 				BBDCF0DE2B0C9BF000AFCDED /* DefaultValueService.swift in Sources */,
@@ -971,6 +1000,7 @@
 				BB77A37D2B07685800D097E0 /* DetailedTransactionPresenter.swift in Sources */,
 				BBAB575A2B1633E800B7F645 /* ShowTransactionsAssembly.swift in Sources */,
 				BB87AAF52B26EF6C008B763C /* EditSelectedDetailOutput.swift in Sources */,
+				BB87AB0B2B270B69008B763C /* ShowAllDetailsInput.swift in Sources */,
 				BB6EE4422B1CCA2800D6ED8F /* AddDetail.swift in Sources */,
 				BBAB577C2B19BF7400B7F645 /* SelectionDateInput.swift in Sources */,
 				BBAB57582B16323300B7F645 /* ShowTransactionsViewControllerOutput.swift in Sources */,
@@ -998,12 +1028,14 @@
 				BBAB57802B19C0F600B7F645 /* CalendarPresenterOutput.swift in Sources */,
 				BB77A3812B0768B900D097E0 /* DetailedTransactionInput.swift in Sources */,
 				BB6EE43E2B1C70F300D6ED8F /* ContributionsServiceProtocol.swift in Sources */,
+				BB87AB092B270B40008B763C /* ShowAllDetailsPresenter.swift in Sources */,
 				BB77A3A12B0B5A6C00D097E0 /* ChoiceCategoryCell.swift in Sources */,
 				BBAB576C2B191A8900B7F645 /* CalendarOutput.swift in Sources */,
 				BB80A63D2B0E0027003E98C7 /* HomeTransactionsView.swift in Sources */,
 				BBDCF0D62B0C94E800AFCDED /* Model.xcdatamodeld in Sources */,
 				BB77A38B2B078AD200D097E0 /* DetailedTransactionAssembly.swift in Sources */,
 				BB6876442B1B25B900FC65BD /* GoalDetailsViewController.swift in Sources */,
+				BB87AB0D2B270B82008B763C /* ShowAllDetailsOutput.swift in Sources */,
 				BBDCF0D12B0C91B300AFCDED /* CoreDataService.swift in Sources */,
 				BBAB57732B19B26900B7F645 /* CalendarAssembly.swift in Sources */,
 				BB77A38F2B09406000D097E0 /* DetailedCoordinator.swift in Sources */,

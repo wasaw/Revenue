@@ -16,20 +16,20 @@ final class ShowAllDetailsViewController: UIViewController {
     
 // MARK: - Properties
     
+    private let output: ShowAllDetailsOutput
     private lazy var backButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "chevron-left"), for: .normal)
         btn.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
         return btn
     }()
-    private let goalItems: [GoalDetilsItem]
         
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = GoalDetailsDataSource(tableView)
 // MARK: - Lifecycle
     
-    init(goalItems: [GoalDetilsItem]) {
-        self.goalItems = goalItems
+    init(output: ShowAllDetailsOutput) {
+        self.output = output
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,6 +54,7 @@ final class ShowAllDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        output.viewIsReady()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +84,6 @@ final class ShowAllDetailsViewController: UIViewController {
         }
         tableView.delegate = self
         tableView.backgroundColor = .white
-        setupDataSource(goalItems)
     }
     
     private func setupDataSource(_ transactions: [GoalDetilsItem]) {
@@ -101,15 +101,19 @@ final class ShowAllDetailsViewController: UIViewController {
     }
 }
 
-// MAKR: - UITableViedDelegate
+// MARK: - UITableViedDelegate
 
 extension ShowAllDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let contributionsService = ContributionsService(coreData: CoreDataService.shared)
-        let presenter = EditSelectedDetailPresenter(contributionsService: contributionsService, goalItem: goalItems[indexPath.row])
-        let vc = EditSelectedDetail(output: presenter)
-        presenter.input = vc
-        navigationController?.pushViewController(vc, animated: false)
+        output.showDetailed(at: indexPath.row)
+    }
+}
+
+// MARK: - ShowAllDetailsInput
+
+extension ShowAllDetailsViewController: ShowAllDetailsInput {
+    func setData(_ item: [GoalDetilsItem]) {
+        setupDataSource(item)
     }
 }
