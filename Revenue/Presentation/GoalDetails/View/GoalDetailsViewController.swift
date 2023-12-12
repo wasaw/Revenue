@@ -422,6 +422,7 @@ extension GoalDetailsViewController: GoalDetailsInput {
 
 extension GoalDetailsViewController: GoalDetailsBottomViewControllerDelegate {
     func deleteItem() {
+        navigationController?.dismiss(animated: true)
         output.delete()
         handleBackButton()
     }

@@ -60,17 +60,12 @@ final class GoalDetailsPresenter {
         self.id = id
         
         notification.addObserver(self, selector: #selector(updateGoal), name: .updateGoal, object: nil)
-        notification.addObserver(self, selector: #selector(deleteGoal), name: .delete, object: nil)
     }
     
 // MARK: - Helpers
     
     @objc private func updateGoal() {
         input?.showPopUp(.update)
-    }
-    
-    @objc private func deleteGoal() {
-        input?.showPopUp(.deleteGoal)
     }
 }
 

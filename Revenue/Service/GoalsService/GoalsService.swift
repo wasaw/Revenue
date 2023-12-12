@@ -79,4 +79,28 @@ extension GoalsService: GoalsServiceProtocol {
     func deleteGoal(for id: UUID) {
         coreData.deleteGols(for: id)
     }
+    
+    func update(_ goal: Goal) {
+        do {
+            guard let goalsManagedObject = try coreData.fetchGoal(id: goal.id).first else { return }
+            coreData.save { context in
+                goalsManagedObject.title = goal.title
+                goalsManagedObject.total = goal.total
+                goalsManagedObject.date = goal.date
+                goalsManagedObject.isFinished = goal.isFinished
+            }
+            
+            guard let data = goal.image.pngData() else { return }
+            fileStore.saveImage(data: data, with: goal.id.uuidString) { result in
+                switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
 }

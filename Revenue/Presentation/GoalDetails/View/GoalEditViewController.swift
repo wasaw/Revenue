@@ -130,7 +130,7 @@ final class GoalEditViewController: UIViewController {
         return view
     }()
     private var saveImage = UIImage(named: "goal1")
-    private let seledtedId: UUID
+    private let selectedId: UUID
     
     private lazy var addButton: UIButton = {
         let btn = UIButton(type: .custom)
@@ -147,7 +147,7 @@ final class GoalEditViewController: UIViewController {
     
     init(goalService: GoalsServiceProtocol, selectedId: UUID) {
         self.goalService = goalService
-        self.seledtedId = selectedId
+        self.selectedId = selectedId
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -189,7 +189,7 @@ final class GoalEditViewController: UIViewController {
             switch result {
             case .success(let goals):
                 goals.forEach { [weak self] goal in
-                    if goal.id == self?.seledtedId {
+                    if goal.id == self?.selectedId {
                         self?.titleTextField.text = goal.title
                         let formatter = DateFormatter()
                         formatter.dateFormat = "dd.MM.YYYY"
@@ -351,16 +351,14 @@ final class GoalEditViewController: UIViewController {
               let goalString = goalAmountTextField.text,
               let goal = Double(goalString),
               let image = saveImage else { return }
-        let id = UUID()
         
-        goalService.deleteGoal(for: seledtedId)
-        goalService.saveGoal(Goal(id: id,
-                                  image: image,
-                                  title: title,
-                                  introduced: introduced,
-                                  total: goal,
-                                  date: Date(),
-                                  isFinished: false))
+        goalService.update(Goal(id: selectedId,
+                                image: image,
+                                title: title,
+                                introduced: introduced,
+                                total: goal,
+                                date: Date(),
+                                isFinished: false))
         handleBackButton()
         NotificationCenter.default.post(Notification(name: .updateGoal))
     }

@@ -154,6 +154,12 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
+    func fetchGoal(id: UUID) throws -> [GoalManagedObject] {
+        let fetchRequest = GoalManagedObject.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        return try viewContext.fetch(fetchRequest)
+    }
+    
     func fetchContributions(id: UUID) throws -> [GoalManagedObject] {
         let fetchRequest = GoalManagedObject.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
