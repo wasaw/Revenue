@@ -5,7 +5,7 @@
 //  Created by Александр Меренков on 20.11.2023.
 //
 
-import Foundation
+import UIKit
 
 struct Transaction {
     let id: UUID
@@ -37,7 +37,7 @@ struct TransactionCategory {
 
 struct Goal {
     let id: UUID
-    let image: String
+    let image: UIImage
     let title: String
     let introduced: Double
     let total: Double

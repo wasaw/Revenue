@@ -12,12 +12,14 @@ final class DefaultValueService {
 // MARK: - Properties
     
     private let coreData: CoreDataServiceProtocol
+    private let fileStore: FileStoreProtocol
     private let userDefaults = UserDefaults.standard
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataServiceProtocol) {
+    init(coreData: CoreDataServiceProtocol, fileStore: FileStoreProtocol) {
         self.coreData = coreData
+        self.fileStore = fileStore
     }
 }
 
@@ -102,9 +104,10 @@ extension DefaultValueService: DefaultValueServiceProtocol {
         let id1 = UUID()
         let id2 = UUID()
         let id3 = UUID()
-        let goals: [Goal] = [Goal(id: id1, image: id1.uuidString, title: "Накопить на машину", introduced: 0, total: 4000000, date: Date().addingTimeInterval(86400 * 300), isFinished: false),
-                             Goal(id: id2, image: id2.uuidString, title: "Ипотека", introduced: 0, total: 7230000, date: Date().addingTimeInterval(86400 * 365 * 15), isFinished: false),
-                             Goal(id: id3, image: id3.uuidString, title: "Телефон", introduced: 0, total: 25000, date: Date(), isFinished: true)]
+        guard let image = UIImage(named: "goal1") else { return }
+        let goals: [Goal] = [Goal(id: id1, image: image, title: "Накопить на машину", introduced: 0, total: 4000000, date: Date().addingTimeInterval(86400 * 300), isFinished: false),
+                             Goal(id: id2, image: image, title: "Ипотека", introduced: 0, total: 7230000, date: Date().addingTimeInterval(86400 * 365 * 15), isFinished: false),
+                             Goal(id: id3, image: image, title: "Телефон", introduced: 0, total: 25000, date: Date(), isFinished: true)]
         
         let contributions: [Contribution] = [Contribution(id: UUID(), amount: 1000, date: Date(), goal: id1),
                                              Contribution(id: UUID(), amount: 5000, date: Date(), goal: id1),
@@ -148,14 +151,15 @@ extension DefaultValueService: DefaultValueServiceProtocol {
         }
         
         goals.forEach { goal in
-            guard let directlyUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-            let fileUrl = directlyUrl.appendingPathComponent(goal.id.uuidString)
-            do {
-                if let data = UIImage(named: "goal1")!.pngData() {
-                    try data.write(to: fileUrl)
+            if let data = image.pngData() {
+                fileStore.saveImage(data: data, with: goal.id.uuidString) { result in
+                    switch result {
+                    case .success:
+                        break
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
                 }
-            } catch {
-                print(error.localizedDescription)
             }
         }
         

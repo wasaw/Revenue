@@ -13,10 +13,12 @@ final class AddGoalPresenter {
     
     weak var input: AddGoalInput?
     private let goalService: GoalsServiceProtocol
+    private let fileStore: FileStoreProtocol
     private var saveImage = UIImage(named: "goal1")
     
-    init(goalService: GoalsServiceProtocol) {
+    init(goalService: GoalsServiceProtocol, fileStore: FileStoreProtocol) {
         self.goalService = goalService
+        self.fileStore = fileStore
     }
 }
 
@@ -29,19 +31,19 @@ extension AddGoalPresenter: AddGoalOutput {
     
     func save(title: String, introduced: Double, total: Double, date: Date) {
         let id = UUID()
-        
-        guard let directlyUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = directlyUrl.appendingPathComponent(id.uuidString)
-        do {
-            if let data = saveImage?.pngData() {
-                try data.write(to: fileUrl)
+        if let data = saveImage?.pngData() {
+            fileStore.saveImage(data: data, with: id.uuidString) { result in
+                switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
-        } catch {
-            print(error.localizedDescription)
         }
         
         goalService.saveGoal(Goal(id: id,
-                                  image: id.uuidString,
+                                  image: UIImage(),
                                   title: title,
                                   introduced: introduced,
                                   total: total,

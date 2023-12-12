@@ -395,7 +395,8 @@ extension GoalDetailsViewController: GoalDetailsInput {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         periodLabel.text = formatter.string(from: item.date)
-        
+        logoIV.image = item.image
+
         if item.isFinished {
             addButton.backgroundColor = .lockButton
             addButton.setTitleColor(.lockButtonTitle, for: .normal)
@@ -404,18 +405,6 @@ extension GoalDetailsViewController: GoalDetailsInput {
             addButton.backgroundColor = .applyButton
             addButton.setTitleColor(.white, for: .normal)
             addButton.isEnabled = true
-        }
-        
-        guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = directoryUrl.appendingPathComponent(item.image)
-        if FileManager.default.fileExists(atPath: fileUrl.path) {
-            do {
-                let fileData = try Data(contentsOf: fileUrl)
-                guard let image = UIImage(data: fileData) else { return }
-                logoIV.image = image
-            } catch {
-                print(error.localizedDescription)
-            }
         }
     }
 }

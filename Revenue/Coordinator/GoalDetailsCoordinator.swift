@@ -13,13 +13,17 @@ final class GoalDetailsCoordinator {
     
     private let goalsService: GoalsServiceProtocol
     private let contributionsService: ContributionsServiceProtocol
+    private let fileStore: FileStoreProtocol
     private var navigation: UINavigationController?
     
 // MARK: - Lifecycle
     
-    init(goalsService: GoalsServiceProtocol, contributionsService: ContributionsServiceProtocol) {
+    init(goalsService: GoalsServiceProtocol,
+         contributionsService: ContributionsServiceProtocol,
+         fileStore: FileStoreProtocol) {
         self.goalsService = goalsService
         self.contributionsService = contributionsService
+        self.fileStore = fileStore
     }
     
 // MARK: - Helpers
@@ -28,6 +32,7 @@ final class GoalDetailsCoordinator {
         let presenter = GoalDetailsPresenter(output: self,
                                              goalsService: goalsService,
                                              contributinsService: contributionsService,
+                                             fileStore: fileStore,
                                              id: id)
         let vc = GoalDetailsViewController(output: presenter)
         presenter.input = vc
@@ -41,8 +46,7 @@ final class GoalDetailsCoordinator {
 
 extension GoalDetailsCoordinator: GoalDetailsPresenterOutput {
     func showGoalEditView(for id: UUID) {
-        let goalService = GoalsService(coreData: CoreDataService())
-        let vc = GoalEditViewController(goalService: goalService, selectedId: id)
+        let vc = GoalEditViewController(goalService: goalsService, selectedId: id)
         navigation?.pushViewController(vc, animated: true)
     }
     

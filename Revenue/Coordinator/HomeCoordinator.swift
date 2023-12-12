@@ -23,6 +23,7 @@ final class HomeCoordinator {
     private let categoriesService: CategoriesServiceProtocol
     private let goalService: GoalsServiceProtocol
     private let contributionsService: ContributionsServiceProtocol
+    private let fileStore: FileStoreProtocol
     
 // MARK: - Lifecycle
     
@@ -34,7 +35,8 @@ final class HomeCoordinator {
          transactionService: TransactionsServiceProtocol,
          categoriesService: CategoriesServiceProtocol,
          goalService: GoalsServiceProtocol,
-         contributionsService: ContributionsServiceProtocol) {
+         contributionsService: ContributionsServiceProtocol,
+         fileStore: FileStoreProtocol) {
         self.detailedCoordinator = detailedCoordinator
         self.goalDetailsCoordinator = goalDetailsCoordinator
         self.choiceCategoryAssembly = choiceCategoryAssembly
@@ -44,6 +46,7 @@ final class HomeCoordinator {
         self.categoriesService = categoriesService
         self.goalService = goalService
         self.contributionsService = contributionsService
+        self.fileStore = fileStore
     }
     
 // MARK: - Helpers
@@ -52,7 +55,8 @@ final class HomeCoordinator {
         let presenter = HomePresenter(output: self,
                                       transactionService: transactionService,
                                       categoriesService: categoriesService,
-                                      goalService: goalService)
+                                      goalService: goalService,
+                                      fileStore: fileStore)
         let viewController = HomeViewController(output: presenter, outputRevenue: presenter)
         presenter.input = viewController
         let nav = UINavigationController(rootViewController: viewController)
@@ -103,7 +107,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showAddGoal() {
-        let presenter = AddGoalPresenter(goalService: goalService)
+        let presenter = AddGoalPresenter(goalService: goalService, fileStore: fileStore)
         let vc = AddGoalViewController(output: presenter)
         presenter.input = vc
         navigation?.pushViewController(vc, animated: true)

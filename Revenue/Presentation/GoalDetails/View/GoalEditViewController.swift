@@ -196,17 +196,7 @@ final class GoalEditViewController: UIViewController {
                         self?.timeLabel.text = formatter.string(from: goal.date)
                         self?.goalAmountTextField.text = String(format: "%.0f", goal.total)
                         self?.currentAmountTextField.text = String(format: "%.0f", goal.introduced)
-                        guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-                        let fileUrl = directoryUrl.appendingPathComponent(goal.image)
-                        if FileManager.default.fileExists(atPath: fileUrl.path) {
-                            do {
-                                let fileData = try Data(contentsOf: fileUrl)
-                                guard let image = UIImage(data: fileData) else { return }
-                                self?.goalView.backgroundColor = UIColor(patternImage: image)
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
+                        self?.goalView.backgroundColor = UIColor(patternImage: goal.image)
                     }
                 }
             case .failure:
@@ -359,22 +349,13 @@ final class GoalEditViewController: UIViewController {
               let introducedString = currentAmountTextField.text,
               let introduced = Double(introducedString),
               let goalString = goalAmountTextField.text,
-              let goal = Double(goalString) else { return }
+              let goal = Double(goalString),
+              let image = saveImage else { return }
         let id = UUID()
-        
-        guard let directlyUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = directlyUrl.appendingPathComponent(id.uuidString)
-        do {
-            if let data = saveImage?.pngData() {
-                try data.write(to: fileUrl)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
         
         goalService.deleteGoal(for: seledtedId)
         goalService.saveGoal(Goal(id: id,
-                                  image: id.uuidString,
+                                  image: image,
                                   title: title,
                                   introduced: introduced,
                                   total: goal,

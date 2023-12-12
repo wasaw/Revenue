@@ -5,7 +5,7 @@
 //  Created by Александр Меренков on 15.11.2023.
 //
 
-import Foundation
+import UIKit
 
 struct HomeTransactions {
     let sections: [String]
@@ -65,7 +65,7 @@ enum HomeGoalsSections: Hashable, CaseIterable {
 
 struct HomeGoalsItem: Hashable {
     let id = UUID()
-    let image: String
+    let image: UIImage
     let title: String
     let introduced: Double
     let total: Double
@@ -95,6 +95,7 @@ final class HomePresenter {
     private let transactionService: TransactionsServiceProtocol
     private let categoriesService: CategoriesServiceProtocol
     private let goalService: GoalsServiceProtocol
+    private let fileStore: FileStoreProtocol
     
     private var selectedTransactions: [[Transaction]] = []
     private var revenueCategories: [TransactionCategory] = []
@@ -110,11 +111,13 @@ final class HomePresenter {
     init(output: HomePresenterOutput,
          transactionService: TransactionsServiceProtocol,
          categoriesService: CategoriesServiceProtocol,
-         goalService: GoalsServiceProtocol) {
+         goalService: GoalsServiceProtocol,
+         fileStore: FileStoreProtocol) {
         self.output = output
         self.transactionService = transactionService
         self.categoriesService = categoriesService
         self.goalService = goalService
+        self.fileStore = fileStore
         
         setNotifications()
         dateFormatter.dateFormat = "HH:mm"
@@ -287,7 +290,7 @@ extension HomePresenter: HomeOutput {
                         introduce += goal.introduced
                         if goal.isFinished == false {
                             self?.isNotFinishedGoals.append(goal)
-                            return HomeGoalsItem(image: goal.id.uuidString,
+                            return HomeGoalsItem(image: goal.image,
                                                  title: goal.title,
                                                  introduced: goal.introduced,
                                                  total: goal.total,
@@ -327,7 +330,7 @@ extension HomePresenter: HomeOutput {
                         } else {
                             self?.isNotFinishedGoals.append(goal)
                         }
-                        return HomeGoalsItem(image: goal.id.uuidString,
+                        return HomeGoalsItem(image: goal.image,
                                              title: goal.title,
                                              introduced: goal.introduced,
                                              total: goal.total,

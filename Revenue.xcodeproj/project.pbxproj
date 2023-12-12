@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BB000DED2B1F6C5B000B34F2 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000DEC2B1F6C5B000B34F2 /* PopUp.swift */; };
+		BB26AE182B274BCB00960BAE /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB26AE172B274BCA00960BAE /* FileStore.swift */; };
+		BB26AE1A2B274BD800960BAE /* FileStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB26AE192B274BD800960BAE /* FileStoreProtocol.swift */; };
 		BB68762E2B19E6F800FC65BD /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */; };
 		BB68763B2B1B12DF00FC65BD /* HomeGoalsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */; };
 		BB68763D2B1B133D00FC65BD /* HomeGoalsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68763C2B1B133D00FC65BD /* HomeGoalsDataSource.swift */; };
@@ -123,6 +125,8 @@
 
 /* Begin PBXFileReference section */
 		BB000DEC2B1F6C5B000B34F2 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
+		BB26AE172B274BCA00960BAE /* FileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStore.swift; sourceTree = "<group>"; };
+		BB26AE192B274BD800960BAE /* FileStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreProtocol.swift; sourceTree = "<group>"; };
 		BB68762D2B19E6F800FC65BD /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		BB68763A2B1B12DF00FC65BD /* HomeGoalsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsCell.swift; sourceTree = "<group>"; };
 		BB68763C2B1B133D00FC65BD /* HomeGoalsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGoalsDataSource.swift; sourceTree = "<group>"; };
@@ -264,6 +268,15 @@
 				BB000DEC2B1F6C5B000B34F2 /* PopUp.swift */,
 			);
 			path = PopUp;
+			sourceTree = "<group>";
+		};
+		BB26AE162B274BBA00960BAE /* File Store */ = {
+			isa = PBXGroup;
+			children = (
+				BB26AE172B274BCA00960BAE /* FileStore.swift */,
+				BB26AE192B274BD800960BAE /* FileStoreProtocol.swift */,
+			);
+			path = "File Store";
 			sourceTree = "<group>";
 		};
 		BB68763E2B1B255800FC65BD /* GoalDetails */ = {
@@ -865,6 +878,7 @@
 			isa = PBXGroup;
 			children = (
 				BBDCF0CF2B0C919300AFCDED /* Core Data */,
+				BB26AE162B274BBA00960BAE /* File Store */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1019,10 +1033,12 @@
 				BB68763D2B1B133D00FC65BD /* HomeGoalsDataSource.swift in Sources */,
 				BBDCF0D32B0C91C400AFCDED /* CoreDataServiceProtocol.swift in Sources */,
 				BB8031432B04BDEB000D8307 /* SceneDelegate.swift in Sources */,
+				BB26AE1A2B274BD800960BAE /* FileStoreProtocol.swift in Sources */,
 				BB77A3862B076BD500D097E0 /* HomeCoordinator.swift in Sources */,
 				BB77E76D2B14BF7900F80B2E /* HomeTransactionsOutput.swift in Sources */,
 				BB8031552B04C8B5000D8307 /* HomeViewController.swift in Sources */,
 				BB77A3982B09445F00D097E0 /* ChoiceOutput.swift in Sources */,
+				BB26AE182B274BCB00960BAE /* FileStore.swift in Sources */,
 				BB77A39F2B0B59E800D097E0 /* ChoiceCategoryDataSource.swift in Sources */,
 				BB000DED2B1F6C5B000B34F2 /* PopUp.swift in Sources */,
 				BBAB57542B1631BF00B7F645 /* ShowTransactionsViewController.swift in Sources */,

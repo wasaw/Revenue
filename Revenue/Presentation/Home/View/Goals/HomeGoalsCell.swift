@@ -113,17 +113,6 @@ final class HomeGoalsCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.YYYY"
         dateLabel.text = "до " + formatter.string(from: item.date)
-        
-        guard let directoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = directoryUrl.appendingPathComponent(item.image)
-        if FileManager.default.fileExists(atPath: fileUrl.path) {
-            do {
-                let fileData = try Data(contentsOf: fileUrl)
-                guard let image = UIImage(data: fileData) else { return }
-                logoImage.image = image
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+        logoImage.image = item.image
     }
 }

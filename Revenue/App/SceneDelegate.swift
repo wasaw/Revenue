@@ -26,7 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreData = CoreDataService.shared
         let transactionService = TransactionsService(coreData: coreData)
         let categoriesService = CategoriesService(coreData: coreData)
-        let goalService = GoalsService(coreData: coreData)
+        let fileStore = FileStore()
+        let goalService = GoalsService(coreData: coreData, fileStore: fileStore)
         let contributionsService = ContributionsService(coreData: coreData)
         
 // MARK: - Coordinator
@@ -36,10 +37,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                       categoriesService: categoriesService,
                                                       transactionsService: transactionService)
         let goalDetailsCoordinator = GoalDetailsCoordinator(goalsService: goalService,
-                                                     contributionsService: contributionsService)
+                                                            contributionsService: contributionsService,
+                                                            fileStore: fileStore)
 
         if UserDefaults.standard.value(forKey: "isFirstLaunce") == nil {
-            let defaultService = DefaultValueService(coreData: coreData)
+            let defaultService = DefaultValueService(coreData: coreData, fileStore: fileStore)
             defaultService.saveValues()
             UserDefaults.standard.set(false, forKey: "isFirstLaunce")
         }
@@ -54,7 +56,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               transactionService: transactionService,
                                               categoriesService: categoriesService,
                                               goalService: goalService,
-                                              contributionsService: contributionsService)
+                                              contributionsService: contributionsService,
+                                              fileStore: fileStore)
         window?.rootViewController = homeCoordinator.start()
         window?.makeKeyAndVisible()
     }

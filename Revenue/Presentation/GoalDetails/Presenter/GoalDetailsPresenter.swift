@@ -40,6 +40,7 @@ final class GoalDetailsPresenter {
     private let output: GoalDetailsPresenterOutput
     private let goalsService: GoalsServiceProtocol
     private let contributinsService: ContributionsServiceProtocol
+    private let fileStore: FileStoreProtocol
     private let id: UUID
     private var goalItems: [GoalDetailsItem] = []
     private var selectedId = UUID()
@@ -49,10 +50,12 @@ final class GoalDetailsPresenter {
     init(output: GoalDetailsPresenterOutput,
          goalsService: GoalsServiceProtocol,
          contributinsService: ContributionsServiceProtocol,
+         fileStore: FileStoreProtocol,
          id: UUID) {
         self.output = output
         self.goalsService = goalsService
         self.contributinsService = contributinsService
+        self.fileStore = fileStore
         self.id = id
     }
 }

@@ -12,11 +12,13 @@ final class GoalsService {
 // MARK: - Properties
     
     private let coreData: CoreDataServiceProtocol
+    private let fileStore: FileStoreProtocol
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataServiceProtocol) {
+    init(coreData: CoreDataServiceProtocol, fileStore: FileStoreProtocol) {
         self.coreData = coreData
+        self.fileStore = fileStore
     }
 }
 
@@ -35,8 +37,12 @@ extension GoalsService: GoalsServiceProtocol {
                 contributionManagedObject?.forEach { contribution in
                     introduced += contribution.amount
                 }
+                
+                guard let data = fileStore.fetchImage(id.uuidString),
+                      let image = UIImage(data: data) else { return nil}
+                
                 return Goal(id: id,
-                            image: id.uuidString,
+                            image: image,
                             title: title,
                             introduced: introduced,
                             total: managedObject.total,
@@ -57,6 +63,16 @@ extension GoalsService: GoalsServiceProtocol {
             goalsManagedObject.total = goal.total
             goalsManagedObject.date = goal.date
             goalsManagedObject.isFinished = goal.isFinished
+        }
+        
+        guard let data = goal.image.pngData() else { return }
+        fileStore.saveImage(data: data, with: goal.id.uuidString) { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     
