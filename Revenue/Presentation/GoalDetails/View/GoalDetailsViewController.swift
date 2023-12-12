@@ -407,14 +407,23 @@ extension GoalDetailsViewController: GoalDetailsInput {
             addButton.isEnabled = true
         }
     }
+    
+    func showPopUp(_ title: PopUpTitle) {
+        let vc = PopUp(title)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true) { [weak self] in
+            sleep(2)
+            self?.dismiss(animated: true)
+        }
+    }
 }
 
 // MARK: - GoalDetailsBottomViewControllerDelegate
 
 extension GoalDetailsViewController: GoalDetailsBottomViewControllerDelegate {
     func deleteItem() {
-        handleBackButton()
         output.delete()
+        handleBackButton()
     }
     
     func showEdit() {

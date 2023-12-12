@@ -41,6 +41,7 @@ final class GoalDetailsPresenter {
     private let goalsService: GoalsServiceProtocol
     private let contributinsService: ContributionsServiceProtocol
     private let fileStore: FileStoreProtocol
+    private let notification = NotificationCenter.default
     private let id: UUID
     private var goalItems: [GoalDetailsItem] = []
     private var selectedId = UUID()
@@ -57,6 +58,19 @@ final class GoalDetailsPresenter {
         self.contributinsService = contributinsService
         self.fileStore = fileStore
         self.id = id
+        
+        notification.addObserver(self, selector: #selector(updateGoal), name: .updateGoal, object: nil)
+        notification.addObserver(self, selector: #selector(deleteGoal), name: .delete, object: nil)
+    }
+    
+// MARK: - Helpers
+    
+    @objc private func updateGoal() {
+        input?.showPopUp(.update)
+    }
+    
+    @objc private func deleteGoal() {
+        input?.showPopUp(.deleteGoal)
     }
 }
 
@@ -94,7 +108,6 @@ extension GoalDetailsPresenter: GoalDetailsOutput {
     
     func delete() {
         goalsService.deleteGoal(for: id)
-        NotificationCenter.default.post(Notification(name: .delete))
     }
     
     func showEdit() {
